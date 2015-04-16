@@ -106,7 +106,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_ipcYBd7xEeSFMbU21IR8EQ"/>
     </children>
     <element xmi:type="idemia:Agent" href="default.idemia#//@Agent"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ipbJ4d7xEeSFMbU21IR8EQ" x="50" y="35" width="521" height="586"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ipbJ4d7xEeSFMbU21IR8EQ" x="50" y="35" width="546" height="586"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_YC1MYN72EeSFMbU21IR8EQ" type="2002" fontName="Segoe UI">
     <children xmi:type="notation:DecorationNode" xmi:id="_YC-WUN72EeSFMbU21IR8EQ" type="5018"/>
