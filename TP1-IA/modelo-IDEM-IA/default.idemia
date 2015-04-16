@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<idemia:AgentModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:idemia="utn.frsf.cidisi">
+  <Environment name="EnvironmentMap">
+    <EnvironmentState name="StateMap">
+      <DataStructure name="intensidadSeñalA" type="Other"/>
+      <DataStructure name="intensidadSeñalM" type="Other"/>
+      <DataStructure name="intensidadSeñalB" type="Other"/>
+    </EnvironmentState>
+  </Environment>
+  <Agent name="AgentDrone">
+    <Strategy xsi:type="idemia:Search"/>
+    <Goal name="GoalDrone" value="(intensidadSeñalA=empty) &amp; (intensidadSeñalM=empty) &amp; (intensidadSeñalB=empty)"/>
+    <AgentState name="StateDrone">
+      <DataStructure name="ubicacionD" type="pair"/>
+      <DataStructure name="altura" type="String"/>
+      <DataStructure name="intensidadSeñalA" type="Other"/>
+      <DataStructure name="intensidadSeñalM" type="Other"/>
+      <DataStructure name="intensidadSeñalB" type="Other"/>
+      <DataStructure name="direccion" type="String"/>
+      <DataStructure name="victimario" type="Other"/>
+      <DataStructure name="energia"/>
+    </AgentState>
+  </Agent>
+</idemia:AgentModel>
