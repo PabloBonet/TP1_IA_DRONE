@@ -21,4 +21,9 @@
       <DataStructure name="energia"/>
     </AgentState>
   </Agent>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrNorte"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrSur"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrEste"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrOeste"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrNorEste"/>
 </idemia:AgentModel>

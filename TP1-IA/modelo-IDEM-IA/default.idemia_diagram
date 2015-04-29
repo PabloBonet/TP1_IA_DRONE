@@ -106,7 +106,7 @@
       <styles xmi:type="notation:FilteringStyle" xmi:id="_ipcYBd7xEeSFMbU21IR8EQ"/>
     </children>
     <element xmi:type="idemia:Agent" href="default.idemia#//@Agent"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ipbJ4d7xEeSFMbU21IR8EQ" x="50" y="35" width="546" height="606"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ipbJ4d7xEeSFMbU21IR8EQ" x="50" y="35" width="546" height="455"/>
   </children>
   <children xmi:type="notation:Shape" xmi:id="_YC1MYN72EeSFMbU21IR8EQ" type="2002" fontName="Segoe UI">
     <children xmi:type="notation:DecorationNode" xmi:id="_YC-WUN72EeSFMbU21IR8EQ" type="5018"/>
@@ -153,4 +153,59 @@
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_f_f6Qd7xEeSFMbU21IR8EQ"/>
   <element xmi:type="idemia:AgentModel" href="default.idemia#/"/>
+  <edges xmi:type="notation:Edge" xmi:id="_Od99ge6lEeSep4xcPmDaPA" type="4001" source="_ipbJ4N7xEeSFMbU21IR8EQ" target="_YC1MYN72EeSFMbU21IR8EQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_Od-kkO6lEeSep4xcPmDaPA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_Od_LoO6lEeSep4xcPmDaPA" x="-3" y="-9"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_Od99gu6lEeSep4xcPmDaPA" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_Od99g-6lEeSep4xcPmDaPA" fontName="Segoe UI"/>
+    <element xmi:type="idemia:Action" href="default.idemia#//@Actions.0"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_Od99hO6lEeSep4xcPmDaPA" points="[35, -11, -170, -11]$[194, -11, -11, -11]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_OeRfgO6lEeSep4xcPmDaPA" id="(0.9358974358974359,0.046153846153846156)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_OeRfge6lEeSep4xcPmDaPA" id="(0.041353383458646614,0.06976744186046512)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_vEQ6QO6lEeSep4xcPmDaPA" type="4001" source="_ipbJ4N7xEeSFMbU21IR8EQ" target="_YC1MYN72EeSFMbU21IR8EQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_vEQ6RO6lEeSep4xcPmDaPA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_vEQ6Re6lEeSep4xcPmDaPA" x="-4" y="-8"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_vEQ6Qe6lEeSep4xcPmDaPA" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_vEQ6Qu6lEeSep4xcPmDaPA" fontName="Segoe UI"/>
+    <element xmi:type="idemia:Action" href="default.idemia#//@Actions.1"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_vEQ6Q-6lEeSep4xcPmDaPA" points="[13, -16, -184, -18]$[172, -16, -25, -18]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vET9kO6lEeSep4xcPmDaPA" id="(0.9761904761904762,0.09010989010989011)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_vEUkoO6lEeSep4xcPmDaPA" id="(0.09398496240601503,0.14285714285714285)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_xkO8oO6lEeSep4xcPmDaPA" type="4001" source="_ipbJ4N7xEeSFMbU21IR8EQ" target="_YC1MYN72EeSFMbU21IR8EQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_xkO8pO6lEeSep4xcPmDaPA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_xkO8pe6lEeSep4xcPmDaPA" x="-3" y="-8"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_xkO8oe6lEeSep4xcPmDaPA" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_xkO8ou6lEeSep4xcPmDaPA" fontName="Segoe UI"/>
+    <element xmi:type="idemia:Action" href="default.idemia#//@Actions.2"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_xkO8o-6lEeSep4xcPmDaPA" points="[7, -14, -176, -12]$[166, -14, -17, -12]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xkR_8O6lEeSep4xcPmDaPA" id="(0.9871794871794872,0.11868131868131868)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_xkR_8e6lEeSep4xcPmDaPA" id="(0.06390977443609022,0.17275747508305647)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_1pTUkO6lEeSep4xcPmDaPA" type="4001" source="_ipbJ4N7xEeSFMbU21IR8EQ" target="_YC1MYN72EeSFMbU21IR8EQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_1pTUlO6lEeSep4xcPmDaPA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_1pTUle6lEeSep4xcPmDaPA" x="-3" y="-8"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_1pTUke6lEeSep4xcPmDaPA" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_1pTUku6lEeSep4xcPmDaPA" fontName="Segoe UI"/>
+    <element xmi:type="idemia:Action" href="default.idemia#//@Actions.3"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_1pTUk-6lEeSep4xcPmDaPA" points="[28, 9, -196, 3]$[187, 9, -37, 3]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1pVw0O6lEeSep4xcPmDaPA" id="(0.9487179487179487,0.1010989010989011)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_1pVw0e6lEeSep4xcPmDaPA" id="(0.13909774436090225,0.17275747508305647)"/>
+  </edges>
+  <edges xmi:type="notation:Edge" xmi:id="_B0VuEO6mEeSep4xcPmDaPA" type="4001" source="_ipbJ4N7xEeSFMbU21IR8EQ" target="_YC1MYN72EeSFMbU21IR8EQ">
+    <children xmi:type="notation:DecorationNode" xmi:id="_B0WVIO6mEeSep4xcPmDaPA" type="6001">
+      <layoutConstraint xmi:type="notation:Location" xmi:id="_B0WVIe6mEeSep4xcPmDaPA" x="3" y="-8"/>
+    </children>
+    <styles xmi:type="notation:RoutingStyle" xmi:id="_B0VuEe6mEeSep4xcPmDaPA" routing="Rectilinear"/>
+    <styles xmi:type="notation:FontStyle" xmi:id="_B0VuEu6mEeSep4xcPmDaPA" fontName="Segoe UI"/>
+    <element xmi:type="idemia:Action" href="default.idemia#//@Actions.4"/>
+    <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_B0VuE-6mEeSep4xcPmDaPA" points="[37, 20, -174, 23]$[196, 20, -15, 23]"/>
+    <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_B0YxYO6mEeSep4xcPmDaPA" id="(0.9322344322344323,0.10989010989010989)"/>
+    <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_B0ZYcO6mEeSep4xcPmDaPA" id="(0.05639097744360902,0.15614617940199335)"/>
+  </edges>
 </notation:Diagram>
