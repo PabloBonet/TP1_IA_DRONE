@@ -5,6 +5,9 @@
       <DataStructure name="intensidadSeñalA" type="Other"/>
       <DataStructure name="intensidadSeñalM" type="Other"/>
       <DataStructure name="intensidadSeñalB" type="Other"/>
+      <DataStructure name="grafoMapa" type="Other"/>
+      <DataStructure name="energiaAgente"/>
+      <DataStructure name="posicionAgente" type="pair"/>
     </EnvironmentState>
   </Environment>
   <Agent name="AgentDrone">
@@ -26,4 +29,14 @@
   <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrEste"/>
   <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrOeste"/>
   <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrNorEste"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrNorOeste"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrSurEste"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrSurOeste"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="Bajar"/>
+  <Actions execute_by="//@Agent" executed_on="//@Environment" name="Subir"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="altura"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="posiciongps"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="camara"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="antena"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="energia"/>
 </idemia:AgentModel>
