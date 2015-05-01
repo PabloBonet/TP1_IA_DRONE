@@ -29,7 +29,7 @@ public class UIMapa extends Canvas {
 	}
 
 	private void inicializarImagenFondo() {
-		fondo = new ImageIcon("C:\\workpace\\prueba\\mapas\\entornoMapa2.png").getImage();
+		fondo = new ImageIcon("D:\\GitHub\\TP1_IA_DRONE\\TP1-IA\\entornoMapa.png").getImage();
 	}
 	@Override
 	/*Se reescribe el metodo paint que se hereda de Canvas*/

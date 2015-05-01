@@ -67,7 +67,8 @@ public class UIVentanaPrincipal extends JFrame{
 				ventanaGrafica = new UIVentanaGrafica();
 				ventanaGrafica.setAutoscrolls(true);
 				
-				//se agrega la ventana grafica a su correspondiente JPanel
+				//se carga la ventana grafica a su correspondiente JPanel
+				panelGrafico.removeAll();
 				panelGrafico.add(ventanaGrafica);
 				
 			}

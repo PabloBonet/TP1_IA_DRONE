@@ -1,8 +1,12 @@
 package frsf.cidisi.exercise.defecto.search;
 
 
+import java.awt.Point;
+import java.util.Vector;
+
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
+import frsf.ia.tp.libreriaclases.Persona;
 
 /**
  * Represent the internal state of the Agent.
@@ -10,13 +14,13 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 public class StateDrone extends SearchBasedAgentState {
 	
 	//TODO: Setup Variables
-    private int[] ubicacionD;
+    private Point ubicacionD;
     private String altura;
     //private Other intensidadSeñalA;
     //private Other intensidadSeñalM;
     //private Other intensidadSeñalB;
     private String direccion;
-    //private Other victimario;
+    private Vector<Persona> victimario;
     private int energia;
 	
 
@@ -95,10 +99,10 @@ public class StateDrone extends SearchBasedAgentState {
     //TODO: Complete this section with agent-specific methods
     // The following methods are agent-specific:
    	
-     public int[] getubicacionD(){
+     public Point getubicacionD(){
         return ubicacionD;
      }
-     public void setubicacionD(int[] arg){
+     public void setubicacionD(Point arg){
         ubicacionD = arg;
      }
      public String getaltura(){
@@ -131,12 +135,12 @@ public class StateDrone extends SearchBasedAgentState {
      public void setdireccion(String arg){
         direccion = arg;
      }
-//     public Other getvictimario(){
-//        return victimario;
-//     }
-//     public void setvictimario(Other arg){
-//        victimario = arg;
-//     }
+     public Vector<Persona> getvictimario(){
+        return victimario;
+     }
+     public void setvictimario(Vector<Persona> arg){
+        victimario = arg;
+     }
      public int getenergia(){
         return energia;
      }
