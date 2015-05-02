@@ -33,4 +33,30 @@ public class Nodo {
 		this.posY = pY;
 		this.personas = new  ArrayList<Persona>();
 	}
+	
+	public int getId()
+	{
+		return this.id;
+	}
+	
+	public int getPosX()
+	{
+		return this.posX;
+	}
+	
+	public int getPosY()
+	{
+		return this.posY;
+	}
+	
+	public List<Persona> getPersonas()
+	{
+		return this.personas;
+	}
+	
+	public void agregarPersona(Persona p)
+	{
+		
+		this.personas.add(p);
+	}
 }
