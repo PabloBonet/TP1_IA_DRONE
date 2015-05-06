@@ -29,18 +29,32 @@ public class StateDrone extends SearchBasedAgentState {
     private int energia;
 	
 
-    public StateDrone() {
+    public StateDrone(Point p, String a, String d, int e) {
     	
-			 ubicacionD = new Point();
-			 altura = "A";
+			 ubicacionD = p;
+			 altura = a;
 			 intensidadSeñalA = new ArrayList<NodoLista>();
 			 intensidadSeñalM = new ArrayList<NodoLista>();
 			 intensidadSeñalB = new ArrayList<Nodo>();
-			 direccion = "N";
+			 direccion = d;
 			 victimarios = new Vector<Persona>();
-			 energia = 100;
+			 energia = e;
         
         this.initState();
+    }
+    
+    public StateDrone()
+    {
+    	ubicacionD = new Point();
+		 altura = "A";
+		 intensidadSeñalA = new ArrayList<NodoLista>();
+		 intensidadSeñalM = new ArrayList<NodoLista>();
+		 intensidadSeñalB = new ArrayList<Nodo>();
+		 direccion = "N";
+		 victimarios = new Vector<Persona>();
+		 energia = 100;
+   
+   this.initState();
     }
 
     /**
@@ -50,9 +64,41 @@ public class StateDrone extends SearchBasedAgentState {
     @Override
     public SearchBasedAgentState clone() {
         
-		//TODO: Complete Method
-		
-        return null;
+	    	
+    	StateDrone nuevoEstado = new StateDrone(this.ubicacionD, this.altura, this.direccion, this.energia);
+    	
+    	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
+    	ArrayList<NodoLista> nuevaIntensidadSeñalM = new ArrayList<NodoLista>();
+    	ArrayList<Nodo> nuevaIntensidadSeñalB = new ArrayList<Nodo>();
+    	Vector<Persona> nuevaListaVictimarios = new Vector<Persona>();
+    	
+    	for(NodoLista n: this.intensidadSeñalA)
+    	{
+    		nuevaIntensidadSeñalA.add(n);
+    	}
+    	
+    	for(NodoLista n: this.intensidadSeñalM)
+    	{
+    		nuevaIntensidadSeñalM.add(n);
+    	}
+    	
+    	for(Nodo n: this.intensidadSeñalB)
+    	{
+    		nuevaIntensidadSeñalB.add(n);
+    	}
+    	
+    	for(Persona p: this.victimarios)
+    	{
+    		nuevaListaVictimarios.add(p);
+    	}
+    	
+    	
+    	nuevoEstado.setintensidadSeñalA(nuevaIntensidadSeñalA);
+    	nuevoEstado.setintensidadSeñalB(nuevaIntensidadSeñalB);
+    	nuevoEstado.setintensidadSeñalM(nuevaIntensidadSeñalM);
+    	nuevoEstado.setvictimario(nuevaListaVictimarios);
+    	
+        return nuevoEstado;
     }
 
     /**
@@ -71,9 +117,14 @@ public class StateDrone extends SearchBasedAgentState {
     @Override
     public void initState() {
 
-    	//Ubica al agente en el cuadrante 1
+    	//Inicializa la posición
     	ubicacionD.x = 150;
     	ubicacionD.y = 150;
+    	
+    	//Inicializa la energía
+    	this.energia = 100;
+    	
+    	
     }
 
     /**
@@ -115,6 +166,23 @@ public class StateDrone extends SearchBasedAgentState {
        
        //TODO: Complete Method
         
+    	 if (!(obj instanceof StateDrone))
+             return false;
+    	
+    	 Point ubicacion = ((StateDrone) obj).getubicacionD();
+    	 String altura = ((StateDrone) obj).getaltura();
+    	 int energia = ((StateDrone) obj).getenergia();
+    	 
+    	 
+    	 if(ubicacion.x != this.ubicacionD.x || ubicacion.y != this.ubicacionD.y)
+    		 return false;
+    	 
+    	 if(!altura.equals(this.altura))
+    		 return  false;
+    	 
+    	 if(energia != this.energia)
+    		 return false;
+    	 
         return true;
     }
 
