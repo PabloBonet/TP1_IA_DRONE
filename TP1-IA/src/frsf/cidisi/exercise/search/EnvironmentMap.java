@@ -41,8 +41,7 @@ public class EnvironmentMap extends Environment {
     
     public boolean agentFailed(Action actionReturned) {
 
-        StateMap envState =
-                this.getEnvironmentState();
+        StateMap envState = this.getEnvironmentState();
 
         // TODO: Complete Method        
 

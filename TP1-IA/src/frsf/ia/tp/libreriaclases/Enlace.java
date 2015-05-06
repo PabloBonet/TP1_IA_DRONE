@@ -5,10 +5,10 @@ package frsf.ia.tp.libreriaclases;
 public class Enlace {
 
 	/** El nodo1 del enlace. */
-	private Nodo nodo1;
+	private int id1;
 
 	/** El nodo2 del enlace. */
-	private Nodo nodo2;
+	private int id2;
 	
 	/**Representación del peso del enlace, para este caso podria indicar distancia*/
 	private int peso;
@@ -22,10 +22,10 @@ public class Enlace {
 	 * @param vertice2
 	 *            El vértice final.
 	 */
-	public Enlace(Nodo nodo1, Nodo nodo2) {
+	public Enlace(int id1, int id2) {
 		super();
-		this.nodo1 = nodo1;
-		this.nodo2 = nodo2;
+		this.id1 = id1;
+		this.id2 = id2;
 		this.peso = 1;
 	}
 	
@@ -34,28 +34,28 @@ public class Enlace {
 	 *
 	 * 
 	 * @param vertice1
-	 *            El vértice inicial.
+	 *            El id del vertice inicial.
 	 * @param vertice2
-	 *            El vértice final.
+	 *            El ide del vértice final.
 	 *            
 	 * @param peso
 	 * 			  El peso del enlace
 	 */
-	public Enlace(Nodo nodo1, Nodo nodo2, int peso) {
+	public Enlace(int id1, int id2, int peso) {
 		super();
-		this.nodo1 = nodo1;
-		this.nodo2 = nodo2;
+		this.id1 = id1;
+		this.id2 = id2;
 		this.peso = peso;
 	}
 	
-	public Nodo getNodo1()
+	public int getIdNodo1()
 	{
-		return this.nodo1;
+		return this.id1;
 	}
 	
-	public Nodo getNodo2()
+	public int getIdNodo2()
 	{
-		return this.nodo2;
+		return this.id2;
 	}
 	
 	public void setPeso(int peso)

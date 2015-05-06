@@ -86,11 +86,11 @@ public class Grafo {
 	 * @param n2 
 	 * 			El nodo 2 a validar.
 	 *            	 */
-	private boolean validarEnlaceNoRepetido(Nodo n1, Nodo n2)
+	private boolean validarEnlaceNoRepetido(int n1, int n2)
 	{
 		for(Enlace e: listaEnlaces)
 		{
-			if((e.getNodo1()).getId() == n1.getId())
+			if(e.getIdNodo1() == n1 && e.getIdNodo2() == n2 || e.getIdNodo1() == n2 && e.getIdNodo2() == n1 )
 			{
 				return false;
 			}
@@ -141,7 +141,7 @@ public class Grafo {
 	 *	peso del enlace
 	 *
 	 * **/
-	public boolean crearEnlace(Nodo n1, Nodo n2, int peso)
+	public boolean crearEnlace(int n1, int n2, int peso)
 	{
 	
 		if(this.validarEnlaceNoRepetido(n1, n2)) //si True entonces no existe y lo crea
@@ -190,13 +190,13 @@ public class Grafo {
 	 */
 	public Enlace buscarEnlace(int idNodo1 , int idNodo2)  {
 		
-		Nodo nodo1 = this.buscarNodo(idNodo1);
-		Nodo nodo2 = this.buscarNodo(idNodo2);
+//		Nodo nodo1 = this.buscarNodo(idNodo1);
+//		Nodo nodo2 = this.buscarNodo(idNodo2);
 		
-		if(nodo1 != null && nodo2 != null)
+		if(idNodo1 > 0 && idNodo2 > 0)
 		{	
 			for(Enlace e: listaEnlaces){
-				if((e.getNodo1().getId() == nodo1.getId() || e.getNodo1().getId() == nodo2.getId()) && (e.getNodo2().getId() == nodo1.getId() || e.getNodo2().getId() == nodo2.getId())){
+				if((e.getIdNodo1() == idNodo1 || e.getIdNodo1() == idNodo2) && (e.getIdNodo2() == idNodo1 || e.getIdNodo2() == idNodo2)){
 				
 					return e;
 				}
