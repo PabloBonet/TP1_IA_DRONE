@@ -1,32 +1,33 @@
 package frsf.cidisi.exercise.search;
 
 
+import java.awt.Point;
+import java.util.ArrayList;
+
 import frsf.cidisi.faia.state.EnvironmentState;
+import frsf.ia.tp.libreriaclases.*;
 
 /**
  * This class represents the real world state.
  */
 public class StateMap extends EnvironmentState {
 	
-	//TODO: Setup Variables
-    //private Other intensidadSeñalA;
-    //private Other intensidadSeñalM;
-    //private Other intensidadSeñalB;
-    //private Other grafoMapa;
+	private ArrayList<NodoLista> intensidadSeñalA;
+    private ArrayList<NodoLista> intensidadSeñalM;
+    private ArrayList<Nodo> intensidadSeñalB;
+    private Grafo grafoMapa;
     private int energiaAgente;
-    private int[] posicionAgente;
+    private Point posicionAgente;
 	
     public StateMap() {
         
-        //TODO: Complete Method
-    	/*
-			// intensidadSeñalA = initData0;
-			// intensidadSeñalM = initData1;
-			// intensidadSeñalB = initData2;
-			// grafoMapa = initData3;
-			// energiaAgente = initData4;
-			// posicionAgente = initData5;
-        */
+    	intensidadSeñalA = new ArrayList<NodoLista>();
+		intensidadSeñalM = new ArrayList<NodoLista>();
+		intensidadSeñalB = new ArrayList<Nodo>();
+		grafoMapa = new Grafo();
+		energiaAgente = 0;
+		posicionAgente = new Point();
+        
         this.initState();
     }
 
@@ -36,7 +37,8 @@ public class StateMap extends EnvironmentState {
     @Override
     public void initState() {
 
-        //TODO: Complete Method
+        this.energiaAgente = 1000;
+        this.posicionAgente.setLocation(150, 150);
     }
 
     /**
@@ -51,43 +53,42 @@ public class StateMap extends EnvironmentState {
         return str;
     }
 
-	//TODO: Complete this section with agent-specific methods
     // The following methods are agent-specific:
 	
-//     public Other getintensidadSeñalA(){
-//        return intensidadSeñalA;
-//     }
-//     public void setintensidadSeñalA(Other arg){
-//        intensidadSeñalA = arg;
-//     }
-//     public Other getintensidadSeñalM(){
-//        return intensidadSeñalM;
-//     }
-//     public void setintensidadSeñalM(Other arg){
-//        intensidadSeñalM = arg;
-//     }
-//     public Other getintensidadSeñalB(){
-//        return intensidadSeñalB;
-//     }
-//     public void setintensidadSeñalB(Other arg){
-//        intensidadSeñalB = arg;
-//     }
-//     public Other getgrafoMapa(){
-//        return grafoMapa;
-//     }
-//     public void setgrafoMapa(Other arg){
-//        grafoMapa = arg;
-//     }
+     public ArrayList<NodoLista> getintensidadSeñalA(){
+        return intensidadSeñalA;
+     }
+     public void setintensidadSeñalA(ArrayList<NodoLista> arg){
+        intensidadSeñalA = arg;
+     }
+     public ArrayList<NodoLista> getintensidadSeñalM(){
+        return intensidadSeñalM;
+     }
+     public void setintensidadSeñalM(ArrayList<NodoLista> arg){
+        intensidadSeñalM = arg;
+     }
+     public ArrayList<Nodo> getintensidadSeñalB(){
+        return intensidadSeñalB;
+     }
+     public void setintensidadSeñalB(ArrayList<Nodo> arg){
+        intensidadSeñalB = arg;
+     }
+     public Grafo getgrafoMapa(){
+        return grafoMapa;
+     }
+     public void setgrafoMapa(Grafo arg){
+        grafoMapa = arg;
+     }
      public int getenergiaAgente(){
         return energiaAgente;
      }
      public void setenergiaAgente(int arg){
         energiaAgente = arg;
      }
-     public int[] getposicionAgente(){
+     public Point getposicionAgente(){
         return posicionAgente;
      }
-     public void setposicionAgente(int[] arg){
+     public void setposicionAgente(Point arg){
         posicionAgente = arg;
      }
 	

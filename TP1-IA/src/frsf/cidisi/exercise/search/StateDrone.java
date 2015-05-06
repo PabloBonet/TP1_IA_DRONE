@@ -30,8 +30,6 @@ public class StateDrone extends SearchBasedAgentState {
 	
 
     public StateDrone() {
-    
-    	//TODO: Complete Method
     	
 			 ubicacionD = new Point();
 			 altura = "A";
@@ -72,8 +70,6 @@ public class StateDrone extends SearchBasedAgentState {
      */
     @Override
     public void initState() {
-        
-	//TODO: Complete Method
 
     	//Ubica al agente en el cuadrante 1
     	ubicacionD.x = 150;
@@ -85,9 +81,27 @@ public class StateDrone extends SearchBasedAgentState {
      */
     @Override
     public String toString() {
-        String str = "";
-
-        //TODO: Complete Method
+        String str = "---- Estado Agente VANT ----\n";
+        str += "Altura: "+altura+"\n";
+        str += "Ubicación: ";
+        if(altura== "B")
+        	str += FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+        else
+        	str += FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+        str += "Intensidad de señal\n\t\tCuadrante Señal\nNivel Alto \n";
+        for(int i=0; i<intensidadSeñalA.size();i++)
+        	str += "\t\t"+intensidadSeñalA.get(i).getCuadrante()+"\t"+intensidadSeñalA.get(i).getIntensidad()+"\n";
+        str += "Nivel Medio \n";
+        for(int i=0; i<intensidadSeñalM.size();i++)
+        	str += "\t\t"+intensidadSeñalM.get(i).getCuadrante()+"\t"+intensidadSeñalM.get(i).getIntensidad()+"\n";
+        str += "Nivel Bajo \tPosición (x, Y) Señal\n";
+        for(int i=0; i<intensidadSeñalB.size();i++)
+        	str += "\t\t"+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\t"+intensidadSeñalB.get(i).getPersonas().size()+"\n";
+        str += "Dirección: "+direccion+"\n";
+        str += "Victimarios (ID): ";
+        for(int i=0; i<victimarios.size();i++)
+        	str += victimarios.get(i).getId()+" ";
+        str += "\nEnergía: "+energia+"\n\n";
 
         return str;
     }

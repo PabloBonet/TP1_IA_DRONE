@@ -11,8 +11,11 @@ public class GoalDrone extends GoalTest {
     public boolean isGoalState (AgentState agentState) {
     
     	// TODO: Complete Method
-        if  (true)//(StateDrone.getintensidadSeñalA().isEmty() && StateDrone.getintensidadSeñalM().isEmty() && StateDrone.getintensidadSeñalB.isEmpty())
+        if  (((StateDrone)agentState).getintensidadSeñalA().isEmpty() && 
+        		((StateDrone)agentState).getintensidadSeñalM().isEmpty() && 
+        		((StateDrone)agentState).getintensidadSeñalB().isEmpty())
         	{
+        	
             return true;
         	}
         return false;
