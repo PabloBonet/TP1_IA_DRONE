@@ -27,16 +27,16 @@ public class StateDrone extends SearchBasedAgentState {
     public StateDrone() {
     
     	//TODO: Complete Method
-    	/*
+    	
 			// ubicacionD = initData0;
 			// altura = initData1;
 			// intensidadSeñalA = initData2;
 			// intensidadSeñalM = initData3;
 			// intensidadSeñalB = initData4;
 			// direccion = initData5;
-			// victimario = initData6;
+			 victimario = new Vector<Persona>();
 			// energia = initData7;
-        */
+        
         this.initState();
     }
 
