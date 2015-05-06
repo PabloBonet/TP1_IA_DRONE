@@ -1,12 +1,17 @@
+
+
 package frsf.cidisi.exercise.search;
 
 
+
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
-import frsf.ia.tp.libreriaclases.Persona;
+import frsf.ia.tp.libreriaclases.*;
+
 
 /**
  * Represent the internal state of the Agent.
@@ -16,11 +21,11 @@ public class StateDrone extends SearchBasedAgentState {
 	//TODO: Setup Variables
     private Point ubicacionD;
     private String altura;
-    //private Other intensidadSeñalA;
-    //private Other intensidadSeñalM;
-    //private Other intensidadSeñalB;
+    private ArrayList<NodoLista> intensidadSeñalA;
+    private ArrayList<NodoLista> intensidadSeñalM;
+    private ArrayList<Nodo> intensidadSeñalB;
     private String direccion;
-    private Vector<Persona> victimario;
+    private Vector<Persona> victimarios;
     private int energia;
 	
 
@@ -28,14 +33,14 @@ public class StateDrone extends SearchBasedAgentState {
     
     	//TODO: Complete Method
     	
-			// ubicacionD = initData0;
-			// altura = initData1;
-			// intensidadSeñalA = initData2;
-			// intensidadSeñalM = initData3;
-			// intensidadSeñalB = initData4;
-			// direccion = initData5;
-			 victimario = new Vector<Persona>();
-			// energia = initData7;
+			 ubicacionD = new Point();
+			 altura = "A";
+			 intensidadSeñalA = new ArrayList<NodoLista>();
+			 intensidadSeñalM = new ArrayList<NodoLista>();
+			 intensidadSeñalB = new ArrayList<Nodo>();
+			 direccion = "N";
+			 victimarios = new Vector<Persona>();
+			 energia = 100;
         
         this.initState();
     }
@@ -70,6 +75,9 @@ public class StateDrone extends SearchBasedAgentState {
         
 	//TODO: Complete Method
 
+    	//Ubica al agente en el cuadrante 1
+    	ubicacionD.x = 150;
+    	ubicacionD.y = 150;
     }
 
     /**
@@ -111,24 +119,24 @@ public class StateDrone extends SearchBasedAgentState {
      public void setaltura(String arg){
         altura = arg;
      }
-//     public Other getintensidadSeñalA(){
-//        return intensidadSeñalA;
-//     }
-//     public void setintensidadSeñalA(Other arg){
-//        intensidadSeñalA = arg;
-//     }
-//     public Other getintensidadSeñalM(){
-//        return intensidadSeñalM;
-//     }
-//     public void setintensidadSeñalM(Other arg){
-//        intensidadSeñalM = arg;
-//     }
-//     public Other getintensidadSeñalB(){
-//        return intensidadSeñalB;
-//     }
-//     public void setintensidadSeñalB(Other arg){
-//        intensidadSeñalB = arg;
-//     }
+     public ArrayList<NodoLista> getintensidadSeñalA(){
+        return intensidadSeñalA;
+     }
+     public void setintensidadSeñalA( ArrayList<NodoLista> arg){
+        intensidadSeñalA = arg;
+     }
+     public ArrayList<NodoLista> getintensidadSeñalM(){
+    	 return intensidadSeñalM;
+     }
+     public void setintensidadSeñalM( ArrayList<NodoLista> arg){
+        intensidadSeñalM = arg;
+     }
+     public  ArrayList<Nodo> getintensidadSeñalB(){
+        return intensidadSeñalB;
+     }
+     public void setintensidadSeñalB(ArrayList<Nodo> arg){
+        intensidadSeñalB = arg;
+     }
      public String getdireccion(){
         return direccion;
      }
@@ -136,10 +144,18 @@ public class StateDrone extends SearchBasedAgentState {
         direccion = arg;
      }
      public Vector<Persona> getvictimario(){
-        return victimario;
+        return victimarios;
      }
      public void setvictimario(Vector<Persona> arg){
-        victimario = arg;
+        victimarios = arg;
+     }
+     
+     public void agregarVictimario(Persona p)
+     {
+    	 if(victimarios != null)
+    	 {
+    		 victimarios.add(p);
+    	 }
      }
      public int getenergia(){
         return energia;

@@ -2,8 +2,8 @@ package frsf.ia.tp.libreriaclases;
 
 public class FuncionesAuxiliares {
 
-	public static int ANCHO_MAPA = 10; // ancho del MAPA 
-	public static int ALTO_MAPA = 10; // alto del MAPA
+	public static int ANCHO_MAPA = 600; // ancho del MAPA 
+	public static int ALTO_MAPA = 600; // alto del MAPA
 	public static int ANCHO_CUADRANTE = ANCHO_MAPA / 2;
 	public static int ALTO_CUADRANTE = ALTO_MAPA / 2;
 	public static int ANCHO_SUB_CUADRANTE = ANCHO_CUADRANTE / 2;
