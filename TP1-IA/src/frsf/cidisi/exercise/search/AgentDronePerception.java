@@ -1,9 +1,14 @@
 package frsf.cidisi.exercise.search;
 
 
+import java.awt.Point;
+
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.cidisi.faia.state.EnvironmentState;
+import frsf.ia.tp.libreriaclases.Antena;
+import frsf.ia.tp.libreriaclases.Camara;
 
 public class AgentDronePerception extends Perception {
 
@@ -12,16 +17,26 @@ public class AgentDronePerception extends Perception {
 	
 	
 	//TODO: Setup Sensors
-	private int altura;
+	/*private int altura;
 	private int posiciongps;
 	private int camara;
 	private int antena;
 	private int energia;
+	*/
+	
+	private String altura;
+	private Point posiciongps;
+	private int energia;
+	private Camara camara;
+	private Antena antena;
 	
  
 
     public  AgentDronePerception() {
     	//TODO: Complete Method
+    	
+    	
+    	
     }
 
     public AgentDronePerception(Agent agent, Environment environment) {
@@ -36,11 +51,28 @@ public class AgentDronePerception extends Perception {
     	
     	//TODO: Complete Method
         
-        //AgentDrone agent = (AgentDrone) agentIn;
-        //EnvironmentMap environment = (EnvironmentMap) environmentIn;
-        //StateMap environmentState =
-        //        environment.getEnvironmentState();
+        AgentDrone agente = (AgentDrone) agentIn;
+        EnvironmentMap ambiente = (EnvironmentMap) environmentIn;
+        StateMap estadoAmbiente =
+                ambiente.getEnvironmentState();
        
+        this.posiciongps = estadoAmbiente.getposicionAgente();
+        this.altura = estadoAmbiente.getAlturaAgente();
+        this.energia = estadoAmbiente.getenergiaAgente();
+        
+        if(estadoAmbiente.getAlturaAgente() == "B")
+        {
+        	
+        	camara = new Camara(estadoAmbiente.getPersonasQueVe());
+        	
+        }
+        /*
+         * COMPLETAR PARTE ANTENA
+         * 
+         * */
+        
+       
+        	
         
     }
     
@@ -55,7 +87,7 @@ public class AgentDronePerception extends Perception {
 
     // The following methods are agent-specific:
     //TODO: Complete this section with the agent-specific methods
-	
+	/*
      public int getaltura(){
         return altura;
      }
@@ -80,6 +112,7 @@ public class AgentDronePerception extends Perception {
      public void setantena(int arg){
         this.antena = arg;
      }
+    */
      public int getenergia(){
         return energia;
      }

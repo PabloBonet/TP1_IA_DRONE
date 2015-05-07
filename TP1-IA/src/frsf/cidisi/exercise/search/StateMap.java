@@ -18,6 +18,7 @@ public class StateMap extends EnvironmentState {
     private Grafo grafoMapa;
     private int energiaAgente;
     private Point posicionAgente;
+    private String alturaAgente;
 	
     public StateMap() {
         
@@ -27,7 +28,7 @@ public class StateMap extends EnvironmentState {
 		grafoMapa = new Grafo();
 		energiaAgente = 0;
 		posicionAgente = new Point();
-        
+        alturaAgente = "A";
         this.initState();
     }
 
@@ -39,6 +40,7 @@ public class StateMap extends EnvironmentState {
 
         this.energiaAgente = 1000;
         this.posicionAgente.setLocation(150, 150);
+        this.alturaAgente  = "A";
     }
 
     /**
@@ -91,7 +93,34 @@ public class StateMap extends EnvironmentState {
      public void setposicionAgente(Point arg){
         posicionAgente = arg;
      }
-	
+	public String getAlturaAgente(){
+		return alturaAgente;
+	}
+     public void serAlturaAgente(String a){
+    	 this.alturaAgente = a;
+     }
+     
+     /**
+      * Función que recorre los nodos adyacentes al nodo donde se encuentra el agente y 
+      * retorna las personas que son visibles al agente desde la posición donde se encuentra
+      * */
+     public ArrayList<Persona> getPersonasQueVe()
+     {
+    	 
+    	 ArrayList<Persona> personasObservables = new ArrayList<Persona>();
+    	 
+    	//retorna los nodos adyacentes a la posicion pasada como parametro
+    	 //Los nodos adyacentes serán los nodos que la cámara va a poder ver en todas las direcciones
+    	 //el segundo parámetro indica si se va a retornar también el nodo acual
+    	 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(posicionAgente, true); 
+    	 
+    	 for(Nodo n: nodosAdyacentes)
+    	 {
+    		personasObservables.addAll(n.getPersonas());
+    	 }
+    	 
+    	 return personasObservables;
+     }
 
 }
 

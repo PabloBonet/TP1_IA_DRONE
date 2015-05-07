@@ -1,5 +1,6 @@
 package frsf.ia.tp.libreriaclases;
 
+import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -204,5 +205,13 @@ public class Grafo {
 		}
 		return null;
 	
+	}
+	
+	public ArrayList<Nodo> nodosAdyacentesAPosicion(Point posicionAgente, boolean incluidoActual)
+	{
+		ArrayList<Nodo> nodosAdyacentes = new ArrayList<Nodo>();
+		
+		
+		return nodosAdyacentes;
 	}
 }
