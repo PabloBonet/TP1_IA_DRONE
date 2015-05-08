@@ -1,35 +1,46 @@
 package frsf.ia.tp.libreriaclases;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 public class Camara {
 
 	//lista de personas identificadas
 	private ArrayList<Persona> personas;
+	//lista de personas identificadas como victimarios
 	private ArrayList<Persona> victimarios;
-
+	//nodo donde se encuentra la cámara (nodo donde se encuentra el agente)
+	private Nodo nodo;
+	
 	public Camara()
 	{
 		personas = new ArrayList<Persona>();
 		victimarios = new ArrayList<Persona>();
+		nodo = null;
+	
 	}
 	
-	public Camara(ArrayList<Persona> p)
+	public Camara(ArrayList<Persona> p, Nodo nodo)
 	{
 		personas = p;
 		victimarios = new ArrayList<Persona>();
+		this.nodo = nodo;
+		
+		//Identificar los victimarios 
+		identificarVictimarios();
 	}
 
 	public ArrayList<Persona> getPersonas() {
 		return personas;
 	}
 
-	public void setPersonas(ArrayList<Persona> personas) {
+	/*public void setPersonas(ArrayList<Persona> personas) {
 		this.personas = personas;
 	}
-	
+	*/
 	public ArrayList<Persona> getVictimarios()
 	{
+		
 		return victimarios;
 	}
 	
@@ -52,11 +63,15 @@ public class Camara {
 	 * */
 	private void identificarVictimarios()
 	{
-		for(Persona p : personas)
+		
+		for(Persona p : nodo.getPersonas())
 		{
+			
 			if(esVictimario(p))
+			{
 				p.setTipo(1);
-			else
+				victimarios.add(p);
+			}else
 				p.setTipo(0);
 		}
 	}
@@ -71,9 +86,12 @@ public class Camara {
 	{
 		boolean r = false;
 		
+		
+		
 		/*CÓDIGO PARA IDENTIFICAR SI UNA PERSONA ES O NO VICTIMARIO
 		 * 
 		 * (SE VA A REALIZAR EN LA SEGUNDA PARTE DEL TP)
+		 * 
 		 * */
 		
 		return r;

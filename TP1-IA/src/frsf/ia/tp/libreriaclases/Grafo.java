@@ -207,11 +207,29 @@ public class Grafo {
 	
 	}
 	
-	public ArrayList<Nodo> nodosAdyacentesAPosicion(Point posicionAgente, boolean incluidoActual)
+	/*
+	 * MÉTODOS ESTÁTICOS
+	 * */
+	
+	public static ArrayList<Nodo> nodosAdyacentesAPosicion(Point posicionAgente, boolean incluidoActual)
 	{
 		ArrayList<Nodo> nodosAdyacentes = new ArrayList<Nodo>();
 		
 		
+		
 		return nodosAdyacentes;
 	}
+	
+	public  Nodo nodoEnPosicion(Point pos)
+	{
+		Nodo nodo = null;
+		for(Nodo n: listaNodos)
+		{
+			if(n.getPosX()==pos.x && n.getPosY() == pos.y)
+				return n;
+		}
+		
+		return nodo;
+	}
+
 }

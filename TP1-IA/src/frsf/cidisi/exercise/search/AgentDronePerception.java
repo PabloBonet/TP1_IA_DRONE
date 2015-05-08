@@ -9,6 +9,7 @@ import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp.libreriaclases.Antena;
 import frsf.ia.tp.libreriaclases.Camara;
+import frsf.ia.tp.libreriaclases.Nodo;
 
 public class AgentDronePerception extends Perception {
 
@@ -62,10 +63,15 @@ public class AgentDronePerception extends Perception {
         
         if(estadoAmbiente.getAlturaAgente() == "B")
         {
+        	Point posicionAgente = estadoAmbiente.getposicionAgente();
+        	Nodo nodoAgente = (Nodo)(estadoAmbiente.getgrafoMapa()).nodoEnPosicion(posicionAgente);
         	
-        	camara = new Camara(estadoAmbiente.getPersonasQueVe());
+        	if(nodoAgente != null)
+        	camara = new Camara(estadoAmbiente.getPersonasQueVe(), nodoAgente);
         	
         }
+        
+        
         /*
          * COMPLETAR PARTE ANTENA
          * 

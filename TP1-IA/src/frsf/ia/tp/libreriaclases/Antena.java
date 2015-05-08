@@ -5,11 +5,20 @@ import java.sql.Struct;
 import java.util.ArrayList;
 
 
-public class Antena {
+public abstract class Antena {
+
+	private ArrayList listaIntensidadSeñal;
+	
+	public abstract ArrayList getIntensidadSeñal();
+	
+	
+	
+	public abstract void agregarIntensidadSeñal(Object intensidad);
 
 	
+	
 	//private int[] senial;
-	private ArrayList<int[]> seniales;
+	/*private ArrayList<int[]> seniales;
 	
 	public Antena()
 	{
@@ -30,5 +39,5 @@ public class Antena {
 	public ArrayList<int[]> getSeniales()
 	{
 		return seniales;
-	}
+	}*/
 }
