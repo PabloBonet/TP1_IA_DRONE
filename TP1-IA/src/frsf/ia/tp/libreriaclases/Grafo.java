@@ -1,7 +1,11 @@
 package frsf.ia.tp.libreriaclases;
 
+<<<<<<< HEAD
 import java.io.File;
 import java.io.IOException;
+=======
+import java.awt.Point;
+>>>>>>> origin/master
 import java.util.ArrayList;
 import java.util.List;
 import frsf.ia.tp.libreriaclases.*;
@@ -212,6 +216,7 @@ public class Grafo {
 		return null;
 	
 	}
+<<<<<<< HEAD
 
 	public void inicializarGrafo(File archivoElegido) {
 		// TODO Auto-generated method stub
@@ -251,4 +256,32 @@ public class Grafo {
 	}
 	
 	
+=======
+	
+	/*
+	 * MÉTODOS ESTÁTICOS
+	 * */
+	
+	public static ArrayList<Nodo> nodosAdyacentesAPosicion(Point posicionAgente, boolean incluidoActual)
+	{
+		ArrayList<Nodo> nodosAdyacentes = new ArrayList<Nodo>();
+		
+		
+		
+		return nodosAdyacentes;
+	}
+	
+	public  Nodo nodoEnPosicion(Point pos)
+	{
+		Nodo nodo = null;
+		for(Nodo n: listaNodos)
+		{
+			if(n.getPosX()==pos.x && n.getPosY() == pos.y)
+				return n;
+		}
+		
+		return nodo;
+	}
+
+>>>>>>> origin/master
 }
