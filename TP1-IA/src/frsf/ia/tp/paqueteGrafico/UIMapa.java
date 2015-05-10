@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 public class UIMapa extends Canvas {
 
-	private static final long serialVersionUID = 1L;
+	
 	private Image fondo;
 
 	/**el constructor recibiria como parametro el grafo*/

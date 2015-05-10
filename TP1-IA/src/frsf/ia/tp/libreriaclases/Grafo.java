@@ -1,7 +1,10 @@
 package frsf.ia.tp.libreriaclases;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import frsf.ia.tp.libreriaclases.*;
 
 
 
@@ -14,6 +17,10 @@ public class Grafo {
 	/** Lista de enlaces. */
 	private ArrayList<Enlace> listaEnlaces;
 
+	
+	/** Lista de Strigs que alojara los datos leidos del archivo */
+	List<List<String>> listaDeDatos;
+	
 	/** Constructor por defecto. */
 	public Grafo() {
 		super();
@@ -205,4 +212,43 @@ public class Grafo {
 		return null;
 	
 	}
+
+	public void inicializarGrafo(File archivoElegido) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void obtenerListaDeNodos(File archivo) throws IOException {
+			
+			LectorCsv lector = new LectorCsv(archivo);
+			
+			List<String> lista = new ArrayList<String>();
+			listaDeDatos = lector.leerArchivo();
+
+			for (int i = 0; i < listaDeDatos.size(); i++) {
+				for (int j = 0; j < listaDeDatos.get(i).size(); j++) {
+					lista.add(listaDeDatos.get(i).get(j));
+				}
+			}
+
+			
+			// Se llama al metodo para crear los componentes de la Simulacion
+			try {
+				this.crearComponentesDeSimulacion();
+				for (Conmutador c : conmutadores)
+					System.out.println("Conmutador: " + c.idConmutador);
+				for (Enlace e : enlaces)
+					System.out.println("Enlace: " + e.getIdConmutadorOrigen()
+							+ " - " + e.getIdConmutadorDestino());
+			} catch (Exception e) {
+				// se lanza una excepcion si hubo algun problema con la creacion
+				e.printStackTrace();
+			}
+
+		
+
+		
+	}
+	
+	
 }

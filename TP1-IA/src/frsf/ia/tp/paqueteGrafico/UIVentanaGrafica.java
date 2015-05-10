@@ -9,11 +9,6 @@ import javax.swing.UIManager;
 
 public class UIVentanaGrafica extends JInternalFrame {
 
-	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	UIMapa mapa;
 	
 	public UIVentanaGrafica()  {

@@ -1,13 +1,10 @@
 package frsf.ia.tp.paqueteGrafico;
-
 import java.beans.PropertyVetoException;
 import java.io.File;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-
 import javax.swing.JFileChooser;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -18,24 +15,18 @@ import java.awt.event.ActionEvent;
 import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
-
-
 import frsf.ia.tp.exceciones.FormatoDeArchivoNoValidoException;
 import frsf.ia.tp.libreriaclases.Grafo;
-
-
 import java.awt.Color;
 
 
 
 public class UIVentanaPrincipal extends JFrame {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
-	Grafo mapa;
+	Grafo grafo;
+	
 	JPanel panelGrafico;
 	JPanel panelInformativo;
 	UIVentanaGrafica ventanaGrafica;
@@ -161,7 +152,10 @@ public class UIVentanaPrincipal extends JFrame {
 			
 			// Crear un objeto FileChooser
 			JFileChooser fc = new JFileChooser();
+			
 			FileNameExtensionFilter fiCsv = new FileNameExtensionFilter(".CSV","csv");
+			
+			
 			fc.setFileFilter(fiCsv);
 			fc.setVisible(true);
 			fc.getAcceptAllFileFilter();
@@ -180,24 +174,19 @@ public class UIVentanaPrincipal extends JFrame {
 
 				// Crear un objeto File con el archivo elegido
 				try {
+					
 					File archivoElegido = fc.getSelectedFile();
+					
+					
 
 					if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
 						System.out.println("Formato de Archivo Correcto");
-						mapa = new Grafo();
+						grafo = new Grafo();
 						
 						/// Rodear con try - catch para validar los casos especiales
-						//mapa.inicializarSimulacion(archivoElegido);
-//						
-//						// Se construyen los Paneles necesarios para mostrar los datos en pantalla
-//						jPanelPanelConmutadores.setComponentes(red);
-//						jPanelPanelEnlaces.setComponentes(red);
-	//
-//						
-//						imprimirDatosEnPantallaEnAreaDeTexto(red);
-//						//inicializarAreaDeTextoTodosComponentes();
-//						JPanelPanelPrincipal.repaint();
-//						JPanelPanelPrincipal.updateUI();
+						grafo.obtenerListaDeNodos(archivoElegido);
+
+
 					} else {
 						throw new FormatoDeArchivoNoValidoException();
 					}
