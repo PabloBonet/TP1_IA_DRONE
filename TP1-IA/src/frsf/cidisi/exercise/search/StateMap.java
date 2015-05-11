@@ -48,10 +48,18 @@ public class StateMap extends EnvironmentState {
      */
     @Override
     public String toString() {
-        String str = "";
-
-        //TODO: Complete Method
-
+        String str = "----- Estado Ambiente Mapa -----\n";
+        str += "Intensidad de señal\n\t\tCuadrante Señal\nNivel Alto \n";
+        for(int i=0; i<intensidadSeñalA.size();i++)
+        	str += "\t\t"+intensidadSeñalA.get(i).getCuadrante()+"\t"+intensidadSeñalA.get(i).getIntensidad()+"\n";
+        str += "Nivel Medio \n";
+        for(int i=0; i<intensidadSeñalM.size();i++)
+        	str += "\t\t"+intensidadSeñalM.get(i).getCuadrante()+"\t"+intensidadSeñalM.get(i).getIntensidad()+"\n";
+        str += "Nivel Bajo \tPosición (x, Y) Señal\n";
+        for(int i=0; i<intensidadSeñalB.size();i++)
+        	str += "\t\t"+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\t"+intensidadSeñalB.get(i).getPersonas().size()+"\n";
+        str += "Victimarios (ID): ";
+        
         return str;
     }
 
@@ -96,7 +104,7 @@ public class StateMap extends EnvironmentState {
 	public String getAlturaAgente(){
 		return alturaAgente;
 	}
-     public void serAlturaAgente(String a){
+     public void setAlturaAgente(String a){
     	 this.alturaAgente = a;
      }
      

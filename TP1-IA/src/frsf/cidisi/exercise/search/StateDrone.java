@@ -132,7 +132,7 @@ public class StateDrone extends SearchBasedAgentState {
      */
     @Override
     public String toString() {
-        String str = "---- Estado Agente VANT ----\n";
+    	String str = "------ Estado Agente VANT -----\n";
         str += "Altura: "+altura+"\n";
         str += "Ubicación: ";
         if(altura== "B")

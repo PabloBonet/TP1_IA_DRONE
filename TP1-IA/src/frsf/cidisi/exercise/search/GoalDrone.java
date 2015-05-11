@@ -10,7 +10,6 @@ public class GoalDrone extends GoalTest {
     @Override
     public boolean isGoalState (AgentState agentState) {
     
-    	// TODO: Complete Method
         if  (((StateDrone)agentState).getintensidadSeñalA().isEmpty() && 
         		((StateDrone)agentState).getintensidadSeñalM().isEmpty() && 
         		((StateDrone)agentState).getintensidadSeñalB().isEmpty())
