@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  * de strings, que representa la matriz contenida en el archivo procesado.<br/>
  * <u><em>Importante:</em></u> Esta clase no debe ser modificada.
  * 
- * @author DIED
+ * @author TP InteligenciaArtificial 2015
  */
 public class LectorCsv {
 

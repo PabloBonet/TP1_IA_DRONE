@@ -16,6 +16,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import frsf.ia.tp.exceciones.FormatoDeArchivoNoValidoException;
+import frsf.ia.tp.libreriaclases.Converter;
 import frsf.ia.tp.libreriaclases.Grafo;
 import java.awt.Color;
 
@@ -26,6 +27,7 @@ public class UIVentanaPrincipal extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
 	Grafo grafo;
+	Converter datos;
 	
 	JPanel panelGrafico;
 	JPanel panelInformativo;
@@ -153,9 +155,11 @@ public class UIVentanaPrincipal extends JFrame {
 			// Crear un objeto FileChooser
 			JFileChooser fc = new JFileChooser();
 			
+			
 			FileNameExtensionFilter fiCsv = new FileNameExtensionFilter(".CSV","csv");
 			
 			
+			fc.setSelectedFile(new File("/TP1-IA/archivosCSV/nodosYenlaces.csv"));
 			fc.setFileFilter(fiCsv);
 			fc.setVisible(true);
 			fc.getAcceptAllFileFilter();
@@ -166,6 +170,7 @@ public class UIVentanaPrincipal extends JFrame {
 			// ventana que la abre.
 
 			int respuesta = fc.showOpenDialog(null);
+			
 
 			// new Frame("CREAR UN AREA DE TEXTO PARA MOSTRAR LOS DATOS CARGADOS")
 
@@ -177,15 +182,25 @@ public class UIVentanaPrincipal extends JFrame {
 					
 					File archivoElegido = fc.getSelectedFile();
 					
-					
-
+				
 					if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
 						System.out.println("Formato de Archivo Correcto");
-						grafo = new Grafo();
 						
-						/// Rodear con try - catch para validar los casos especiales
-						grafo.obtenerListaDeNodos(archivoElegido);
-
+						/**Se crea una instancia de la Clase Converter*/
+						datos = new Converter(archivoElegido);
+						
+						/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
+						System.out.println(datos.getListaDeDatos());
+						System.out.print(datos.getLista());// Revisar (solo se estan mostrando dos elementos de la lista)
+						
+						datos.crearComponentesGrafo();
+						
+						/**Se crea la instancia de grafo con los elementos devueltos por Converter*/
+						grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
+						
+						
+						/*luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
+						
 
 					} else {
 						throw new FormatoDeArchivoNoValidoException();
