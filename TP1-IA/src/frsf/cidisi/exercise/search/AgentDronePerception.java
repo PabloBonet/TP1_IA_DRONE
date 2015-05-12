@@ -104,11 +104,11 @@ public class AgentDronePerception extends Perception {
        str.append("Altura: "+this.altura+"\n");
        str.append("Posición: "+this.posiciongps.getX()+" - "+this.posiciongps.getY()+"\n");
        str.append("Cámara: \n\tVictimas: ");
-       for(int i=0;i<this.camara.getVictimas().size();i++)
+    /*   for(int i=0;i<this.camara.getVictimas().size();i++)
     	   str.append("\n\t\t"+this.camara.getVictimas().get(i).getId());
        str.append("\n\tVictimarios: ");
        for(int i=0;i<this.camara.getVictimarios().size();i++)
-    	   str.append("\n\t\t"+this.camara.getVictimarios().get(i).getId());
+    	   str.append("\n\t\t"+this.camara.getVictimarios().get(i).getId());*/
 //str.append("\nAntena: "+this.antena.---); //Info de antena!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
        str.append("\nEnergía: "+this.energia+"\n");
 
