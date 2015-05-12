@@ -31,9 +31,5 @@ public class UIVentanaGrafica extends JInternalFrame {
 		mapa = new UIMapa(grafo);
 		
 		getContentPane().add(mapa);
-
-		
-		
 	}
-
 }

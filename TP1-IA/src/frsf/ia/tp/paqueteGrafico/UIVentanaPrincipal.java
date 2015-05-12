@@ -19,7 +19,6 @@ import frsf.ia.tp.exceciones.FormatoDeArchivoNoValidoException;
 import frsf.ia.tp.libreriaclases.Converter;
 import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
-
 import java.awt.Color;
 
 
@@ -111,7 +110,7 @@ public class UIVentanaPrincipal extends JFrame {
 		menuHelp = new JMenu("Help");
 		menuBar.add(menuHelp);
 
-		// Se crea un Managmen Layout del tipo grilla para gestionar la
+		// Se crea un Managment Layout del tipo grilla para gestionar la
 		// ubicacion de los paneles
 		GridLayout gestorDeFondo = new GridLayout(0, 2);
 		getContentPane().setLayout(gestorDeFondo);
@@ -147,21 +146,16 @@ public class UIVentanaPrincipal extends JFrame {
 	class ControlerCargarMapa implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
-//			if(mapa == null){
 				itmCargarArchivoActionEvent(e);
-			//}
 		}
 
 		private void itmCargarArchivoActionEvent(ActionEvent e) {
 			
 			// Crear un objeto FileChooser
 			JFileChooser fc = new JFileChooser();
-			
-			
 			FileNameExtensionFilter fiCsv = new FileNameExtensionFilter(".CSV","csv");
 			
-			
-			
+
 			fc.setFileFilter(fiCsv);
 			fc.setVisible(true);
 			fc.getAcceptAllFileFilter();
@@ -174,9 +168,6 @@ public class UIVentanaPrincipal extends JFrame {
 
 			int respuesta = fc.showOpenDialog(null);
 			
-			
-
-			// new Frame("CREAR UN AREA DE TEXTO PARA MOSTRAR LOS DATOS CARGADOS")
 
 			// Comprobar si se ha pulsado Aceptar
 			if (respuesta == JFileChooser.APPROVE_OPTION) {
@@ -206,6 +197,12 @@ public class UIVentanaPrincipal extends JFrame {
 						}
 						
 						
+						System.out.println("IMPRIMIENDO Lista de Enlaces");
+						
+						for(int i=0; i<datos.getListaEnlaces().size(); i++){
+							System.out.println("Enlace["+grafo.getListaEnlaces().get(i).getIdNodo1()+"-"+grafo.getListaEnlaces().get(i).getIdNodo2()+"] Costo["+grafo.getListaEnlaces().get(i).getPeso()+"]");
+						}
+						
 						//creacion de la ventana grafica tomando los datos del grafo
 						ventanaGrafica = new UIVentanaGrafica(grafo);
 						ventanaGrafica.setAutoscrolls(true);
@@ -215,7 +212,8 @@ public class UIVentanaPrincipal extends JFrame {
 						
 						
 						/*luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
-						
+
+						//Completar
 
 					} else {
 						throw new FormatoDeArchivoNoValidoException();
@@ -232,12 +230,7 @@ public class UIVentanaPrincipal extends JFrame {
 				return dir.getName().endsWith(extension);
 			}
 		}
-
-
-		}
-
-
-
+}
 	public Grafo getGrafo() {
 		return grafo;
 	}

@@ -59,11 +59,11 @@ public class Converter {
 				//lo agrego a la lista de nodos
 				listaNodos.add(nodo);
 			}
-			if(categoria.equals("Enlace")){
-				//creo enlaceNodo 
+			if(categoria.equals("Enlace") || categoria.equals("enlace")){
+				//creo una instancia de Enlace y lo agrego a la lista de enlaces
 				Enlace enlace = new Enlace(Integer.parseInt(listaDeDatos.get(i).get(1)),
-				 Integer.parseInt(listaDeDatos.get(i).get(2)),
-				 Integer.parseInt(listaDeDatos.get(i).get(3)));
+										   Integer.parseInt(listaDeDatos.get(i).get(2)),
+										   Integer.parseInt(listaDeDatos.get(i).get(3)));
 				//lo agrego a la ista de enlaces
 				listaEnlaces.add(enlace);
 			}
