@@ -26,9 +26,7 @@ public class StateMap extends EnvironmentState {
 		intensidadSeñalM = new ArrayList<NodoLista>();
 		intensidadSeñalB = new ArrayList<Nodo>();
 		grafoMapa = new Grafo();
-		energiaAgente = 0;
 		posicionAgente = new Point();
-        alturaAgente = "A";
         this.initState();
     }
 
@@ -37,7 +35,7 @@ public class StateMap extends EnvironmentState {
      */
     @Override
     public void initState() {
-
+    	
         this.energiaAgente = 1000;
         this.posicionAgente.setLocation(150, 150);
         this.alturaAgente  = "A";

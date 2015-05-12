@@ -23,14 +23,19 @@ public class EnvironmentMap extends Environment {
      * @return A perception that will be given to the agent by the simulator.
      */
     @Override
-    public  AgentDronePerception getPercept() {
-        // Create a new perception to return
-         AgentDronePerception perception = new AgentDronePerception();
-		
-		//TODO : Set the perceptions sensors
-        
-        // Return the perception
-        return perception;
+    public  AgentDronePerception getPercept() { //TODO de acá llama el simulador para obtener una nueva percepción.
+    	// Create a new perception to return
+    	AgentDronePerception perception = new AgentDronePerception();
+
+    	//TODO : Set the perceptions sensors
+    	
+//    	perception.setantena(this.getEnvironmentState().g)
+    	perception.setaltura(this.getEnvironmentState().getAlturaAgente());
+    	perception.setenergia(this.getEnvironmentState().getenergiaAgente());
+    	perception.setposiciongps(this.getEnvironmentState().getposicionAgente());
+//    	perception.setcamara(this.getEnvironmentState().getCamara());
+    	// Return the perception
+    	return perception;
     }
 
     

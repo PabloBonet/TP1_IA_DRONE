@@ -18,7 +18,6 @@ import frsf.ia.tp.libreriaclases.*;
  */
 public class StateDrone extends SearchBasedAgentState {
 	
-	//TODO: Setup Variables
     private Point ubicacionD;
     private String altura;
     private ArrayList<NodoLista> intensidadSeñalA;
@@ -30,31 +29,26 @@ public class StateDrone extends SearchBasedAgentState {
 	
 
     public StateDrone(Point p, String a, String d, int e) {
-    	
-			 ubicacionD = p;
-			 altura = a;
-			 intensidadSeñalA = new ArrayList<NodoLista>();
-			 intensidadSeñalM = new ArrayList<NodoLista>();
-			 intensidadSeñalB = new ArrayList<Nodo>();
-			 direccion = d;
-			 victimarios = new Vector<Persona>();
-			 energia = e;
-        
-        this.initState();
+
+    	ubicacionD = p;
+    	altura = a;
+    	intensidadSeñalA = new ArrayList<NodoLista>();
+    	intensidadSeñalM = new ArrayList<NodoLista>();
+    	intensidadSeñalB = new ArrayList<Nodo>();
+    	direccion = d;
+    	victimarios = new Vector<Persona>();
+    	energia = e;
     }
     
     public StateDrone()
     {
     	ubicacionD = new Point();
-		 altura = "A";
-		 intensidadSeñalA = new ArrayList<NodoLista>();
-		 intensidadSeñalM = new ArrayList<NodoLista>();
-		 intensidadSeñalB = new ArrayList<Nodo>();
-		 direccion = "N";
-		 victimarios = new Vector<Persona>();
-		 energia = 100;
+		intensidadSeñalA = new ArrayList<NodoLista>();
+		intensidadSeñalM = new ArrayList<NodoLista>();
+		intensidadSeñalB = new ArrayList<Nodo>();
+		victimarios = new Vector<Persona>();
    
-   this.initState();
+		this.initState();
     }
 
     /**
@@ -64,7 +58,7 @@ public class StateDrone extends SearchBasedAgentState {
     @Override
     public SearchBasedAgentState clone() {
         
-	    	
+    	
     	StateDrone nuevoEstado = new StateDrone(this.ubicacionD, this.altura, this.direccion, this.energia);
     	
     	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
@@ -121,9 +115,14 @@ public class StateDrone extends SearchBasedAgentState {
     	ubicacionD.x = 150;
     	ubicacionD.y = 150;
     	
+    	//Inicializa la altura
+    	altura = "A";
+    	
+    	//Inicializa la dirección
+    	direccion = "N";
+    	
     	//Inicializa la energía
     	this.energia = 100;
-    	
     	
     }
 

@@ -102,32 +102,31 @@ public class AgentDronePerception extends Perception {
 
     // The following methods are agent-specific:
     //TODO: Complete this section with the agent-specific methods
-	/*
-     public int getaltura(){
+     public String getaltura(){
         return altura;
      }
-     public void setaltura(int arg){
+     public void setaltura(String arg){
         this.altura = arg;
      }
-     public int getposiciongps(){
+     public Point getposiciongps(){
         return posiciongps;
      }
-     public void setposiciongps(int arg){
+     public void setposiciongps(Point arg){
         this.posiciongps = arg;
      }
-     public int getcamara(){
+     public Camara getcamara(){
         return camara;
      }
-     public void setcamara(int arg){
+     public void setcamara(Camara arg){
         this.camara = arg;
      }
-     public int getantena(){
+     public Antena getantena(){
         return antena;
      }
-     public void setantena(int arg){
+     public void setantena(Antena arg){
         this.antena = arg;
      }
-    */
+    
      public int getenergia(){
         return energia;
      }
