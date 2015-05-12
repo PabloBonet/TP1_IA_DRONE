@@ -22,6 +22,7 @@ public class UIMapa extends Canvas {
 	public UIMapa(Grafo grafo) {
 		this.grafo = grafo;
 		inicializarImagenFondo();
+		
 	}
 
 	private void inicializarImagenFondo() {
@@ -32,6 +33,7 @@ public class UIMapa extends Canvas {
 	/*Se reescribe el metodo paint que se hereda de Canvas*/
 	public void paint(Graphics g) {
 		g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
+		dibujarCuadrantes(g);
 		dibujarNodos(g,grafo);
 		dibujarArcosEntreNodos(g, grafo);
 	}
@@ -76,18 +78,22 @@ public class UIMapa extends Canvas {
 		 g.setColor(Color.RED);
 		 //cuadrante1
 		 g.drawRect(0, 0, 300, 300);
+		 g.drawOval(146, 135, 20, 20);
 		 g.drawString("A1", 150, 150);
 		 
 		 //cuadrante2
 		 g.drawRect(300, 0, 300, 300);
+		 g.drawOval(446, 135, 20, 20);
 		 g.drawString("A2", 450, 150);
 		 
 		 //cuadrante3
 		 g.drawRect(0, 300, 300, 300);
+		 g.drawOval(146, 435, 20, 20);
 		 g.drawString("A3", 150, 450);
 		
 		 //cuadrante4
 		 g.drawRect(300, 300, 300, 300);
+		 g.drawOval(446, 435, 20, 20);
 		 g.drawString("A4", 450, 450);
 	}
 	
