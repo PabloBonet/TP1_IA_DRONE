@@ -20,11 +20,17 @@ public class StateDrone extends SearchBasedAgentState {
 	
     private Point ubicacionD;
     private String altura;
+    
+    /*Las listas de intensidades van guardando los nodos o cuadrantes
+     * de los que se recibieron señal sin impotar la altura en la que se encuentra.
+     * Estas listas irán actualizando su contenido según el recorrido del agente
+     * A medida que el agente recorre los nodos o cuadrantes estos se van quitando de la lista.
+     */
     private ArrayList<NodoLista> intensidadSeñalA;
     private ArrayList<NodoLista> intensidadSeñalM;
     private ArrayList<Nodo> intensidadSeñalB;
     private String direccion;
-    private Vector<Persona> victimarios;
+    private ArrayList<Persona> victimarios;
     private int energia;
 	
 
@@ -36,7 +42,7 @@ public class StateDrone extends SearchBasedAgentState {
     	intensidadSeñalM = new ArrayList<NodoLista>();
     	intensidadSeñalB = new ArrayList<Nodo>();
     	direccion = d;
-    	victimarios = new Vector<Persona>();
+    	victimarios = new ArrayList<Persona>();
     	energia = e;
     }
     
@@ -46,7 +52,7 @@ public class StateDrone extends SearchBasedAgentState {
 		intensidadSeñalA = new ArrayList<NodoLista>();
 		intensidadSeñalM = new ArrayList<NodoLista>();
 		intensidadSeñalB = new ArrayList<Nodo>();
-		victimarios = new Vector<Persona>();
+		victimarios = new ArrayList<Persona>();
    
 		this.initState();
     }
@@ -64,7 +70,7 @@ public class StateDrone extends SearchBasedAgentState {
     	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
     	ArrayList<NodoLista> nuevaIntensidadSeñalM = new ArrayList<NodoLista>();
     	ArrayList<Nodo> nuevaIntensidadSeñalB = new ArrayList<Nodo>();
-    	Vector<Persona> nuevaListaVictimarios = new Vector<Persona>();
+    	ArrayList<Persona> nuevaListaVictimarios = new ArrayList<Persona>();
     	
     	for(NodoLista n: this.intensidadSeñalA)
     	{
@@ -102,7 +108,86 @@ public class StateDrone extends SearchBasedAgentState {
     @Override
     public void updateState(Perception p) {
         
-        //TODO: Complete Method
+    	AgentDronePerception percepcion = (AgentDronePerception) p;
+    	
+    	 ubicacionD = percepcion.getposiciongps();
+    	 altura = percepcion.getaltura();
+    	 victimarios = new ArrayList<Persona>();
+    	 energia = percepcion.getenergia();
+    	 
+    	 if(altura != "B")
+    	 {
+    		 ArrayList<NodoLista> listaI = percepcion.getantena().getIntensidadSeñal();
+    		 if(altura == "A")
+    		 {
+    			 for(NodoLista n: listaI)
+        		 {
+        			 if(!n.getVisitado())
+        			 	intensidadSeñalA.add(n);
+        		 }
+    		 }
+    		 else
+    		 {
+    			 	 for(NodoLista n : listaI)
+        			 {
+        				 if(!n.getVisitado())
+        					 intensidadSeñalM.add(n);
+        			 }
+    		 }
+    	 }
+         else
+         {
+    		 ArrayList<Nodo> listaIB = percepcion.getantena().getIntensidadSeñal();
+    		 
+        		 for(Nodo n : listaIB)
+    			 {
+    				
+    					 intensidadSeñalB.add(n);
+    			 }
+         }	 
+    	 
+    	 
+    	 
+    	 
+    	/* 
+    	 if(altura == "A")
+    	 {
+    		 intensidadSeñalA = percepcion.getantena().getIntensidadSeñal();
+    		 /* 
+    		  * Si la posición del agente es alta, las demás intensidades no se ven (están vacias)
+    		intensidadSeñalM = new ArrayList<NodoLista>();
+			intensidadSeñalB = new ArrayList<Nodo>();
+    		  */
+    		 
+    		// direccion = "N";
+    	/* }
+    	 else
+    	 {
+    		 if(altura == "M")
+    		 {
+    			intensidadSeñalM = percepcion.getantena().getIntensidadSeñal(); 
+    			 /* Si la posición del agente es media, las demás intensidades no se ven (están vacias)
+    	    		intensidadSeñalA = new ArrayList<NodoLista>();
+    				intensidadSeñalB = new ArrayList<Nodo>();
+    	    		  */
+    			
+    		//	direccion = "N";
+    	/*	 }
+    		 else //si altura es B
+    		 {
+    			 intensidadSeñalB = percepcion.getantena().getIntensidadSeñal();
+    			 /* Si la posición del agente es baja, las demás intensidades no se ven (están vacias)
+ 	    		intensidadSeñalA = new ArrayList<NodoLista>();
+ 				intensidadSeñalM = new ArrayList<NodoLista>();
+ 	    		  */
+    			 
+    			 //direccion
+    	/*		 
+    			 victimarios = percepcion.getcamara().getVictimarios();
+    		 }
+    	 }*/
+    	 
+    	 
     }
 
     /**
@@ -224,10 +309,10 @@ public class StateDrone extends SearchBasedAgentState {
      public void setdireccion(String arg){
         direccion = arg;
      }
-     public Vector<Persona> getvictimario(){
+     public ArrayList<Persona> getvictimario(){
         return victimarios;
      }
-     public void setvictimario(Vector<Persona> arg){
+     public void setvictimario(ArrayList<Persona> arg){
         victimarios = arg;
      }
      

@@ -4,14 +4,25 @@ public class NodoLista {
 
 	private int cuadrante;
 	private int intensidad;
+	private boolean visitado;
 	
 	public NodoLista(int cuadrante, int intensidad)
 	{
 		super();
 		this.cuadrante = cuadrante;
 		this.intensidad = intensidad;
+		this.visitado = false;
 	}
 
+	public boolean getVisitado()
+	{
+		return visitado;
+	}
+	
+	public void visitar()
+	{
+		visitado = true;
+	}
 	public int getCuadrante() {
 		return cuadrante;
 	}

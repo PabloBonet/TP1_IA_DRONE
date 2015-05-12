@@ -8,6 +8,8 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp.libreriaclases.Antena;
+import frsf.ia.tp.libreriaclases.AntenaNB;
+import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
 import frsf.ia.tp.libreriaclases.Nodo;
 
@@ -61,25 +63,38 @@ public class AgentDronePerception extends Perception {
         this.altura = estadoAmbiente.getAlturaAgente();
         this.energia = estadoAmbiente.getenergiaAgente();
         
-        if(estadoAmbiente.getAlturaAgente() == "B")
+        String altura = estadoAmbiente.getAlturaAgente();
+        
+        if(altura == "B")
         {
         	Point posicionAgente = estadoAmbiente.getposicionAgente();
         	Nodo nodoAgente = (Nodo)(estadoAmbiente.getgrafoMapa()).nodoEnPosicion(posicionAgente);
         	
+        	//Percepción cámara
         	if(nodoAgente != null)
         	camara = new Camara(estadoAmbiente.getPersonasQueVe(), nodoAgente);
         	
+        	//Percepción Antena
+        	antena = new AntenaNB(estadoAmbiente.getintensidadSeñalB());
+        	
+        }
+        else // Si altura del agente es M o A
+        {
+        	camara = new Camara();
+        	
+        	if(altura == "M")
+        	{
+        		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
+        	}
+        	else
+        	{
+        		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
+        	}
+        		
+        	
         }
         
-        
-        /*
-         * COMPLETAR PARTE ANTENA
-         * 
-         * */
-        
        
-        	
-        
     }
     
     @Override
