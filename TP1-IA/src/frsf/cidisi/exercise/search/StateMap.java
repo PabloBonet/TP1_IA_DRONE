@@ -20,7 +20,7 @@ public class StateMap extends EnvironmentState {
     private Point posicionAgente;
     private String alturaAgente;
 	
-    public StateMap() {
+    public StateMap(Grafo grafo) {
         
     	intensidadSeñalA = new ArrayList<NodoLista>();
 		intensidadSeñalM = new ArrayList<NodoLista>();

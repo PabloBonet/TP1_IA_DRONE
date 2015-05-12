@@ -13,7 +13,7 @@ public class AgentDroneMain {
     	
         AgentDrone agent = new AgentDrone();
 
-        EnvironmentMap environment = new EnvironmentMap();
+        EnvironmentMap environment = new EnvironmentMap(ventanaPrincipal.getGrafo());
 
         SearchBasedAgentSimulator simulator = new SearchBasedAgentSimulator(environment, agent);
         

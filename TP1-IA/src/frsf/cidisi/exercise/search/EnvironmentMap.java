@@ -1,18 +1,18 @@
 package frsf.cidisi.exercise.search;
-
-
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.ia.tp.libreriaclases.Grafo;
 
 public class EnvironmentMap extends Environment {
 
-    public EnvironmentMap() {
+    public EnvironmentMap(Grafo grafo) {
         // Create the environment state
-        this.environmentState = new StateMap();
+        this.environmentState = new StateMap(grafo);
     }
 
-    public StateMap getEnvironmentState() {
+
+	public StateMap getEnvironmentState() {
         return (StateMap) super.getEnvironmentState();
     }
 
