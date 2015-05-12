@@ -15,7 +15,7 @@ import frsf.ia.tp.libreriaclases.*;
 
 public class Grafo {
 	/** Lista de nodos. */
-	private ArrayList<Nodo> listaNodos;
+	public ArrayList<Nodo> listaNodos;
 
 	/** Lista de enlaces. */
 	private ArrayList<Enlace> listaEnlaces;

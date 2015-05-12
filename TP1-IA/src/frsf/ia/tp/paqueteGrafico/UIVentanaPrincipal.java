@@ -18,6 +18,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import frsf.ia.tp.exceciones.FormatoDeArchivoNoValidoException;
 import frsf.ia.tp.libreriaclases.Converter;
 import frsf.ia.tp.libreriaclases.Grafo;
+import frsf.ia.tp.libreriaclases.Nodo;
+
 import java.awt.Color;
 
 
@@ -159,10 +161,11 @@ public class UIVentanaPrincipal extends JFrame {
 			FileNameExtensionFilter fiCsv = new FileNameExtensionFilter(".CSV","csv");
 			
 			
-			fc.setSelectedFile(new File("/TP1-IA/archivosCSV/nodosYenlaces.csv"));
+			
 			fc.setFileFilter(fiCsv);
 			fc.setVisible(true);
 			fc.getAcceptAllFileFilter();
+			fc.setSelectedFile(new File("archivosCSV/nodosYenlaces.csv"));
 
 			// Mostrar la ventana para abrir archivo y recoger la respuesta
 			// En el parámetro del showOpenDialog se indica la ventana
@@ -170,6 +173,7 @@ public class UIVentanaPrincipal extends JFrame {
 			// ventana que la abre.
 
 			int respuesta = fc.showOpenDialog(null);
+			
 			
 
 			// new Frame("CREAR UN AREA DE TEXTO PARA MOSTRAR LOS DATOS CARGADOS")
@@ -190,13 +194,24 @@ public class UIVentanaPrincipal extends JFrame {
 						datos = new Converter(archivoElegido);
 						
 						/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
-						System.out.println(datos.getListaDeDatos());
-						System.out.print(datos.getLista());// Revisar (solo se estan mostrando dos elementos de la lista)
-						
-						datos.crearComponentesGrafo();
+						//System.out.println(datos.getListaDeDatos());						
 						
 						/**Se crea la instancia de grafo con los elementos devueltos por Converter*/
 						grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
+						
+						System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
+												
+						for(int i=0; i<datos.getListaNodos().size(); i++){
+							System.out.println("Esquina: " + grafo.getListaNodos().get(i).getId()+" Posicion X: "+grafo.getListaNodos().get(i).getPosX()+" PosicionY: "+ grafo.getListaNodos().get(i).getPosY()+"\n");
+						}
+						
+						
+						//creacion de la ventana grafica tomando los datos del grafo
+						ventanaGrafica = new UIVentanaGrafica(grafo);
+						ventanaGrafica.setAutoscrolls(true);
+						panelGrafico.add(ventanaGrafica);
+						ventanaGrafica.setVisible(true);
+						ventanaGrafica.repaint();
 						
 						
 						/*luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
@@ -212,8 +227,7 @@ public class UIVentanaPrincipal extends JFrame {
 			}
 		}
 		
-		class EvaluaExtension implements java.io.FilenameFilter {
-
+		private class EvaluaExtension implements java.io.FilenameFilter {
 			public boolean accept(File dir, String extension) {
 				return dir.getName().endsWith(extension);
 			}
@@ -221,9 +235,12 @@ public class UIVentanaPrincipal extends JFrame {
 
 
 		}
-	
-	
-	
+
+
+
+	public Grafo getGrafo() {
+		return grafo;
+	}
 }
 
 

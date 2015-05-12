@@ -7,16 +7,18 @@ import javax.swing.JInternalFrame;
 
 import javax.swing.UIManager;
 
+import frsf.ia.tp.libreriaclases.Grafo;
+
 public class UIVentanaGrafica extends JInternalFrame {
 
 	UIMapa mapa;
 	
-	public UIVentanaGrafica()  {
+	public UIVentanaGrafica(Grafo grafo)  {
 		//setRootPaneCheckingEnabled(false);
-		inicializar();
+		inicializar(grafo);
 	}
 	
-	private void inicializar(){
+	private void inicializar(Grafo grafo){
 		setSize(600, 600);
 		setTitle("mapa");
 		setAlignmentX(0); setAlignmentY(0);
@@ -26,7 +28,7 @@ public class UIVentanaGrafica extends JInternalFrame {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		
 		
-		mapa = new UIMapa();
+		mapa = new UIMapa(grafo);
 		
 		getContentPane().add(mapa);
 
