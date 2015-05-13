@@ -11,7 +11,7 @@ public class FuncionesAuxiliares {
 	
 		
 	/**
-	 * Retorna el cuadrante al que pertenece las coordenadas pasadas como parametros
+	 * Retorna el cuadrante al que pertenecen las coordenadas pasadas como parametros
 	 * 
 	 * @param x 
 	 * 		coordenadaX
@@ -34,8 +34,7 @@ public class FuncionesAuxiliares {
 		{
 			if(cuadY == 0)
 			{
-				
-					cuadrante = 1;
+				cuadrante = 1;
 				
 			}
 			else //cuadY == 1
@@ -51,8 +50,7 @@ public class FuncionesAuxiliares {
 			}
 			else //cuadY == 1
 			{
-					cuadrante = 4;
-				
+				cuadrante = 4;
 			}
 		}
 		
@@ -75,6 +73,8 @@ public class FuncionesAuxiliares {
 	public static int perteneceASubCuadrante(int x, int y)
 	{
 		int cuadrante = 0;
+		//se llama a perteneceCuadrante para tener referencia a que cuadrante de nivel superior pertenece
+		cuadrante = perteneceACuadrante(x, y)*10;
 		
 		int cuadX = (x%ANCHO_CUADRANTE)/ANCHO_SUB_CUADRANTE;
 		int cuadY = (y%ALTO_CUADRANTE) / ALTO_SUB_CUADRANTE;
@@ -84,23 +84,23 @@ public class FuncionesAuxiliares {
 			if(cuadY == 0)
 			{
 				
-					cuadrante = 1;
+					cuadrante += 1;
 				
 			}
 			else //cuadY == 1
 			{
-				cuadrante = 3;
+				cuadrante += 3;
 			}
 		}
 		else //cuadX == 1
 		{
 			if(cuadY == 0)
 			{
-				cuadrante = 2;
+				cuadrante += 2;
 			}
 			else //cuadY == 1
 			{
-					cuadrante = 4;
+					cuadrante += 4;
 				
 			}
 		}

@@ -56,10 +56,10 @@ public class UIMapa extends Canvas {
 		String costo;
 		Nodo nodo1;
 		Nodo nodo2;
-		for(int i=0; i<grafo.getListaEnlace().size(); i++){
+		for(int i=0; i<grafo.getListaEnlaces().size(); i++){
 			//variables auxiliares para guardar el id de cada nodo que compone el enlace
-			idNodo1 = grafo.getListaEnlace().get(i).getIdNodo1();
-			idNodo2 = grafo.getListaEnlace().get(i).getIdNodo2();
+			idNodo1 = grafo.getListaEnlaces().get(i).getIdNodo1();
+			idNodo2 = grafo.getListaEnlaces().get(i).getIdNodo2();
 			nodo1 = grafo.buscarNodo(idNodo1);
 			nodo2 = grafo.buscarNodo(idNodo2);
 			

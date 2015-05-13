@@ -27,6 +27,7 @@ public class StateMap extends EnvironmentState {
 		intensidadSeñalB = new ArrayList<Nodo>();
 		grafoMapa = new Grafo();
 		posicionAgente = new Point();
+		this.setgrafoMapa(grafo);
         this.initState();
     }
 
@@ -39,6 +40,74 @@ public class StateMap extends EnvironmentState {
         this.energiaAgente = 1000;
         this.posicionAgente.setLocation(150, 150);
         this.alturaAgente  = "A";
+        //probar crear los nodos dentro del for.....
+        //preguntar a q subcuad pertenece
+        //y si éste existe en la lista corresp, sumar la intensidad
+        //sino agregar ese cuad.
+        NodoLista NAc1 = new NodoLista(1, 0);
+        NodoLista NAc2 = new NodoLista(2, 0);
+        NodoLista NAc3 = new NodoLista(3, 0);
+        NodoLista NAc4 = new NodoLista(4, 0);
+        NodoLista NMc11 = new NodoLista(1, 0);
+        NodoLista NMc12 = new NodoLista(2, 0);
+        NodoLista NMc13 = new NodoLista(3, 0);
+        NodoLista NMc14 = new NodoLista(4, 0);
+        NodoLista NMc21 = new NodoLista(1, 0);
+        NodoLista NMc22 = new NodoLista(2, 0);
+        NodoLista NMc23 = new NodoLista(3, 0);
+        NodoLista NMc24 = new NodoLista(4, 0);
+        NodoLista NMc31 = new NodoLista(1, 0);
+        NodoLista NMc32 = new NodoLista(2, 0);
+        NodoLista NMc33 = new NodoLista(3, 0);
+        NodoLista NMc34 = new NodoLista(4, 0);
+        NodoLista NMc41 = new NodoLista(1, 0);
+        NodoLista NMc42 = new NodoLista(2, 0);
+        NodoLista NMc43 = new NodoLista(3, 0);
+        NodoLista NMc44 = new NodoLista(4, 0);
+        
+        //Se cargan las intensidades de señal a cada lista del estado del ambiente
+        for( Nodo n: grafoMapa.getListaNodos()){
+        	
+        	//NA: cuadrante que se ve desde nivel alto
+        	int NA = FuncionesAuxiliares.perteneceACuadrante(n.getPosX(), n.getPosY());
+        	
+        	//NM: cuadrante que se ve desde nivel medio (DEBE IDENTIFICAR EN QUE NIVEL NA ESTÁ))
+        	int NM = FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+        	
+        	switch(NA){
+        	case 1:
+        		NAc1.setIntensidad(NAc1.getIntensidad()+n.getPersonas().size()*10);
+        		switch(NM){
+        		case 1:
+        			NMc11.setIntensidad(NMc11.getIntensidad()+n.getPersonas().size()*10);
+        			break;
+        		case 2:
+        			NMc12.setIntensidad(NMc12.getIntensidad()+n.getPersonas().size()*10);
+        			break;
+        		case 3:
+        			NMc13.setIntensidad(NMc13.getIntensidad()+n.getPersonas().size()*10);
+        			break;
+        		case 4:
+        			NMc14.setIntensidad(NMc14.getIntensidad()+n.getPersonas().size()*10);
+        			break;
+        		default:
+        			break;
+        		}
+        		break;
+        	case 2:
+        		NAc2.setIntensidad(NAc2.getIntensidad()+n.getPersonas().size()*10);
+        		break;
+        	case 3:
+        		NAc3.setIntensidad(NAc3.getIntensidad()+n.getPersonas().size()*10);
+        		break;
+        	case 4:
+        		NAc4.setIntensidad(NAc4.getIntensidad()+n.getPersonas().size()*10);
+        		break;
+        	default:
+        		break;
+        	}
+
+        }
     }
 
     /**

@@ -59,7 +59,7 @@ public class Grafo {
 		return this.listaNodos;
 	}
 	
-	public ArrayList<Enlace> getListaEnlace()
+	public ArrayList<Enlace> getListaEnlaces()
 	{
 		return this.listaEnlaces;
 	}
@@ -236,10 +236,6 @@ public class Grafo {
 		}
 		
 		return nodo;
-	}
-
-	public ArrayList<Enlace> getListaEnlaces() {
-		return listaEnlaces;
 	}
 
 	public void setListaEnlaces(ArrayList<Enlace> listaEnlaces) {
