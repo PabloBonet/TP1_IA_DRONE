@@ -40,11 +40,9 @@ public class StateMap extends EnvironmentState {
         this.energiaAgente = 1000;
         this.posicionAgente.setLocation(150, 150);
         this.alturaAgente  = "A";
-        //probar crear los nodos dentro del for.....
-        //preguntar a q subcuad pertenece
-        //y si éste existe en la lista corresp, sumar la intensidad
-        //sino agregar ese cuad.
-        NodoLista NAc1 = new NodoLista(1, 0);
+       
+        inicializarListasSeñales();
+     /*   NodoLista NAc1 = new NodoLista(1, 0);
         NodoLista NAc2 = new NodoLista(2, 0);
         NodoLista NAc3 = new NodoLista(3, 0);
         NodoLista NAc4 = new NodoLista(4, 0);
@@ -64,15 +62,15 @@ public class StateMap extends EnvironmentState {
         NodoLista NMc42 = new NodoLista(2, 0);
         NodoLista NMc43 = new NodoLista(3, 0);
         NodoLista NMc44 = new NodoLista(4, 0);
-        
+       */ 
         //Se cargan las intensidades de señal a cada lista del estado del ambiente
-        for( Nodo n: grafoMapa.getListaNodos()){
+  //      for( Nodo n: grafoMapa.getListaNodos()){
         	
         	//NA: cuadrante que se ve desde nivel alto
-        	int NA = FuncionesAuxiliares.perteneceACuadrante(n.getPosX(), n.getPosY());
+     //   	int NA = FuncionesAuxiliares.perteneceACuadrante(n.getPosX(), n.getPosY());
         	
         	//NM: cuadrante que se ve desde nivel medio (DEBE IDENTIFICAR EN QUE NIVEL NA ESTÁ))
-        	int NM = FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+    /*    	int NM = FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
         	
         	switch(NA){
         	case 1:
@@ -107,10 +105,89 @@ public class StateMap extends EnvironmentState {
         		break;
         	}
 
-        }
+        }*/
     }
 
-    /**
+    private void inicializarListasSeñales() {
+    	 //probar crear los nodos dentro del for.....
+        //preguntar a q subcuad pertenece
+        //y si éste existe en la lista corresp, sumar la intensidad
+        //sino agregar ese cuad.
+        
+    	
+    	for(Nodo n : this.getgrafoMapa().getListaNodos())
+    	{
+    		if(n.getPersonas().size() > 0) //Si el nodo tiene personas (Si tiene personas estas producen señales)
+    		{
+    			int intensidad = 0;
+    			Point ubicacion = new Point();
+    			ubicacion.x = n.getPosX();
+    			ubicacion.y = n.getPosY();
+    			
+    			intensidadSeñalB.add(n);
+    			
+    			int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(ubicacion.x, ubicacion.y);
+    			int cuadrante = FuncionesAuxiliares.perteneceACuadrante(ubicacion.x, ubicacion.y);
+    			
+    			/*
+    			 * Tratamiento para la lista intensidadSeñalM
+    			 */
+    			
+    			//Busca en la lista intensidadSeñalM si el cuadrante ya se encuentra 
+    			boolean existe = false;
+    			for(NodoLista nodo : intensidadSeñalM)
+    			{
+    				if(nodo.getCuadrante() == subCuadrante){
+    					existe = true;
+    					break;
+    				}
+    					
+    			}
+    			
+    			if(!existe)
+    			{
+    				 intensidad = n.getPersonas().size()*20; 
+    				NodoLista nodo = new NodoLista(subCuadrante, intensidad);
+    				intensidadSeñalM.add(nodo);
+    			}
+    			else
+    			{
+    				existe = false;
+    				intensidad = 0;
+    			}
+    			
+    			/*
+    			 * Tratamiento para la lista intensidadSeñalA
+    			 */
+    			
+    			//Busca en la lista intensidadSeñalA si el cuadrante ya se encuentra 
+    			
+    			for(NodoLista nodo : intensidadSeñalA)
+    			{
+    				if(nodo.getCuadrante() == cuadrante){
+    					existe = true;
+    					break;
+    				}
+    			}
+    			
+    			if(!existe)
+    			{
+    				 intensidad = n.getPersonas().size()*10; 
+    				NodoLista nodo = new NodoLista(cuadrante, intensidad);
+    				intensidadSeñalA.add(nodo);
+    			}
+    			else
+    			{
+    				existe = false;
+    				intensidad = 0;
+    			}
+    			
+    		}
+    	}
+		
+	}
+
+	/**
      * String representation of the real world state.
      */
     @Override
