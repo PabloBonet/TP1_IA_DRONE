@@ -1,5 +1,7 @@
 package frsf.ia.tp.libreriaclases;
 
+import java.awt.Point;
+
 public class FuncionesAuxiliares {
 
 	public static int ANCHO_MAPA = 600; // ancho del MAPA 
@@ -106,6 +108,16 @@ public class FuncionesAuxiliares {
 		}
 		
 		return cuadrante;
+	}
+
+	/**
+	 * Devuelve la posición central del cuadrante
+	 */
+	public static Point centrarPosicionCuadrante(int subCuadrante) {
+		// TODO
+		Point nuevaPos = new Point();
+		
+		return null;
 	}
 	
 	

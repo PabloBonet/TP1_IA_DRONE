@@ -345,7 +345,19 @@ public class StateDrone extends SearchBasedAgentState {
 		}
 		return false;
 	}
-//POR AHORA NO SE USA UN MÉTODO DES ESTOS PARA EL NIVEL ALTO....
+//POR AHORA NO SE USA UN MÉTODO DES ESTOS PARA EL NIVEL ALTO....................................................................
+
+	/**
+	 * Elimina un nodo de la lista de intensidad de señal de nivel alto del agente
+	 * @param cuadrante
+	 */
+	public void removerCuadranteNivelA(int cuadrante) {
+		for(int i=0; i<intensidadSeñalA.size(); i++)
+			if(cuadrante == intensidadSeñalA.get(i).getCuadrante()){
+				intensidadSeñalA.remove(i);
+				break;
+			}
+	}
 	
 }
 
