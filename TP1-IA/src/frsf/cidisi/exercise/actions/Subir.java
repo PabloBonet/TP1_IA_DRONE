@@ -1,11 +1,14 @@
 package frsf.cidisi.exercise.actions;
 
 
+import java.awt.Point;
+
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
+import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 
 public class Subir extends SearchAction {
 
@@ -17,9 +20,29 @@ public class Subir extends SearchAction {
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
         StateDrone agState = (StateDrone) s;
         
-        // TODO: Use this conditions
-        // PreConditions: null
-        // PostConditions: null
+        /*PreConditions: no debe estar en el nivel alto
+         * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre 
+         * el agente tiene que tener mas de 1 de energía
+         */
+        if(agState.getenergia() > 1){
+        	Point ubucacion = agState.getubicacionD();
+        	String altura = agState.getaltura();
+        	int cuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+        	//si no hay intensidad de señal para ese cuadrante de nivel bajo
+        	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
+        	if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
+        		agState.setaltura("M");
+        		agState.setenergia(agState.getenergia()-2);
+        		return s;
+        	}
+        	//si no hay intensidad de señal para ese cuadrante de nivel medio
+        	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
+        	else if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
+        		agState.setaltura("A");
+        		agState.setenergia(agState.getenergia()-2);
+        		return s;
+        	}
+        }
         
         return null;
     }
@@ -32,16 +55,30 @@ public class Subir extends SearchAction {
         StateMap environmentState = (StateMap) est;
         StateDrone agState = ((StateDrone) ast);
 
-        // TODO: Use this conditions
-        // PreConditions: null
-        // PostConditions: null
-        
-        if (true) {
-            // Update the real world
-            
-            // Update the agent state
-            
-            return environmentState;
+        /*PreConditions: no debe estar en el nivel alto
+         * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre el agente
+         * tiene que tener mas de 1 de energía
+         */
+        if(agState.getenergia() > 1){
+        	Point ubucacion = agState.getubicacionD();
+        	String altura = agState.getaltura();
+        	int cuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+        	//si no hay intensidad de señal para ese cuadrante de nivel bajo
+        	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
+        	if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
+        		agState.setaltura("M");
+        		agState.setenergia(agState.getenergia()-2);
+        		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
+        		return environmentState;
+        	}
+        	//si no hay intensidad de señal para ese cuadrante de nivel medio
+        	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
+        	else if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
+        		agState.setaltura("A");
+        		agState.setenergia(agState.getenergia()-2);
+        		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
+        		return environmentState;
+        	}
         }
 
         return null;

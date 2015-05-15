@@ -329,6 +329,23 @@ public class StateDrone extends SearchBasedAgentState {
      public void setenergia(int arg){
         energia = arg;
      }
+
+	public boolean hayIntensidadSeñalBCuadrante(int cuadranteActual) {
+		for(Nodo n: intensidadSeñalB){
+			if(cuadranteActual == FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(),n.getPosY()))
+				return true;
+		}
+		return false;
+	}
+
+	public boolean hayIntensidadSeñalMCuadrante(int cuadranteActual) {
+		for(NodoLista n: intensidadSeñalM){
+			if(cuadranteActual == n.getCuadrante())
+				return true;
+		}
+		return false;
+	}
+//POR AHORA NO SE USA UN MÉTODO DES ESTOS PARA EL NIVEL ALTO....
 	
 }
 
