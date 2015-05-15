@@ -152,9 +152,16 @@ public class StateMap extends EnvironmentState {
      public void setintensidadSeñalA(ArrayList<NodoLista> arg){
         intensidadSeñalA = arg;
      }
+     
+     /**
+      * Retorna la intensidades de señales para todo el nivel medio
+      * */
      public ArrayList<NodoLista> getintensidadSeñalM(){
         return intensidadSeñalM;
      }
+     
+     
+    
      public void setintensidadSeñalM(ArrayList<NodoLista> arg){
         intensidadSeñalM = arg;
      }
@@ -188,6 +195,28 @@ public class StateMap extends EnvironmentState {
      public void setAlturaAgente(String a){
     	 this.alturaAgente = a;
      }
+     
+     
+     /**
+      * Retorna la intensidad de la señal dependiendo de la altura en la que este el drone, restringiendo las señales pertenecientes a los demás cuadrantes
+      * Si está en el nivel alto: retorna la lista intensidadSeñalA completa
+      * Si está en el nivel medio: retorna los NodosLista(cuadrantes) correspondientes al cuadrante al que pertenece
+       
+       * */
+   /*  public ArrayList<Nodo> getIntensidadSeñalReducidaB()
+     {
+    	 ArrayList<Nodo> intensidad = new ArrayList<Nodo>();
+     }*/
+     
+     /**
+      * Retorna la intensidad de la señal dependiendo de la altura en la que este el drone, restringiendo las señales pertenecientes a los demás cuadrantes
+      * Si está en el nivel bajo: retorna los Nodos (esquinas) correspondientes al subcuadrante al que pertenece 
+       * */
+    /* public ArrayList<NodoLista> getIntensidadSeñalReducidaMA()
+     {
+    	 ArrayList<NodoLista> intensidad = new ArrayList<NodoLista>();
+     }
+     */
      
      /**
       * Función que recorre los nodos adyacentes al nodo donde se encuentra el agente y 

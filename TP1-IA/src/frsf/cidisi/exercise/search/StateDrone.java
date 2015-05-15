@@ -148,46 +148,6 @@ public class StateDrone extends SearchBasedAgentState {
     	 
     	 
     	 
-    	 
-    	/* 
-    	 if(altura == "A")
-    	 {
-    		 intensidadSeñalA = percepcion.getantena().getIntensidadSeñal();
-    		 /* 
-    		  * Si la posición del agente es alta, las demás intensidades no se ven (están vacias)
-    		intensidadSeñalM = new ArrayList<NodoLista>();
-			intensidadSeñalB = new ArrayList<Nodo>();
-    		  */
-    		 
-    		// direccion = "N";
-    	/* }
-    	 else
-    	 {
-    		 if(altura == "M")
-    		 {
-    			intensidadSeñalM = percepcion.getantena().getIntensidadSeñal(); 
-    			 /* Si la posición del agente es media, las demás intensidades no se ven (están vacias)
-    	    		intensidadSeñalA = new ArrayList<NodoLista>();
-    				intensidadSeñalB = new ArrayList<Nodo>();
-    	    		  */
-    			
-    		//	direccion = "N";
-    	/*	 }
-    		 else //si altura es B
-    		 {
-    			 intensidadSeñalB = percepcion.getantena().getIntensidadSeñal();
-    			 /* Si la posición del agente es baja, las demás intensidades no se ven (están vacias)
- 	    		intensidadSeñalA = new ArrayList<NodoLista>();
- 				intensidadSeñalM = new ArrayList<NodoLista>();
- 	    		  */
-    			 
-    			 //direccion
-    	/*		 
-    			 victimarios = percepcion.getcamara().getVictimarios();
-    		 }
-    	 }*/
-    	 
-    	 
     }
 
     /**

@@ -11,7 +11,9 @@ import frsf.ia.tp.libreriaclases.Antena;
 import frsf.ia.tp.libreriaclases.AntenaNB;
 import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
+import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Nodo;
+import frsf.ia.tp.libreriaclases.NodoLista;
 
 public class AgentDronePerception extends Perception {
 
@@ -44,6 +46,8 @@ public class AgentDronePerception extends Perception {
 
     public AgentDronePerception(Agent agent, Environment environment) {
         super(agent, environment);
+        
+        
     }
 
     /**
@@ -65,6 +69,8 @@ public class AgentDronePerception extends Perception {
         
         String altura = estadoAmbiente.getAlturaAgente();
         
+        int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posiciongps.x, posiciongps.y);
+		
         if(altura == "B")
         {
         	Point posicionAgente = estadoAmbiente.getposicionAgente();
@@ -73,18 +79,33 @@ public class AgentDronePerception extends Perception {
         	//Percepción cámara
         	if(nodoAgente != null)
         	camara = new Camara(estadoAmbiente.getPersonasQueVe(), nodoAgente);
+        	antena = new AntenaNB();
+        	//Percepción Antena para nivel bajo
         	
-        	//Percepción Antena
-        	antena = new AntenaNB(estadoAmbiente.getintensidadSeñalB());
+        	for(Nodo n: estadoAmbiente.getintensidadSeñalB())
+        	{
+        		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
+        		{
+        			antena.agregarIntensidadSeñal(n);
+                	
+        		}
+        	}
+        	
         	
         }
-        else // Si altura del agente es M o A
+        else // Si altura del agente es Media(M) o Alta (A)
         {
         	camara = new Camara();
         	
+        	
         	if(altura == "M")
         	{
-        		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
+        		antena = new AntenaNMA();
+        		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
+        		{
+        			if(nodo.getCuadrante() == subCuadrante)
+        				antena.agregarIntensidadSeñal(nodo);
+        		}
         	}
         	else
         	{
