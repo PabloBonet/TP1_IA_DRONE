@@ -305,7 +305,14 @@ public class StateDrone extends SearchBasedAgentState {
 		}
 		return false;
 	}
-//POR AHORA NO SE USA UN MÉTODO DES ESTOS PARA EL NIVEL ALTO....................................................................
+
+//	public boolean hayIntensidadSeñalACuadrante(int cuadranteActual) {
+//		for(NodoLista n: intensidadSeñalA){
+//			if(cuadranteActual == n.getCuadrante())
+//				return true;
+//		}
+//		return false;
+//	}
 
 	/**
 	 * Elimina un nodo de la lista de intensidad de señal de nivel alto del agente
@@ -315,6 +322,18 @@ public class StateDrone extends SearchBasedAgentState {
 		for(int i=0; i<intensidadSeñalA.size(); i++)
 			if(cuadrante == intensidadSeñalA.get(i).getCuadrante()){
 				intensidadSeñalA.remove(i);
+				break;
+			}
+	}
+
+	/**
+	 * Elimina un nodo de la lista de intensidad de señal de nivel medio del agente
+	 * @param subCuadrante
+	 */
+	public void removerCuadranteNivelM(int subCuadrante) { //VER SI TIENE QUE RETORNAR ALGO EN CASO DE NO PODER BORRARLO####################################
+		for(int i=0; i<intensidadSeñalM.size(); i++)
+			if(subCuadrante == intensidadSeñalM.get(i).getCuadrante()){
+				intensidadSeñalM.remove(i);
 				break;
 			}
 	}

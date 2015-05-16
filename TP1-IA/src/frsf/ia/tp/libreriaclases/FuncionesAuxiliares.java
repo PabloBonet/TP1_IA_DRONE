@@ -37,7 +37,6 @@ public class FuncionesAuxiliares {
 			if(cuadY == 0)
 			{
 				cuadrante = 1;
-				
 			}
 			else //cuadY == 1
 			{
@@ -60,7 +59,7 @@ public class FuncionesAuxiliares {
 	}
 	
 	/**
-	 * Retorna el sub cuadrante al que pertenece las coordenadas pasadas como parametros
+	 * Retorna el sub cuadrante al que pertenecen las coordenadas pasadas como parametros
 	 * 
 	 * @param x 
 	 * 		coordenadaX
@@ -85,9 +84,7 @@ public class FuncionesAuxiliares {
 		{
 			if(cuadY == 0)
 			{
-				
-					cuadrante += 1;
-				
+				cuadrante += 1;
 			}
 			else //cuadY == 1
 			{
@@ -103,7 +100,6 @@ public class FuncionesAuxiliares {
 			else //cuadY == 1
 			{
 					cuadrante += 4;
-				
 			}
 		}
 		
@@ -111,13 +107,32 @@ public class FuncionesAuxiliares {
 	}
 
 	/**
-	 * Devuelve la posición central del cuadrante
+	 * Devuelve la posición central del primer subcuadrante de nivel medio correspondiente 
+	 * al cuadrante de nivel alto donde se encuentra el agente
+	 * @param cuadrante Cuadrante de nivel alto donde se encuantra el agente
+	 * 
+	 * @return Point Posición donde se ubicará el agente dentro del primer subcuadrante
 	 */
-	public static Point centrarPosicionCuadrante(int subCuadrante) {
-		// TODO
+	public static Point bajarASubCuadranteM(int cuadrante) {
+		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
 		Point nuevaPos = new Point();
-		
-		return null;
+		switch(cuadrante){
+		case 1:
+			nuevaPos.setLocation(75, 75);
+			break;
+		case 2:
+			nuevaPos.setLocation(375, 75);
+			break;
+		case 3:
+			nuevaPos.setLocation(75, 375);
+			break;
+		case 4:
+			nuevaPos.setLocation(375, 375);
+			break;
+		default:
+			return null;
+		}
+		return nuevaPos;
 	}
 	
 	
