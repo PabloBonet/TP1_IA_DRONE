@@ -2,7 +2,12 @@ package frsf.cidisi.exercise.search;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.ia.tp.libreriaclases.AntenaNB;
+import frsf.ia.tp.libreriaclases.AntenaNMA;
+import frsf.ia.tp.libreriaclases.Camara;
+import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Grafo;
+import frsf.ia.tp.libreriaclases.Nodo;
 
 public class EnvironmentMap extends Environment {
 
@@ -29,11 +34,41 @@ public class EnvironmentMap extends Environment {
 
     	//TODO : Set the perceptions sensors
     	
-//    	perception.setantena(this.getEnvironmentState().g)
-    	perception.setaltura(this.getEnvironmentState().getAlturaAgente());
+    	String altura = this.getEnvironmentState().getAlturaAgente();
+    	perception.setaltura(altura);
+    	
+    	//Asigna la camara
+    	perception.setcamara(new Camara());
+    	if(altura == "A")
+    	{
+    		//Asigna antena
+    		AntenaNMA antena = new AntenaNMA(this.getEnvironmentState().getintensidadSeñalA());
+    		perception.setantena(antena);
+    		
+    		
+    		
+    	}
+    	else
+    	{
+    		if(altura == "B")
+    		{
+    			Nodo nodoAgente = this.getEnvironmentState().getgrafoMapa().nodoEnPosicion(this.getEnvironmentState().getposicionAgente());
+    			Camara camara = new Camara(this.getEnvironmentState().getPersonasQueVe(), nodoAgente);
+    			perception.setcamara(camara);
+    			AntenaNB antena = new AntenaNB(this.getEnvironmentState().getintensidadSeñalB());
+        		perception.setantena(antena);
+    		}
+    		else
+    		{
+    			AntenaNMA antena = new AntenaNMA(this.getEnvironmentState().getintensidadSeñalM());
+        		perception.setantena(antena);
+    		}
+    	}
+    	
+    	
     	perception.setenergia(this.getEnvironmentState().getenergiaAgente());
     	perception.setposiciongps(this.getEnvironmentState().getposicionAgente());
-//    	perception.setcamara(this.getEnvironmentState().getCamara());
+    	
     	// Return the perception
     	return perception;
     }
