@@ -9,6 +9,7 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
+import frsf.ia.tp.libreriaclases.NodoLista;
 
 public class IrNorte extends SearchAction {
 
@@ -37,8 +38,23 @@ public class IrNorte extends SearchAction {
         	//ENERGIA ES -1??
         	if(sigPos != null)
         	{
-        		droneState.setenergia(energia - 1);
-        		droneState.setubicacionD(sigPos);
+        		boolean encontrado = false;
+        		for(NodoLista n: droneState.getintensidadSeñalA())
+        		{
+        			int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
+        			if(cuadrante == n.getCuadrante())
+        			{
+        				encontrado = true;
+        				break;
+        			}
+        			
+        		}
+        		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+        		{
+
+            		droneState.setenergia(energia - 1);
+            		droneState.setubicacionD(sigPos);	
+        		}
         	}
         }
         else
@@ -49,8 +65,23 @@ public class IrNorte extends SearchAction {
             	//ENERGIA ES -1??
         		if(sigPos != null)
         		{
-        			droneState.setenergia(energia - 1);
-        			droneState.setubicacionD(sigPos);
+        			
+        			boolean encontrado = false;
+            		for(NodoLista n: droneState.getintensidadSeñalM())
+            		{
+            			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+            			if(cuadrante == n.getCuadrante())
+            			{
+            				encontrado = true;
+            				break;
+            			}
+            			
+            		}
+            		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+            		{
+            			droneState.setenergia(energia - 1);
+            			droneState.setubicacionD(sigPos);
+            		}
         		}
         	}
         	else //altura == B
