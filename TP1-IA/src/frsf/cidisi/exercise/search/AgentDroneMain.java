@@ -10,17 +10,18 @@ public class AgentDroneMain {
     public static void main(String[] args) throws PrologConnectorException {
     	
     	ventanaPrincipal = new UIVentanaPrincipal();
-    	
+    	while(!ventanaPrincipal.datosCargados())
+        {
+        	
+        }
         AgentDrone agent = new AgentDrone();
 
         EnvironmentMap environment = new EnvironmentMap(ventanaPrincipal.getGrafo());
 
         SearchBasedAgentSimulator simulator = new SearchBasedAgentSimulator(environment, agent);
         
-        while(!ventanaPrincipal.datosCargados())
-        {
-        	
-        }
+        
+        System.out.println("Datos Cargados!\n");
         simulator.start();
     }
 
