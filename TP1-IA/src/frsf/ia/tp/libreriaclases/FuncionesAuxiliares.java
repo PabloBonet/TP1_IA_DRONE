@@ -13,6 +13,8 @@ public class FuncionesAuxiliares {
 	public static int ALTO_CUADRANTE = ALTO_MAPA / 2;
 	public static int ANCHO_SUB_CUADRANTE = ANCHO_CUADRANTE / 2;
 	public static int ALTO_SUB_CUADRANTE = ALTO_CUADRANTE / 2;
+	public enum EstadoSimulacion{EJECUTANDO , PAUSADO, DETENIDO };
+	
 	
 		
 	/**
@@ -32,7 +34,7 @@ public class FuncionesAuxiliares {
 	{
 		int cuadrante = 0;
 		
-		int cuadX = x/ANCHO_MAPA;
+		int cuadX = x/ANCHO_CUADRANTE;
 		int cuadY = y/ALTO_CUADRANTE;
 		
 		if(cuadX == 0)

@@ -17,18 +17,32 @@ import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import frsf.ia.tp.exceciones.FormatoDeArchivoNoValidoException;
 import frsf.ia.tp.libreriaclases.Converter;
+import frsf.ia.tp.libreriaclases.ConverterEscenario;
+import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
+import frsf.ia.tp.libreriaclases.Persona;
+
 import java.awt.Color;
+import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.FlowLayout;
+import javax.swing.SwingConstants;
+import java.awt.SystemColor;
 
 
 
 public class UIVentanaPrincipal extends JFrame {
 	
 	
+	//Atributos publicos para manejar la simulación
+	private FuncionesAuxiliares.EstadoSimulacion estado;
+	
 	private static final long serialVersionUID = 1L;
-	Grafo grafo;
-	Converter datos;
+	private Grafo grafo;
+	private Converter datos;
+	private ConverterEscenario nodosEscenario;
+	private boolean datosCargados;
 	
 	JPanel panelGrafico;
 	JPanel panelInformativo;
@@ -42,9 +56,18 @@ public class UIVentanaPrincipal extends JFrame {
 	private JSeparator separator;
 	private JMenuItem mnItemSalir;
 	private JMenuItem mnItemVerCuadrantes;
+	private JPanel panel;
+	private JLabel lblNewLabel;
+	private JPanel panel_1;
+	private JButton btnIniciar;
+	private JButton btnPausar;
+	private JButton btnDetener;
 
 	public UIVentanaPrincipal() {
+		
 		inicializarVentanaPrincipal();
+	
+		
 	}
 
 	/**
@@ -54,6 +77,7 @@ public class UIVentanaPrincipal extends JFrame {
 	 */
 	private void inicializarVentanaPrincipal() {
 
+		datosCargados = false;
 		setTitle("TP IA 2015 - Vehiculo Aéreo No Tripulado (VANT)");
 
 		// tamaño de la ventana principal
@@ -136,6 +160,33 @@ public class UIVentanaPrincipal extends JFrame {
 		// Se agregan los JPanels a la ventana principal
 		getContentPane().add(panelGrafico);
 		getContentPane().add(panelInformativo);
+		
+		panel = new JPanel();
+		panel.setBackground(SystemColor.activeCaption);
+		panelInformativo.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
+		
+		lblNewLabel = new JLabel("PANEL DE CONTROL");
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		panel.add(lblNewLabel, BorderLayout.NORTH);
+		
+		panel_1 = new JPanel();
+		panel_1.setBackground(SystemColor.inactiveCaption);
+		panel.add(panel_1, BorderLayout.CENTER);
+		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		btnIniciar = new JButton("INICIAR");
+		btnIniciar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
+		panel_1.add(btnIniciar);
+		
+		btnPausar = new JButton("PAUSAR");
+		panel_1.add(btnPausar);
+		
+		btnDetener = new JButton("DETENER");
+		panel_1.add(btnDetener);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		
@@ -158,16 +209,21 @@ public class UIVentanaPrincipal extends JFrame {
 			//if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
 			//	System.out.println("Formato de Archivo Correcto");
 				
-				/**Se crea una instancia de la Clase Converter*/
-				datos = new Converter(archivoElegido);
+			/**Se crea una instancia de la Clase Converter*/
+			datos = new Converter(archivoElegido);
+			
+			/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
+			//System.out.println(datos.getListaDeDatos());						
+			
+			
+			/**Se carga el escenario con los elementos devueltos por Converter*/
+			grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
+			
+			
 				
-				/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
-				//System.out.println(datos.getListaDeDatos());						
 				
-				/**Se crea la instancia de grafo con los elementos devueltos por Converter*/
-				grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
 				
-				System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
+				/*System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
 										
 				for(int i=0; i<datos.getListaNodos().size(); i++){
 					System.out.println("Esquina: " + grafo.getListaNodos().get(i).getId()+" Posicion X: "+grafo.getListaNodos().get(i).getPosX()+" PosicionY: "+ grafo.getListaNodos().get(i).getPosY()+"\n");
@@ -179,7 +235,7 @@ public class UIVentanaPrincipal extends JFrame {
 				for(int i=0; i<datos.getListaEnlaces().size(); i++){
 					System.out.println("Enlace["+grafo.getListaEnlaces().get(i).getIdNodo1()+"-"+grafo.getListaEnlaces().get(i).getIdNodo2()+"] Costo["+grafo.getListaEnlaces().get(i).getPeso()+"]");
 				}
-				
+				*/
 				//creacion de la ventana grafica tomando los datos del grafo
 				ventanaGrafica = new UIVentanaGrafica(grafo);
 				ventanaGrafica.setAutoscrolls(true);
@@ -216,7 +272,7 @@ public class UIVentanaPrincipal extends JFrame {
 			fc.setFileFilter(fiCsv);
 			fc.setVisible(true);
 			fc.getAcceptAllFileFilter();
-			fc.setSelectedFile(new File("archivosCSV/nodosYenlaces.csv"));
+			//fc.setSelectedFile(new File("archivosCSV/nodosYenlaces.csv"));
 			
 
 			// Mostrar la ventana para abrir archivo y recoger la respuesta
@@ -239,19 +295,28 @@ public class UIVentanaPrincipal extends JFrame {
 					if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
 						System.out.println("Formato de Archivo Correcto");
 						
-						System.out.println(archivoElegido.getPath());
-						
-						/**Se crea una instancia de la Clase Converter*/
-						datos = new Converter(archivoElegido);
+						/**Se crea una instancia de la Clase ConverterEscenario*/
+						nodosEscenario = new ConverterEscenario(archivoElegido);
 						
 						/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
-						//System.out.println(datos.getListaDeDatos());						
+						System.out.println(datos.getListaDeDatos());						
+						
+						/**Se cargan las personas al grafo con los elementos devueltos por ConverterEscenario*/
+						
+						for(Nodo nodo: nodosEscenario.getListaNodos())
+						{
+							for(Persona p: nodo.getPersonas())
+							{
+								(grafo.buscarNodo(nodo.getId())).agregarPersona(p);	
+								
+								System.out.println("\nid nodo: "+nodo.getId()+" persona: " + p.getId()+" es: " +p.esVictimario());
+							}
+							
+						}
+												
 						
 						
-						/**Se carga el escenario con los elementos devueltos por Converter*/
-						/*grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
-						
-						System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
+						/*System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
 												
 						for(int i=0; i<datos.getListaNodos().size(); i++){
 							System.out.println("Esquina: " + grafo.getListaNodos().get(i).getId()+" Posicion X: "+grafo.getListaNodos().get(i).getPosX()+" PosicionY: "+ grafo.getListaNodos().get(i).getPosY()+"\n");
@@ -263,7 +328,7 @@ public class UIVentanaPrincipal extends JFrame {
 						for(int i=0; i<datos.getListaEnlaces().size(); i++){
 							System.out.println("Enlace["+grafo.getListaEnlaces().get(i).getIdNodo1()+"-"+grafo.getListaEnlaces().get(i).getIdNodo2()+"] Costo["+grafo.getListaEnlaces().get(i).getPeso()+"]");
 						}
-						
+						*/
 						//creacion de la ventana grafica tomando los datos del grafo
 						ventanaGrafica = new UIVentanaGrafica(grafo);
 						ventanaGrafica.setAutoscrolls(true);
@@ -271,7 +336,7 @@ public class UIVentanaPrincipal extends JFrame {
 						ventanaGrafica.setVisible(true);
 						ventanaGrafica.repaint();
 						
-						*/
+						datosCargados = true;
 						/*luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
 
 						//Completar
@@ -294,6 +359,16 @@ public class UIVentanaPrincipal extends JFrame {
 }
 	public Grafo getGrafo() {
 		return grafo;
+	}
+	
+	public FuncionesAuxiliares.EstadoSimulacion getEstado()
+	{
+		return estado;
+	}
+	
+	public boolean datosCargados()
+	{
+		return datosCargados;
 	}
 }
 

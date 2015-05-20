@@ -17,6 +17,10 @@ public class AgentDroneMain {
 
         SearchBasedAgentSimulator simulator = new SearchBasedAgentSimulator(environment, agent);
         
+        while(!ventanaPrincipal.datosCargados())
+        {
+        	
+        }
         simulator.start();
     }
 

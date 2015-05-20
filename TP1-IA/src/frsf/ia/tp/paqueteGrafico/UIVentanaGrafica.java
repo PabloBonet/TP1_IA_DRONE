@@ -23,7 +23,7 @@ public class UIVentanaGrafica extends JInternalFrame {
 		setTitle("mapa");
 		setAlignmentX(0); setAlignmentY(0);
 		setResizable(false);
-		setClosable(true);
+		setClosable(false);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		

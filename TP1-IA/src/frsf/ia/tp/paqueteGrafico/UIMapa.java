@@ -6,6 +6,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.text.AttributedCharacterIterator;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import frsf.ia.tp.libreriaclases.*;
@@ -41,14 +42,54 @@ public class UIMapa extends Canvas {
 	/**Metodo para graficar los nodos sobre el mapa*/
 	private void dibujarNodos(Graphics g,Grafo grafo) {
 		for(int i=0; i<grafo.getListaNodos().size(); i++){
-			g.setColor(Color.green);
-			g.fillOval(grafo.getListaNodos().get(i).getPosX(),grafo.getListaNodos().get(i).getPosY(),18,18);
+			
+			//cuenta las personas en el nodo
+			
+			int cantPersonas = grafo.getListaNodos().get(i).getPersonas().size();
+			
+			//coloca el color al nodo dependiendo si tiene victimarios
+			if(grafo.getListaNodos().size() > 0)
+			{
+				if(hayVictimarios(grafo.getListaNodos().get(i).getPersonas()))
+				{
+					g.setColor(Color.red);
+					System.out.println("\npos x:" + grafo.getListaNodos().get(i).getPosX() + " pos y: "+ grafo.getListaNodos().get(i).getPosY());
+				}
+				else
+				{
+					if(grafo.getListaNodos().get(i).getPersonas().size()>0)
+					{
+						g.setColor(Color.green);
+						System.out.println("\npos x:" + grafo.getListaNodos().get(i).getPosX() + " pos y: "+ grafo.getListaNodos().get(i).getPosY());
+
+						System.out.println("\nPertenece a cuadrante: " +FuncionesAuxiliares.perteneceACuadrante(grafo.getListaNodos().get(i).getPosX(), grafo.getListaNodos().get(i).getPosY()));
+						System.out.println("\nPertenece a subcuadrante: " +FuncionesAuxiliares.perteneceASubCuadrante(grafo.getListaNodos().get(i).getPosX(), grafo.getListaNodos().get(i).getPosY()));
+					}
+					else
+					{
+						g.setColor(Color.white);
+					}
+					
+				}
+			}
+			g.fillOval(grafo.getListaNodos().get(i).getPosX()-10,grafo.getListaNodos().get(i).getPosY()-10,18,18);
 			String esquina = Integer.toString(grafo.getListaNodos().get(i).getId());
 			g.setColor(Color.black);
 			g.drawString(esquina, grafo.getListaNodos().get(i).getPosX(),grafo.getListaNodos().get(i).getPosY());
+			String personas = Integer.toString(cantPersonas);
+			g.drawString(personas, grafo.getListaNodos().get(i).getPosX()+5,grafo.getListaNodos().get(i).getPosY()+5);
 		}
 	}
 	
+	public boolean hayVictimarios(List<Persona> personas)
+	{
+		for(Persona p: personas)
+		{
+			if(p.esVictimario())
+				return true;
+		}
+	return false;
+	}
 	/**Metodo para graficar los enlaces entre nodos**/
 	private void dibujarArcosEntreNodos(Graphics g, Grafo grafo){
 		int idNodo1;
