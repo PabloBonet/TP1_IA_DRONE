@@ -20,15 +20,6 @@ public class AgentDronePerception extends Perception {
 	//TODO: Setup Statics
     //public static int UNKNOWN_PERCEPTION = -1;   
 	
-	
-	//TODO: Setup Sensors
-	/*private int altura;
-	private int posiciongps;
-	private int camara;
-	private int antena;
-	private int energia;
-	*/
-	
 	private String altura;
 	private Point posiciongps;
 	private int energia;
@@ -39,15 +30,12 @@ public class AgentDronePerception extends Perception {
 
     public  AgentDronePerception() {
     	//TODO: Complete Method
-    	
-    	
-    	
+
     }
 
     public AgentDronePerception(Agent agent, Environment environment) {
         super(agent, environment);
-        
-        
+  
     }
 
     /**
@@ -121,7 +109,7 @@ public class AgentDronePerception extends Perception {
     @Override
     public String toString() {
         StringBuffer str = new StringBuffer();
-       str.append("\n\n-- Percepción del Agente VANT --\n");
+       str.append("-- Percepción del Agente VANT --\n");
        str.append("Altura: "+this.altura+"\n");
        str.append("Posición: "+this.posiciongps.getX()+" - "+this.posiciongps.getY()+"\n");
        str.append("Cámara: \n\tVictimas: ");

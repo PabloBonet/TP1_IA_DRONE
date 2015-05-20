@@ -221,7 +221,7 @@ public class Search extends Solve {
         // Remove all objects subscribed to simulator events
 //        SimulatorEventNotifier.CleanEventHandlers();
 
-        if (visibleTree == Search.PDF_TREE) {
+        if (visibleTree == Search.EFAIA_TREE) {
             SimulatorEventNotifier.SubscribeEventHandler(EventType.SimulationFinished,
                     LatexOutput.getInstance());
         }
