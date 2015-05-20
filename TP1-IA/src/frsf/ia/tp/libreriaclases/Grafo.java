@@ -226,6 +226,23 @@ public class Grafo {
 		return nodosAdyacentes;
 	}
 	
+	/**
+	 * Para los Ir en el nivel bajo
+	 * @param nodoActual
+	 * @return
+	 */
+	public static ArrayList<Nodo> buscarAdyacentes(Nodo nodoActual) { //TODO VER SI RECIBE NODO, POSICION O CUADRANTE ###############################################
+		ArrayList<Nodo> adyacentes = new ArrayList<Nodo>();
+//		for (int indice = 0; indice < listaEnlaces.size(); indice++)
+//			if (listaEnlaces.get(indice).getIdNodo1() == nodoActual.getId()) //ACÁ SÍ SE USAN LOS Nodo DE LOS ENLACES
+//				adyacentes.add(listaEnlaces.get(indice).getIdNodo1());
+//			else if(listaEnlaces.get(indice).getIdNodo2() == nodoActual.getId())
+//				adyacentes.add(listaEnlaces.get(indice).getIdNodo2());
+		
+		//una vez que tengo los nodos adyacentes hay que ver si pertenecen al mismo cuadrante de nodoActual
+		return adyacentes;
+	}
+	
 	public  Nodo nodoEnPosicion(Point pos)
 	{
 		Nodo nodo = null;
