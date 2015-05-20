@@ -2,6 +2,7 @@ package frsf.cidisi.exercise.search;
 
 
 import java.awt.Point;
+import java.util.ArrayList;
 
 import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
@@ -101,14 +102,17 @@ public class AgentDronePerception extends Perception {
         	if(altura == "M")
         	{
         		antena = new AntenaNMA();
+        		
         		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
         		{
+        			System.out.println("ESTADO AMBIENTE: " + nodo.getIntensidad());
         			if(nodo.getCuadrante() == subCuadrante)
         				antena.agregarIntensidadSeñal(nodo);
         		}
         	}
         	else
         	{
+        		System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
         		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
         	}
         		
@@ -124,15 +128,51 @@ public class AgentDronePerception extends Perception {
        str.append("\n\n-- Percepción del Agente VANT --\n");
        str.append("Altura: "+this.altura+"\n");
        str.append("Posición: "+this.posiciongps.getX()+" - "+this.posiciongps.getY()+"\n");
-       str.append("Cámara: \n\tVictimas: ");
-    /*   for(int i=0;i<this.camara.getVictimas().size();i++)
-    	   str.append("\n\t\t"+this.camara.getVictimas().get(i).getId());
-       str.append("\n\tVictimarios: ");
-       for(int i=0;i<this.camara.getVictimarios().size();i++)
-    	   str.append("\n\t\t"+this.camara.getVictimarios().get(i).getId());*/
-//str.append("\nAntena: "+this.antena.---); //Info de antena!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+       str.append("Cámara: ");
+       if(this.altura == "B")
+       {
+    	     for(int i=0;i<this.camara.getPersonas().size();i++)
+    	     {
+    	    	 str.append("Personas que ve: ");
+    	    	 str.append("\n\tID: "+this.camara.getPersonas().get(i).getId()+ " es victima: "+this.camara.getPersonas().get(i).esVictima());
+    	     }
+    	    	 
+    	    
+       }
+       else
+       {
+    	   str.append("No se puede ver personas a estas alturas");
+       }
+    	   
        str.append("\nEnergía: "+this.energia+"\n");
 
+       str.append("\nAntena: "); 
+       if(this.altura == "B")
+       {
+    	   System.out.println("intensidades: "+this.antena.getIntensidadSeñal().size());
+    	   for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
+    	   {
+    		   ArrayList<Nodo> intensidades = ((AntenaNB)this.antena.getIntensidadSeñal().get(i)).getIntensidadSeñal();
+    		   
+    		   for(Nodo n: intensidades)
+    		   {
+    			   str.append("\n\tNodo: "+ n.getId());
+    		   }
+    	   }
+	     
+       }
+       else
+       {System.out.println("intensidades: "+this.antena.getIntensidadSeñal().size());
+    	   for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
+    	   {
+    		   ArrayList<NodoLista> intensidades = this.antena.getIntensidadSeñal();
+    		   for(NodoLista n: intensidades)
+    		   {
+    			   str.append("\n\tCuadrante: "+ n.getCuadrante()+ " Intensidad: "+n.getIntensidad());
+    		   }
+    	   }
+       }
+      
         return str.toString();
     }
 
