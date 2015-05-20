@@ -36,7 +36,7 @@ public class UIVentanaPrincipal extends JFrame {
 
 	private JMenuBar menuBar;
 	private JMenu menuArchivo;
-	private JMenuItem mnItemCargarMapa;
+	private JMenuItem mnItemCargarEscenario;
 	private JMenu menuVer;
 	private JMenu menuHelp;
 	private JSeparator separator;
@@ -68,8 +68,8 @@ public class UIVentanaPrincipal extends JFrame {
 		menuArchivo.setActionCommand("Archivo");
 		menuBar.add(menuArchivo);
 
-		mnItemCargarMapa = new JMenuItem("Cargar Mapa");
-		menuArchivo.add(mnItemCargarMapa);
+		mnItemCargarEscenario = new JMenuItem("Cargar Escenario");
+		menuArchivo.add(mnItemCargarEscenario);
 
 		// mnItemCargarMapa.addActionListener(new ActionListener() {
 		// // public void actionPerformed(ActionEvent arg0) {
@@ -87,7 +87,7 @@ public class UIVentanaPrincipal extends JFrame {
 
 		
 		
-		mnItemCargarMapa.addActionListener(new ControlerCargarMapa());
+		mnItemCargarEscenario.addActionListener(new ControlerCargarEscenario());
 
 		separator = new JSeparator();
 		menuArchivo.add(separator);
@@ -138,12 +138,69 @@ public class UIVentanaPrincipal extends JFrame {
 		getContentPane().add(panelInformativo);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//Carga el grafo ubicado en el archivo: "archivosCSV/nodosYenlaces.csv"
+		cargarGrafo();
+	}
+	
+	/**
+	 * Fucnción que carga el archivo "archivosCSV/nodosYenlaces.csv"
+	 * Este archivo contiene toda la información de los nodos y enlaces
+	 * */
+	private void cargarGrafo()
+	{
+		try {
+			
+			//File archivoElegido = fc.getSelectedFile();
+			
+			File archivoElegido = new File("archivosCSV" + "\\"+"nodosYenlaces.csv");
+			
+			//if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
+			//	System.out.println("Formato de Archivo Correcto");
+				
+				/**Se crea una instancia de la Clase Converter*/
+				datos = new Converter(archivoElegido);
+				
+				/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
+				//System.out.println(datos.getListaDeDatos());						
+				
+				/**Se crea la instancia de grafo con los elementos devueltos por Converter*/
+				grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
+				
+				System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
+										
+				for(int i=0; i<datos.getListaNodos().size(); i++){
+					System.out.println("Esquina: " + grafo.getListaNodos().get(i).getId()+" Posicion X: "+grafo.getListaNodos().get(i).getPosX()+" PosicionY: "+ grafo.getListaNodos().get(i).getPosY()+"\n");
+				}
+				
+				
+				System.out.println("IMPRIMIENDO Lista de Enlaces");
+				
+				for(int i=0; i<datos.getListaEnlaces().size(); i++){
+					System.out.println("Enlace["+grafo.getListaEnlaces().get(i).getIdNodo1()+"-"+grafo.getListaEnlaces().get(i).getIdNodo2()+"] Costo["+grafo.getListaEnlaces().get(i).getPeso()+"]");
+				}
+				
+				//creacion de la ventana grafica tomando los datos del grafo
+				ventanaGrafica = new UIVentanaGrafica(grafo);
+				ventanaGrafica.setAutoscrolls(true);
+				panelGrafico.add(ventanaGrafica);
+				ventanaGrafica.setVisible(true);
+				ventanaGrafica.repaint();
+				
+				
+				/*luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
+
+				//Completar
+
+
+		} catch (Exception exception) {
+			System.out.println(exception.getMessage());
+		}
 	}
 	
 	
-	
-	//Clase que se utilizar para controlar los eventos del boton "Cargar Mapa"
-	class ControlerCargarMapa implements ActionListener {
+	//Clase que se utilizar para controlar los eventos del boton "Cargar Escenario"
+	class ControlerCargarEscenario implements ActionListener {
 
 		public void actionPerformed(ActionEvent e) {
 				itmCargarArchivoActionEvent(e);
@@ -160,6 +217,7 @@ public class UIVentanaPrincipal extends JFrame {
 			fc.setVisible(true);
 			fc.getAcceptAllFileFilter();
 			fc.setSelectedFile(new File("archivosCSV/nodosYenlaces.csv"));
+			
 
 			// Mostrar la ventana para abrir archivo y recoger la respuesta
 			// En el parámetro del showOpenDialog se indica la ventana
@@ -181,14 +239,17 @@ public class UIVentanaPrincipal extends JFrame {
 					if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
 						System.out.println("Formato de Archivo Correcto");
 						
+						System.out.println(archivoElegido.getPath());
+						
 						/**Se crea una instancia de la Clase Converter*/
 						datos = new Converter(archivoElegido);
 						
 						/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
 						//System.out.println(datos.getListaDeDatos());						
 						
-						/**Se crea la instancia de grafo con los elementos devueltos por Converter*/
-						grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
+						
+						/**Se carga el escenario con los elementos devueltos por Converter*/
+						/*grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
 						
 						System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
 												
@@ -210,7 +271,7 @@ public class UIVentanaPrincipal extends JFrame {
 						ventanaGrafica.setVisible(true);
 						ventanaGrafica.repaint();
 						
-						
+						*/
 						/*luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
 
 						//Completar
