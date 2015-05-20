@@ -1,6 +1,9 @@
 package frsf.ia.tp.libreriaclases;
 
 import java.awt.Point;
+import java.util.ArrayList;
+
+import jpl.fli.functor_t;
 
 public class FuncionesAuxiliares {
 
@@ -135,5 +138,62 @@ public class FuncionesAuxiliares {
 		return nuevaPos;
 	}
 	
+	public static Point irNorte(Point ubicacionActual, String altura)
+	{
+		Point posicion = null;
+		
+		
+		if(altura != "B")
+		{
+				if(altura == "A")
+				{
+				
+					int x = ubicacionActual.x;
+					int y = ubicacionActual.y;
+					
+					y -= ALTO_CUADRANTE;
+					
+					if(y <= 0)
+					{
+						return null;
+					}
+					else
+					{
+						posicion.x = x;
+						posicion.y = y;
+						return posicion;
+					}
+				}
+				else //altura == M
+				{
+					int aux = (posicion.y)/10;
+					
+					int subCuadrante = (posicion.y)%10 - ALTO_SUB_CUADRANTE ;
+					
+					int x = posicion.x;
+					int y = posicion.y;
+					
+					if(subCuadrante <= 0)
+					{
+						return null;
+					}
+					else
+					{
+						y = subCuadrante + aux;
+						posicion.y = y;
+						posicion.x = x;
+						
+						return posicion;
+					}
+				}
+		}
+		else //altura == B
+		{
+			
+		}
+		
+		
+		return posicion;
+	}
 	
 }

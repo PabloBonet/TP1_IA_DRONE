@@ -1,11 +1,14 @@
 package frsf.cidisi.exercise.actions;
 
 
+import java.awt.Point;
+
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
+import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 
 public class IrNorte extends SearchAction {
 
@@ -15,11 +18,82 @@ public class IrNorte extends SearchAction {
      */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
-        StateDrone agState = (StateDrone) s;
+        StateDrone droneState = (StateDrone) s;
         
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
+        
+        
+        String altura = droneState.getaltura();
+        Point posicion = droneState.getubicacionD();
+        int energia = droneState.getenergia();
+        
+       // Point siguientePos = irNorte(posicion,altura);
+        Point sigPos = new Point();
+        if(altura == "A")
+        {
+        	sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
+        	//ENERGIA ES -1??
+        	if(sigPos != null)
+        	{
+        		droneState.setenergia(energia - 1);
+        		droneState.setubicacionD(sigPos);
+        	}
+        }
+        else
+        {
+        	if(altura == "M")
+        	{
+        		sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
+            	//ENERGIA ES -1??
+        		if(sigPos != null)
+        		{
+        			droneState.setenergia(energia - 1);
+        			droneState.setubicacionD(sigPos);
+        		}
+        	}
+        	else //altura == B
+        	{
+        		sigPos = FuncionesAuxiliares.irNorte(posicion,  altura);
+            	//ENERGIA ES -1??
+        		if(sigPos != null)
+        		{
+        			droneState.setenergia(energia - 1);
+                	droneState.setubicacionD(sigPos);
+        		}
+        		
+        	}
+        }
+        	
+        
+        /*if(altura != "B")
+        {
+        	if(altura == "M")
+        	{
+        		
+        	}
+        	else //altura == alta
+        	{
+        		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(posicion.x, posicion.y);
+        		int proxCuadrante = FuncionesAuxiliares.perteneceACuadrante(posicion.x, (posicion.y));
+        		
+        		if(cuadrante != 1 && cuadrante != 2)
+        		{
+        			
+        			
+        			posicion.setLocation(posicion.x, (posicion.y)+1);
+        			
+        			//DEBERIA DISMINUIR LA ENERGIA??
+        			int energia = droneState.getenergia();
+        			droneState.setenergia(energia -1);
+        			return droneState;
+        		}
+        	}
+        	
+        	
+        
+        }*/
         
         return null;
     }
