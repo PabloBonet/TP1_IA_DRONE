@@ -52,7 +52,7 @@ public class Bajar extends SearchAction {
         			//si existe intensidad de señal en el subcuadrante inferior desde donde se encuantra el agente
         			if(subCuadrante == n.getCuadrante()){
         				agState.setaltura("B");
-//                		agState.setubicacionD(centrarPosicionCuadrante(subCuadrante));
+                		agState.setubicacionD(FuncionesAuxiliares.centrarPosicionCuadrante(subCuadrante));
                 		//elimina el nodo de la lista de señal de nivel medio del agente
         				agState.removerCuadranteNivelM(subCuadrante);
         				agState.setenergia(agState.getenergia()-1);
