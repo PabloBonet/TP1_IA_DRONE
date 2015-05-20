@@ -22,8 +22,13 @@ public class IrNorte extends SearchAction {
         StateDrone droneState = (StateDrone) s;
         
         // TODO: Use this conditions
-        // PreConditions: null
-        // PostConditions: null
+        // PreConditions: Si el agente esta en el nivel alto o medio tiene que existir un cuadrante con energía
+        // hacia el norte (arriba) de su ubucación,
+        // si estaá en el nivel bajo tiene que existir una esquina al norte de la esquina donde se encuentra y un camino 
+        // directo que lo lleve hasta ella
+        // debe tener energía
+        // PostConditions: el agente se mantiene en el mismo nivel pero desplazado hacia el norte
+        // se decrementa la energía
         
         
         String altura = droneState.getaltura();
@@ -47,11 +52,9 @@ public class IrNorte extends SearchAction {
         				encontrado = true;
         				break;
         			}
-        			
         		}
         		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
         		}
@@ -65,7 +68,6 @@ public class IrNorte extends SearchAction {
             	//ENERGIA ES -1??
         		if(sigPos != null)
         		{
-        			
         			boolean encontrado = false;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
@@ -75,7 +77,6 @@ public class IrNorte extends SearchAction {
             				encontrado = true;
             				break;
             			}
-            			
             		}
             		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
@@ -93,7 +94,6 @@ public class IrNorte extends SearchAction {
         			droneState.setenergia(energia - 1);
                 	droneState.setubicacionD(sigPos);
         		}
-        		
         	}
         }
         	
@@ -138,8 +138,14 @@ public class IrNorte extends SearchAction {
         StateDrone agState = ((StateDrone) ast);
 
         // TODO: Use this conditions
-        // PreConditions: null
-        // PostConditions: null
+        // PreConditions: Si el agente esta en el nivel alto o medio tiene que existir un cuadrante con energía
+        // hacia el norte (arriba) de su ubucación,
+        // si estaá en el nivel bajo tiene que existir una esquina al norte de la esquina donde se encuentra y un camino 
+        // directo que lo lleve hasta ella
+        // debe tener energía
+        // PostConditions: el agente se mantiene en el mismo nivel y se actualiza la ubicación del agente, tanto en el
+        // agente como en el ambiente
+        // se decrementa la energía
         
         if (true) {
             // Update the real world

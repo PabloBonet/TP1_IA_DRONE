@@ -117,7 +117,7 @@ public class FuncionesAuxiliares {
 	 * @return Point Posición donde se ubicará el agente dentro del primer subcuadrante
 	 */
 	public static Point bajarASubCuadranteM(int cuadrante) {
-		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
+		// TODO el nro de subcuadrante es: cuadrante * 10 + 1 
 		Point nuevaPos = new Point();
 		switch(cuadrante){
 		case 1:
@@ -142,58 +142,93 @@ public class FuncionesAuxiliares {
 	{
 		Point posicion = null;
 		
-		
 		if(altura != "B")
 		{
-				if(altura == "A")
+			posicion = new Point();
+			int x = ubicacionActual.x;
+			int y = ubicacionActual.y;
+			
+			if(altura == "A")
+			{
+				y -= ALTO_CUADRANTE;
+
+				if(y <= 0)
 				{
+					return null;
+				}
+				else
+				{
+					posicion.y = y;
+					return posicion;
+				}
+			}
+			else //altura == M
+			{
+				int nosNueva = posicion.y - ALTO_SUB_CUADRANTE;
+				if(nosNueva>=0)  //Si no sale fuera de la grilla
+				{
+					int auxY = posicion.y/150+1;  ////cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
+					if(auxY==2 || auxY==4) //se puede mover hacia arriba si esta en el subcuadrante inferior dentro del cuadrante
+					{
+						posicion.y=nosNueva;
+						return posicion;
+					}
+				}
+				return null;
 				
-					int x = ubicacionActual.x;
-					int y = ubicacionActual.y;
-					
-					y -= ALTO_CUADRANTE;
-					
-					if(y <= 0)
-					{
-						return null;
-					}
-					else
-					{
-						posicion.x = x;
-						posicion.y = y;
-						return posicion;
-					}
-				}
-				else //altura == M
-				{
-					int aux = (posicion.y)/10;
-					
-					int subCuadrante = (posicion.y)%10 - ALTO_SUB_CUADRANTE ;
-					
-					int x = posicion.x;
-					int y = posicion.y;
-					
-					if(subCuadrante <= 0)
-					{
-						return null;
-					}
-					else
-					{
-						y = subCuadrante + aux;
-						posicion.y = y;
-						posicion.x = x;
-						
-						return posicion;
-					}
-				}
+//				int aux = (posicion.y)/10;
+//				int subCuadrante = (posicion.y)%10 - ALTO_SUB_CUADRANTE ;
+//				
+//				int x = posicion.x;
+//				int y = posicion.y;
+//				
+//				if(subCuadrante <= 0)
+//				{
+//					return null;
+//				}
+//				else
+//				{
+//					y = subCuadrante + aux;
+//					posicion.y = y;
+//					posicion.x = x;
+//					
+//					return posicion;
+//				}
+			}
 		}
 		else //altura == B
 		{
-			
+
 		}
-		
-		
-		return posicion;
+
+
+		return null;
+	}
+
+	/**
+	 * Centra el agente en la esquina central del cuadrante de nivel bajo donde se encuentra
+	 * @param subCuadrante cuadrante de nivel bajo
+	 * @return pocición de la esquina central para ese cuadrante
+	 */
+	public static Point centrarPosicionCuadrante(int subCuadrante) {
+		//Posición central del subcuadrante (x, y)
+		Point centroCuadrante = centroSubcuadranteBajo(subCuadrante);
+		Point centroEsquina = new Point();
+		//buscar los adyacentes a esa esquina
+		// ...
+		return null;
+	}
+
+	/**
+	 * 
+	 * @param subCuadrante
+	 * @return centro Centro del subcuadrante de nivel bajo
+	 */
+	private static Point centroSubcuadranteBajo(int subCuadrante) {
+		Point centro = new Point();
+		centro.x = (((((subCuadrante/10)%2)==1) ? 1 : 2) *ANCHO_CUADRANTE - (((subCuadrante%10)%2)+1)*ANCHO_SUB_CUADRANTE+ANCHO_SUB_CUADRANTE/2);
+		centro.y =  ((((subCuadrante/10)<=2) ? 1 : 2) *ALTO_CUADRANTE - ((subCuadrante%10)>2?1:2)*ALTO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE/2);
+		return centro;
 	}
 	
 }
