@@ -216,7 +216,9 @@ public class FuncionesAuxiliares {
 		
 		for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
 		{
-			if(n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
+			//verifica que haya un nodo mas al norte de la posicion actual y que este en un rango de +-10
+			// devuelve el primer nodo que cumpla dichas condiciones
+			if( estaAlNorte(nodoActual,n) && n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
 			{
 				return n;
 			}
@@ -253,4 +255,12 @@ public class FuncionesAuxiliares {
 		return centro;
 	}
 	
+
+
+private static boolean estaAlNorte(Nodo nodoActual, Nodo n){
+	if(nodoActual.getPosY() - n.getPosY() > 0){
+		return true;
+	}else
+		return false;
+	}
 }
