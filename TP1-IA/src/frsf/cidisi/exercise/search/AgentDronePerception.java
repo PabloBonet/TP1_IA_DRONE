@@ -131,12 +131,12 @@ public class AgentDronePerception extends Perception {
     	   str.append("No se puede ver personas a esta altura");
        }
     	   
-       str.append("\nEnergía: "+this.energia+"\n");
+       str.append("\nEnergía: "+this.energia);
 
        str.append("\nAntena: "); 
        if(this.altura == "B")
        {
-    	   System.out.println("intensidades: "+this.antena.getIntensidadSeñal().size());
+    	  
     	   for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
     	   {
     		   ArrayList<Nodo> intensidades = ((AntenaNB)this.antena.getIntensidadSeñal().get(i)).getIntensidadSeñal();
@@ -146,10 +146,16 @@ public class AgentDronePerception extends Perception {
     			   str.append("\n\tNodo: "+ n.getId());
     		   }
     	   }
+    	   
+    	   str.append("\nEsquinas en cuadrante: ");
+    	   for(Nodo n: gps.getGrafoSubCuadrante().getListaNodos())
+    	   {
+    		   str.append("\nNodo: "+n.getId());
+    	   }
 	     
        }
        else
-       {System.out.println("intensidades: "+this.antena.getIntensidadSeñal().size());
+       {
     	   for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
     	   {
     		   ArrayList<NodoLista> intensidades = this.antena.getIntensidadSeñal();

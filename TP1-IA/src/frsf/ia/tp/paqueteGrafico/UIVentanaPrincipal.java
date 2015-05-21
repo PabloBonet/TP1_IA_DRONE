@@ -293,13 +293,13 @@ public class UIVentanaPrincipal extends JFrame {
 					
 				
 					if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
-						System.out.println("Formato de Archivo Correcto");
+						//System.out.println("Formato de Archivo Correcto");
 						
 						/**Se crea una instancia de la Clase ConverterEscenario*/
 						nodosEscenario = new ConverterEscenario(archivoElegido);
 						
 						/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
-						System.out.println(datos.getListaDeDatos());						
+						//System.out.println(datos.getListaDeDatos());						
 						
 						/**Se cargan las personas al grafo con los elementos devueltos por ConverterEscenario*/
 						
@@ -309,7 +309,7 @@ public class UIVentanaPrincipal extends JFrame {
 							{
 								(grafo.buscarNodo(nodo.getId())).agregarPersona(p);	
 								
-								System.out.println("\nid nodo: "+nodo.getId()+" persona: " + p.getId()+" es: " +p.esVictimario());
+								//System.out.println("\nid nodo: "+nodo.getId()+" persona: " + p.getId()+" es: " +p.esVictimario());
 							}
 							
 						}
@@ -330,6 +330,9 @@ public class UIVentanaPrincipal extends JFrame {
 						}
 						*/
 						//creacion de la ventana grafica tomando los datos del grafo
+						panelGrafico.remove(ventanaGrafica);
+						
+				
 						ventanaGrafica = new UIVentanaGrafica(grafo);
 						ventanaGrafica.setAutoscrolls(true);
 						panelGrafico.add(ventanaGrafica);

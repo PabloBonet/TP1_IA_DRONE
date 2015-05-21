@@ -130,15 +130,15 @@ public class StateMap extends EnvironmentState {
     @Override
     public String toString() {
         String str = "----- Estado Ambiente Mapa -----\n";
-        str += "Intensidad de señal\n\t\tCuadrante\tSeñal\nNivel Alto \n";
+        str += "Intensidad de señal\nNivel Alto \n";
         for(int i=0; i<intensidadSeñalA.size();i++)
-        	str += "\t\t"+intensidadSeñalA.get(i).getCuadrante()+"\t\t"+intensidadSeñalA.get(i).getIntensidad()+"\n";
+        	str += "\tCuadrante: "+intensidadSeñalA.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalA.get(i).getIntensidad()+"\n";
         str += "Nivel Medio \n";
         for(int i=0; i<intensidadSeñalM.size();i++)
-        	str += "\t\t"+intensidadSeñalM.get(i).getCuadrante()+"\t\t"+intensidadSeñalM.get(i).getIntensidad()+"\n";
-        str += "Nivel Bajo \tPosición (x, y)\tSeñal\n";
+        	str += "\tCuadrante: "+intensidadSeñalM.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalM.get(i).getIntensidad()+"\n";
+        str += "Nivel Bajo \n";
         for(int i=0; i<intensidadSeñalB.size();i++)
-        	str += "\t\t"+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\t\t"+intensidadSeñalB.get(i).getPersonas().size()+"\n";
+        	str +="\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
         str += "Victimarios (ID): ";
         
         return str;
