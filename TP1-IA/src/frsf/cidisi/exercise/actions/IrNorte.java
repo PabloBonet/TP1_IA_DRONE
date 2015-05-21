@@ -246,6 +246,16 @@ public class IrNorte extends SearchAction {
 
         return null;
     }
+    
+    /**
+     * 
+     * @return subGrafo: es el subgrafo que mantedra el agente en el nivel mas bajo
+     * 					y lo usara para adquirir los nodos adyacentes.
+     */
+    public Grafo getSubgrafo(){
+    	return null;
+    	
+    }
 
     /**
      * This method returns the action cost.

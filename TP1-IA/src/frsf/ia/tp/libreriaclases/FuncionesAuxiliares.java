@@ -256,7 +256,13 @@ public class FuncionesAuxiliares {
 	}
 	
 
-
+// Dado un el nodo actual y un no
+/**
+ * @param nodoActual: es el nodo con la posicion actual del agente
+ * @param n: es un nodo adyacente
+ * @return true: si el nodo n esta al Norte de nodoActual
+ * 		   false: caso contrario
+ */
 private static boolean estaAlNorte(Nodo nodoActual, Nodo n){
 	if(nodoActual.getPosY() - n.getPosY() > 0){
 		return true;
