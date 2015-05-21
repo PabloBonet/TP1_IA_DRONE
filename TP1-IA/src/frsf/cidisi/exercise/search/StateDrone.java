@@ -33,9 +33,8 @@ public class StateDrone extends SearchBasedAgentState {
     private ArrayList<Persona> victimarios;
     private int energia;
     private Grafo grafoSubCuadrante;
-	
 
-    public StateDrone(Point p, String a, String d, int e) {
+	public StateDrone(Point p, String a, String d, int e) {
 
     	ubicacionD = p;
     	altura = a;
@@ -276,6 +275,14 @@ public class StateDrone extends SearchBasedAgentState {
      public void setvictimario(ArrayList<Persona> arg){
         victimarios = arg;
      }
+
+     public Grafo getGrafoSubCuadrante() {
+ 		return grafoSubCuadrante;
+ 	}
+
+ 	public void setGrafoSubCuadrante(Grafo grafoSubCuadrante) {
+ 		this.grafoSubCuadrante = grafoSubCuadrante;
+ 	}
      
      public void agregarVictimario(Persona p)
      {

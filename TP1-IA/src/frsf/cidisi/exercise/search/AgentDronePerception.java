@@ -8,12 +8,12 @@ import frsf.cidisi.faia.agent.Agent;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.cidisi.faia.state.EnvironmentState;
-import frsf.cidisi.faia.util.Gps;
 import frsf.ia.tp.libreriaclases.Antena;
 import frsf.ia.tp.libreriaclases.AntenaNB;
 import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
 import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
+import frsf.ia.tp.libreriaclases.Gps;
 import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
 

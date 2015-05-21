@@ -1,12 +1,8 @@
-package frsf.cidisi.faia.util;
+package frsf.ia.tp.libreriaclases;
 
 import java.awt.Point;
 import java.util.ArrayList;
 
-import frsf.ia.tp.libreriaclases.Enlace;
-import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
-import frsf.ia.tp.libreriaclases.Grafo;
-import frsf.ia.tp.libreriaclases.Nodo;
 
 public class Gps {
 

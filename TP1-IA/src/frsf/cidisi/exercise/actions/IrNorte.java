@@ -36,7 +36,7 @@ public class IrNorte extends SearchAction {
         String altura = droneState.getaltura();
         Point posicion = droneState.getubicacionD();
         int energia = droneState.getenergia();
-        Grafo subGrafo = droneState.getSubGrafo();
+        Grafo subGrafo = droneState.getGrafoSubCuadrante();
         
        // Point siguientePos = irNorte(posicion,altura);
         Point sigPos = new Point();
@@ -148,7 +148,7 @@ public class IrNorte extends SearchAction {
         String altura = droneState.getaltura();
         Point posicion = droneState.getubicacionD();
         int energia = droneState.getenergia();
-        Grafo subGrafo = droneState.getSubGrafo();
+        Grafo subGrafo = droneState.getGrafoSubCuadrante();
         boolean puedeIr = false;
         
        // Point siguientePos = irNorte(posicion,altura);
