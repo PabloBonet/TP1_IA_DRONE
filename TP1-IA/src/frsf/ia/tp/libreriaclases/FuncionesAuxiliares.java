@@ -181,12 +181,46 @@ public class FuncionesAuxiliares {
 				return null;
 			}
 		}
-		else //altura == B
+		
+
+
+		return null;
+	}
+	
+	public static Nodo irNorteBajo(Point ubicacionActual, Grafo subGrafo)
+	{/*
+		Point posicion = null;
+		
+		
+		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
+	
+		
+		for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
 		{
-
+			if(n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
+			{
+				posicion = new Point();
+				posicion.x = n.getPosX();
+				posicion.y = n.getPosY();
+				break;
+			}
 		}
-
-
+		
+		return posicion;
+		*/
+		
+		
+		
+		Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
+	
+		
+		for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
+		{
+			if(n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
+			{
+				return n;
+			}
+		}
 		return null;
 	}
 
