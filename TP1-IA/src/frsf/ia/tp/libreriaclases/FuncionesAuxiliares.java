@@ -355,7 +355,7 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
-<<<<<<< HEAD
+
 	
 	/**
 	 * @param nodoaActual
@@ -372,8 +372,7 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
-=======
->>>>>>> origin/master
+
 
 
 /**
@@ -441,10 +440,7 @@ public static Point irSur(Point ubicacionActual, String altura) {
 		}
 		return null;
 	}
-<<<<<<< HEAD
-=======
-	return null;
-}
+
 
 public static Point irNorEste(Point ubicacionActual, String altura) {
 	Point posicion = null;
@@ -491,24 +487,22 @@ public static Point irNorEste(Point ubicacionActual, String altura) {
 	return null;
 }
 
-public static Nodo irNorEsteBajo(Point ubicacionActual, Grafo subGrafo) {
-Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
 	
-	for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
-	{
-		//verifica que haya un nodo mas al noreste de la posicion actual y que este en un rango de +-10 en x
-		// devuelve el primer nodo que cumpla dichas condiciones
-		if(estaAlNorte(nodoActual,n) && estaAlEste(nodoActual,n) && n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
-		{
-			return n;
+	public static Nodo irNorEsteBajo(Point ubicacionActual, Grafo subGrafo) {
+		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
+
+		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
+			// verifica que haya un nodo mas al noreste de la posicion actual y
+			// que este en un rango de +-10 en x
+			// devuelve el primer nodo que cumpla dichas condiciones
+			if (estaAlNorte(nodoActual, n) && estaAlEste(nodoActual, n)
+					&& n.getPosX() >= ubicacionActual.x - 10
+					&& n.getPosX() <= ubicacionActual.x + 10) {
+				return n;
+			}
 		}
+		return null;
 	}
-	return null;
+
 }
 
->>>>>>> 11013516969397643e6c4c296f922558a1f919fe
-}
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
