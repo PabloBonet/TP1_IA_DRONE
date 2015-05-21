@@ -2,6 +2,7 @@ package frsf.cidisi.exercise.search;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
+import frsf.cidisi.faia.util.Gps;
 import frsf.ia.tp.libreriaclases.AntenaNB;
 import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
@@ -15,7 +16,6 @@ public class EnvironmentMap extends Environment {
         // Create the environment state
         this.environmentState = new StateMap(grafo);
     }
-
 
 	public StateMap getEnvironmentState() {
         return (StateMap) super.getEnvironmentState();
@@ -39,14 +39,13 @@ public class EnvironmentMap extends Environment {
     	
     	//Asigna la camara
     	perception.setcamara(new Camara());
+    	
+    	Gps gps = new Gps();
     	if(altura == "A")
     	{
     		//Asigna antena
     		AntenaNMA antena = new AntenaNMA(this.getEnvironmentState().getintensidadSeñalA());
     		perception.setantena(antena);
-    		
-    		
-    		
     	}
     	else
     	{
@@ -57,6 +56,9 @@ public class EnvironmentMap extends Environment {
     			perception.setcamara(camara);
     			AntenaNB antena = new AntenaNB(this.getEnvironmentState().getintensidadSeñalB());
         		perception.setantena(antena);
+        		//si el agente esta en el nivel bajo se setea el grafo del gps con el correspondiente al subcuadrante donde se encuantra
+        		gps.cargarGrafoSubCuadrante(this.getEnvironmentState().getgrafoMapa());
+        		
     		}
     		else
     		{
@@ -67,7 +69,8 @@ public class EnvironmentMap extends Environment {
     	
     	
     	perception.setenergia(this.getEnvironmentState().getenergiaAgente());
-    	perception.setposiciongps(this.getEnvironmentState().getposicionAgente());
+    	gps.setPosiciongps(this.getEnvironmentState().getposicionAgente());
+    	perception.setgps(gps);
     	
     	// Return the perception
     	return perception;

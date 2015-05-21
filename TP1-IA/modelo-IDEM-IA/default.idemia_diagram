@@ -88,6 +88,15 @@
             <element xmi:type="idemia:DataStructure" href="default.idemia#//@Agent/@AgentState/@DataStructure.7"/>
             <layoutConstraint xmi:type="notation:Bounds" xmi:id="_95fE8d71EeSFMbU21IR8EQ"/>
           </children>
+          <children xmi:type="notation:Shape" xmi:id="_Rs-8AP9gEeS2946O1lZeBw" type="3002" fontName="Segoe UI">
+            <children xmi:type="notation:DecorationNode" xmi:id="_RtAxMP9gEeS2946O1lZeBw" type="5001"/>
+            <children xmi:type="notation:DecorationNode" xmi:id="_RtAxMf9gEeS2946O1lZeBw" type="5002">
+              <styles xmi:type="notation:DescriptionStyle" xmi:id="_RtAxMv9gEeS2946O1lZeBw"/>
+            </children>
+            <children xmi:type="notation:DecorationNode" xmi:id="_RtAxM_9gEeS2946O1lZeBw" type="5003"/>
+            <element xmi:type="idemia:DataStructure" href="default.idemia#//@Agent/@AgentState/@DataStructure.8"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Rs-8Af9gEeS2946O1lZeBw"/>
+          </children>
           <styles xmi:type="notation:SortingStyle" xmi:id="_ny5dwt70EeSFMbU21IR8EQ"/>
           <styles xmi:type="notation:FilteringStyle" xmi:id="_ny5dw970EeSFMbU21IR8EQ"/>
         </children>
