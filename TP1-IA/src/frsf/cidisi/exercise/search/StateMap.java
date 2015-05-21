@@ -53,10 +53,12 @@ public class StateMap extends EnvironmentState {
          * sino agrega ese cuadrante en la lista correspondiente
          */
         
-    	int intensidad = 0;
-    	boolean existe = false;
+    	
+    	
     	for(Nodo n : this.getgrafoMapa().getListaNodos())
     	{
+    		int intensidad = 0;
+    		boolean existe = false;
     		if(n.getPersonas().size() > 0) //Si el nodo tiene personas (Si tiene personas estas producen señales)
     		{
     			Point ubicacion = new Point();
@@ -71,10 +73,30 @@ public class StateMap extends EnvironmentState {
     			/*
     			 * Tratamiento para la lista intensidadSeñalM
     			 */
-
-    			//Busca en la lista intensidadSeñalM si el cuadrante ya se encuentra 
-    			for(NodoLista nodo : intensidadSeñalM)
+    			for(NodoLista subCuad: intensidadSeñalM)
     			{
+    				if(subCuad.getCuadrante() == subCuadrante)
+    				{
+    					intensidad = subCuad.getIntensidad();
+    					
+    					intensidad += (n.getPersonas().size()*20);
+    					subCuad.setIntensidad(intensidad);
+    					existe = true;
+    					break;
+    					
+    				}
+    			}
+    			if(!existe)
+    			{
+    				//crea un nodo para el subCuadrante y lo agrega a la lista de nivel medio
+    				intensidad = n.getPersonas().size()*20; 
+    				NodoLista nodo = new NodoLista(subCuadrante, intensidad);
+    				intensidadSeñalM.add(nodo);
+    			}
+    			//Busca en la lista intensidadSeñalM si el cuadrante ya se encuentra 
+    			/*for(NodoLista nodo : intensidadSeñalM)
+    			{
+    				
     				if(nodo.getCuadrante() == subCuadrante){
     					//adiciona a la intensidad de señal del subCuadrante ya existente
     					intensidad = n.getPersonas().size()*20;
@@ -83,7 +105,8 @@ public class StateMap extends EnvironmentState {
     					break;
     				}
     			}
-
+    			
+    			
     			if(!existe)
     			{
     				//crea un nodo para el subCuadrante y lo agrega a la lista de nivel medio
@@ -91,7 +114,7 @@ public class StateMap extends EnvironmentState {
     				NodoLista nodo = new NodoLista(subCuadrante, intensidad);
     				intensidadSeñalM.add(nodo);
     			}
-
+    			 */
     			existe = false;
     			intensidad = 0;
 

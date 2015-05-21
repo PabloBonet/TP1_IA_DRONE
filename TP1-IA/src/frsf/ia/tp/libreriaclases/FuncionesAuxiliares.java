@@ -250,29 +250,7 @@ public class FuncionesAuxiliares {
 	 * @return
 	 */
 	public static Nodo irNorteBajo(Point ubicacionActual, Grafo subGrafo)
-	{/*
-		Point posicion = null;
-		
-		
-		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-	
-		
-		for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
-		{
-			if(n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
-			{
-				posicion = new Point();
-				posicion.x = n.getPosX();
-				posicion.y = n.getPosY();
-				break;
-			}
-		}
-		
-		return posicion;
-		*/
-		
-		
-		
+	{
 		Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
 	
 		
@@ -379,4 +357,73 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+
+/**
+ * Obtiene nueva ubicación al sur, sólo para nivel alto o medio.
+ * 
+ * @param ubicacionActual ubicación del agente
+ * @param altura altura del agente
+ * @return posición del agente al sur de ubicación actual si es que se puede mover
+ */
+public static Point irSur(Point ubicacionActual, String altura) {
+	Point posicion = null;
+
+	if(altura != "B")
+	{
+		posicion = new Point();
+		int x = ubicacionActual.x;
+		int y = ubicacionActual.y;
+
+		if(altura == "A")
+		{
+			y += ALTO_CUADRANTE;
+
+			if(y >= ALTO_MAPA)
+			{
+				return null;
+			}
+			else
+			{
+				posicion.x = x;
+				posicion.y = y;
+				return posicion;
+			}
+		}
+		else //altura == M
+		{
+			int nosNueva = posicion.y + ALTO_SUB_CUADRANTE;
+			if(nosNueva <= ALTO_MAPA)  //Si no sale fuera de la grilla
+			{
+				int auxY = posicion.y/ALTO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
+				if(auxY == 1 || auxY == 3) //se puede mover hacia abajo si esta en el subcuadrante superior dentro del cuadrante
+				{
+					posicion.x = x;
+					posicion.y = nosNueva;
+					return posicion;
+				}
+			}
+			return null;
+		}
+	}
+	return null;
+}
+
+public static Nodo irSurBajo(Point ubicacionActual, Grafo subGrafo) {
+	Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
+	
+	for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
+	{
+		//verifica que haya un nodo mas al sur de la posicion actual y que este en un rango de +-10 en x
+		// devuelve el primer nodo que cumpla dichas condiciones
+		if( estaAlNorte(nodoActual,n) && n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
+		{
+			return n;
+		}
+	}
+	return null;
+}
+}
+>>>>>>> origin/master
