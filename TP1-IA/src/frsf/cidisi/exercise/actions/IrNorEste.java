@@ -13,6 +13,7 @@ public class IrNorEste extends SearchAction {
      * This method updates a tree node state when the search process is running.
      * It does not updates the real world state.
      */
+	
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
         StateDrone agState = (StateDrone) s;
@@ -20,6 +21,11 @@ public class IrNorEste extends SearchAction {
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
+        
+        
+        
+        
+        
         
         return null;
     }
