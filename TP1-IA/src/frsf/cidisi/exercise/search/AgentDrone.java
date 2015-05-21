@@ -11,12 +11,14 @@ import frsf.cidisi.exercise.actions.IrSurEste;
 import frsf.cidisi.exercise.actions.IrSurOeste;
 import frsf.cidisi.exercise.actions.Subir;
 
+
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.solver.search.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.Vector;
@@ -56,10 +58,47 @@ public class AgentDrone extends SearchBasedAgent {
     @Override
     public Action selectAction() {
 
-        // Create the search strategy
-        DepthFirstSearch strategy = new DepthFirstSearch();          
+        
+    	/*Costo uniforme*/
+    	/*CostFunction f = new CostFunction();
+    	UniformCostSearch strategy = new  UniformCostSearch(f);
+    	*/
+    	
+    	/* Create the search strategy*/
+    	DepthFirstSearch strategy = new DepthFirstSearch();  
+        
+    	/*A estrella*/
+    	/*CostFunction g=new CostFunction(); 
+    	Heuristic h=new Heuristic();
+        AStarSearch strategy=new AStarSearch(g,h);
+    	*/
+    	
+    	 /**
+         * Another search strategy examples:
+         * 
+         * Depth First Search:
+         * DepthFirstSearch strategy = new DepthFirstSearch();
+         * 
+         * Breath First Search:
+         * BreathFirstSearch strategy = new BreathFirstSearch();
+         * 
+         * Uniform Cost:
+         * IStepCostFunction costFunction = new CostFunction();
+         * UniformCostSearch strategy = new UniformCostSearch(costFunction);
+         * 
+         * A Star Search:
+         * IStepCostFunction cost = new CostFunction();
+         * IEstimatedCostFunction heuristic = new Heuristic();
+         * AStarSearch strategy = new AStarSearch(cost, heuristic);
+         * 
+         * Greedy Search:
+         * IEstimatedCostFunction heuristic = new Heuristic();
+         * GreedySearch strategy = new GreedySearch(heuristic);
+         */
+    	        
 
         // Create a Search object with the strategy
+                
         Search searchSolver = new Search(strategy);
 
         /* Generate an XML file with the search tree. It can also be generated
