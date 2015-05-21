@@ -347,7 +347,7 @@ public class FuncionesAuxiliares {
 	 *            : es el nodo con la posicion actual del agente
 	 * @param n
 	 *            : es un nodo adyacente
-	 * @return true: si el nodo n Esta al Este del nodoActual
+	 * @return true: si el nodo n esta al Este del nodoActual
 	 * @return false: caso contrario
 	 */
 	private static boolean estaAlEste(Nodo nodoActual, Nodo n) {
@@ -357,9 +357,23 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
-<<<<<<< HEAD
-}
-=======
+	
+	/**
+	 * @param nodoaActual
+	 *            : es el nodo con la posicion actual del agente
+	 * @param n
+	 *            : es un nodo adyacente
+	 * @return true: si el nodo n esta al Sur del nodoActual
+	 * @retun false: caso contrario
+	 */
+	private static boolean estaAlSur(Nodo nodoaActual, Nodo n) {
+		if (n.getPosY() - nodoaActual.getPosY() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 
 /**
  * Obtiene nueva ubicación al sur, sólo para nivel alto o medio.
@@ -411,19 +425,20 @@ public static Point irSur(Point ubicacionActual, String altura) {
 	return null;
 }
 
-public static Nodo irSurBajo(Point ubicacionActual, Grafo subGrafo) {
-	Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
-	
-	for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
-	{
-		//verifica que haya un nodo mas al sur de la posicion actual y que este en un rango de +-10 en x
-		// devuelve el primer nodo que cumpla dichas condiciones
-		if( estaAlNorte(nodoActual,n) && n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
-		{
-			return n;
+	public static Nodo irSurBajo(Point ubicacionActual, Grafo subGrafo) {
+		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
+
+		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
+			// verifica que haya un nodo mas al sur de la posicion actual y que
+			// este en un rango de +-10 en x
+			// devuelve el primer nodo que cumpla dichas condiciones
+			if (estaAlNorte(nodoActual, n)
+					&& n.getPosX() >= ubicacionActual.x - 10
+					&& n.getPosX() <= ubicacionActual.x + 10) {
+				return n;
+			}
 		}
+		return null;
 	}
-	return null;
 }
-}
->>>>>>> origin/master
+

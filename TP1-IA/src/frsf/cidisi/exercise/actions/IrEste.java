@@ -10,6 +10,7 @@ import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Grafo;
+import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
 
 public class IrEste extends SearchAction {
@@ -51,29 +52,77 @@ public class IrEste extends SearchAction {
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
-        		boolean encontrado = false;
+        		NodoLista encontrado=null;
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
         			
         			if(cuadrante == n.getCuadrante())
         			{
-        				encontrado = true;
+        				encontrado = n;
         				break;
         			}
         		}
-        		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+        		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(cuadrante);
+            		droneState.getintensidadSeñalA().remove(encontrado);
             		return droneState;
         		}
         	}
         }else{
         	if(altura == "M"){
-        		
+        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		sigPos = FuncionesAuxiliares.irEste(posicion, altura);
+            	//ENERGIA ES -1??
+        		if(sigPos != null)
+        		{
+        			NodoLista encontrado=null;
+            		for(NodoLista n: droneState.getintensidadSeñalM())
+            		{
+            			
+            			if(cuadrante == n.getCuadrante())
+            			{
+            				encontrado = n;
+            				break;
+            			}
+            		}
+            		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+            		{
+            			droneState.setenergia(energia - 1);
+            			droneState.setubicacionD(sigPos);
+            			droneState.getintensidadSeñalM().remove(encontrado);
+            			return droneState;
+            		}
+        		}
         	}else //Altura "B"
         	{
+        		{
+                	//	sigPos = FuncionesAuxiliares.irNorte(posicion,  altura);
+                    	//ENERGIA ES -1??
+                		
+                		//sigPos = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
+                		subGrafo = droneState.getGrafoSubCuadrante();
+                		Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
+                		
+                		
+                		if(nodoSig != null)
+                		{
+                			if(droneState.getintensidadSeñalB().contains(nodoSig))
+                			{
+                				droneState.setenergia(energia - 1);
+                			}
+                			else
+                			{
+                				droneState.setenergia(energia - 2);
+                			}
+                			
+                        	droneState.setubicacionD(sigPos);  //aca no iría la pos de nodoSig??
+                        	droneState.getintensidadSeñalB().remove(sigPos);
+                        	return droneState;
+                        	
+                		}
+                	}
         	
         	}
         }
