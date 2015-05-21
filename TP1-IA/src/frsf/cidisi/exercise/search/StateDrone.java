@@ -32,9 +32,9 @@ public class StateDrone extends SearchBasedAgentState {
     private String direccion;
     private ArrayList<Persona> victimarios;
     private int energia;
-	
+    private Grafo grafoSubCuadrante;
 
-    public StateDrone(Point p, String a, String d, int e) {
+	public StateDrone(Point p, String a, String d, int e) {
 
     	ubicacionD = p;
     	altura = a;
@@ -44,6 +44,7 @@ public class StateDrone extends SearchBasedAgentState {
     	direccion = d;
     	victimarios = new ArrayList<Persona>();
     	energia = e;
+    	grafoSubCuadrante = new Grafo();
     }
     
     public StateDrone()
@@ -53,6 +54,7 @@ public class StateDrone extends SearchBasedAgentState {
 		intensidadSeñalM = new ArrayList<NodoLista>();
 		intensidadSeñalB = new ArrayList<Nodo>();
 		victimarios = new ArrayList<Persona>();
+		grafoSubCuadrante = new Grafo();
    
 		this.initState();
     }
@@ -64,7 +66,6 @@ public class StateDrone extends SearchBasedAgentState {
     @Override
     public SearchBasedAgentState clone() {
         
-    	
     	StateDrone nuevoEstado = new StateDrone(this.ubicacionD, this.altura, this.direccion, this.energia);
     	
     	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
@@ -92,7 +93,6 @@ public class StateDrone extends SearchBasedAgentState {
     		nuevaListaVictimarios.add(p);
     	}
     	
-    	
     	nuevoEstado.setintensidadSeñalA(nuevaIntensidadSeñalA);
     	nuevoEstado.setintensidadSeñalB(nuevaIntensidadSeñalB);
     	nuevoEstado.setintensidadSeñalM(nuevaIntensidadSeñalM);
@@ -110,7 +110,7 @@ public class StateDrone extends SearchBasedAgentState {
         
     	AgentDronePerception percepcion = (AgentDronePerception) p;
     	
-    	 ubicacionD = percepcion.getposiciongps();
+    	 ubicacionD = percepcion.getgps().getPosiciongps();
     	 altura = percepcion.getaltura();
     	 victimarios = new ArrayList<Persona>();
     	 energia = percepcion.getenergia();
@@ -135,18 +135,18 @@ public class StateDrone extends SearchBasedAgentState {
         			 }
     		 }
     	 }
-         else
-         {
+    	 else
+    	 {
     		 ArrayList<Nodo> listaIB = percepcion.getantena().getIntensidadSeñal();
+
+    		 for(Nodo n : listaIB)
+    		 {
+    			 intensidadSeñalB.add(n);
+    		 }
     		 
-        		 for(Nodo n : listaIB)
-    			 {
-    				
-    					 intensidadSeñalB.add(n);
-    			 }
-         }	 
-    	 
-    	 
+    		 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
+    				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
+    	 }	 
     	 
     }
 
@@ -183,13 +183,13 @@ public class StateDrone extends SearchBasedAgentState {
         	str += FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y)+"\n";
         else
         	str += FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y)+"\n";
-        str += "Intensidad de señal\n\t\tCuadrante Señal\nNivel Alto \n";
+        str += "Intensidad de señal\n\t\tCuadrante\tSeñal\nNivel Alto \n";
         for(int i=0; i<intensidadSeñalA.size();i++)
-        	str += "\t\t"+intensidadSeñalA.get(i).getCuadrante()+"\t"+intensidadSeñalA.get(i).getIntensidad()+"\n";
+        	str += "\t\t"+intensidadSeñalA.get(i).getCuadrante()+"\t\t"+intensidadSeñalA.get(i).getIntensidad()+"\n";
         str += "Nivel Medio \n";
         for(int i=0; i<intensidadSeñalM.size();i++)
         	str += "\t\t"+intensidadSeñalM.get(i).getCuadrante()+"\t"+intensidadSeñalM.get(i).getIntensidad()+"\n";
-        str += "Nivel Bajo \tPosición (x, Y) Señal\n";
+        str += "Nivel Bajo \tPosición (x, y) Señal\n";
         for(int i=0; i<intensidadSeñalB.size();i++)
         	str += "\t\t"+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\t"+intensidadSeñalB.get(i).getPersonas().size()+"\n";
         str += "Dirección: "+direccion+"\n";
@@ -275,6 +275,14 @@ public class StateDrone extends SearchBasedAgentState {
      public void setvictimario(ArrayList<Persona> arg){
         victimarios = arg;
      }
+
+     public Grafo getGrafoSubCuadrante() {
+ 		return grafoSubCuadrante;
+ 	}
+
+ 	public void setGrafoSubCuadrante(Grafo grafoSubCuadrante) {
+ 		this.grafoSubCuadrante = grafoSubCuadrante;
+ 	}
      
      public void agregarVictimario(Persona p)
      {

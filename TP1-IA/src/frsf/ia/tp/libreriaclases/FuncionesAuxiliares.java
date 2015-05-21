@@ -140,6 +140,13 @@ public class FuncionesAuxiliares {
 		return nuevaPos;
 	}
 	
+	/**
+	 * Obtiene nueva ubicación al norte, sólo para nivel alto o medio.
+	 * 
+	 * @param ubicacionActual ubicación del agente
+	 * @param altura altura del agente
+	 * @return posición del agente al norte de ubicación actual si es que se puede mover
+	 */
 	public static Point irNorte(Point ubicacionActual, String altura)
 	{
 		Point posicion = null;
@@ -187,6 +194,12 @@ public class FuncionesAuxiliares {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param ubicacionActual
+	 * @param subGrafo
+	 * @return
+	 */
 	public static Nodo irNorteBajo(Point ubicacionActual, Grafo subGrafo)
 	{/*
 		Point posicion = null;
@@ -227,19 +240,32 @@ public class FuncionesAuxiliares {
 	}
 
 	/**
-	 * Centra el agente en la esquina central del cuadrante de nivel bajo donde se encuentra
+	 * Ubica el agente en la esquina mas cercana al centro del subcuadrante de nivel bajo donde se encuentra
 	 * 
-	 * @param subCuadrante cuadrante de nivel bajo
+	 * @param subCuadrante número de subcuadrante de nivel bajo
+	 * @param grafoSubCuadrante grafo que contiene los nodos y enlaces sólo del subcuadrante
 	 * @return pocición de la esquina central para ese cuadrante
 	 */
-	public static Point centrarPosicionCuadrante(int subCuadrante) {
+	public static Point centrarPosicionEsquina(int subCuadrante, Grafo grafoSubCuadrante) {
 		//Posición central del subcuadrante (x, y)
 		Point centroSubCuadrante = centroSubcuadranteBajo(subCuadrante);
 		Point centroEsquina = new Point();
-		//buscar los adyacentes a esa esquina
 		
-		//quitar los q no correspondan a ese subcuadrante
-		// ...
+		//cálculo de la esquina central
+		double d=ALTO_MAPA, auxD;
+		for(Nodo n: grafoSubCuadrante.getListaNodos())
+		{
+			auxD = Math.hypot(n.getPosX()-centroSubCuadrante.x, n.getPosY()-centroSubCuadrante.y);
+			if(auxD < d)
+			{
+				d = auxD;
+				centroEsquina.setLocation(n.getPosX(), n.getPosY());
+			}
+		}
+
+		if(centroEsquina.getLocation() != null)
+			return centroEsquina;
+		
 		return null;
 	}
 

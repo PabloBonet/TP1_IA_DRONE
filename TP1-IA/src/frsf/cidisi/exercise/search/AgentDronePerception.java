@@ -13,6 +13,7 @@ import frsf.ia.tp.libreriaclases.AntenaNB;
 import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
 import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
+import frsf.ia.tp.libreriaclases.Gps;
 import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
 
@@ -22,11 +23,10 @@ public class AgentDronePerception extends Perception {
     //public static int UNKNOWN_PERCEPTION = -1;   
 	
 	private String altura;
-	private Point posiciongps;
+	private Gps gps;
 	private int energia;
 	private Camara camara;
 	private Antena antena;
-	
  
 
     public  AgentDronePerception() {
@@ -52,13 +52,14 @@ public class AgentDronePerception extends Perception {
         StateMap estadoAmbiente =
                 ambiente.getEnvironmentState();
        
-        this.posiciongps = estadoAmbiente.getposicionAgente();
+        gps = new Gps();
+        this.gps.setPosiciongps(estadoAmbiente.getposicionAgente());
         this.altura = estadoAmbiente.getAlturaAgente();
         this.energia = estadoAmbiente.getenergiaAgente();
         
         String altura = estadoAmbiente.getAlturaAgente();
         
-        int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posiciongps.x, posiciongps.y);
+        int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(gps.getPosiciongps().x, gps.getPosiciongps().y);
 		
         if(altura == "B")
         {
@@ -67,7 +68,7 @@ public class AgentDronePerception extends Perception {
         	
         	//Percepción cámara
         	if(nodoAgente != null)
-        	camara = new Camara(estadoAmbiente.getPersonasQueVe(), nodoAgente);
+        		camara = new Camara(estadoAmbiente.getPersonasQueVe(), nodoAgente);
         	antena = new AntenaNB();
         	//Percepción Antena para nivel bajo
         	
@@ -80,12 +81,13 @@ public class AgentDronePerception extends Perception {
         		}
         	}
         	
+        	//cargar el grafo perteneciente al subcuadrante
+        	gps.cargarGrafoSubCuadrante(estadoAmbiente.getgrafoMapa());
         	
         }
         else // Si altura del agente es Media(M) o Alta (A)
         {
         	camara = new Camara();
-        	
         	
         	if(altura == "M")
         	{
@@ -103,11 +105,9 @@ public class AgentDronePerception extends Perception {
         		System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
         		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
         	}
-        		
         	
         }
         
-       
     }
     
     @Override
@@ -115,7 +115,7 @@ public class AgentDronePerception extends Perception {
         StringBuffer str = new StringBuffer();
        str.append("-- Percepción del Agente VANT --\n");
        str.append("Altura: "+this.altura+"\n");
-       str.append("Posición: "+this.posiciongps.getX()+" - "+this.posiciongps.getY()+"\n");
+       str.append("Posición: "+this.gps.getPosiciongps().x+" - "+this.gps.getPosiciongps().y+"\n");
        str.append("Cámara: ");
        if(this.altura == "B")
        {
@@ -124,8 +124,6 @@ public class AgentDronePerception extends Perception {
     	    	 str.append("Personas que ve: ");
     	    	 str.append("\n\tID: "+this.camara.getPersonas().get(i).getId()+ " es victima: "+this.camara.getPersonas().get(i).esVictima());
     	     }
-    	    	 
-    	    
        }
        else
        {
@@ -172,11 +170,11 @@ public class AgentDronePerception extends Perception {
      public void setaltura(String arg){
         this.altura = arg;
      }
-     public Point getposiciongps(){
-        return posiciongps;
+     public Gps getgps(){
+        return gps;
      }
-     public void setposiciongps(Point arg){
-        this.posiciongps = arg;
+     public void setgps(Gps arg){
+        this.gps = arg;
      }
      public Camara getcamara(){
         return camara;

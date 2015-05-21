@@ -22,6 +22,7 @@
       <DataStructure name="direccion" type="String"/>
       <DataStructure name="victimario" type="Other"/>
       <DataStructure name="energia"/>
+      <DataStructure name="grafoSubCuadrante" type="Other"/>
     </AgentState>
   </Agent>
   <Actions execute_by="//@Agent" executed_on="//@Environment" name="IrNorte"/>
@@ -35,7 +36,7 @@
   <Actions execute_by="//@Agent" executed_on="//@Environment" name="Bajar"/>
   <Actions execute_by="//@Agent" executed_on="//@Environment" name="Subir"/>
   <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="altura"/>
-  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="posiciongps"/>
+  <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="gps" type="Other"/>
   <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="camara"/>
   <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="antena"/>
   <Perceptions perceived_on="//@Environment" perceived_by="//@Agent" name="energia"/>

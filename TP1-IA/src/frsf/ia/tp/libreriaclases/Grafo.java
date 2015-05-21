@@ -217,6 +217,9 @@ public class Grafo {
 	 * MÉTODOS ESTÁTICOS
 	 * */
 	
+	/**
+	 * TODO #~#~#~#~#~#~-----FALTA !!!!!!!!!!!!!!!!!!!!
+	 */
 	public static ArrayList<Nodo> nodosAdyacentesAPosicion(Point posicionAgente, boolean incluidoActual)
 	{
 		ArrayList<Nodo> nodosAdyacentes = new ArrayList<Nodo>();

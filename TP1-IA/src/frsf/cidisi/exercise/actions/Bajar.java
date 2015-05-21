@@ -28,13 +28,17 @@ public class Bajar extends SearchAction {
         // - Si descendió al nivel bajo: en la esquina central del subcuadrante
         
         String altura = agState.getaltura();
-        if(altura != "B" && agState.getenergia()>1){ 
+        if(altura != "B" && agState.getenergia()>1)
+        {
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = subCuadrante%10;
-        	if(altura == "A" && agState.getintensidadSeñalA().size()>0){
-        		for(NodoLista n: agState.getintensidadSeñalA()){
+        	if(altura == "A" && agState.getintensidadSeñalA().size()>0)
+        	{
+        		for(NodoLista n: agState.getintensidadSeñalA())
+        		{
         			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
-        			if(cuadrante == n.getCuadrante()){
+        			if(cuadrante == n.getCuadrante())
+        			{
         				agState.setaltura("M");
                 		agState.setubicacionD(FuncionesAuxiliares.bajarASubCuadranteM(cuadrante));
                 		//elimina el nodo con el cuadrante actual de la lista de señal de nivel alto del agente
@@ -47,12 +51,15 @@ public class Bajar extends SearchAction {
         		return null;
         	}
         	//el agente está en nivel medio
-        	else{
-        		for(NodoLista n: agState.getintensidadSeñalM()){
-        			//si existe intensidad de señal en el subcuadrante inferior desde donde se encuantra el agente
-        			if(subCuadrante == n.getCuadrante()){
+        	else
+        	{
+        		for(NodoLista n: agState.getintensidadSeñalM())
+        		{
+        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
+        			if(subCuadrante == n.getCuadrante())
+        			{
         				agState.setaltura("B");
-                		agState.setubicacionD(FuncionesAuxiliares.centrarPosicionCuadrante(subCuadrante));
+                		agState.setubicacionD(FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante()));
                 		//elimina el nodo de la lista de señal de nivel medio del agente
         				agState.removerCuadranteNivelM(subCuadrante);
         				agState.setenergia(agState.getenergia()-1);
@@ -83,13 +90,17 @@ public class Bajar extends SearchAction {
         // y actualiza la energía y altura de los estados de agente y entorno.
         
         String altura = agState.getaltura();
-        if(altura != "B" && agState.getenergia()>1){ 
+        if(altura != "B" && agState.getenergia()>1)
+        { 
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = subCuadrante%10;
-        	if(altura == "A" && agState.getintensidadSeñalA().size()>0){
-        		for(NodoLista n: agState.getintensidadSeñalA()){
+        	if(altura == "A" && agState.getintensidadSeñalA().size()>0)
+        	{
+        		for(NodoLista n: agState.getintensidadSeñalA())
+        		{
         			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
-        			if(cuadrante == n.getCuadrante()){
+        			if(cuadrante == n.getCuadrante())
+        			{
         				agState.setaltura("M");
         				environmentState.setAlturaAgente("M");
         				Point uAgente = FuncionesAuxiliares.bajarASubCuadranteM(cuadrante);
@@ -106,15 +117,18 @@ public class Bajar extends SearchAction {
         		return null;
         	}
         	//el agente está en nivel medio
-        	else{
-        		for(NodoLista n: agState.getintensidadSeñalM()){
-        			//si existe intensidad de señal en el subcuadrante inferior desde donde se encuantra el agente
-        			if(subCuadrante == n.getCuadrante()){
+        	else
+        	{
+        		for(NodoLista n: agState.getintensidadSeñalM())
+        		{
+        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
+        			if(subCuadrante == n.getCuadrante())
+        			{
         				agState.setaltura("B");
         				environmentState.setAlturaAgente("B");
-//        				Point uAgente = FuncionesAuxiliares.centrarPosSubCuadrante(subCuadrante);
-//                		agState.setubicacionD(uAgente);
-//        				environmentState.setposicionAgente(uAgente);
+        				Point uAgente = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
+                		agState.setubicacionD(uAgente);
+        				environmentState.setposicionAgente(uAgente);
                 		//elimina el nodo de la lista de señal de nivel medio del agente
         				agState.removerCuadranteNivelM(subCuadrante);
         				agState.setenergia(agState.getenergia()-1);
