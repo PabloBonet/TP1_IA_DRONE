@@ -98,6 +98,15 @@ public class StateDrone extends SearchBasedAgentState {
     	nuevoEstado.setintensidadSeñalM(nuevaIntensidadSeñalM);
     	nuevoEstado.setvictimario(nuevaListaVictimarios);
     	
+    	ArrayList<Nodo> nodosNuevo = new ArrayList<Nodo>();
+    	ArrayList<Enlace> enlacesNuevo = new ArrayList<Enlace>();
+    	for(Nodo n: this.grafoSubCuadrante.getListaNodos())
+    		nodosNuevo.add(n);
+    	for(Enlace e: this.grafoSubCuadrante.getListaEnlaces())
+    		enlacesNuevo.add(e);
+    	Grafo subGrafo = new Grafo(nodosNuevo, enlacesNuevo);
+    	nuevoEstado.setGrafoSubCuadrante(subGrafo);
+    	
         return nuevoEstado;
     }
 
@@ -227,6 +236,8 @@ public class StateDrone extends SearchBasedAgentState {
     	 
     	 if(energia != this.energia)
     		 return false;
+    	 
+    	 
     	 
         return true;
     }
