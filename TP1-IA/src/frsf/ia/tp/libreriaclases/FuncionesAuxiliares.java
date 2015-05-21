@@ -355,7 +355,6 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
-<<<<<<< HEAD
 	
 	/**
 	 * @param nodoaActual
@@ -372,8 +371,7 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
-=======
->>>>>>> origin/master
+
 
 
 /**
@@ -441,10 +439,7 @@ public static Point irSur(Point ubicacionActual, String altura) {
 		}
 		return null;
 	}
-<<<<<<< HEAD
-=======
-	return null;
-}
+
 
 public static Point irNorEste(Point ubicacionActual, String altura) {
 	Point posicion = null;
@@ -506,9 +501,4 @@ Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
 	return null;
 }
 
->>>>>>> 11013516969397643e6c4c296f922558a1f919fe
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
