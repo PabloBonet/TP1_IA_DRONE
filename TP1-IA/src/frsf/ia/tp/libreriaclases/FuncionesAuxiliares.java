@@ -192,6 +192,55 @@ public class FuncionesAuxiliares {
 		return null;
 	}
 	
+	
+	
+	public static Point irEste(Point ubicacionActual, String altura)
+	{
+		Point posicion = null;
+		
+		if(altura != "B")
+		{
+			posicion = new Point();
+			int x = ubicacionActual.x;
+			int y = ubicacionActual.y;
+			
+			if(altura == "A")
+			{
+				x += ANCHO_CUADRANTE;
+
+				if(x > ANCHO_MAPA)
+				{
+					return null;
+				}
+				else
+				{
+					posicion.x = x;
+					posicion.y = y;
+					return posicion;
+				}
+			}
+			else //altura == M
+			{
+				int posNueva = posicion.x + ANCHO_SUB_CUADRANTE;
+				if(posNueva <= ANCHO_CUADRANTE)  //Si no sale fuera de la grilla
+				{
+					int auxX = posicion.x/ANCHO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: x=100->1, x=160->2, x=320->3,..)
+					if(auxX == 1 || auxX == 3) //se puede mover hacia la derecha si esta en el subcuadrante inferior dentro del cuadrante
+					{
+						posicion.x = posNueva;
+						posicion.y = y;
+						return posicion;
+					}
+				}
+				return null;
+			}
+		}
+		
+
+
+		return null;
+	}
+	
 	/**
 	 * 
 	 * @param ubicacionActual
@@ -208,6 +257,23 @@ public class FuncionesAuxiliares {
 			//verifica que haya un nodo mas al norte de la posicion actual y que este en un rango de +-10
 			// devuelve el primer nodo que cumpla dichas condiciones
 			if( estaAlNorte(nodoActual,n) && n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
+			{
+				return n;
+			}
+		}
+		return null;
+	}
+	
+	public static Nodo irEsteBajo(Point ubicacionActual, Grafo subGrafo)
+	{	
+		Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
+	
+		
+		for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
+		{
+			//verifica que haya un nodo mas al norte de la posicion actual y que este en un rango de +-10
+			// devuelve el primer nodo que cumpla dichas condiciones
+			if( estaAlEste(nodoActual,n) && n.getPosX() >= ubicacionActual.y -10 &&  n.getPosX() <= ubicacionActual.y +10)
 			{
 				return n;
 			}
@@ -259,18 +325,37 @@ public class FuncionesAuxiliares {
 	
 
 // Dado un el nodo actual y un no
-/**
- * @param nodoActual: es el nodo con la posicion actual del agente
- * @param n: es un nodo adyacente
- * @return true: si el nodo n esta al Norte de nodoActual
- * 		   false: caso contrario
- */
-private static boolean estaAlNorte(Nodo nodoActual, Nodo n){
-	if(nodoActual.getPosY() - n.getPosY() > 0){
-		return true;
-	}else
-		return false;
+	/**
+	 * @param nodoActual
+	 *            : es el nodo con la posicion actual del agente
+	 * @param n
+	 *            : es un nodo adyacente
+	 * @return true: si el nodo n esta al Norte de nodoActual
+	 * @return false: caso contrario
+	 */
+	private static boolean estaAlNorte(Nodo nodoActual, Nodo n) {
+		if (nodoActual.getPosY() - n.getPosY() > 0) {
+			return true;
+		} else
+			return false;
 	}
+
+	/**
+	 * @param nodoActual
+	 *            : es el nodo con la posicion actual del agente
+	 * @param n
+	 *            : es un nodo adyacente
+	 * @return true: si el nodo n Esta al Este del nodoActual
+	 * @return false: caso contrario
+	 */
+	private static boolean estaAlEste(Nodo nodoActual, Nodo n) {
+		if (n.getPosX() - nodoActual.getPosX() > 0) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 
 /**
  * Obtiene nueva ubicación al sur, sólo para nivel alto o medio.
