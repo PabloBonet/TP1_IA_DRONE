@@ -7,121 +7,114 @@ import jpl.fli.functor_t;
 
 public class FuncionesAuxiliares {
 
-	public static int ANCHO_MAPA = 600; // ancho del MAPA 
+	public static int ANCHO_MAPA = 600; // ancho del MAPA
 	public static int ALTO_MAPA = 600; // alto del MAPA
 	public static int ANCHO_CUADRANTE = ANCHO_MAPA / 2;
 	public static int ALTO_CUADRANTE = ALTO_MAPA / 2;
 	public static int ANCHO_SUB_CUADRANTE = ANCHO_CUADRANTE / 2;
 	public static int ALTO_SUB_CUADRANTE = ALTO_CUADRANTE / 2;
-	public enum EstadoSimulacion{EJECUTANDO , PAUSADO, DETENIDO };
-	
-	
-		
+
+	public enum EstadoSimulacion {
+		EJECUTANDO, PAUSADO, DETENIDO
+	};
+
 	/**
-	 * Retorna el cuadrante al que pertenecen las coordenadas pasadas como parametros
+	 * Retorna el cuadrante al que pertenecen las coordenadas pasadas como
+	 * parametros
 	 * 
-	 * @param x 
-	 * 		coordenadaX
+	 * @param x
+	 *            coordenadaX
 	 * @param y
-	 * 		coordenadaY
+	 *            coordenadaY
 	 * 
 	 * 
-	 * @return cuadrante
-	 * 		cuadrante al que pertenece la posicion pasada como parametro
+	 * @return cuadrante cuadrante al que pertenece la posicion pasada como
+	 *         parametro
 	 * */
-	
-	public static int perteneceACuadrante(int x, int y)
-	{
+
+	public static int perteneceACuadrante(int x, int y) {
 		int cuadrante = 0;
-		
-		int cuadX = x/ANCHO_CUADRANTE;
-		int cuadY = y/ALTO_CUADRANTE;
-		
-		if(cuadX == 0)
-		{
-			if(cuadY == 0)
-			{
+
+		int cuadX = x / ANCHO_CUADRANTE;
+		int cuadY = y / ALTO_CUADRANTE;
+
+		if (cuadX == 0) {
+			if (cuadY == 0) {
 				cuadrante = 1;
-			}
-			else //cuadY == 1
+			} else // cuadY == 1
 			{
 				cuadrante = 3;
 			}
-		}
-		else //cuadX == 1
+		} else // cuadX == 1
 		{
-			if(cuadY == 0)
-			{
+			if (cuadY == 0) {
 				cuadrante = 2;
-			}
-			else //cuadY == 1
+			} else // cuadY == 1
 			{
 				cuadrante = 4;
 			}
 		}
-		
-		return cuadrante;
-	}
-	
-	/**
-	 * Retorna el sub cuadrante al que pertenecen las coordenadas pasadas como parametros
-	 * 
-	 * @param x 
-	 * 		coordenadaX
-	 * @param y
-	 * 		coordenadaY
-	 * 
-	 * 
-	 * @return cuadrante
-	 * 		sub cuadrante al que pertenece la posicion pasada como parametro
-	 * */
-	
-	public static int perteneceASubCuadrante(int x, int y)
-	{
-		int cuadrante = 0;
-		//se llama a perteneceCuadrante para tener referencia a que cuadrante de nivel superior pertenece
-		cuadrante = perteneceACuadrante(x, y)*10;
-		
-		int cuadX = (x%ANCHO_CUADRANTE)/ANCHO_SUB_CUADRANTE;
-		int cuadY = (y%ALTO_CUADRANTE) / ALTO_SUB_CUADRANTE;
-		
-		if(cuadX == 0)
-		{
-			if(cuadY == 0)
-			{
-				cuadrante += 1;
-			}
-			else //cuadY == 1
-			{
-				cuadrante += 3;
-			}
-		}
-		else //cuadX == 1
-		{
-			if(cuadY == 0)
-			{
-				cuadrante += 2;
-			}
-			else //cuadY == 1
-			{
-					cuadrante += 4;
-			}
-		}
-		
+
 		return cuadrante;
 	}
 
 	/**
-	 * Devuelve la posición central del primer subcuadrante de nivel medio correspondiente 
-	 * al cuadrante de nivel alto donde se encuentra el agente
-	 * @param cuadrante Cuadrante de nivel alto donde se encuantra el agente
+	 * Retorna el sub cuadrante al que pertenecen las coordenadas pasadas como
+	 * parametros
 	 * 
-	 * @return Point Posición donde se ubicará el agente dentro del primer subcuadrante
+	 * @param x
+	 *            coordenadaX
+	 * @param y
+	 *            coordenadaY
+	 * 
+	 * 
+	 * @return cuadrante sub cuadrante al que pertenece la posicion pasada como
+	 *         parametro
+	 * */
+
+	public static int perteneceASubCuadrante(int x, int y) {
+		int cuadrante = 0;
+		// se llama a perteneceCuadrante para tener referencia a que cuadrante
+		// de nivel superior pertenece
+		cuadrante = perteneceACuadrante(x, y) * 10;
+
+		int cuadX = (x % ANCHO_CUADRANTE) / ANCHO_SUB_CUADRANTE;
+		int cuadY = (y % ALTO_CUADRANTE) / ALTO_SUB_CUADRANTE;
+
+		if (cuadX == 0) {
+			if (cuadY == 0) {
+				cuadrante += 1;
+			} else // cuadY == 1
+			{
+				cuadrante += 3;
+			}
+		} else // cuadX == 1
+		{
+			if (cuadY == 0) {
+				cuadrante += 2;
+			} else // cuadY == 1
+			{
+				cuadrante += 4;
+			}
+		}
+
+		return cuadrante;
+	}
+
+	/**
+	 * Devuelve la posición central del primer subcuadrante de nivel medio
+	 * correspondiente al cuadrante de nivel alto donde se encuentra el agente
+	 * 
+	 * @param cuadrante
+	 *            Cuadrante de nivel alto donde se encuantra el agente
+	 * 
+	 * @return Point Posición donde se ubicará el agente dentro del primer
+	 *         subcuadrante
 	 */
 	public static Point bajarASubCuadranteM(int cuadrante) {
-		// TODO el nro de subcuadrante es: cuadrante * 10 + 1 
+		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
 		Point nuevaPos = new Point();
-		switch(cuadrante){
+		switch (cuadrante) {
 		case 1:
 			nuevaPos.setLocation(75, 75);
 			break;
@@ -139,46 +132,49 @@ public class FuncionesAuxiliares {
 		}
 		return nuevaPos;
 	}
-	
+
 	/**
 	 * Obtiene nueva ubicación al norte, sólo para nivel alto o medio.
 	 * 
-	 * @param ubicacionActual ubicación del agente
-	 * @param altura altura del agente
-	 * @return posición del agente al norte de ubicación actual si es que se puede mover
+	 * @param ubicacionActual
+	 *            ubicación del agente
+	 * @param altura
+	 *            altura del agente
+	 * @return posición del agente al norte de ubicación actual si es que se
+	 *         puede mover
 	 */
-	public static Point irNorte(Point ubicacionActual, String altura)
-	{
+	public static Point irNorte(Point ubicacionActual, String altura) {
 		Point posicion = null;
-		
-		if(altura != "B")
-		{
+
+		if (altura != "B") {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
-			
-			if(altura == "A")
-			{
+
+			if (altura == "A") {
 				y -= ALTO_CUADRANTE;
 
-				if(y < 0)
-				{
+				if (y < 0) {
 					return null;
-				}
-				else
-				{
+				} else {
 					posicion.x = x;
 					posicion.y = y;
 					return posicion;
 				}
-			}
-			else //altura == M
+			} else // altura == M
 			{
 				int posNueva = posicion.y - ALTO_SUB_CUADRANTE;
-				if(posNueva >= 0)  //Si no sale fuera de la grilla
+				if (posNueva >= 0) // Si no sale fuera de la grilla
 				{
-					int auxY = posicion.y/ALTO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
-					if(auxY == 2 || auxY == 4) //se puede mover hacia arriba si esta en el subcuadrante inferior dentro del cuadrante
+					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
+																	// 2, 3 o 4
+																	// (Ej:
+																	// y=100->1,
+																	// y=160->2,
+																	// y=320->3,..)
+					if (auxY == 2 || auxY == 4) // se puede mover hacia arriba
+												// si esta en el subcuadrante
+												// inferior dentro del cuadrante
 					{
 						posicion.x = x;
 						posicion.y = posNueva;
@@ -188,44 +184,45 @@ public class FuncionesAuxiliares {
 				return null;
 			}
 		}
-		
+
 		return null;
 	}
-	
-	
-	
-	public static Point irEste(Point ubicacionActual, String altura)
-	{
+
+	public static Point irOeste(Point ubicacionActual, String altura) {
 		Point posicion = null;
-		
-		if(altura != "B")
-		{
+
+		if (altura != "B") {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
-			
-			if(altura == "A")
-			{
-				x += ANCHO_CUADRANTE;
 
-				if(x > ANCHO_MAPA)
-				{
+			if (altura == "A") {
+				x -= ANCHO_CUADRANTE;
+
+				if (x < 0) {
 					return null;
-				}
-				else
-				{
+				} else {
 					posicion.x = x;
 					posicion.y = y;
 					return posicion;
 				}
-			}
-			else //altura == M
+			} else // Altura == "B"
 			{
-				int posNueva = posicion.x + ANCHO_SUB_CUADRANTE;
-				if(posNueva <= ANCHO_CUADRANTE)  //Si no sale fuera de la grilla
+				int posNueva = posicion.x - ANCHO_SUB_CUADRANTE;
+				if (posNueva >= ANCHO_CUADRANTE) // Si no sale fuera de la
+													// grilla
 				{
-					int auxX = posicion.x/ANCHO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: x=100->1, x=160->2, x=320->3,..)
-					if(auxX == 1 || auxX == 3) //se puede mover hacia la derecha si esta en el subcuadrante inferior dentro del cuadrante
+					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1; // //cuad
+																		// 1, 2,
+																		// 3 o 4
+																		// (Ej:
+																		// x=100->1,
+																		// x=160->2,
+																		// x=320->3,..)
+					if (auxX == 4 || auxX == 2) // se puede mover hacia la
+												// izquierda si esta en el
+												// subcuadrante inferior dentro
+												// del cuadrante
 					{
 						posicion.x = posNueva;
 						posicion.y = y;
@@ -235,46 +232,107 @@ public class FuncionesAuxiliares {
 				return null;
 			}
 		}
-		
+		return null;
+	}
 
+	public static Point irEste(Point ubicacionActual, String altura) {
+		Point posicion = null;
+
+		if (altura != "B") {
+			posicion = new Point();
+			int x = ubicacionActual.x;
+			int y = ubicacionActual.y;
+
+			if (altura == "A") {
+				x += ANCHO_CUADRANTE;
+
+				if (x > ANCHO_MAPA) {
+					return null;
+				} else {
+					posicion.x = x;
+					posicion.y = y;
+					return posicion;
+				}
+			} else // altura == M
+			{
+				int posNueva = posicion.x + ANCHO_SUB_CUADRANTE;
+				if (posNueva <= ANCHO_CUADRANTE) // Si no sale fuera de la
+													// grilla
+				{
+					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1; // //cuad
+																		// 1, 2,
+																		// 3 o 4
+																		// (Ej:
+																		// x=100->1,
+																		// x=160->2,
+																		// x=320->3,..)
+					if (auxX == 1 || auxX == 3) // se puede mover hacia la
+												// derecha si esta en el
+												// subcuadrante inferior dentro
+												// del cuadrante
+					{
+						posicion.x = posNueva;
+						posicion.y = y;
+						return posicion;
+					}
+				}
+				return null;
+			}
+		}
 
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @param ubicacionActual
 	 * @param subGrafo
 	 * @return
 	 */
-	public static Nodo irNorteBajo(Point ubicacionActual, Grafo subGrafo)
-	{
-		Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
-	
-		
-		for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
-		{
-			//verifica que haya un nodo mas al norte de la posicion actual y que este en un rango de +-10
+	public static Nodo irNorteBajo(Point ubicacionActual, Grafo subGrafo) {
+		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
+
+		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
+			// verifica que haya un nodo mas al norte de la posicion actual y
+			// que este en un rango de +-10
 			// devuelve el primer nodo que cumpla dichas condiciones
-			if( estaAlNorte(nodoActual,n) && n.getPosX() >= ubicacionActual.x -10 &&  n.getPosX() <= ubicacionActual.x +10)
-			{
+			if (estaAlNorte(nodoActual, n)
+					&& n.getPosX() >= ubicacionActual.x - 10
+					&& n.getPosX() <= ubicacionActual.x + 10) {
 				return n;
 			}
 		}
 		return null;
 	}
-	
-	public static Nodo irEsteBajo(Point ubicacionActual, Grafo subGrafo)
-	{	
-		Nodo nodoActual  = subGrafo.nodoEnPosicion(ubicacionActual);
-	
-		
-		for(Nodo n: subGrafo.buscarAdyacentes(nodoActual))
-		{
-			//verifica que haya un nodo mas al norte de la posicion actual y que este en un rango de +-10
+
+	public static Nodo irOesteBajo(Point ubicacionActual, Grafo subGrafo) {
+		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
+
+		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
+			// verifica que haya un nodo mas al oeste de la posicion actual y
+			// que este en un rango de +-10
 			// devuelve el primer nodo que cumpla dichas condiciones
-			if( estaAlEste(nodoActual,n) && n.getPosX() >= ubicacionActual.y -10 &&  n.getPosX() <= ubicacionActual.y +10)
-			{
+			if (estaAlOeste(nodoActual, n)
+					&& n.getPosX() >= ubicacionActual.y - 10
+					&& n.getPosX() <= ubicacionActual.y + 10) {
+				return n;
+			}
+		}
+		return null;
+
+	}
+
+	public static Nodo irEsteBajo(Point ubicacionActual, Grafo subGrafo) {
+
+		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
+
+		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
+			// verifica que haya un nodo mas al este de la posicion actual y que
+			// este en un rango de +-10
+			// devuelve el primer nodo que cumpla dichas condiciones
+			if (estaAlEste(nodoActual, n)
+					&& n.getPosX() >= ubicacionActual.y - 10
+					&& n.getPosX() <= ubicacionActual.y + 10) {
 				return n;
 			}
 		}
@@ -282,49 +340,55 @@ public class FuncionesAuxiliares {
 	}
 
 	/**
-	 * Ubica el agente en la esquina mas cercana al centro del subcuadrante de nivel bajo donde se encuentra
+	 * Ubica el agente en la esquina mas cercana al centro del subcuadrante de
+	 * nivel bajo donde se encuentra
 	 * 
-	 * @param subCuadrante número de subcuadrante de nivel bajo
-	 * @param grafoSubCuadrante grafo que contiene los nodos y enlaces sólo del subcuadrante
+	 * @param subCuadrante
+	 *            número de subcuadrante de nivel bajo
+	 * @param grafoSubCuadrante
+	 *            grafo que contiene los nodos y enlaces sólo del subcuadrante
 	 * @return pocición de la esquina central para ese cuadrante
 	 */
-	public static Point centrarPosicionEsquina(int subCuadrante, Grafo grafoSubCuadrante) {
-		//Posición central del subcuadrante (x, y)
+	public static Point centrarPosicionEsquina(int subCuadrante,
+			Grafo grafoSubCuadrante) {
+		// Posición central del subcuadrante (x, y)
 		Point centroSubCuadrante = centroSubcuadranteBajo(subCuadrante);
 		Point centroEsquina = new Point();
-		
-		//cálculo de la esquina central
-		double d=ALTO_MAPA, auxD;
-		for(Nodo n: grafoSubCuadrante.getListaNodos())
-		{
-			auxD = Math.hypot(n.getPosX()-centroSubCuadrante.x, n.getPosY()-centroSubCuadrante.y);
-			if(auxD < d)
-			{
+
+		// cálculo de la esquina central
+		double d = ALTO_MAPA, auxD;
+		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
+			auxD = Math.hypot(n.getPosX() - centroSubCuadrante.x, n.getPosY()
+					- centroSubCuadrante.y);
+			if (auxD < d) {
 				d = auxD;
 				centroEsquina.setLocation(n.getPosX(), n.getPosY());
 			}
 		}
 
-		if(centroEsquina.getLocation() != null)
+		if (centroEsquina.getLocation() != null)
 			return centroEsquina;
-		
+
 		return null;
 	}
 
 	/**
 	 * Posición central de un subcuadrante
+	 * 
 	 * @param subCuadrante
 	 * @return centro Centro del subcuadrante de nivel bajo
 	 */
 	private static Point centroSubcuadranteBajo(int subCuadrante) {
 		Point centro = new Point();
-		centro.x = (((((subCuadrante/10)%2)==1) ? 1 : 2) *ANCHO_CUADRANTE - (((subCuadrante%10)%2)+1)*ANCHO_SUB_CUADRANTE+ANCHO_SUB_CUADRANTE/2);
-		centro.y =  ((((subCuadrante/10)<=2) ? 1 : 2) *ALTO_CUADRANTE - ((subCuadrante%10)>2?1:2)*ALTO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE/2);
+		centro.x = (((((subCuadrante / 10) % 2) == 1) ? 1 : 2)
+				* ANCHO_CUADRANTE - (((subCuadrante % 10) % 2) + 1)
+				* ANCHO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE / 2);
+		centro.y = ((((subCuadrante / 10) <= 2) ? 1 : 2) * ALTO_CUADRANTE
+				- ((subCuadrante % 10) > 2 ? 1 : 2) * ALTO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE / 2);
 		return centro;
 	}
-	
 
-// Dado un el nodo actual y un no
+	// Dado un el nodo actual y un no
 	/**
 	 * @param nodoActual
 	 *            : es el nodo con la posicion actual del agente
@@ -356,7 +420,6 @@ public class FuncionesAuxiliares {
 		}
 	}
 
-	
 	/**
 	 * @param nodoaActual
 	 *            : es el nodo con la posicion actual del agente
@@ -366,64 +429,84 @@ public class FuncionesAuxiliares {
 	 * @retun false: caso contrario
 	 */
 	private static boolean estaAlSur(Nodo nodoaActual, Nodo n) {
+
 		if (n.getPosY() - nodoaActual.getPosY() > 0) {
 			return true;
 		} else {
 			return false;
 		}
 	}
-
-
-
-/**
- * Obtiene nueva ubicación al sur, sólo para nivel alto o medio.
- * 
- * @param ubicacionActual ubicación del agente
- * @param altura altura del agente
- * @return posición del agente al sur de ubicación actual si es que se puede mover
- */
-public static Point irSur(Point ubicacionActual, String altura) {
-	Point posicion = null;
-
-	if(altura != "B")
-	{
-		posicion = new Point();
-		int x = ubicacionActual.x;
-		int y = ubicacionActual.y;
-
-		if(altura == "A")
-		{
-			y += ALTO_CUADRANTE;
-
-			if(y > ALTO_MAPA)
-			{
-				return null;
-			}
-			else
-			{
-				posicion.x = x;
-				posicion.y = y;
-				return posicion;
-			}
+	
+	/**
+	 * @param nodoaActual
+	 *            : es el nodo con la posicion actual del agente
+	 * @param n
+	 *            : es un nodo adyacente
+	 * @return true: si el nodo n esta al Oeste del nodoActual
+	 * @retun false: caso contrario
+	 */
+	private static boolean estaAlOeste(Nodo nodoActual, Nodo n) {
+		if (nodoActual.getPosX() - n.getPosX() > 0) {
+			return true;
+		} else {
+			return false;
 		}
-		else //altura == M
-		{
-			int posNueva = posicion.y + ALTO_SUB_CUADRANTE;
-			if(posNueva <= ALTO_MAPA)  //Si no sale fuera de la grilla
-			{
-				int auxY = posicion.y/ALTO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
-				if(auxY == 1 || auxY == 3) //se puede mover hacia abajo si esta en el subcuadrante superior dentro del cuadrante
-				{
+
+	}
+
+	/**
+	 * Obtiene nueva ubicación al sur, sólo para nivel alto o medio.
+	 * 
+	 * @param ubicacionActual
+	 *            ubicación del agente
+	 * @param altura
+	 *            altura del agente
+	 * @return posición del agente al sur de ubicación actual si es que se puede
+	 *         mover
+	 */
+	public static Point irSur(Point ubicacionActual, String altura) {
+		Point posicion = null;
+
+		if (altura != "B") {
+			posicion = new Point();
+			int x = ubicacionActual.x;
+			int y = ubicacionActual.y;
+
+			if (altura == "A") {
+				y += ALTO_CUADRANTE;
+
+				if (y > ALTO_MAPA) {
+					return null;
+				} else {
 					posicion.x = x;
-					posicion.y = posNueva;
+					posicion.y = y;
 					return posicion;
 				}
+			} else // altura == M
+			{
+				int posNueva = posicion.y + ALTO_SUB_CUADRANTE;
+				if (posNueva <= ALTO_MAPA) // Si no sale fuera de la grilla
+				{
+					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
+																	// 2, 3 o 4
+																	// (Ej:
+																	// y=100->1,
+																	// y=160->2,
+																	// y=320->3,..)
+					if (auxY == 1 || auxY == 3) // se puede mover hacia abajo si
+												// esta en el subcuadrante
+												// superior dentro del cuadrante
+					{
+						posicion.x = x;
+						posicion.y = posNueva;
+						return posicion;
+					}
+				}
+				return null;
 			}
-			return null;
 		}
+		return null;
 	}
-	return null;
-}
 
 	public static Nodo irSurBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
@@ -432,7 +515,7 @@ public static Point irSur(Point ubicacionActual, String altura) {
 			// verifica que haya un nodo mas al sur de la posicion actual y que
 			// este en un rango de +-10 en x
 			// devuelve el primer nodo que cumpla dichas condiciones
-			if (estaAlNorte(nodoActual, n)
+			if (estaAlSur(nodoActual, n)
 					&& n.getPosX() >= ubicacionActual.x - 10
 					&& n.getPosX() <= ubicacionActual.x + 10) {
 				return n;
@@ -441,53 +524,67 @@ public static Point irSur(Point ubicacionActual, String altura) {
 		return null;
 	}
 
+	public static Point irNorEste(Point ubicacionActual, String altura) {
+		Point posicion = null;
 
-public static Point irNorEste(Point ubicacionActual, String altura) {
-	Point posicion = null;
+		if (altura != "B") {
+			posicion = new Point();
+			int x = ubicacionActual.x;
+			int y = ubicacionActual.y;
 
-	if(altura != "B")
-	{
-		posicion = new Point();
-		int x = ubicacionActual.x;
-		int y = ubicacionActual.y;
-
-		if(altura == "A")
-		{
-			y -= ALTO_CUADRANTE;
-			x += ANCHO_CUADRANTE;
-			if(y < 0 || x > ANCHO_MAPA)
-			{
-				return null;
-			}
-			else
-			{
-				posicion.x = x;
-				posicion.y = y;
-				return posicion;
-			}
-		}
-		else //altura == M
-		{
-			int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
-			int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
-			if(posNuevaY >= 0 && posNuevaY <= ALTO_MAPA)  //Si no sale fuera de la grilla
-			{
-				int auxY = posicion.y/ALTO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
-				int auxX = posicion.x/ANCHO_SUB_CUADRANTE+1;
-				if((auxY == 2 || auxY == 4) && (auxX == 1 || auxX == 3)) //se puede mover hacia arriba y derecha si esta en el subcuadrante superior dentro del cuadrante
-				{
-					posicion.x = posNuevaX;
-					posicion.y = posNuevaY;
+			if (altura == "A") {
+				y -= ALTO_CUADRANTE;
+				x += ANCHO_CUADRANTE;
+				if (y < 0 || x > ANCHO_MAPA) {
+					return null;
+				} else {
+					posicion.x = x;
+					posicion.y = y;
 					return posicion;
 				}
+			} else // altura == M
+			{
+				int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
+				int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
+				if (posNuevaY >= 0 && posNuevaY <= ALTO_MAPA) // Si no sale
+																// fuera de la
+																// grilla
+				{
+					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
+																	// 2, 3 o 4
+																	// (Ej:
+																	// y=100->1,
+																	// y=160->2,
+																	// y=320->3,..)
+					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1;
+					if ((auxY == 2 || auxY == 4) && (auxX == 1 || auxX == 3)) // se
+																				// puede
+																				// mover
+																				// hacia
+																				// arriba
+																				// y
+																				// derecha
+																				// si
+																				// esta
+																				// en
+																				// el
+																				// subcuadrante
+																				// superior
+																				// dentro
+																				// del
+																				// cuadrante
+					{
+						posicion.x = posNuevaX;
+						posicion.y = posNuevaY;
+						return posicion;
+					}
+				}
+				return null;
 			}
-			return null;
 		}
+		return null;
 	}
-	return null;
-}
 
-	
 	public static Nodo irNorEsteBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
 
@@ -505,4 +602,3 @@ public static Point irNorEste(Point ubicacionActual, String altura) {
 	}
 
 }
-
