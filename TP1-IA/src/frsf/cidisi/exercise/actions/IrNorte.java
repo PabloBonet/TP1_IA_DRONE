@@ -47,20 +47,20 @@ public class IrNorte extends SearchAction {
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
-        		boolean encontrado = false;
+        		NodoLista encontrado = null;
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
         			if(cuadrante == n.getCuadrante())
         			{
-        				encontrado = true;
+        				encontrado = n;
         				break;
         			}
         		}
-        		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+        		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(cuadrante);
+            		droneState.getintensidadSeñalA().remove(encontrado);
             		return droneState;
         		}
         	}
@@ -74,21 +74,21 @@ public class IrNorte extends SearchAction {
             	
         		if(sigPos != null)
         		{
-        			boolean encontrado = false;
+        			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
             			if(cuadrante == n.getCuadrante())
             			{
-            				encontrado = true;
+            				encontrado = n;
             				break;
             			}
             		}
-            		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+            		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(cuadrante);
+            			droneState.getintensidadSeñalM().remove(encontrado);
             			return droneState;
             		}
         		}
@@ -111,7 +111,7 @@ public class IrNorte extends SearchAction {
         			
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
-                	droneState.getintensidadSeñalB().remove(sigPos);
+                	droneState.getintensidadSeñalB().remove(nodoSig);
                 	return droneState;
                 	
         		}
@@ -154,22 +154,23 @@ public class IrNorte extends SearchAction {
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
-        		boolean encontrado = false;
+        		NodoLista encontrado = null;
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
         			
         			if(cuadrante == n.getCuadrante())
         			{
-        				encontrado = true;
+        				encontrado = n;
         				break;
         			}
         		}
-        		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+        		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
             		droneState.setenergia(energia - 1);
-            		droneState.setubicacionD(sigPos);	
+            		droneState.setubicacionD(sigPos);
+            		droneState.getintensidadSeñalA().remove(encontrado);
             		puedeIr = true;
-            		environmentState.getintensidadSeñalA().remove(cuadrante);
+            		
         		}
         	}
         }
@@ -182,23 +183,24 @@ public class IrNorte extends SearchAction {
         		if(sigPos != null)
         		{
         			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
-        			boolean encontrado = false;
+        			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
             			if(cuadrante == n.getCuadrante())
             			{
-            				encontrado = true;
+            				encontrado = n;
             				break;
             			}
             		}
-            		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+            		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
+            			droneState.getintensidadSeñalM().remove(encontrado);
             			puedeIr = true;
             			
-            			environmentState.getintensidadSeñalM().remove(cuadrante);
+            			
             		}
         		}
         	}
@@ -218,9 +220,9 @@ public class IrNorte extends SearchAction {
         			}
         			
                 	droneState.setubicacionD(sigPos);
-                	
+                	droneState.getintensidadSeñalB().remove(nodoSig);
                 	puedeIr = true;
-                	environmentState.getintensidadSeñalB().remove(nodoSig);
+                	
         		}
         	}
         }

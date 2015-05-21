@@ -469,7 +469,7 @@ public static Point irNorEste(Point ubicacionActual, String altura) {
 		else //altura == M
 		{
 			int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
-			int posNuevaX = posicion.x + ANCHO_SUB_CUADRANTE;
+			int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
 			if(posNuevaY >= 0 && posNuevaX <= ANCHO_MAPA)  //Si no sale fuera de la grilla
 			{
 				int auxY = posicion.y/ALTO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
@@ -565,5 +565,58 @@ public static Point irNorEste(Point ubicacionActual, String altura) {
 		return null;
 	}
 
+	public static Point irNorOeste(Point ubicacionActual, String altura) {
+		
+		Point posicion = null;
+
+		if(altura != "B")
+		{
+			posicion = new Point();
+			int x = ubicacionActual.x;
+			int y = ubicacionActual.y;
+
+			if(altura == "A")
+			{
+				y -= ALTO_CUADRANTE;
+				x -= ANCHO_CUADRANTE;
+				if(y < 0 || x < 0)
+				{
+					return null;
+				}
+				else
+				{
+					posicion.x = x;
+					posicion.y = y;
+					return posicion;
+				}
+			}
+			else //altura == M
+			{
+				int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
+				int posNuevaX = posicion.x - ALTO_SUB_CUADRANTE;
+				if(posNuevaY >= 0 && posNuevaX >= 0)  //Si no sale fuera de la grilla
+				{
+					int auxY = posicion.y/ALTO_SUB_CUADRANTE+1;  ////cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
+					int auxX = posicion.x/ANCHO_SUB_CUADRANTE+1;
+					if((auxY == 2 || auxY == 4) && (auxX == 2 || auxX == 4)) //se puede mover hacia arriba e izquierda si esta en el subcuadrante inferior dentro del cuadrante
+					{
+						posicion.x = posNuevaX;
+						posicion.y = posNuevaY;
+						return posicion;
+					}
+				}
+				
+			}
+		
+		
+	}
+		return posicion;
+
+}
+
+	public static Nodo irNorOesteBajo(Point posicion, Grafo subGrafo) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }
 
