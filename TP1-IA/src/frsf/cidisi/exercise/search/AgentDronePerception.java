@@ -14,6 +14,7 @@ import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
 import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Gps;
+import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
 
@@ -105,7 +106,7 @@ public class AgentDronePerception extends Perception {
         		System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
         		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
         	}
-        	
+        	gps.setGrafoSubCuadrante(new Grafo());
         }
         
     }
