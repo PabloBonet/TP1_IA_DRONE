@@ -140,6 +140,13 @@ public class FuncionesAuxiliares {
 		return nuevaPos;
 	}
 	
+	/**
+	 * Obtiene nueva ubicación al norte, sólo para nivel alto o medio.
+	 * 
+	 * @param ubicacionActual ubicación del agente
+	 * @param altura altura del agente
+	 * @return posición del agente al norte de ubicación actual si es que se puede mover
+	 */
 	public static Point irNorte(Point ubicacionActual, String altura)
 	{
 		Point posicion = null;
@@ -187,6 +194,12 @@ public class FuncionesAuxiliares {
 		return null;
 	}
 	
+	/**
+	 * 
+	 * @param ubicacionActual
+	 * @param subGrafo
+	 * @return
+	 */
 	public static Nodo irNorteBajo(Point ubicacionActual, Grafo subGrafo)
 	{/*
 		Point posicion = null;

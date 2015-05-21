@@ -114,7 +114,7 @@ public class IrNorte extends SearchAction {
         				droneState.setenergia(energia - 2);
         			}
         			
-                	droneState.setubicacionD(sigPos);
+                	droneState.setubicacionD(sigPos);  //aca no iría la pos de nodoSig??
                 	droneState.getintensidadSeñalB().remove(sigPos);
                 	return droneState;
                 	
