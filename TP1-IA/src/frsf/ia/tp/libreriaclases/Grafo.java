@@ -231,13 +231,19 @@ public class Grafo {
 	 * @param nodoActual
 	 * @return
 	 */
-	public static ArrayList<Nodo> buscarAdyacentes(Nodo nodoActual) { //TODO VER SI RECIBE NODO, POSICION O CUADRANTE ###############################################
+	public  ArrayList<Nodo> buscarAdyacentes(Nodo nodoActual) { //TODO VER SI RECIBE NODO, POSICION O CUADRANTE ###############################################
 		ArrayList<Nodo> adyacentes = new ArrayList<Nodo>();
-//		for (int indice = 0; indice < listaEnlaces.size(); indice++)
-//			if (listaEnlaces.get(indice).getIdNodo1() == nodoActual.getId()) //ACÁ SÍ SE USAN LOS Nodo DE LOS ENLACES
-//				adyacentes.add(listaEnlaces.get(indice).getIdNodo1());
-//			else if(listaEnlaces.get(indice).getIdNodo2() == nodoActual.getId())
-//				adyacentes.add(listaEnlaces.get(indice).getIdNodo2());
+		for (int indice = 0; indice < listaEnlaces.size(); indice++)
+			if (listaEnlaces.get(indice).getIdNodo1() == nodoActual.getId()){ //ACÁ SÍ SE USAN LOS Nodo DE LOS ENLACES
+				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo1());
+				adyacentes.add(nodo);
+			}
+			else if(listaEnlaces.get(indice).getIdNodo2() == nodoActual.getId())
+			{
+				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo2());
+				adyacentes.add(nodo);
+			}
+				
 		
 		//una vez que tengo los nodos adyacentes hay que ver si pertenecen al mismo cuadrante de nodoActual
 		return adyacentes;
@@ -257,6 +263,14 @@ public class Grafo {
 
 	public void setListaEnlaces(ArrayList<Enlace> listaEnlaces) {
 		this.listaEnlaces = listaEnlaces;
+	}
+
+	/**
+	 * marca el nodo que esta en esa posicion como recorrido
+	 * */
+	public void marcarRecorrido(Point getubicacionD) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }

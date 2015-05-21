@@ -129,7 +129,7 @@ public class AgentDronePerception extends Perception {
        }
        else
        {
-    	   str.append("No se puede ver personas a estas alturas");
+    	   str.append("No se puede ver personas a esta altura");
        }
     	   
        str.append("\nEnergía: "+this.energia+"\n");
