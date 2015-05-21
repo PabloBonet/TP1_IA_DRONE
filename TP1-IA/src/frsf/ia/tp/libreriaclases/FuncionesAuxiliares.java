@@ -357,9 +357,7 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
-<<<<<<< HEAD
-}
-=======
+
 
 /**
  * Obtiene nueva ubicación al sur, sólo para nivel alto o medio.
@@ -426,4 +424,3 @@ public static Nodo irSurBajo(Point ubicacionActual, Grafo subGrafo) {
 	return null;
 }
 }
->>>>>>> origin/master
