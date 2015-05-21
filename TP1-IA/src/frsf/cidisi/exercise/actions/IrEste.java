@@ -43,7 +43,7 @@ public class IrEste extends SearchAction {
         Grafo subGrafo = new Grafo();
         
               
-       // Point siguientePos = irNorte(posicion,altura);
+      
         Point sigPos = new Point();
         
         if(altura == "A"){
