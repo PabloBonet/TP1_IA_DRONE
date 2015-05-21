@@ -532,19 +532,7 @@ public class FuncionesAuxiliares {
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
 
-<<<<<<< HEAD
-			if (altura == "A") {
-				y -= ALTO_CUADRANTE;
-				x += ANCHO_CUADRANTE;
-				if (y < 0 || x > ANCHO_MAPA) {
-					return null;
-				} else {
-					posicion.x = x;
-					posicion.y = y;
-					return posicion;
-				}
-			} else // altura == M
-=======
+
 		if(altura == "A")
 		{
 			y -= ALTO_CUADRANTE;
@@ -565,13 +553,7 @@ public class FuncionesAuxiliares {
 			int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
 			int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
 			if(posNuevaY >= 0 && posNuevaX <= ANCHO_MAPA)  //Si no sale fuera de la grilla
->>>>>>> origin/master
-			{
-				int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
-				int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
-				if (posNuevaY >= 0 && posNuevaY <= ALTO_MAPA) // Si no sale
-																// fuera de la
-																// grilla
+
 				{
 					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
 																	// 2, 3 o 4
