@@ -357,6 +357,7 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
+<<<<<<< HEAD
 	
 	/**
 	 * @param nodoaActual
@@ -373,6 +374,8 @@ public class FuncionesAuxiliares {
 			return false;
 		}
 	}
+=======
+>>>>>>> origin/master
 
 
 /**
@@ -441,4 +444,7 @@ public static Point irSur(Point ubicacionActual, String altura) {
 		return null;
 	}
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
