@@ -202,7 +202,7 @@ public class IrSur extends SearchAction {
         	}
         	else //altura == B
         	{
-        		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
+        		Nodo nodoSig = FuncionesAuxiliares.irSurBajo(posicion, subGrafo);
         		
         		if(nodoSig != null)
         		{
