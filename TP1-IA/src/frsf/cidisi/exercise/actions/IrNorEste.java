@@ -111,7 +111,7 @@ public class IrNorEste extends SearchAction {
         			
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
-                	droneState.getintensidadSeñalB().remove(sigPos);
+                	droneState.getintensidadSeñalB().remove(nodoSig);
                 	return droneState;
         		}
         	}
@@ -128,7 +128,7 @@ public class IrNorEste extends SearchAction {
         StateDrone droneState = ((StateDrone) ast);
 
         // TODO: Use this conditions
-     // PreConditions: Si el agente esta en el nivel alto o medio tiene que existir un cuadrante con energía
+        // PreConditions: Si el agente esta en el nivel alto o medio tiene que existir un cuadrante con energía
         // hacia el norte (arriba) de su ubucación,
         // si está en el nivel bajo tiene que existir una esquina al norte de la esquina donde se encuentra y un camino 
         // directo que lo lleve hasta ella
@@ -152,22 +152,22 @@ public class IrNorEste extends SearchAction {
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
-        		boolean encontrado = false;
+        		NodoLista encontrado = null;
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
         			
         			if(cuadrante == n.getCuadrante())
         			{
-        				encontrado = true;
+        				encontrado = n;
         				break;
         			}
         		}
-        		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+        		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
-            		environmentState.getintensidadSeñalA().remove(cuadrante);
+            		droneState.getintensidadSeñalA().remove(encontrado);
         		}
         	}
         }
@@ -180,23 +180,23 @@ public class IrNorEste extends SearchAction {
         		if(sigPos != null)
         		{
         			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
-        			boolean encontrado = false;
+        			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
             			if(cuadrante == n.getCuadrante())
             			{
-            				encontrado = true;
+            				encontrado = null;
             				break;
             			}
             		}
-            		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+            		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
             			
-            			environmentState.getintensidadSeñalM().remove(cuadrante);
+            			droneState.getintensidadSeñalM().remove(encontrado);
             		}
         		}
         	}
@@ -218,7 +218,7 @@ public class IrNorEste extends SearchAction {
                 	droneState.setubicacionD(sigPos);
                 	
                 	puedeIr = true;
-                	environmentState.getintensidadSeñalB().remove(nodoSig);
+                	droneState.getintensidadSeñalB().remove(nodoSig);
         		}
         	}
         }
