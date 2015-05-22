@@ -36,14 +36,13 @@ public class Converter {
 		
 		LectorCsv lector = new LectorCsv(archivo);
 		listaDeDatos = lector.leerArchivo();
-		//System.out.println(listaDeDatos);
 		
 		for (int i = 0; i < listaDeDatos.size(); i++) {
 			for (int j = 0; j < listaDeDatos.get(i).size(); j++) {
 				lista.add(listaDeDatos.get(i).get(j));
 			}
 		}
-		//System.out.println(lista);
+
 	}
 	
 	private void crearComponentesGrafo(){

@@ -245,7 +245,7 @@ public class StateMap extends EnvironmentState {
       * Función que recorre los nodos adyacentes al nodo donde se encuentra el agente y 
       * retorna las personas que son visibles al agente desde la posición donde se encuentra
       * */
-     public ArrayList<Persona> getPersonasQueVe()
+     public ArrayList<Persona> getPersonasQueVe(Nodo nodoAgente, Grafo subgrafo)
      {
     	 
     	 ArrayList<Persona> personasObservables = new ArrayList<Persona>();
@@ -253,7 +253,7 @@ public class StateMap extends EnvironmentState {
     	//retorna los nodos adyacentes a la posicion pasada como parametro
     	 //Los nodos adyacentes serán los nodos que la cámara va a poder ver en todas las direcciones
     	 //el segundo parámetro indica si se va a retornar también el nodo acual
-    	 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(posicionAgente, true); 
+    	 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 
     	 
     	 for(Nodo n: nodosAdyacentes)
     	 {

@@ -33,19 +33,15 @@ public class ConverterEscenario {
 			}
 		}
 		
-		//System.out.println(lista);
-	
 	}
 	
 	/**
 	 * Crea nodos sin importar las posiciones, es solo para utilizar el id y las personas
 	 * */
 	public void crearNodos()
-	{System.out.println("Inicia Crear Nodos");
+	{
 		for(List<String> renglon: listaDeDatos)
 		{
-			//System.out.println("Reng");
-			//System.out.println(renglon);
 			Persona persona = new Persona(Integer.parseInt(renglon.get(1)), Integer.parseInt(renglon.get(2))); //crea la persona
 			
 			Nodo nodo = new Nodo(Integer.parseInt(renglon.get(0)), 0, 0); //crea el nodo con id en posicion 1

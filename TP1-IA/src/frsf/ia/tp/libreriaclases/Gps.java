@@ -42,7 +42,7 @@ public class Gps {
 	}
 	
 	/**
-	 * Carga la parte del grafo correspondiente al subcuadrante en nonde esta ubicado el agente
+	 * Carga la parte del grafo correspondiente al subcuadrante en donde esta ubicado el agente
 	 * 
 	 * @param grafoMapa grafo completo del mapa
 	 */

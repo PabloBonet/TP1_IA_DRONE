@@ -115,7 +115,7 @@ public class IrSur extends SearchAction {
         			
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
-                	droneState.getintensidadSeñalB().remove(sigPos);
+                	droneState.getintensidadSeñalB().remove(nodoSig);
                 	return droneState;
                 	
         		}
