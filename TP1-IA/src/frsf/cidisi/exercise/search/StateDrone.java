@@ -237,6 +237,35 @@ public class StateDrone extends SearchBasedAgentState {
     	 if(energia != this.energia)
     		 return false;
     	 
+    	 ArrayList<NodoLista> intensidadA = ((StateDrone) obj).getintensidadSeñalA();
+    	 ArrayList<NodoLista> intensidadM = ((StateDrone) obj).getintensidadSeñalM();
+    	 ArrayList<Nodo> intensidadB = ((StateDrone) obj).getintensidadSeñalB();
+    	 ArrayList<Persona> victimarios = ((StateDrone) obj).getvictimario();
+    	 
+    	 for( NodoLista nodo: this.intensidadSeñalA)
+    	 {
+    		if(!intensidadA.contains(nodo))
+    			return false;
+    	 }
+    	 
+    	 for( NodoLista nodo: this.intensidadSeñalM)
+    	 {
+    		if(!intensidadM.contains(nodo))
+    			return false;
+    	 }
+    	 
+    	 for( Nodo nodo: this.intensidadSeñalB)
+    	 {
+    		if(!intensidadB.contains(nodo))
+    			return false;
+    	 }
+    	 
+    	 for(Persona p: this.victimarios)
+    	 {
+    		 if(!victimarios.contains(p))
+    			 return false;
+    	 }
+    	    
     	 
     	 
         return true;
