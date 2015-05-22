@@ -69,11 +69,11 @@ public class IrSur extends SearchAction {
         else
         {
         	if(altura == "M")
-        	{System.out.println("Posicion actual: "+posicion.getX() + " " +posicion.getY());
+        	{//System.out.println("Posicion actual: "+posicion.getX() + " " +posicion.getY());
         		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posicion.x, posicion.y);
         		sigPos = FuncionesAuxiliares.irSur(posicion, altura);
-        		System.out.println("Siguiente Posicion: "+sigPos.getX() + " " +sigPos.getY());
-        		System.out.println("Cuadrante: " +cuadrante);
+        		//System.out.println("Siguiente Posicion: "+sigPos.getX() + " " +sigPos.getY());
+        		//System.out.println("Cuadrante: " +cuadrante);
         		if(sigPos != null)
         		{
         			boolean encontrado = false;
@@ -115,7 +115,7 @@ public class IrSur extends SearchAction {
         			
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
-                	//droneState.getintensidadSeñalB().remove(sigPos);
+                	droneState.getintensidadSeñalB().remove(sigPos);
                 	return droneState;
                 	
         		}
@@ -204,7 +204,7 @@ public class IrSur extends SearchAction {
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
-            			System.out.println("puede ir al sur en sub cuadrante");
+            			
             			//environmentState.getintensidadSeñalM().remove(n);
             		}
         		}
@@ -223,11 +223,11 @@ public class IrSur extends SearchAction {
         			{
         				droneState.setenergia(energia - 2);
         			}
-        			
-                	droneState.setubicacionD(sigPos);
+        			Point sig = new Point(nodoSig.getPosX(), nodoSig.getPosY());
+                	droneState.setubicacionD(sig);
                 	
                 	puedeIr = true;
-                	//environmentState.getintensidadSeñalB().remove(nodoSig);
+                	environmentState.getintensidadSeñalB().remove(nodoSig);
         		}
         	}
         }

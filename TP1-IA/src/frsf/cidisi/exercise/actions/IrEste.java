@@ -62,7 +62,7 @@ public class IrEste extends SearchAction {
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			System.out.println("puede ir");
+        			
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		return droneState;
