@@ -96,14 +96,14 @@ public class AgentDronePerception extends Perception {
         		
         		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
         		{
-        			System.out.println("ESTADO AMBIENTE: " + nodo.getIntensidad());
+        			//System.out.println("ESTADO AMBIENTE: " + nodo.getIntensidad());
         			if(nodo.getCuadrante() == subCuadrante)
         				antena.agregarIntensidadSeñal(nodo);
         		}
         	}
         	else
         	{
-        		System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
+        		//System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
         		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
         	}
         	gps.setGrafoSubCuadrante(new Grafo());
