@@ -44,8 +44,10 @@ public class IrNorte extends SearchAction {
         {
         	sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
         	
+        	//System.out.println("EN IN NORTE---\n");
         	if(sigPos != null)
         	{
+        		//System.out.print("Siguiente Posicion: "+sigPos.getX() + " "+sigPos.getY()+"\n");
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
         		NodoLista encontrado = null;
         		for(NodoLista n: droneState.getintensidadSeñalA())

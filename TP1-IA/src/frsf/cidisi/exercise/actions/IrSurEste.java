@@ -68,7 +68,8 @@ public class IrSurEste extends SearchAction {
         {
         	if(altura == "M")
         	{
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		//int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posicion.x, posicion.y);
         		sigPos = FuncionesAuxiliares.irSurEste(posicion, altura);
             	
         		if(sigPos != null)

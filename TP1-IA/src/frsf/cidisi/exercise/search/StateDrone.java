@@ -127,6 +127,7 @@ public class StateDrone extends SearchBasedAgentState {
     	 if(altura != "B")
     	 {
     		 ArrayList<NodoLista> listaI = percepcion.getantena().getIntensidadSeñal();
+    		 System.out.println("\n\nPERCIBE CANTIDAD: " + listaI.size());
     		 if(altura == "A")
     		 {
     			 for(NodoLista n: listaI)
@@ -176,8 +177,9 @@ public class StateDrone extends SearchBasedAgentState {
     	direccion = "N";
     	
     	//Inicializa la energía
-    	this.energia = 100;
+    	this.energia = 1000;
     	
+    	    	
     }
 
     /**

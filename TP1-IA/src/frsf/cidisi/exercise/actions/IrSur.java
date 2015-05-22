@@ -42,8 +42,10 @@ public class IrSur extends SearchAction {
         {
         	sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         	
+        //	System.out.println("EN IR SUR---\n");
         	if(sigPos != null)
         	{
+        	//	System.out.print("Siguiente Posicion: "+sigPos.getX() + " "+sigPos.getY()+"\n");
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
         		boolean encontrado = false;
         		for(NodoLista n: droneState.getintensidadSeñalA())
@@ -56,6 +58,7 @@ public class IrSur extends SearchAction {
         		}
         		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
+        			System.out.print("El cuadrante tiene señal\n");
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		droneState.getintensidadSeñalA().remove(cuadrante);

@@ -30,10 +30,13 @@ public class Bajar extends SearchAction {
         String altura = agState.getaltura();
         if(altura != "B" && agState.getenergia()>1)
         {
+        	//System.out.println("EN BAJAR! IntensidadSeñalA: cantidad: "+agState.getintensidadSeñalA().size());
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
-    		int cuadrante = subCuadrante%10;
+    		int cuadrante = subCuadrante/10;
         	if(altura == "A" && agState.getintensidadSeñalA().size()>0)
         	{
+        		//System.out.println("SubCuaddrante: "+subCuadrante);
+        		//System.out.println("Cuaddrante: "+cuadrante);
         		for(NodoLista n: agState.getintensidadSeñalA())
         		{
         			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
@@ -44,6 +47,8 @@ public class Bajar extends SearchAction {
                 		//elimina el nodo con el cuadrante actual de la lista de señal de nivel alto del agente
         				agState.removerCuadranteNivelA(cuadrante);
         				agState.setenergia(agState.getenergia()-1);
+        				
+        				//System.out.println("Estado Agente despues de 'bajar' cant señal: "+agState.getintensidadSeñalA().size() + " energia: " + agState.getenergia() + " Posicion: "+ agState.getubicacionD().getX() + " Y: "+agState.getubicacionD().getY());
         				return agState;
         			}
         		}
@@ -63,6 +68,7 @@ public class Bajar extends SearchAction {
                 		//elimina el nodo de la lista de señal de nivel medio del agente
         				agState.removerCuadranteNivelM(subCuadrante);
         				agState.setenergia(agState.getenergia()-1);
+        				        				
         				return agState;
         			}
         		}
@@ -93,7 +99,7 @@ public class Bajar extends SearchAction {
         if(altura != "B" && agState.getenergia()>1)
         { 
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
-    		int cuadrante = subCuadrante%10;
+    		int cuadrante = subCuadrante/10;
         	if(altura == "A" && agState.getintensidadSeñalA().size()>0)
         	{
         		for(NodoLista n: agState.getintensidadSeñalA())

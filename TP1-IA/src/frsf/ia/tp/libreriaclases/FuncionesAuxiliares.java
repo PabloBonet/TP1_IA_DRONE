@@ -688,8 +688,10 @@ public class FuncionesAuxiliares {
 				}
 			} else // altura == M
 			{
-				int posNuevaY = posicion.y + ALTO_SUB_CUADRANTE;
-				int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
+				//int posNuevaY = posicion.y + ALTO_SUB_CUADRANTE;
+				//int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
+				int posNuevaY = y + ALTO_SUB_CUADRANTE;
+				int posNuevaX = x + ANCHO_SUB_CUADRANTE;
 				
 				if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
 				{

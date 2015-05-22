@@ -16,6 +16,7 @@ import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.Problem;
 import frsf.cidisi.faia.agent.search.SearchAction;
 import frsf.cidisi.faia.agent.search.SearchBasedAgent;
+import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.agent.Action;
 import frsf.cidisi.faia.solver.search.*;
 
@@ -50,6 +51,11 @@ public class AgentDrone extends SearchBasedAgent {
         // Create the Problem which the agent will resolve
         Problem problem = new Problem(agGoal, agState, operators);
         this.setProblem(problem);
+        
+        System.out.println("PROBLEMA: \n");
+        System.out.println("Acciones: " + problem.getActions().toString());
+        
+        System.out.println("\n\nAcciones: " + problem.getAgentState().toString());
     }
 
     /**
@@ -58,6 +64,8 @@ public class AgentDrone extends SearchBasedAgent {
     @Override
     public Action selectAction() {
 
+    	System.out.println("\n\nProblema dentro de SELECTACTION:\n");
+    	System.out.println(this.getProblem().getAgentState().toString());
         
     	/*Costo uniforme*/
     	/*CostFunction f = new CostFunction();
@@ -104,16 +112,18 @@ public class AgentDrone extends SearchBasedAgent {
         /* Generate an XML file with the search tree. It can also be generated
          * in other formats like PDF with PDF_TREE */
         searchSolver.setVisibleTree(Search.EFAIA_TREE);
-
+        System.out.println("\nsetVisibleTree");
         // Set the Search searchSolver.
         this.setSolver(searchSolver);
-
+        System.out.println("\nsetSolver: "+this.getSolver().toString());
         // Ask the solver for the best action
         Action selectedAction = null;
         try {
-            selectedAction =
-                    this.getSolver().solve(new Object[]{this.getProblem()});
+        	System.out.println("en try");
+            selectedAction = this.getSolver().solve(new Object[]{this.getProblem()});
+          
         } catch (Exception ex) {
+        	
             Logger.getLogger(AgentDrone.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -130,5 +140,9 @@ public class AgentDrone extends SearchBasedAgent {
     @Override
     public void see(Perception p) {
         this.getAgentState().updateState(p);
+       
+//        this.getProblem().setAgentState((SearchBasedAgentState)this.getAgentState());
+//        this.getProblem().toString();
+        
     }
 }

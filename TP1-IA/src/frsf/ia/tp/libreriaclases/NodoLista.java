@@ -10,7 +10,10 @@ public class NodoLista {
 	private int intensidad;
 	//Variable que refleja que el agente ya pasó por este nodo.
 	private boolean visitado;
-	
+	public NodoLista()
+	{
+		super();
+	}
 	public NodoLista(int cuadrante, int intensidad)
 	{
 		super();
