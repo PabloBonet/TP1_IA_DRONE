@@ -33,7 +33,7 @@ public class CostFunction implements IStepCostFunction {
 	   		estadoPadre = (StateDrone) padre.getAgentState();
 	   		if(estadoActual.getaltura() == "A")
 	   		{
-	   			if(estadoPadre.getaltura() == "M") // SI subio al nivel alto
+	   			if(estadoPadre.getaltura() == "M") // SI subo al nivel alto
 	   			{
 	   				costo = 2;
 	   			}
@@ -46,7 +46,7 @@ public class CostFunction implements IStepCostFunction {
 	   		{
 	   			if(estadoActual.getaltura() == "M")
 	   			{
-	   				if(estadoPadre.getaltura() == "B")//Si subio al nivel medio
+	   				if(estadoPadre.getaltura() == "B")//Si subo al nivel medio
 	   				{
 	   					costo = 2;
 	   				}
