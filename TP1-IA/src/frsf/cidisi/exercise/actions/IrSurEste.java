@@ -26,7 +26,7 @@ public class IrSurEste extends SearchAction {
         // TODO: Use this conditions
         // PreConditions: Si el agente esta en el nivel alto o medio tiene que existir un cuadrante con energía
         // hacia el sureste (abajo y derecha) de su ubucación,
-        // si está en el nivel bajo tiene que existir una esquina al v de la esquina donde se encuentra y un camino 
+        // si está en el nivel bajo tiene que existir una esquina al sureste de la esquina donde se encuentra y un camino 
         // directo que lo lleve hasta ella
         // debe tener energía
         // PostConditions: el agente se mantiene en el mismo nivel y se actualiza la ubicación del agente, tanto en el
@@ -59,7 +59,6 @@ public class IrSurEste extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(encontrado);
             		return droneState;
         		}
         	}
@@ -68,7 +67,6 @@ public class IrSurEste extends SearchAction {
         {
         	if(altura == "M")
         	{
-        		//int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posicion.x, posicion.y);
         		sigPos = FuncionesAuxiliares.irSurEste(posicion, altura);
             	
@@ -88,7 +86,6 @@ public class IrSurEste extends SearchAction {
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(encontrado);
             			return droneState;
             		}
         		}
@@ -166,7 +163,6 @@ public class IrSurEste extends SearchAction {
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
-            		droneState.getintensidadSeñalA().remove(encontrado);
         		}
         	}
         }
@@ -174,7 +170,7 @@ public class IrSurEste extends SearchAction {
         {
         	if(altura == "M")
         	{
-        		sigPos = FuncionesAuxiliares.irNorEste(posicion, altura);
+        		sigPos = FuncionesAuxiliares.irSurEste(posicion, altura);
         		
         		if(sigPos != null)
         		{
@@ -194,14 +190,12 @@ public class IrSurEste extends SearchAction {
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
-            			
-            			droneState.getintensidadSeñalM().remove(encontrado);
             		}
         		}
         	}
         	else //altura == B
         	{
-        		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
+        		Nodo nodoSig = FuncionesAuxiliares.irSurEsteBajo(posicion, subGrafo);
         		
         		if(nodoSig != null)
         		{
@@ -214,6 +208,7 @@ public class IrSurEste extends SearchAction {
         				droneState.setenergia(energia - 2);
         			}
         			
+        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
                 	
                 	puedeIr = true;

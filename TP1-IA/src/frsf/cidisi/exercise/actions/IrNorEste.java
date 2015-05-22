@@ -60,7 +60,6 @@ public class IrNorEste extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(encontrado);
             		return droneState;
         		}
         	}
@@ -88,7 +87,6 @@ public class IrNorEste extends SearchAction {
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(encontrado);
             			return droneState;
             		}
         		}
@@ -129,8 +127,8 @@ public class IrNorEste extends SearchAction {
 
         // TODO: Use this conditions
         // PreConditions: Si el agente esta en el nivel alto o medio tiene que existir un cuadrante con energía
-        // hacia el norte (arriba) de su ubucación,
-        // si está en el nivel bajo tiene que existir una esquina al norte de la esquina donde se encuentra y un camino 
+        // hacia el noreste (arriba y derecha) de su ubucación,
+        // si está en el nivel bajo tiene que existir una esquina al noreste de la esquina donde se encuentra y un camino 
         // directo que lo lleve hasta ella
         // debe tener energía
         // PostConditions: el agente se mantiene en el mismo nivel y se actualiza la ubicación del agente, tanto en el
@@ -167,7 +165,7 @@ public class IrNorEste extends SearchAction {
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
-            		droneState.getintensidadSeñalA().remove(encontrado);
+
         		}
         	}
         }
@@ -195,14 +193,13 @@ public class IrNorEste extends SearchAction {
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
-            			
-            			droneState.getintensidadSeñalM().remove(encontrado);
+
             		}
         		}
         	}
         	else //altura == B
         	{
-        		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
+        		Nodo nodoSig = FuncionesAuxiliares.irNorEsteBajo(posicion, subGrafo);
         		
         		if(nodoSig != null)
         		{
@@ -215,6 +212,7 @@ public class IrNorEste extends SearchAction {
         				droneState.setenergia(energia - 2);
         			}
         			
+        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
                 	
                 	puedeIr = true;

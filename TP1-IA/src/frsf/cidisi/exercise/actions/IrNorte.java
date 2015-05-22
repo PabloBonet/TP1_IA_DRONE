@@ -62,7 +62,6 @@ public class IrNorte extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(encontrado);
             		return droneState;
         		}
         	}
@@ -90,7 +89,6 @@ public class IrNorte extends SearchAction {
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(encontrado);
             			return droneState;
             		}
         		}
@@ -170,7 +168,6 @@ public class IrNorte extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);
-            		droneState.getintensidadSeñalA().remove(encontrado);
             		puedeIr = true;
             		
         		}
@@ -199,9 +196,7 @@ public class IrNorte extends SearchAction {
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(encontrado);
             			puedeIr = true;
-            			
             			
             		}
         		}
@@ -221,6 +216,7 @@ public class IrNorte extends SearchAction {
         				droneState.setenergia(energia - 2);
         			}
         			
+        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
                 	droneState.getintensidadSeñalB().remove(nodoSig);
                 	puedeIr = true;
