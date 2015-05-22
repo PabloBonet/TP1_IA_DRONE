@@ -223,16 +223,6 @@ public class Grafo {
 	public static ArrayList<Nodo> nodosAdyacentesAPosicion(Nodo nodoAgente, Grafo subGrafo)
 	{
 		ArrayList<Nodo> nodosAdyacentesQueVe = subGrafo.buscarAdyacentes(nodoAgente);
-//		ArrayList<Nodo> nodosAdyacentesQueVe = new ArrayList<Nodo>();
-//		for(Enlace e: subGrafo.getListaEnlaces()){
-//			
-//			//si un id del enlace es igual al id del nodo del agente agrego un nodo con id del otro nodo del enlace a la lista
-//			if(nodoAgente.getId()==e.getIdNodo1())
-//				nodosAdyacentesQueVe.add(subGrafo.buscarNodo(e.getIdNodo2()));
-//			
-//			if(nodoAgente.getId()==e.getIdNodo2())
-//				nodosAdyacentesQueVe.add(subGrafo.buscarNodo(e.getIdNodo1()));
-//			}
 		
 		return nodosAdyacentesQueVe;
 	}
