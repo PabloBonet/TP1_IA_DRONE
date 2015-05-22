@@ -485,10 +485,10 @@ public class FuncionesAuxiliares {
 				}
 			} else // altura == M
 			{
-				int posNueva = posicion.y + ALTO_SUB_CUADRANTE;
+				int posNueva = y + ALTO_SUB_CUADRANTE;
 				if (posNueva <= ALTO_MAPA) // Si no sale fuera de la grilla
 				{
-					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
 					// 2, 3 o 4
 					// (Ej:
 					// y=100->1,

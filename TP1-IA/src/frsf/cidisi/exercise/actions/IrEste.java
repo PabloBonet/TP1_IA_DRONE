@@ -140,7 +140,8 @@ public class IrEste extends SearchAction {
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         StateMap environmentState = (StateMap) est;
         StateDrone droneState = ((StateDrone) ast);
-
+        
+        System.out.println("En EXECUTE CON AGENTE Y ESTADO");
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
@@ -241,12 +242,15 @@ public class IrEste extends SearchAction {
         
         
         
+        
         if (puedeIr) {
             environmentState.setposicionAgente(droneState.getubicacionD());
             environmentState.setenergiaAgente(droneState.getenergia());
             
+            System.out.println("FUE AL ESTE!!\nPosicion agente: "+environmentState.getposicionAgente().getX()+" "+environmentState.getposicionAgente().getY());
             return environmentState;
         }
+      
 
         return null;
     }
