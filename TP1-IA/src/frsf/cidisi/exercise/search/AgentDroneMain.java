@@ -21,7 +21,7 @@ public class AgentDroneMain {
         SearchBasedAgentSimulator simulator = new SearchBasedAgentSimulator(environment, agent);
         
         
-        System.out.println("Datos Cargados!\n");
+       
         simulator.start();
     }
 

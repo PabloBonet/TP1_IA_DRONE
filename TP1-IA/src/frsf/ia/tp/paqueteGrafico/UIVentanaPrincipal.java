@@ -95,21 +95,6 @@ public class UIVentanaPrincipal extends JFrame {
 		mnItemCargarEscenario = new JMenuItem("Cargar Escenario");
 		menuArchivo.add(mnItemCargarEscenario);
 
-		// mnItemCargarMapa.addActionListener(new ActionListener() {
-		// // public void actionPerformed(ActionEvent arg0) {
-		// //
-		// // //creacion de la ventana grafica
-		// // ventanaGrafica = new UIVentanaGrafica();
-		// // ventanaGrafica.setAutoscrolls(true);
-		// //
-		// // //se carga la ventana grafica a su correspondiente JPanel
-		// // panelGrafico.removeAll();
-		// // panelGrafico.add(ventanaGrafica);
-		// //
-		// // }
-		// });
-
-		
 		
 		mnItemCargarEscenario.addActionListener(new ControlerCargarEscenario());
 
@@ -205,37 +190,15 @@ public class UIVentanaPrincipal extends JFrame {
 			//File archivoElegido = fc.getSelectedFile();
 			
 			File archivoElegido = new File("archivosCSV" + "\\"+"nodosYenlaces.csv");
-			
-			//if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
-			//	System.out.println("Formato de Archivo Correcto");
 				
 			/**Se crea una instancia de la Clase Converter*/
 			datos = new Converter(archivoElegido);
-			
-			/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
-			//System.out.println(datos.getListaDeDatos());						
+					
 			
 			
 			/**Se carga el escenario con los elementos devueltos por Converter*/
 			grafo = new Grafo(datos.getListaNodos(),datos.getListaEnlaces());
-			
-			
-				
-				
-				
-				/*System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
-										
-				for(int i=0; i<datos.getListaNodos().size(); i++){
-					System.out.println("Esquina: " + grafo.getListaNodos().get(i).getId()+" Posicion X: "+grafo.getListaNodos().get(i).getPosX()+" PosicionY: "+ grafo.getListaNodos().get(i).getPosY()+"\n");
-				}
-				
-				
-				System.out.println("IMPRIMIENDO Lista de Enlaces");
-				
-				for(int i=0; i<datos.getListaEnlaces().size(); i++){
-					System.out.println("Enlace["+grafo.getListaEnlaces().get(i).getIdNodo1()+"-"+grafo.getListaEnlaces().get(i).getIdNodo2()+"] Costo["+grafo.getListaEnlaces().get(i).getPeso()+"]");
-				}
-				*/
+
 				//creacion de la ventana grafica tomando los datos del grafo
 				ventanaGrafica = new UIVentanaGrafica(grafo);
 				ventanaGrafica.setAutoscrolls(true);
@@ -293,13 +256,10 @@ public class UIVentanaPrincipal extends JFrame {
 					
 				
 					if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
-						//System.out.println("Formato de Archivo Correcto");
 						
 						/**Se crea una instancia de la Clase ConverterEscenario*/
 						nodosEscenario = new ConverterEscenario(archivoElegido);
 						
-						/**controlo que se impriman los datos que cargue en en arhivo ".csv"**/
-						//System.out.println(datos.getListaDeDatos());						
 						
 						/**Se cargan las personas al grafo con los elementos devueltos por ConverterEscenario*/
 						
@@ -309,26 +269,10 @@ public class UIVentanaPrincipal extends JFrame {
 							{
 								(grafo.buscarNodo(nodo.getId())).agregarPersona(p);	
 								
-								//System.out.println("\nid nodo: "+nodo.getId()+" persona: " + p.getId()+" es: " +p.esVictimario());
 							}
 							
 						}
-												
-						
-						
-						/*System.out.println("IMPRIMIENDO LA LISTA DE NODOS");
-												
-						for(int i=0; i<datos.getListaNodos().size(); i++){
-							System.out.println("Esquina: " + grafo.getListaNodos().get(i).getId()+" Posicion X: "+grafo.getListaNodos().get(i).getPosX()+" PosicionY: "+ grafo.getListaNodos().get(i).getPosY()+"\n");
-						}
-						
-						
-						System.out.println("IMPRIMIENDO Lista de Enlaces");
-						
-						for(int i=0; i<datos.getListaEnlaces().size(); i++){
-							System.out.println("Enlace["+grafo.getListaEnlaces().get(i).getIdNodo1()+"-"+grafo.getListaEnlaces().get(i).getIdNodo2()+"] Costo["+grafo.getListaEnlaces().get(i).getPeso()+"]");
-						}
-						*/
+
 						//creacion de la ventana grafica tomando los datos del grafo
 						panelGrafico.remove(ventanaGrafica);
 						

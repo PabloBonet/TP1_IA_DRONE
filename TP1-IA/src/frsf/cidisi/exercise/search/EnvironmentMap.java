@@ -51,13 +51,13 @@ public class EnvironmentMap extends Environment {
     	{
     		if(altura == "B")
     		{
+    			gps.cargarGrafoSubCuadrante(this.getEnvironmentState().getgrafoMapa());
     			Nodo nodoAgente = this.getEnvironmentState().getgrafoMapa().nodoEnPosicion(this.getEnvironmentState().getposicionAgente());
-    			Camara camara = new Camara(this.getEnvironmentState().getPersonasQueVe(), nodoAgente);
+    			Camara camara = new Camara(this.getEnvironmentState().getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
     			perception.setcamara(camara);
     			AntenaNB antena = new AntenaNB(this.getEnvironmentState().getintensidadSeñalB());
         		perception.setantena(antena);
         		//si el agente esta en el nivel bajo se setea el grafo del gps con el correspondiente al subcuadrante donde se encuantra
-        		gps.cargarGrafoSubCuadrante(this.getEnvironmentState().getgrafoMapa());
         		
     		}
     		else

@@ -25,13 +25,13 @@ public class IrOeste extends SearchAction {
 		// TODO: Use this conditions
 		// PreConditions: Si el agente esta en el nivel alto o medio tiene que
 		// existir un cuadrante con energia
-		// hacia el norte (arriba) de su ubucación,
+		// hacia el oeste (izquierda) de su ubucación,
 		// si estaá en el nivel bajo tiene que existir una esquina al norte de
 		// la esquina donde se encuentra y un camino
 		// directo que lo lleve hasta ella
 		// debe tener energía
 		// PostConditions: el agente se mantiene en el mismo nivel pero
-		// desplazado hacia el norte
+		// desplazado hacia el oeste
 		// se decrementa la energía
 
 		String altura = droneState.getaltura();
@@ -61,7 +61,6 @@ public class IrOeste extends SearchAction {
 				{
 					droneState.setenergia(energia - 1);
 					droneState.setubicacionD(sigPos);
-					droneState.getintensidadSeñalA().remove(encontrado);
 					return droneState;
 				}
 			}
@@ -69,8 +68,7 @@ public class IrOeste extends SearchAction {
 			if (altura == "M") {
 				int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(
 						sigPos.x, sigPos.y);
-				sigPos = FuncionesAuxiliares.irEste(posicion, altura);
-				// ENERGIA ES -1??
+				sigPos = FuncionesAuxiliares.irOeste(posicion, altura);
 				if (sigPos != null) {
 					NodoLista encontrado = null;
 					for (NodoLista n : droneState.getintensidadSeñalM()) {
@@ -85,14 +83,12 @@ public class IrOeste extends SearchAction {
 					{
 						droneState.setenergia(energia - 1);
 						droneState.setubicacionD(sigPos);
-						droneState.getintensidadSeñalM().remove(encontrado);
 						return droneState;
 					}
 				}
 			} else // Altura "B"
 			{
 				{
-
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irOesteBajo(posicion,
 							subGrafo);
@@ -104,8 +100,8 @@ public class IrOeste extends SearchAction {
 							droneState.setenergia(energia - 2);
 						}
 
-						droneState.setubicacionD(sigPos); // aca no iría la pos
-						// de nodoSig??
+						sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+						droneState.setubicacionD(sigPos);
 						droneState.getintensidadSeñalB().remove(nodoSig);
 						return droneState;
 					}
@@ -127,8 +123,8 @@ public class IrOeste extends SearchAction {
 		// TODO: Use this conditions
 		// PreConditions: Si el agente esta en el nivel alto o medio tiene que
 		// existir un cuadrante con energía
-		// hacia el norte (arriba) de su ubucación,
-		// si está en el nivel bajo tiene que existir una esquina al norte de la
+		// hacia el oeste (izquierda) de su ubucación,
+		// si está en el nivel bajo tiene que existir una esquina al oeste de la
 		// esquina donde se encuentra y un camino
 		// directo que lo lleve hasta ella
 		// debe tener energía
@@ -163,7 +159,6 @@ public class IrOeste extends SearchAction {
 					droneState.setenergia(energia - 1);
 					droneState.setubicacionD(sigPos);
 					puedeIr = true;
-					environmentState.getintensidadSeñalA().remove(encontrado);
 				}
 			}
 		} else {
@@ -186,8 +181,6 @@ public class IrOeste extends SearchAction {
 						droneState.setenergia(energia - 1);
 						droneState.setubicacionD(sigPos);
 						puedeIr = true;
-						environmentState.getintensidadSeñalM()
-								.remove(cuadrante);
 					}
 				}
 			} else // altura == B
@@ -202,6 +195,7 @@ public class IrOeste extends SearchAction {
 						droneState.setenergia(energia - 2);
 					}
 
+					sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
 					droneState.setubicacionD(sigPos);
 
 					puedeIr = true;

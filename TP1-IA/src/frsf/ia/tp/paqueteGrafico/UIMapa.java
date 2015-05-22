@@ -53,18 +53,12 @@ public class UIMapa extends Canvas {
 				if(hayVictimarios(grafo.getListaNodos().get(i).getPersonas()))
 				{
 					g.setColor(Color.red);
-					//System.out.println("\npos x:" + grafo.getListaNodos().get(i).getPosX() + " pos y: "+ grafo.getListaNodos().get(i).getPosY());
 				}
 				else
 				{
 					if(grafo.getListaNodos().get(i).getPersonas().size()>0)
 					{
 						g.setColor(Color.green);
-						/*System.out.println("\npos x:" + grafo.getListaNodos().get(i).getPosX() + " pos y: "+ grafo.getListaNodos().get(i).getPosY());
-
-						System.out.println("\nPertenece a cuadrante: " +FuncionesAuxiliares.perteneceACuadrante(grafo.getListaNodos().get(i).getPosX(), grafo.getListaNodos().get(i).getPosY()));
-						System.out.println("\nPertenece a subcuadrante: " +FuncionesAuxiliares.perteneceASubCuadrante(grafo.getListaNodos().get(i).getPosX(), grafo.getListaNodos().get(i).getPosY()));
-					*/
 					}
 					else
 					{

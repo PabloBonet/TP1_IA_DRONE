@@ -49,7 +49,6 @@ public class IrSurOeste extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(encontrado);
             		return droneState;
         		}
         	}
@@ -63,21 +62,20 @@ public class IrSurOeste extends SearchAction {
             	
         		if(sigPos != null)
         		{
-        			boolean encontrado = false;
+        			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
             			if(cuadrante == n.getCuadrante())
             			{
-            				encontrado = true;
+            				encontrado = n;
             				break;
             			}
             		}
-            		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+            		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(cuadrante);
             			return droneState;
             		}
         		}
@@ -148,7 +146,6 @@ public class IrSurOeste extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(encontrado);
             		puedeIr = true;
             		
         		}
@@ -174,35 +171,31 @@ public class IrSurOeste extends SearchAction {
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(encontrado);
             			puedeIr = true;
             		}
         		}
         	}else //Altura "B"
         	{
+        		subGrafo = droneState.getGrafoSubCuadrante();
+        		Nodo nodoSig = FuncionesAuxiliares.irSurOesteBajo(posicion, subGrafo);
+
+        		if(nodoSig != null)
         		{
-                	
-                		subGrafo = droneState.getGrafoSubCuadrante();
-                		Nodo nodoSig = FuncionesAuxiliares.irSurOesteBajo(posicion, subGrafo);
-                		
-                		
-                		if(nodoSig != null)
-                		{
-                			if(droneState.getintensidadSeñalB().contains(nodoSig))
-                			{
-                				droneState.setenergia(energia - 1);
-                			}
-                			else
-                			{
-                				droneState.setenergia(energia - 2);
-                			}
-                			
-                        	droneState.setubicacionD(sigPos);  //aca no iría la pos de nodoSig??
-                        	droneState.getintensidadSeñalB().remove(nodoSig);
-                        	puedeIr = true;
-                        	
-                		}
-                	}
+        			if(droneState.getintensidadSeñalB().contains(nodoSig))
+        			{
+        				droneState.setenergia(energia - 1);
+        			}
+        			else
+        			{
+        				droneState.setenergia(energia - 2);
+        			}
+
+        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+        			droneState.setubicacionD(sigPos);
+        			droneState.getintensidadSeñalB().remove(nodoSig);
+        			puedeIr = true;
+
+        		}
         	}
         }
         

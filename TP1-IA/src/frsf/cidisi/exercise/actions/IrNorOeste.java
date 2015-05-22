@@ -34,8 +34,7 @@ public class IrNorOeste extends SearchAction {
         int energia = droneState.getenergia();
         Grafo subGrafo = new Grafo();
         
-              
-      
+        
         Point sigPos = new Point();
         
         if(altura == "A"){
@@ -58,7 +57,7 @@ public class IrNorOeste extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(encontrado);
+//            		droneState.getintensidadSeñalA().remove(encontrado);
             		return droneState;
         		}
         	}
@@ -84,16 +83,13 @@ public class IrNorOeste extends SearchAction {
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(encontrado);
+//            			droneState.getintensidadSeñalM().remove(encontrado);
             			return droneState;
             		}
         		}
         	}
         	else //altura == B
         	{
-     		
-        		
-        		
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
         		
@@ -109,14 +105,13 @@ public class IrNorOeste extends SearchAction {
         				droneState.setenergia(energia - 2);
         			}
         			
-                	droneState.setubicacionD(sigPos);  //aca no iría la pos de nodoSig??
+        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+                	droneState.setubicacionD(sigPos);
                 	droneState.getintensidadSeñalB().remove(nodoSig);
                 	return droneState;
-                	
         		}
         	}
         }
-        
         
         return null;
     }
@@ -164,7 +159,6 @@ public class IrNorOeste extends SearchAction {
         		{
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		droneState.getintensidadSeñalA().remove(encontrado);
             		puedeIr = true;
             		
         		}
@@ -190,43 +184,34 @@ public class IrNorOeste extends SearchAction {
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			droneState.getintensidadSeñalM().remove(encontrado);
             			puedeIr = true;
             		}
         		}
         	}else //Altura "B"
         	{
+        		subGrafo = droneState.getGrafoSubCuadrante();
+        		Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
+
+        		if(nodoSig != null)
         		{
-                	
-                		subGrafo = droneState.getGrafoSubCuadrante();
-                		Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
-                		
-                		
-                		if(nodoSig != null)
-                		{
-                			if(droneState.getintensidadSeñalB().contains(nodoSig))
-                			{
-                				droneState.setenergia(energia - 1);
-                			}
-                			else
-                			{
-                				droneState.setenergia(energia - 2);
-                			}
-                			
-                        	droneState.setubicacionD(sigPos);  //aca no iría la pos de nodoSig??
-                        	droneState.getintensidadSeñalB().remove(nodoSig);
-                        	puedeIr = true;
-                        	
-                		}
-                	}
-        	
+        			if(droneState.getintensidadSeñalB().contains(nodoSig))
+        			{
+        				droneState.setenergia(energia - 1);
+        			}
+        			else
+        			{
+        				droneState.setenergia(energia - 2);
+        			}
+
+        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+        			droneState.setubicacionD(sigPos);
+        			droneState.getintensidadSeñalB().remove(nodoSig);
+        			puedeIr = true;
+
+        		}
         	}
         }
-        
-        
-        
-        
-        
+
         if (puedeIr) {
             environmentState.setposicionAgente(droneState.getubicacionD());
             environmentState.setenergiaAgente(droneState.getenergia());
