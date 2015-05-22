@@ -161,12 +161,13 @@ public class FuncionesAuxiliares {
 					posicion.y = y;
 					return posicion;
 				}
-			} else // altura == M
+			} 
+			else // altura == M
 			{
-				int posNueva = posicion.y - ALTO_SUB_CUADRANTE;
+				int posNueva = y - ALTO_SUB_CUADRANTE;
 				if (posNueva >= 0) // Si no sale fuera de la grilla
 				{
-					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
 					// 2, 3 o 4
 					// (Ej:
 					// y=100->1,
@@ -208,11 +209,11 @@ public class FuncionesAuxiliares {
 				}
 			} else // Altura == "B"
 			{
-				int posNueva = posicion.x - ANCHO_SUB_CUADRANTE;
+				int posNueva = x - ANCHO_SUB_CUADRANTE;
 				if (posNueva >= ANCHO_CUADRANTE) // Si no sale fuera de la
 				// grilla
 				{
-					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1; // //cuad
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // //cuad
 					// 1, 2,
 					// 3 o 4
 					// (Ej:
@@ -255,11 +256,11 @@ public class FuncionesAuxiliares {
 				}
 			} else // altura == M
 			{
-				int posNueva = posicion.x + ANCHO_SUB_CUADRANTE;
+				int posNueva = x + ANCHO_SUB_CUADRANTE;
 				if (posNueva <= ANCHO_CUADRANTE) // Si no sale fuera de la
 				// grilla
 				{
-					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1; // //cuad
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // //cuad
 					// 1, 2,
 					// 3 o 4
 					// (Ej:
@@ -546,20 +547,20 @@ public class FuncionesAuxiliares {
 				}
 			} else // altura == M
 			{
-				int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
-				int posNuevaX = posicion.x + ALTO_SUB_CUADRANTE;
+				int posNuevaY = y - ALTO_SUB_CUADRANTE;
+				int posNuevaX = x + ALTO_SUB_CUADRANTE;
 				if (posNuevaY >= 0 && posNuevaX <= ANCHO_MAPA) // Si no sale
 				// fuera de la
 				// grilla
 
 				{
-					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
 					// 2, 3 o 4
 					// (Ej:
 					// y=100->1,
 					// y=160->2,
 					// y=320->3,..)
-					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1;
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
 					if ((auxY == 2 || auxY == 4) && (auxX == 1 || auxX == 3)) // se
 					// puede
 					// mover
@@ -625,18 +626,18 @@ public class FuncionesAuxiliares {
 				}
 			} else // altura == M
 			{
-				int posNuevaY = posicion.y - ALTO_SUB_CUADRANTE;
-				int posNuevaX = posicion.x - ALTO_SUB_CUADRANTE;
+				int posNuevaY = y - ALTO_SUB_CUADRANTE;
+				int posNuevaX = x - ALTO_SUB_CUADRANTE;
 				if (posNuevaY >= 0 && posNuevaX >= 0) // Si no sale fuera de la
 				// grilla
 				{
-					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
 					// 2, 3 o 4
 					// (Ej:
 					// y=100->1,
 					// y=160->2,
 					// y=320->3,..)
-					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1;
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
 					if ((auxY == 2 || auxY == 4) && (auxX == 2 || auxX == 4)) // se
 					// puede
 					// mover
@@ -695,8 +696,8 @@ public class FuncionesAuxiliares {
 				
 				if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
 				{
-					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; 
-					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1;
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; 
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
 					if ((auxY == 1 || auxY == 3) && (auxX == 1 || auxX == 2)) 
 					{
 						posicion.x = posNuevaX;
@@ -764,13 +765,13 @@ public static Point irSurOeste(Point ubicacionActual, String altura) {
 				}
 			}else //Altura == "M"
 			{
-				int posNuevaY = posicion.y + ALTO_SUB_CUADRANTE;
-				int posNuevaX = posicion.x - ALTO_SUB_CUADRANTE;
+				int posNuevaY = y + ALTO_SUB_CUADRANTE;
+				int posNuevaX = x - ALTO_SUB_CUADRANTE;
 				
 				if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
 				{
-					int auxY = posicion.y / ALTO_SUB_CUADRANTE + 1; 
-					int auxX = posicion.x / ANCHO_SUB_CUADRANTE + 1;
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; 
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
 					if ((auxY == 1 || auxY == 3) && (auxX == 2 || auxX == 4)) 
 					{
 						posicion.x = posNuevaX;
