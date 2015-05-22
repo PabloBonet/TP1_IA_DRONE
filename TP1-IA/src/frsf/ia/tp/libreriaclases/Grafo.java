@@ -218,37 +218,43 @@ public class Grafo {
 	 * */
 	
 	/**
-	 * TODO #~#~#~#~#~#~-----FALTA !!!!!!!!!!!!!!!!!!!!
+	 * Retorna los nodos que puede ver el agente en el subGrafo desde la posición de nodoAgente
 	 */
-	public static ArrayList<Nodo> nodosAdyacentesAPosicion(Point posicionAgente, boolean incluidoActual)
+	public static ArrayList<Nodo> nodosAdyacentesAPosicion(Nodo nodoAgente, Grafo subGrafo)
 	{
-		ArrayList<Nodo> nodosAdyacentes = new ArrayList<Nodo>();
+		ArrayList<Nodo> nodosAdyacentesQueVe = subGrafo.buscarAdyacentes(nodoAgente);
+//		ArrayList<Nodo> nodosAdyacentesQueVe = new ArrayList<Nodo>();
+//		for(Enlace e: subGrafo.getListaEnlaces()){
+//			
+//			//si un id del enlace es igual al id del nodo del agente agrego un nodo con id del otro nodo del enlace a la lista
+//			if(nodoAgente.getId()==e.getIdNodo1())
+//				nodosAdyacentesQueVe.add(subGrafo.buscarNodo(e.getIdNodo2()));
+//			
+//			if(nodoAgente.getId()==e.getIdNodo2())
+//				nodosAdyacentesQueVe.add(subGrafo.buscarNodo(e.getIdNodo1()));
+//			}
 		
-		
-		
-		return nodosAdyacentes;
+		return nodosAdyacentesQueVe;
 	}
 	
 	/**
-	 * Para los Ir en el nivel bajo
+	 * Busca los nodos adyacentes al nodo actual dentro del grafo 
 	 * @param nodoActual
-	 * @return
+	 * @return adyacentes 
 	 */
-	public  ArrayList<Nodo> buscarAdyacentes(Nodo nodoActual) { //TODO VER SI RECIBE NODO, POSICION O CUADRANTE ###############################################
+	public  ArrayList<Nodo> buscarAdyacentes(Nodo nodoActual) {
 		ArrayList<Nodo> adyacentes = new ArrayList<Nodo>();
 		for (int indice = 0; indice < listaEnlaces.size(); indice++)
-			if (listaEnlaces.get(indice).getIdNodo1() == nodoActual.getId()){ //ACÁ SÍ SE USAN LOS Nodo DE LOS ENLACES
-				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo1());
+			if (listaEnlaces.get(indice).getIdNodo1() == nodoActual.getId()){
+				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo2()); //busco el nodo con el otro id de nodo del enlace
 				adyacentes.add(nodo);
 			}
 			else if(listaEnlaces.get(indice).getIdNodo2() == nodoActual.getId())
 			{
-				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo2());
+				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo1());
 				adyacentes.add(nodo);
 			}
 				
-		
-		//una vez que tengo los nodos adyacentes hay que ver si pertenecen al mismo cuadrante de nodoActual
 		return adyacentes;
 	}
 	

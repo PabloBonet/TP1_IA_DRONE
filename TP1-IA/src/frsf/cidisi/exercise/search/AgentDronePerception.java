@@ -67,9 +67,12 @@ public class AgentDronePerception extends Perception {
         	Point posicionAgente = estadoAmbiente.getposicionAgente();
         	Nodo nodoAgente = (Nodo)(estadoAmbiente.getgrafoMapa()).nodoEnPosicion(posicionAgente);
         	
+        	//cargar el grafo perteneciente al subcuadrante
+        	gps.cargarGrafoSubCuadrante(estadoAmbiente.getgrafoMapa());
+        	
         	//Percepción cámara
         	if(nodoAgente != null)
-        		camara = new Camara(estadoAmbiente.getPersonasQueVe(), nodoAgente);
+        		camara = new Camara(estadoAmbiente.getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
         	antena = new AntenaNB();
         	//Percepción Antena para nivel bajo
         	
@@ -81,9 +84,6 @@ public class AgentDronePerception extends Perception {
                 	
         		}
         	}
-        	
-        	//cargar el grafo perteneciente al subcuadrante
-        	gps.cargarGrafoSubCuadrante(estadoAmbiente.getgrafoMapa());
         	
         }
         else // Si altura del agente es Media(M) o Alta (A)
