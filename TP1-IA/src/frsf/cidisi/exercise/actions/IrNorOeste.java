@@ -21,7 +21,7 @@ public class IrNorOeste extends SearchAction {
      */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
-        StateDrone agState = (StateDrone) s;
+       // StateDrone agState = (StateDrone) s;
         
         // TODO: Use this conditions
         // PreConditions: null
