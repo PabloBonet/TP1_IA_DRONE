@@ -68,9 +68,9 @@ public class UIMapa extends Canvas {
 				}
 			}
 			g.fillOval(grafo.getListaNodos().get(i).getPosX()-10,grafo.getListaNodos().get(i).getPosY()-10,18,18);
-			String esquina = Integer.toString(grafo.getListaNodos().get(i).getId());
+			//String esquina = Integer.toString(grafo.getListaNodos().get(i).getId());
 			g.setColor(Color.black);
-			g.drawString(esquina, grafo.getListaNodos().get(i).getPosX(),grafo.getListaNodos().get(i).getPosY());
+			//g.drawString(esquina, grafo.getListaNodos().get(i).getPosX(),grafo.getListaNodos().get(i).getPosY());
 			String personas = Integer.toString(cantPersonas);
 			g.drawString(personas, grafo.getListaNodos().get(i).getPosX()+5,grafo.getListaNodos().get(i).getPosY()+5);
 		}
@@ -99,8 +99,8 @@ public class UIMapa extends Canvas {
 			nodo1 = grafo.buscarNodo(idNodo1);
 			nodo2 = grafo.buscarNodo(idNodo2);
 			
-			g.setColor(Color.MAGENTA);
-			g.drawLine(nodo1.getPosX(),nodo1.getPosY(),nodo2.getPosX(),nodo2.getPosY());
+			//g.setColor(Color.MAGENTA);
+			//g.drawLine(nodo1.getPosX(),nodo1.getPosY(),nodo2.getPosX(),nodo2.getPosY());
 			
 //			costo = Integer.toString(grafo.getListaEnlace().get(i).getPeso());
 //			g.drawString(costo, grafo.getListaNodos().get(i).getPosX(),grafo.getListaNodos().get(i).getPosY());

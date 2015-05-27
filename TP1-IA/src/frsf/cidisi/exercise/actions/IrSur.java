@@ -77,7 +77,7 @@ public class IrSur extends SearchAction {
         		if(sigPos != null)
         		{
         			boolean encontrado = false;
-        			System.out.println("tam: " + droneState.getintensidadSeñalM().size());
+        			//System.out.println("tam: " + droneState.getintensidadSeñalM().size());
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
