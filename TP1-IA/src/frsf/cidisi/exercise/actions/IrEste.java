@@ -41,7 +41,7 @@ public class IrEste extends SearchAction {
       
         Point sigPos = new Point();
         
-        if(altura == "A"){
+        if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
         	
         	//System.out.println("EN IR ESTE---\n");
@@ -61,14 +61,15 @@ public class IrEste extends SearchAction {
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			
+        			droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		return droneState;
         		}
         	}
-        }else{
-        	if(altura == "M"){
+        }
+        else{
+        	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
         		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         		sigPos = FuncionesAuxiliares.irEste(posicion, altura);
         		if(sigPos != null)
@@ -85,6 +86,7 @@ public class IrEste extends SearchAction {
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
+            			droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			return droneState;
@@ -140,7 +142,7 @@ public class IrEste extends SearchAction {
        // Point siguientePos = irNorte(posicion,altura);
         Point sigPos = new Point();
         
-        if(altura == "A"){
+        if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
         	
         	if(sigPos != null)
@@ -158,14 +160,16 @@ public class IrEste extends SearchAction {
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
+        			droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
             		
         		}
         	}
-        }else{
-        	if(altura == "M"){
+        }
+        else{
+        	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
         		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         		sigPos = FuncionesAuxiliares.irEste(posicion, altura);
         		if(sigPos != null)
@@ -182,12 +186,14 @@ public class IrEste extends SearchAction {
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
+            			droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
             		}
         		}
-        	}else //Altura "B"
+        	}
+        	else //Altura "B"
         	{
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
@@ -215,7 +221,7 @@ public class IrEste extends SearchAction {
             environmentState.setposicionAgente(droneState.getubicacionD());
             environmentState.setenergiaAgente(droneState.getenergia());
             
-            System.out.println("FUE AL ESTE!!\nPosicion agente: "+environmentState.getposicionAgente().getX()+" "+environmentState.getposicionAgente().getY());
+System.out.println("FUE AL ESTE!!\nPosicion agente: "+environmentState.getposicionAgente().getX()+" "+environmentState.getposicionAgente().getY());
             return environmentState;
         }
       

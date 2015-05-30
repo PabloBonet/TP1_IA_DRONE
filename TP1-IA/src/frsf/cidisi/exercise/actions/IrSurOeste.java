@@ -29,7 +29,7 @@ public class IrSurOeste extends SearchAction {
         Grafo subGrafo = new Grafo();
         
         Point sigPos = new Point();
-        if(altura == "A")
+        if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
         {
         	sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
         	
@@ -47,6 +47,7 @@ public class IrSurOeste extends SearchAction {
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
+        			droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		return droneState;
@@ -55,7 +56,7 @@ public class IrSurOeste extends SearchAction {
         }
         else
         {
-        	if(altura == "M")
+        	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         		sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
@@ -74,6 +75,7 @@ public class IrSurOeste extends SearchAction {
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
+            			droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			return droneState;
@@ -126,7 +128,7 @@ public class IrSurOeste extends SearchAction {
       
         Point sigPos = new Point();
         
-        if(altura == "A"){
+        if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
         	
         	if(sigPos != null)
@@ -144,14 +146,16 @@ public class IrSurOeste extends SearchAction {
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
+        			droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
             		
         		}
         	}
-        }else{
-        	if(altura == "M"){
+        }
+        else{
+        	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
         		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         		sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
             	
@@ -169,6 +173,7 @@ public class IrSurOeste extends SearchAction {
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
+            			droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;

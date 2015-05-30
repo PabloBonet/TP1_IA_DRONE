@@ -38,7 +38,7 @@ public class IrSur extends SearchAction {
         Grafo subGrafo = new Grafo();
         
         Point sigPos = new Point();
-        if(altura == "A")
+        if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
         {
         	sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         	
@@ -58,7 +58,7 @@ public class IrSur extends SearchAction {
         		}
         		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			//System.out.print("El cuadrante tiene señal\n");
+        			droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		//droneState.getintensidadSeñalA().remove(cuadrante);
@@ -68,16 +68,13 @@ public class IrSur extends SearchAction {
         }
         else
         {
-        	if(altura == "M")
-        	{//System.out.println("Posicion actual: "+posicion.getX() + " " +posicion.getY());
+        	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
+        	{
         		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posicion.x, posicion.y);
         		sigPos = FuncionesAuxiliares.irSur(posicion, altura);
-        		//System.out.println("Siguiente Posicion: "+sigPos.getX() + " " +sigPos.getY());
-        		//System.out.println("Cuadrante: " +cuadrante);
         		if(sigPos != null)
         		{
         			boolean encontrado = false;
-        			//System.out.println("tam: " + droneState.getintensidadSeñalM().size());
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
@@ -89,10 +86,9 @@ public class IrSur extends SearchAction {
             		}
             		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
+            			droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			System.out.println("ESTADO ACTUALIZADO: "+droneState.getaltura()+ " "+droneState.getubicacionD().x+ " "+droneState.getubicacionD().y);
-            			//droneState.getintensidadSeñalM().remove(cuadrante);
             			return droneState;
             		}
         		}
@@ -151,7 +147,7 @@ public class IrSur extends SearchAction {
         
         
         Point sigPos = new Point();
-        if(altura == "A")
+        if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
         {
         	sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         	
@@ -170,24 +166,22 @@ public class IrSur extends SearchAction {
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
+        			droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
-            		//environmentState.getintensidadSeñalA().remove(n);
         		}
         	}
         }
         else
         {
         	
-        	if(altura == "M")
+        	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
-        		//System.out.println("Posicion actual: "+posicion.getX() + " " +posicion.getY());
         		sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         		
         		if(sigPos != null)
         		{
-        		//	System.out.println("Siguiente Posicion: "+sigPos.getX() + " " +sigPos.getY());
         			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
@@ -201,11 +195,10 @@ public class IrSur extends SearchAction {
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
+            			droneState.removerCuadranteNivelA(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
-            			
-            			//environmentState.getintensidadSeñalM().remove(n);
             		}
         		}
         	}

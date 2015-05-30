@@ -33,49 +33,49 @@ public class Bajar extends SearchAction {
         	//System.out.println("EN BAJAR! IntensidadSeñalA: cantidad: "+agState.getintensidadSeñalA().size());
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = subCuadrante/10;
-        	if(altura == "A" && agState.getintensidadSeñalA().size()>0)
+        	if(altura == "A")
         	{
         		//System.out.println("SubCuaddrante: "+subCuadrante);
         		//System.out.println("Cuaddrante: "+cuadrante);
-        		for(NodoLista n: agState.getintensidadSeñalA())
-        		{
-        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
-        			if(cuadrante == n.getCuadrante())
-        			{
+//        		for(NodoLista n: agState.getintensidadSeñalA())
+//        		{
+//        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
+//        			if(cuadrante == n.getCuadrante())
+//        			{
         				agState.setaltura("M");
                 		agState.setubicacionD(FuncionesAuxiliares.bajarASubCuadranteM(cuadrante));
                 		//elimina el nodo con el cuadrante actual de la lista de señal de nivel alto del agente
-        				agState.removerCuadranteNivelA(cuadrante);
+//        				agState.removerCuadranteNivelA(cuadrante);
         				agState.setenergia(agState.getenergia()-1);
         				
         				//System.out.println("Estado Agente despues de 'bajar' cant señal: "+agState.getintensidadSeñalA().size() + " energia: " + agState.getenergia() + " Posicion: "+ agState.getubicacionD().getX() + " Y: "+agState.getubicacionD().getY());
         				return agState;
-        			}
-        		}
-        		//la lista de intensidad de señal de nivel alto está vacía 
-        		return null;
+//        			}
+//        		}
+//        		//la lista de intensidad de señal de nivel alto está vacía 
+//        		return null;
         	}
         	//el agente está en nivel medio
         	else
         	{
         		//System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
-        		for(NodoLista n: agState.getintensidadSeñalM())
-        		{
-        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
-        			if(subCuadrante == n.getCuadrante())
-        			{
+//        		for(NodoLista n: agState.getintensidadSeñalM())
+//        		{
+//        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
+//        			if(subCuadrante == n.getCuadrante())
+//        			{
         				agState.setaltura("B");
                 		agState.setubicacionD(FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante()));
                 		//elimina el nodo de la lista de señal de nivel medio del agente
-        				agState.removerCuadranteNivelM(subCuadrante);
+//        				agState.removerCuadranteNivelM(subCuadrante);
         				agState.setenergia(agState.getenergia()-1);
         				        	
         				//System.out.println("\nAltura: "+agState.getaltura()+ " posicion: "+agState.getubicacionD().x + " "+agState.getubicacionD().y);
         				return agState;
-        			}
-        		}
-        		//la lista de intensidad de señal de nivel alto está vacía 
-        		return null;
+//        			}
+//        		}
+//        		//la lista de intensidad de señal de nivel alto está vacía 
+//        		return null;
         	}
         }
 
@@ -102,50 +102,50 @@ public class Bajar extends SearchAction {
         { 
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = subCuadrante/10;
-        	if(altura == "A" && agState.getintensidadSeñalA().size()>0)
+        	if(altura == "A")
         	{
-        		for(NodoLista n: agState.getintensidadSeñalA())
-        		{
-        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
-        			if(cuadrante == n.getCuadrante())
-        			{
+//        		for(NodoLista n: agState.getintensidadSeñalA())
+//        		{
+//        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
+//        			if(cuadrante == n.getCuadrante())
+//        			{
         				agState.setaltura("M");
         				environmentState.setAlturaAgente("M");
         				Point uAgente = FuncionesAuxiliares.bajarASubCuadranteM(cuadrante);
                 		agState.setubicacionD(uAgente);
                 		environmentState.setposicionAgente(uAgente);
-                		//elimina el nodo con el cuadrante actual de la lista de señal de nivel alto del agente
-        				agState.removerCuadranteNivelA(cuadrante);
+//                		//elimina el nodo con el cuadrante actual de la lista de señal de nivel alto del agente
+//        				agState.removerCuadranteNivelA(cuadrante);
         				agState.setenergia(agState.getenergia()-1);
         				environmentState.setenergiaAgente(environmentState.getenergiaAgente()-1);
         				return environmentState;
-        			}
-        		}
-        		//la lista de intensidad de señal de nivel alto está vacía 
-        		return null;
+//        			}
+//        		}
+//        		//la lista de intensidad de señal de nivel alto está vacía 
+//        		return null;
         	}
         	//el agente está en nivel medio
         	else
         	{
-        		for(NodoLista n: agState.getintensidadSeñalM())
-        		{
-        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
-        			if(subCuadrante == n.getCuadrante())
-        			{
+//        		for(NodoLista n: agState.getintensidadSeñalM())
+//        		{
+//        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
+//        			if(subCuadrante == n.getCuadrante())
+//        			{
         				agState.setaltura("B");
         				environmentState.setAlturaAgente("B");
         				Point uAgente = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
                 		agState.setubicacionD(uAgente);
         				environmentState.setposicionAgente(uAgente);
-                		//elimina el nodo de la lista de señal de nivel medio del agente
-        				agState.removerCuadranteNivelM(subCuadrante);
+//                		//elimina el nodo de la lista de señal de nivel medio del agente
+//        				agState.removerCuadranteNivelM(subCuadrante);
         				agState.setenergia(agState.getenergia()-1);
         				environmentState.setenergiaAgente(environmentState.getenergiaAgente()-1);
         				return environmentState;
-        			}
-        		}
-        		//la lista de intensidad de señal de nivel alto está vacía 
-        		return null;
+//        			}
+//        		}
+//        		//la lista de intensidad de señal de nivel alto está vacía 
+//        		return null;
         	}
         }
 
