@@ -348,15 +348,22 @@ public class FuncionesAuxiliares {
 
 		// cálculo de la esquina central
 		double d = ALTO_MAPA, auxD;
+		
 		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
-			auxD = Math.hypot(n.getPosX() - centroSubCuadrante.x, n.getPosY()
-					- centroSubCuadrante.y);
+			
+			//auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
+			//		- centroSubCuadrante.y));
+			auxD = 10;
+			
+			System.out.println("AUXD: " + auxD);
 			if (auxD < d) {
 				d = auxD;
-				centroEsquina.setLocation(n.getPosX(), n.getPosY());
+				//centroEsquina.setLocation(n.getPosX(), n.getPosY());
+				centroEsquina.x = n.getPosX();
+				centroEsquina.y = n.getPosY();
 			}
 		}
-
+		System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y);
 		if (centroEsquina.getLocation() != null)
 			return centroEsquina;
 
@@ -376,6 +383,8 @@ public class FuncionesAuxiliares {
 				* ANCHO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE / 2);
 		centro.y = ((((subCuadrante / 10) <= 2) ? 1 : 2) * ALTO_CUADRANTE
 				- ((subCuadrante % 10) > 2 ? 1 : 2) * ALTO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE / 2);
+		
+		System.out.println("CENTRO: " + centro.x + " " + centro.y);
 		return centro;
 	}
 

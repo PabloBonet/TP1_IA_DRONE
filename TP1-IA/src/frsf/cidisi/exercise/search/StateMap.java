@@ -239,6 +239,7 @@ public class StateMap extends EnvironmentState {
     		 System.out.println("enlaces: " + subgrafo.getListaEnlaces().size());
     		 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 
         	 
+    		 nodosAdyacentes.add(nodoAgente);
     		 
         	 for(Nodo n: nodosAdyacentes)
         	 {

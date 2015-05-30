@@ -38,6 +38,7 @@ public class Gps {
 	}
 
 	public void setPosiciongps(Point posiciongps) {
+		
 		this.posiciongps = posiciongps;
 	}
 	
@@ -55,7 +56,11 @@ public class Gps {
 		//agrego los nodos que pertenecen al subcuadrante
 		for(Nodo n: nodos){
 			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
+			{
 				this.grafoSubCuadrante.getListaNodos().add(n);
+				System.out.println("Nodo: " +n.getId());
+			}
+				
 		}
 		
 		//agrego los enlaces que comuniquen sólo los nodos seleccionados arriba

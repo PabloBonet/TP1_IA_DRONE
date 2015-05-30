@@ -51,7 +51,9 @@ public class AgentDronePerception extends Perception {
         StateMap estadoAmbiente =
                 ambiente.getEnvironmentState();
        
+       
         gps = new Gps();
+        
         this.gps.setPosiciongps(estadoAmbiente.getposicionAgente());
         this.altura = estadoAmbiente.getAlturaAgente();
         this.energia = estadoAmbiente.getenergiaAgente();
@@ -59,6 +61,7 @@ public class AgentDronePerception extends Perception {
         String altura = estadoAmbiente.getAlturaAgente();
         
         int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(gps.getPosiciongps().x, gps.getPosiciongps().y);
+		
 		
         if(altura == "B")
         {

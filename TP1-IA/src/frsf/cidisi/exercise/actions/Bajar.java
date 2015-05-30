@@ -68,6 +68,9 @@ public class Bajar extends SearchAction {
                 		agState.setubicacionD(FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante()));
                 		//elimina el nodo de la lista de señal de nivel medio del agente
 //        				agState.removerCuadranteNivelM(subCuadrante);
+        				//Point uAgente = new Point(370,215);
+        				//agState.setubicacionD(uAgente);
+        				
         				agState.setenergia(agState.getenergia()-1);
         				        	
         				//System.out.println("\nAltura: "+agState.getaltura()+ " posicion: "+agState.getubicacionD().x + " "+agState.getubicacionD().y);
@@ -134,10 +137,16 @@ public class Bajar extends SearchAction {
 //        			{
         				agState.setaltura("B");
         				environmentState.setAlturaAgente("B");
+        				
+        				//VER 
         				Point uAgente = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
                 		agState.setubicacionD(uAgente);
         				environmentState.setposicionAgente(uAgente);
-//                		//elimina el nodo de la lista de señal de nivel medio del agente
+//                		
+        				//Point uAgente = new Point(370,215);
+        				//agState.setubicacionD(uAgente);
+        				//environmentState.setposicionAgente(uAgente);
+        				//elimina el nodo de la lista de señal de nivel medio del agente
 //        				agState.removerCuadranteNivelM(subCuadrante);
         				agState.setenergia(agState.getenergia()-1);
         				environmentState.setenergiaAgente(environmentState.getenergiaAgente()-1);

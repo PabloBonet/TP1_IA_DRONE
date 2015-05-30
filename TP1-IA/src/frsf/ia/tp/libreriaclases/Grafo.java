@@ -215,6 +215,7 @@ public class Grafo {
 		
 		ArrayList<Nodo> nodosAdyacentesQueVe = subGrafo.buscarAdyacentes(nodoAgente);
 		
+		
 		return nodosAdyacentesQueVe;
 	}
 	
