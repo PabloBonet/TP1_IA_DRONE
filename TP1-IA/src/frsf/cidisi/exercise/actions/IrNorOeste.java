@@ -1,6 +1,5 @@
 package frsf.cidisi.exercise.actions;
 
-
 import java.awt.Point;
 
 import frsf.cidisi.exercise.search.*;

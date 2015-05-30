@@ -54,7 +54,6 @@ public class StateMap extends EnvironmentState {
          */
         
     	
-    	
     	for(Nodo n : this.getgrafoMapa().getListaNodos())
     	{
     		int intensidad = 0;
@@ -93,28 +92,7 @@ public class StateMap extends EnvironmentState {
     				NodoLista nodo = new NodoLista(subCuadrante, intensidad);
     				intensidadSeñalM.add(nodo);
     			}
-    			//Busca en la lista intensidadSeñalM si el cuadrante ya se encuentra 
-    			/*for(NodoLista nodo : intensidadSeñalM)
-    			{
-    				
-    				if(nodo.getCuadrante() == subCuadrante){
-    					//adiciona a la intensidad de señal del subCuadrante ya existente
-    					intensidad = n.getPersonas().size()*20;
-    					nodo.setIntensidad(nodo.getIntensidad()+intensidad);
-    					existe = true;
-    					break;
-    				}
-    			}
     			
-    			
-    			if(!existe)
-    			{
-    				//crea un nodo para el subCuadrante y lo agrega a la lista de nivel medio
-    				intensidad = n.getPersonas().size()*20; 
-    				NodoLista nodo = new NodoLista(subCuadrante, intensidad);
-    				intensidadSeñalM.add(nodo);
-    			}
-    			 */
     			existe = false;
     			intensidad = 0;
 
@@ -182,8 +160,6 @@ public class StateMap extends EnvironmentState {
      public ArrayList<NodoLista> getintensidadSeñalM(){
         return intensidadSeñalM;
      }
-     
-     
     
      public void setintensidadSeñalM(ArrayList<NodoLista> arg){
         intensidadSeñalM = arg;
@@ -244,13 +220,16 @@ public class StateMap extends EnvironmentState {
      /**
       * Función que recorre los nodos adyacentes al nodo donde se encuentra el agente y 
       * retorna las personas que son visibles al agente desde la posición donde se encuentra
+      * 
+      * @param nodoAgente
+      * @param subgrafo
       * */
      public ArrayList<Persona> getPersonasQueVe(Nodo nodoAgente, Grafo subgrafo)
      {
     	 
     	 ArrayList<Persona> personasObservables = new ArrayList<Persona>();
     	 
-    	//retorna los nodos adyacentes a la posicion pasada como parametro
+    	 //retorna los nodos adyacentes a la posicion pasada como parametro
     	 //Los nodos adyacentes serán los nodos que la cámara va a poder ver en todas las direcciones
     	 //el segundo parámetro indica si se va a retornar también el nodo acual
     	 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 

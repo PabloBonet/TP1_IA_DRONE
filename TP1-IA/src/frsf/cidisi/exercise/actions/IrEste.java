@@ -38,7 +38,6 @@ public class IrEste extends SearchAction {
         int energia = droneState.getenergia();
         Grafo subGrafo = new Grafo();
         
-              
       
         Point sigPos = new Point();
         

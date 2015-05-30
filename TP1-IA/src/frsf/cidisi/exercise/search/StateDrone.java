@@ -6,7 +6,6 @@ package frsf.cidisi.exercise.search;
 
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Vector;
 
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
@@ -72,7 +71,7 @@ public class StateDrone extends SearchBasedAgentState {
     	ArrayList<NodoLista> nuevaIntensidadSeñalM = new ArrayList<NodoLista>();
     	ArrayList<Nodo> nuevaIntensidadSeñalB = new ArrayList<Nodo>();
     	ArrayList<Persona> nuevaListaVictimarios = new ArrayList<Persona>();
-    	
+
     	for(NodoLista n: this.intensidadSeñalA)
     	{
     		nuevaIntensidadSeñalA.add(n);
@@ -179,7 +178,6 @@ public class StateDrone extends SearchBasedAgentState {
     	//Inicializa la energía
     	this.energia = 1000;
     	
-    	    	
     }
 
     /**
@@ -267,10 +265,8 @@ public class StateDrone extends SearchBasedAgentState {
     		 if(!victimarios.contains(p))
     			 return false;
     	 }
-    	    
     	 
-    	 
-        return true;
+    	 return true;
     }
 
     //TODO: Complete this section with agent-specific methods
@@ -356,14 +352,6 @@ public class StateDrone extends SearchBasedAgentState {
 		}
 		return false;
 	}
-
-//	public boolean hayIntensidadSeñalACuadrante(int cuadranteActual) {
-//		for(NodoLista n: intensidadSeñalA){
-//			if(cuadranteActual == n.getCuadrante())
-//				return true;
-//		}
-//		return false;
-//	}
 
 	/**
 	 * Elimina un nodo de la lista de intensidad de señal de nivel alto del agente

@@ -46,7 +46,7 @@ public class Converter {
 	}
 	
 	private void crearComponentesGrafo(){
-		/**Recorro la lista hasta el final y regunto que categoria es. En funcion de la categoria
+		/**Recorro la lista hasta el final y pregunto qué categoría es. En función de la categoría
 		 * creo la instancia del objeto correspondiente y luego lo agrego a la lista que corresponde*/
 		for (int i = 0; i < listaDeDatos.size(); i++){
 			categoria = listaDeDatos.get(i).get(0);		

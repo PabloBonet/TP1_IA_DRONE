@@ -207,7 +207,7 @@ public class UIVentanaPrincipal extends JFrame {
 				ventanaGrafica.repaint();
 				
 				
-				/*luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
+				/*TODO luego tomar los datos del grafo y setearlos en la tabla que se muestra en pantalla**/
 
 				//Completar
 

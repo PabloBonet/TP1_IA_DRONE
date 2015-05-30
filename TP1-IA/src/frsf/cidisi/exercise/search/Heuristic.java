@@ -1,6 +1,5 @@
 package frsf.cidisi.exercise.search;
 
-
 import frsf.cidisi.faia.solver.search.IEstimatedCostFunction;
 import frsf.cidisi.faia.solver.search.NTree;
 

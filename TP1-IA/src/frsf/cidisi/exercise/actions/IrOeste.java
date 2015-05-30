@@ -56,8 +56,7 @@ public class IrOeste extends SearchAction {
 						break;
 					}
 				}
-				if (encontrado != null) // Si el cuadrante tiene señal, se mueve
-										// a ese cuadrante
+				if (encontrado != null) // Si el cuadrante tiene señal, se mueve a ese cuadrante
 				{
 					droneState.setenergia(energia - 1);
 					droneState.setubicacionD(sigPos);
@@ -78,8 +77,7 @@ public class IrOeste extends SearchAction {
 							break;
 						}
 					}
-					if (encontrado != null) // Si el cuadrante tiene señal, se
-											// mueve a ese cuadrante
+					if (encontrado != null) // Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
 						droneState.setenergia(energia - 1);
 						droneState.setubicacionD(sigPos);
@@ -153,8 +151,7 @@ public class IrOeste extends SearchAction {
 						break;
 					}
 				}
-				if (encontrado != null) // Si el cuadrante tiene señal, se mueve
-										// a ese cuadrante
+				if (encontrado != null) // Si el cuadrante tiene señal, se mueve a ese cuadrante
 				{
 					droneState.setenergia(energia - 1);
 					droneState.setubicacionD(sigPos);
@@ -175,8 +172,7 @@ public class IrOeste extends SearchAction {
 							break;
 						}
 					}
-					if (encontrado != null) // Si el cuadrante tiene señal, se
-											// mueve a ese cuadrante
+					if (encontrado != null) // Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
 						droneState.setenergia(energia - 1);
 						droneState.setubicacionD(sigPos);

@@ -257,20 +257,10 @@ public class FuncionesAuxiliares {
 			} else // altura == M
 			{
 				int posNueva = x + ANCHO_SUB_CUADRANTE;
-				if (posNueva <= ANCHO_CUADRANTE) // Si no sale fuera de la
-				// grilla
+				if (posNueva <= ANCHO_CUADRANTE) // Si no sale fuera de la grilla
 				{
-					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // //cuad
-					// 1, 2,
-					// 3 o 4
-					// (Ej:
-					// x=100->1,
-					// x=160->2,
-					// x=320->3,..)
-					if (auxX == 1 || auxX == 3) // se puede mover hacia la
-					// derecha si esta en el
-					// subcuadrante inferior dentro
-					// del cuadrante
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // cuad 1, 2, 3 o 4 (Ej: x=100->1, x=160->2, x=320->3,..)
+					if (auxX == 1 || auxX == 3) // se puede mover hacia la derecha si esta en el subcuadrante inferior dentro del cuadrante
 					{
 						posicion.x = posNueva;
 						posicion.y = y;
@@ -554,29 +544,9 @@ public class FuncionesAuxiliares {
 				// grilla
 
 				{
-					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
-					// 2, 3 o 4
-					// (Ej:
-					// y=100->1,
-					// y=160->2,
-					// y=320->3,..)
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
-					if ((auxY == 2 || auxY == 4) && (auxX == 1 || auxX == 3)) // se
-					// puede
-					// mover
-					// hacia
-					// arriba
-					// y
-					// derecha
-					// si
-					// esta
-					// en
-					// el
-					// subcuadrante
-					// superior
-					// dentro
-					// del
-					// cuadrante
+					if ((auxY == 2 || auxY == 4) && (auxX == 1 || auxX == 3)) // se puede mover hacia arriba y derecha si esta en el subcuadrante superior dentro del cuadrante
 					{
 						posicion.x = posNuevaX;
 						posicion.y = posNuevaY;
@@ -631,29 +601,9 @@ public class FuncionesAuxiliares {
 				if (posNuevaY >= 0 && posNuevaX >= 0) // Si no sale fuera de la
 				// grilla
 				{
-					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
-					// 2, 3 o 4
-					// (Ej:
-					// y=100->1,
-					// y=160->2,
-					// y=320->3,..)
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
-					if ((auxY == 2 || auxY == 4) && (auxX == 2 || auxX == 4)) // se
-					// puede
-					// mover
-					// hacia
-					// arriba
-					// e
-					// izquierda
-					// si
-					// esta
-					// en
-					// el
-					// subcuadrante
-					// inferior
-					// dentro
-					// del
-					// cuadrante
+					if ((auxY == 2 || auxY == 4) && (auxX == 2 || auxX == 4)) // se puede mover hacia arriba e izquierda si esta en el subcuadrante inferior dentro del cuadrante
 					{
 						posicion.x = posNuevaX;
 						posicion.y = posNuevaY;
@@ -745,14 +695,14 @@ public class FuncionesAuxiliares {
 	}
 
 	
-public static Point irSurOeste(Point ubicacionActual, String altura) {
-		
+	public static Point irSurOeste(Point ubicacionActual, String altura) {
+
 		Point posicion = null;
 		if(altura != "B"){
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
-			
+
 			if(altura == "A"){
 				y += ALTO_CUADRANTE;
 				x -= ANCHO_CUADRANTE;
@@ -767,7 +717,7 @@ public static Point irSurOeste(Point ubicacionActual, String altura) {
 			{
 				int posNuevaY = y + ALTO_SUB_CUADRANTE;
 				int posNuevaX = x - ALTO_SUB_CUADRANTE;
-				
+
 				if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
 				{
 					int auxY = y / ALTO_SUB_CUADRANTE + 1; 

@@ -1,11 +1,10 @@
 package frsf.cidisi.exercise.search;
+
 import frsf.cidisi.faia.agent.Action;
-import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.environment.Environment;
 import frsf.ia.tp.libreriaclases.AntenaNB;
 import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
-import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Gps;
 import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;

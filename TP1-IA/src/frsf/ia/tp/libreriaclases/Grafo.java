@@ -1,23 +1,13 @@
 package frsf.ia.tp.libreriaclases;
 
-
-import java.io.File;
-import java.io.IOException;
 import java.awt.Point;
-
 import java.util.ArrayList;
-import java.util.List;
-import frsf.ia.tp.libreriaclases.*;
-
-
-
-
 
 public class Grafo {
-	/** Lista de nodos. */
+	/*Lista de nodos. */
 	public ArrayList<Nodo> listaNodos;
 
-	/** Lista de enlaces. */
+	/*Lista de enlaces. */
 	private ArrayList<Enlace> listaEnlaces;
 
 	
@@ -197,9 +187,6 @@ public class Grafo {
 	 */
 	public Enlace buscarEnlace(int idNodo1 , int idNodo2)  {
 		
-//		Nodo nodo1 = this.buscarNodo(idNodo1);
-//		Nodo nodo2 = this.buscarNodo(idNodo2);
-		
 		if(idNodo1 > 0 && idNodo2 > 0)
 		{	
 			for(Enlace e: listaEnlaces){
@@ -219,8 +206,11 @@ public class Grafo {
 	
 	/**
 	 * Retorna los nodos que puede ver el agente en el subGrafo desde la posición de nodoAgente
+	 * 
+	 * @param nodoAgente 
+	 * @param subGrafo
 	 */
-	public static ArrayList<Nodo> nodosAdyacentesAPosicion(Nodo nodoAgente, Grafo subGrafo)
+	public ArrayList<Nodo> nodosAdyacentesAPosicion(Nodo nodoAgente, Grafo subGrafo)
 	{
 		ArrayList<Nodo> nodosAdyacentesQueVe = subGrafo.buscarAdyacentes(nodoAgente);
 		
@@ -248,6 +238,12 @@ public class Grafo {
 		return adyacentes;
 	}
 	
+	/**
+	 * Obtiene el Nodo del grafo que se ncuentra en la posición pasada por parámetro 
+	 * 
+	 * @param pos
+	 * @return Nodo
+	 */
 	public  Nodo nodoEnPosicion(Point pos)
 	{
 		Nodo nodo = null;
@@ -265,7 +261,7 @@ public class Grafo {
 	}
 
 	/**
-	 * marca el nodo que esta en esa posicion como recorrido
+	 * Marca el nodo que esta en esa posicion como ya recorrido
 	 * */
 	public void marcarRecorrido(Point getubicacionD) {
 		// TODO Auto-generated method stub

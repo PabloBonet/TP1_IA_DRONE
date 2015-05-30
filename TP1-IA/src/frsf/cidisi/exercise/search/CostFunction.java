@@ -1,10 +1,7 @@
 package frsf.cidisi.exercise.search;
 
-
-
 import frsf.cidisi.faia.solver.search.IStepCostFunction;
 import frsf.cidisi.faia.solver.search.NTree;
-import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 
 /**
  * This class can be used in any search strategy like
