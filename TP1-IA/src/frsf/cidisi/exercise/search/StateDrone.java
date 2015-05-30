@@ -193,9 +193,15 @@ public class StateDrone extends SearchBasedAgentState {
         str += "Altura: "+this.altura+"\n";
         str += "Ubicación: ";
         if(altura== "B")
-        	str += FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+        	str += (grafoSubCuadrante.nodoEnPosicion(ubicacionD)).getId();
         else
-        	str += FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+        {
+        	if(altura == "M")
+        		str += FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+        	else
+        		str += FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+        }
+        	
         
         str += "Intensidad de señal\nNivel Alto \n";
         for(int i=0; i<intensidadSeñalA.size();i++)
