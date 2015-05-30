@@ -232,12 +232,20 @@ public class StateMap extends EnvironmentState {
     	 //retorna los nodos adyacentes a la posicion pasada como parametro
     	 //Los nodos adyacentes serán los nodos que la cámara va a poder ver en todas las direcciones
     	 //el segundo parámetro indica si se va a retornar también el nodo acual
-    	 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 
     	 
-    	 for(Nodo n: nodosAdyacentes)
+    	 if(subgrafo != null)
     	 {
-    		personasObservables.addAll(n.getPersonas());
+    		 System.out.println("nodos: " + subgrafo.listaNodos.size());
+    		 System.out.println("enlaces: " + subgrafo.getListaEnlaces().size());
+    		 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 
+        	 
+    		 
+        	 for(Nodo n: nodosAdyacentes)
+        	 {
+        		personasObservables.addAll(n.getPersonas());
+        	 }
     	 }
+    	 
     	 
     	 return personasObservables;
      }

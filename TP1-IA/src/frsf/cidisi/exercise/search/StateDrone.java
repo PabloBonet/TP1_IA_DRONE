@@ -193,7 +193,17 @@ public class StateDrone extends SearchBasedAgentState {
         str += "Altura: "+this.altura+"\n";
         str += "Ubicación: ";
         if(altura== "B")
-        	str += (grafoSubCuadrante.nodoEnPosicion(ubicacionD)).getId();
+        {
+        	//str += (grafoSubCuadrante.nodoEnPosicion(ubicacionD)).getId();
+        	
+        	for(Nodo n: grafoSubCuadrante.listaNodos)
+        	{
+        		System.out.println(n.getId());	
+        	}
+        	
+        }
+        	
+        
         else
         {
         	if(altura == "M")

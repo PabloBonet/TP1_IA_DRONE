@@ -58,11 +58,12 @@ public class IrSurOeste extends SearchAction {
         {
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		
         		sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
             	
         		if(sigPos != null)
         		{
+        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
@@ -156,11 +157,12 @@ public class IrSurOeste extends SearchAction {
         }
         else{
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		
         		sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
             	
         		if(sigPos != null)
         		{
+        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado=null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{

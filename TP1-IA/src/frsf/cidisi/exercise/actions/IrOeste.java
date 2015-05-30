@@ -67,8 +67,7 @@ public class IrOeste extends SearchAction {
 		}
 		else {
 			if (altura == "M" && droneState.getintensidadSeñalM().size()>0) {
-				int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(
-						sigPos.x, sigPos.y);
+				int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
 				sigPos = FuncionesAuxiliares.irOeste(posicion, altura);
 				if (sigPos != null) {
 					NodoLista encontrado = null;

@@ -212,6 +212,7 @@ public class Grafo {
 	 */
 	public ArrayList<Nodo> nodosAdyacentesAPosicion(Nodo nodoAgente, Grafo subGrafo)
 	{
+		
 		ArrayList<Nodo> nodosAdyacentesQueVe = subGrafo.buscarAdyacentes(nodoAgente);
 		
 		return nodosAdyacentesQueVe;

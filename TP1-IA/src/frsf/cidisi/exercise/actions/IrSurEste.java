@@ -68,11 +68,12 @@ public class IrSurEste extends SearchAction {
         {
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posicion.x, posicion.y);
+        		
         		sigPos = FuncionesAuxiliares.irSurEste(posicion, altura);
             	
         		if(sigPos != null)
         		{
+        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{

@@ -70,10 +70,12 @@ public class IrEste extends SearchAction {
         }
         else{
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		
         		sigPos = FuncionesAuxiliares.irEste(posicion, altura);
+        		        		
         		if(sigPos != null)
         		{
+        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado=null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{

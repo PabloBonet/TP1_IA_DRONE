@@ -458,7 +458,8 @@ public class FuncionesAuxiliares {
 	 */
 	public static Point irSur(Point ubicacionActual, String altura) {
 		Point posicion = null;
-
+		
+		
 		if (altura != "B") {
 			posicion = new Point();
 			int x = ubicacionActual.x;

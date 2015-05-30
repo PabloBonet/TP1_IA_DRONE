@@ -70,10 +70,13 @@ public class IrSur extends SearchAction {
         {
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(posicion.x, posicion.y);
+        		
         		sigPos = FuncionesAuxiliares.irSur(posicion, altura);
+        		
+        		
         		if(sigPos != null)
         		{
+        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			boolean encontrado = false;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
@@ -195,7 +198,7 @@ public class IrSur extends SearchAction {
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
-            			droneState.removerCuadranteNivelA(cuadrante);
+            			droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;

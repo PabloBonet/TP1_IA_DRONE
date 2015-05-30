@@ -40,6 +40,7 @@ public class EnvironmentMap extends Environment {
     	perception.setcamara(new Camara());
     	
     	Gps gps = new Gps();
+    	gps.setPosiciongps(this.getEnvironmentState().getposicionAgente());
     	if(altura == "A")
     	{
     		//Asigna antena
@@ -68,7 +69,7 @@ public class EnvironmentMap extends Environment {
     	
     	
     	perception.setenergia(this.getEnvironmentState().getenergiaAgente());
-    	gps.setPosiciongps(this.getEnvironmentState().getposicionAgente());
+    	
     	perception.setgps(gps);
     	
     	// Return the perception
