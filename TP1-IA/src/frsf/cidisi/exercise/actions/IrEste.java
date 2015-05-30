@@ -44,10 +44,8 @@ public class IrEste extends SearchAction {
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
         	
-        	//System.out.println("EN IR ESTE---\n");
         	if(sigPos != null)
         	{
-        		//System.out.print("Siguiente Posicion: "+sigPos.getX() + " "+sigPos.getY()+"\n");
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
         		NodoLista encontrado=null;
         		for(NodoLista n: droneState.getintensidadSeñalA())
@@ -129,7 +127,6 @@ public class IrEste extends SearchAction {
         StateMap environmentState = (StateMap) est;
         StateDrone droneState = ((StateDrone) ast);
         
-        System.out.println("En EXECUTE CON AGENTE Y ESTADO");
         // TODO: Use this conditions
         // PreConditions: null
         // PostConditions: null
@@ -141,8 +138,7 @@ public class IrEste extends SearchAction {
         
         boolean puedeIr = false;
               
-       // Point siguientePos = irNorte(posicion,altura);
-        Point sigPos = new Point();
+         Point sigPos = new Point();
         
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
