@@ -12,9 +12,9 @@ public class GoalDrone extends GoalTest {
     
         if  (((StateDrone)agentState).getintensidadSeñalA().isEmpty() && 
         		((StateDrone)agentState).getintensidadSeñalM().isEmpty() && 
-        		((StateDrone)agentState).getintensidadSeñalB().isEmpty() &&
-        		!((StateDrone)agentState).getvictimario().isEmpty()
-        		&& ((StateDrone)agentState).getenergia() > 0)
+        		((StateDrone)agentState).getenergia() > 0 &&
+        		((StateDrone)agentState).getintensidadSeñalB().isEmpty() ||
+        		((StateDrone)agentState).getvictimario() != null)
         	{
         	
             return true;

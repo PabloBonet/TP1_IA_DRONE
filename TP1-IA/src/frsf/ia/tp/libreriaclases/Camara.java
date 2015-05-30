@@ -38,6 +38,11 @@ public class Camara {
 	public ArrayList<Persona> getPersonas() {
 		return personas;
 	}
+	
+	public ArrayList<Persona> getPersonasEnLugar()
+	{
+		return (ArrayList<Persona>) nodo.getPersonas();
+	}
 
 	/*public void setPersonas(ArrayList<Persona> personas) {
 		this.personas = personas;

@@ -29,7 +29,7 @@ public class StateDrone extends SearchBasedAgentState {
     private ArrayList<NodoLista> intensidadSeñalM;
     private ArrayList<Nodo> intensidadSeñalB;
     private String direccion;
-    private ArrayList<Persona> victimarios;
+    private Persona victimario;
     private int energia;
     private Grafo grafoSubCuadrante;
 
@@ -41,7 +41,7 @@ public class StateDrone extends SearchBasedAgentState {
     	intensidadSeñalM = new ArrayList<NodoLista>();
     	intensidadSeñalB = new ArrayList<Nodo>();
     	direccion = d;
-    	victimarios = new ArrayList<Persona>();
+    	victimario = null;
     	energia = e;
     	grafoSubCuadrante = new Grafo();
     }
@@ -52,7 +52,7 @@ public class StateDrone extends SearchBasedAgentState {
 		intensidadSeñalA = new ArrayList<NodoLista>();
 		intensidadSeñalM = new ArrayList<NodoLista>();
 		intensidadSeñalB = new ArrayList<Nodo>();
-		victimarios = new ArrayList<Persona>();
+		victimario = null;
 		grafoSubCuadrante = new Grafo();
    
 		this.initState();
@@ -86,16 +86,16 @@ public class StateDrone extends SearchBasedAgentState {
     	{
     		nuevaIntensidadSeñalB.add(n);
     	}
-    	
+    	/*
     	for(Persona p: this.victimarios)
     	{
     		nuevaListaVictimarios.add(p);
     	}
-    	
+    	*/
     	nuevoEstado.setintensidadSeñalA(nuevaIntensidadSeñalA);
     	nuevoEstado.setintensidadSeñalB(nuevaIntensidadSeñalB);
     	nuevoEstado.setintensidadSeñalM(nuevaIntensidadSeñalM);
-    	nuevoEstado.setvictimario(nuevaListaVictimarios);
+    	nuevoEstado.setvictimario(victimario);
     	
     	ArrayList<Nodo> nodosNuevo = new ArrayList<Nodo>();
     	ArrayList<Enlace> enlacesNuevo = new ArrayList<Enlace>();
@@ -120,7 +120,7 @@ public class StateDrone extends SearchBasedAgentState {
     	
     	 ubicacionD = percepcion.getgps().getPosiciongps();
     	 altura = percepcion.getaltura();
-    	 victimarios = new ArrayList<Persona>();
+    	
     	 energia = percepcion.getenergia();
     	 
     	 if(altura != "B")
@@ -155,6 +155,10 @@ public class StateDrone extends SearchBasedAgentState {
     		 
     		 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
     				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
+    		 
+    		 //Identifica al victimario
+    		  victimario = identificarVictimario(percepcion.getcamara().getPersonasEnLugar());
+    		 
     	 }	 
     	 
     }
@@ -203,9 +207,11 @@ public class StateDrone extends SearchBasedAgentState {
         for(int i=0; i<intensidadSeñalB.size();i++)
         	str += "\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
         str += "Dirección: "+this.direccion+"\n";
-        str += "Victimarios (ID): ";
-        for(int i=0; i<victimarios.size();i++)
-        	str += victimarios.get(i).getId()+" ";
+        str += "Victimario (ID): ";
+        if(victimario != null)
+        	str += victimario.getId();
+        else
+        	str += "No se encontró.";
         str += "\nEnergía: "+energia+"\n\n";
 
         return str;
@@ -240,7 +246,7 @@ public class StateDrone extends SearchBasedAgentState {
     	 ArrayList<NodoLista> intensidadA = ((StateDrone) obj).getintensidadSeñalA();
     	 ArrayList<NodoLista> intensidadM = ((StateDrone) obj).getintensidadSeñalM();
     	 ArrayList<Nodo> intensidadB = ((StateDrone) obj).getintensidadSeñalB();
-    	 ArrayList<Persona> victimarios = ((StateDrone) obj).getvictimario();
+    	
     	 
     	 for( NodoLista nodo: this.intensidadSeñalA)
     	 {
@@ -260,11 +266,8 @@ public class StateDrone extends SearchBasedAgentState {
     			return false;
     	 }
     	 
-    	 for(Persona p: this.victimarios)
-    	 {
-    		 if(!victimarios.contains(p))
-    			 return false;
-    	 }
+    	 if(((StateDrone) obj).getvictimario() != victimario)
+    		 return false;
     	 
     	 return true;
     }
@@ -308,11 +311,11 @@ public class StateDrone extends SearchBasedAgentState {
      public void setdireccion(String arg){
         direccion = arg;
      }
-     public ArrayList<Persona> getvictimario(){
-        return victimarios;
+     public Persona getvictimario(){
+        return victimario;
      }
-     public void setvictimario(ArrayList<Persona> arg){
-        victimarios = arg;
+     public void setvictimario(Persona arg){
+        victimario = arg;
      }
 
      public Grafo getGrafoSubCuadrante() {
@@ -323,13 +326,7 @@ public class StateDrone extends SearchBasedAgentState {
  		this.grafoSubCuadrante = grafoSubCuadrante;
  	}
      
-     public void agregarVictimario(Persona p)
-     {
-    	 if(victimarios != null)
-    	 {
-    		 victimarios.add(p);
-    	 }
-     }
+     
      public int getenergia(){
         return energia;
      }
@@ -375,6 +372,23 @@ public class StateDrone extends SearchBasedAgentState {
 				intensidadSeñalM.remove(i);
 				break;
 			}
+	}
+	
+	/**
+	 * Dada la lista de personas identifica al victimario
+	 * @param personas
+	 * 		lista de personas en las cuales podria encontrarse el victimario
+	 * @return
+	 * 		retorna el victimario si lo encontro,en caso contrario retorna null
+	 */
+	private Persona identificarVictimario(ArrayList<Persona> personas)
+	{
+		for(Persona p: personas)
+		{
+			if(p.esVictimario())
+				return p;
+		}
+		return null;
 	}
 	
 }
