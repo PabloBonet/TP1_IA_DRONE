@@ -28,13 +28,18 @@ public class FuncionesAuxiliares {
 	 *            coordenadaY
 	 * 
 	 * 
-	 * @return cuadrante cuadrante al que pertenece la posicion pasada como
-	 *         parametro
+	 * @return cuadrante
+	 * 		 cuadrante al que pertenece la posicion pasada como parametro
+	 * 		Si la posicion pasada como parametro no corresponde a un cuadrante, retorna 0
 	 * */
 
 	public static int perteneceACuadrante(int x, int y) {
 		int cuadrante = 0;
 
+		//Controla que el punto pasado no este fuera del mapa
+		if((x > ANCHO_MAPA || x < 0) || (y < 0 || y > ANCHO_MAPA))
+			return 0;
+		
 		int cuadX = x / ANCHO_CUADRANTE;
 		int cuadY = y / ALTO_CUADRANTE;
 
@@ -68,14 +73,21 @@ public class FuncionesAuxiliares {
 	 *            coordenadaY
 	 * 
 	 * 
-	 * @return cuadrante sub cuadrante al que pertenece la posicion pasada como
-	 *         parametro
+	 * @return SubCuadrante
+	 * 		 sub cuadrante al que pertenece la posicion pasada como parametro
+	 * 		Si la posicion pasada como parametro no corresponde a un sub cuadrante, retorna 0
 	 * */
 
 	public static int perteneceASubCuadrante(int x, int y) {
 		int cuadrante = 0;
+		
+		//Controla que el punto pasado no este fuera del mapa
+		if((x > ANCHO_MAPA || x < 0) || (y < 0 || y > ANCHO_MAPA))
+			return 0;
+		
 		// se llama a perteneceCuadrante para tener referencia a que cuadrante
 		// de nivel superior pertenece
+		
 		cuadrante = perteneceACuadrante(x, y) * 10;
 
 		int cuadX = (x % ANCHO_CUADRANTE) / ANCHO_SUB_CUADRANTE;
@@ -108,8 +120,9 @@ public class FuncionesAuxiliares {
 	 * @param cuadrante
 	 *            Cuadrante de nivel alto donde se encuantra el agente
 	 * 
-	 * @return Point Posición donde se ubicará el agente dentro del primer
-	 *         subcuadrante
+	 * @return Point Posición
+	 * 			Posición donde se ubicará el agente dentro del primer subcuadrante
+	 * 			Si el cuadrante no pertenece a ninguna posicion retorna null
 	 */
 	public static Point bajarASubCuadranteM(int cuadrante) {
 		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
@@ -140,13 +153,13 @@ public class FuncionesAuxiliares {
 	 *            ubicación del agente
 	 * @param altura
 	 *            altura del agente
-	 * @return posición del agente al norte de ubicación actual si es que se
-	 *         puede mover
+	 * @return posición del agente al norte de ubicación actual si es que se puede mover sino retorna null
 	 */
 	public static Point irNorte(Point ubicacionActual, String altura) {
 		Point posicion = null;
 
-		if (altura != "B") {
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x >= 0 && ubicacionActual.x <= ANCHO_MAPA && ubicacionActual.y >= 0 && ubicacionActual.y <= ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -192,7 +205,8 @@ public class FuncionesAuxiliares {
 	public static Point irOeste(Point ubicacionActual, String altura) {
 		Point posicion = null;
 
-		if (altura != "B") {
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x >= 0 && ubicacionActual.x <= ANCHO_MAPA && ubicacionActual.y >= 0 && ubicacionActual.y <= ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -207,11 +221,12 @@ public class FuncionesAuxiliares {
 					posicion.y = y;
 					return posicion;
 				}
-			} else // Altura == "B"
+			} 
+			else // Altura == "M"
 			{
 				int posNueva = x - ANCHO_SUB_CUADRANTE;
-				if (posNueva >= ANCHO_CUADRANTE) // Si no sale fuera de la
-				// grilla
+				
+				if(posNueva >= 0 && posNueva <= ANCHO_MAPA)  // Si no sale fuera de la grilla
 				{
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // //cuad
 					// 1, 2,
@@ -239,7 +254,8 @@ public class FuncionesAuxiliares {
 	public static Point irEste(Point ubicacionActual, String altura) {
 		Point posicion = null;
 
-		if (altura != "B") {
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x >= 0 && ubicacionActual.x <= ANCHO_MAPA && ubicacionActual.y >= 0 && ubicacionActual.y <= ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -257,7 +273,8 @@ public class FuncionesAuxiliares {
 			} else // altura == M
 			{
 				int posNueva = x + ANCHO_SUB_CUADRANTE;
-				if (posNueva <= ANCHO_CUADRANTE) // Si no sale fuera de la grilla
+				//if (posNueva <= ANCHO_CUADRANTE) // Si no sale fuera de la grilla
+				if(posNueva >= 0 && posNueva <= ANCHO_MAPA)
 				{
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // cuad 1, 2, 3 o 4 (Ej: x=100->1, x=160->2, x=320->3,..)
 					if (auxX == 1 || auxX == 3) // se puede mover hacia la derecha si esta en el subcuadrante inferior dentro del cuadrante
@@ -462,14 +479,14 @@ public class FuncionesAuxiliares {
 	 *            ubicación del agente
 	 * @param altura
 	 *            altura del agente
-	 * @return posición del agente al sur de ubicación actual si es que se puede
-	 *         mover
+	 * @return posición del agente al sur de ubicación actual si es que se puede mover sino retorna null
 	 */
 	public static Point irSur(Point ubicacionActual, String altura) {
 		Point posicion = null;
 		
 		
-		if (altura != "B") {
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x >= 0 && ubicacionActual.x <= ANCHO_MAPA && ubicacionActual.y >= 0 && ubicacionActual.y <= ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -488,6 +505,7 @@ public class FuncionesAuxiliares {
 			{
 				int posNueva = y + ALTO_SUB_CUADRANTE;
 				if (posNueva <= ALTO_MAPA) // Si no sale fuera de la grilla
+				
 				{
 					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
 					// 2, 3 o 4
@@ -530,7 +548,8 @@ public class FuncionesAuxiliares {
 	public static Point irNorEste(Point ubicacionActual, String altura) {
 		Point posicion = null;
 
-		if (altura != "B") {
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x > 0 && ubicacionActual.x < ANCHO_MAPA && ubicacionActual.y > 0 && ubicacionActual.y < ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -556,7 +575,8 @@ public class FuncionesAuxiliares {
 				{
 					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
-					if ((auxY == 2 || auxY == 4) && (auxX == 1 || auxX == 3)) // se puede mover hacia arriba y derecha si esta en el subcuadrante superior dentro del cuadrante
+					//if ((auxY == 2 || auxY == 4) && (auxX == 1 || auxX == 3)) // se puede mover hacia arriba y derecha si esta en el subcuadrante superior dentro del cuadrante
+					if ((auxY == 2 && auxX == 1) || ( auxY == 2 && auxX == 3) || ( auxY == 4 && auxX == 1) || ( auxY == 4 && auxX == 3))
 					{
 						posicion.x = posNuevaX;
 						posicion.y = posNuevaY;
@@ -589,7 +609,8 @@ public class FuncionesAuxiliares {
 
 		Point posicion = null;
 
-		if (altura != "B") {
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x > 0 && ubicacionActual.x < ANCHO_MAPA && ubicacionActual.y > 0 && ubicacionActual.y < ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -607,19 +628,21 @@ public class FuncionesAuxiliares {
 			} else // altura == M
 			{
 				int posNuevaY = y - ALTO_SUB_CUADRANTE;
-				int posNuevaX = x - ALTO_SUB_CUADRANTE;
+				int posNuevaX = x - ANCHO_SUB_CUADRANTE;
 				if (posNuevaY >= 0 && posNuevaX >= 0) // Si no sale fuera de la
 				// grilla
 				{
 					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
-					if ((auxY == 2 || auxY == 4) && (auxX == 2 || auxX == 4)) // se puede mover hacia arriba e izquierda si esta en el subcuadrante inferior dentro del cuadrante
+					//if ((auxY == 2 || auxY == 4) && (auxX == 2 || auxX == 4)) // se puede mover hacia arriba e izquierda si esta en el subcuadrante inferior dentro del cuadrante
+					if ((auxY == 2 && auxX == 2) || ( auxY == 4 && auxX == 2) || ( auxY == 2 && auxX == 4) || ( auxY == 4 && auxX == 4))
 					{
 						posicion.x = posNuevaX;
 						posicion.y = posNuevaY;
 						return posicion;
 					}
 				}
+				return null;
 
 			}
 
@@ -632,7 +655,8 @@ public class FuncionesAuxiliares {
 	public static Point irSurEste(Point ubicacionActual, String altura) {
 		Point posicion = null;
 
-		if (altura != "B") {
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x > 0 && ubicacionActual.x < ANCHO_MAPA && ubicacionActual.y > 0 && ubicacionActual.y < ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -654,11 +678,14 @@ public class FuncionesAuxiliares {
 				int posNuevaY = y + ALTO_SUB_CUADRANTE;
 				int posNuevaX = x + ANCHO_SUB_CUADRANTE;
 				
-				if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
+				//if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
+				if (posNuevaY <= ALTO_MAPA && posNuevaX <= ANCHO_MAPA) // Si no sale fuera de la grilla
+				
 				{
 					int auxY = y / ALTO_SUB_CUADRANTE + 1; 
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
-					if ((auxY == 1 || auxY == 3) && (auxX == 1 || auxX == 2)) 
+					//if ((auxY == 1 || auxY == 3) && (auxX == 1 || auxX == 2))
+					if ((auxY == 1 && auxX == 1) || ( auxY == 3 && auxX == 1) || ( auxY == 1 && auxX == 3) || ( auxY == 3 && auxX == 3))
 					{
 						posicion.x = posNuevaX;
 						posicion.y = posNuevaY;
@@ -708,7 +735,8 @@ public class FuncionesAuxiliares {
 	public static Point irSurOeste(Point ubicacionActual, String altura) {
 
 		Point posicion = null;
-		if(altura != "B"){
+		//Controla que la altura no sea baja y que la posicion este dentro del mapa
+		if (altura != "B" && (ubicacionActual.x >= 0 && ubicacionActual.x <= ANCHO_MAPA && ubicacionActual.y >= 0 && ubicacionActual.y <= ANCHO_MAPA)) {
 			posicion = new Point();
 			int x = ubicacionActual.x;
 			int y = ubicacionActual.y;
@@ -728,11 +756,12 @@ public class FuncionesAuxiliares {
 				int posNuevaY = y + ALTO_SUB_CUADRANTE;
 				int posNuevaX = x - ALTO_SUB_CUADRANTE;
 
-				if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
+				//if (posNuevaY <= ALTO_MAPA && posNuevaX >= ALTO_SUB_CUADRANTE) // Si no sale fuera de la grilla
+				if (posNuevaY <= ALTO_MAPA && posNuevaX <= ANCHO_MAPA) // Si no sale fuera de la grilla
 				{
 					int auxY = y / ALTO_SUB_CUADRANTE + 1; 
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
-					if ((auxY == 1 || auxY == 3) && (auxX == 2 || auxX == 4)) 
+					if ((auxY == 1 && auxX == 2) || ( auxY == 3 && auxX == 2) || ( auxY == 1 && auxX == 4) || ( auxY == 3 && auxX == 4)) 
 					{
 						posicion.x = posNuevaX;
 						posicion.y = posNuevaY;
