@@ -71,4 +71,28 @@ public class Gps {
 		
 	}
 
+	public void cargarGrafoCuadrante(Grafo grafoMapa) {
+		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(posiciongps.x, posiciongps.y);
+
+		ArrayList<Nodo> nodos = grafoMapa.getListaNodos();
+		ArrayList<Enlace> enlaces = grafoMapa.getListaEnlaces();
+		
+		//agrego los nodos que pertenecen al subcuadrante
+		for(Nodo n: nodos){
+			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == cuadrante)
+			{
+				this.grafoSubCuadrante.getListaNodos().add(n);
+				System.out.println("Nodo: " +n.getId());
+			}
+				
+		}
+		
+		//agrego los enlaces que comuniquen sólo los nodos seleccionados arriba
+		for(Enlace e: enlaces){
+			if(this.grafoSubCuadrante.buscarNodo(e.getIdNodo1()) != null && this.grafoSubCuadrante.buscarNodo(e.getIdNodo2()) != null)
+				this.grafoSubCuadrante.getListaEnlaces().add(e);
+		}
+		
+	}
+
 }

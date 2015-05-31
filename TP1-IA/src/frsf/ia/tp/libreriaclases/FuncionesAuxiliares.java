@@ -368,9 +368,9 @@ public class FuncionesAuxiliares {
 		
 		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
 			
-			//auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
-			//		- centroSubCuadrante.y));
-			auxD = 10;
+			auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
+					- centroSubCuadrante.y));
+			
 			
 			System.out.println("AUXD: " + auxD);
 			if (auxD < d) {

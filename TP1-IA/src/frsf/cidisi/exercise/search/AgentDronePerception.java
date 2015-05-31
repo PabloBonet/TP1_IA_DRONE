@@ -62,7 +62,7 @@ public class AgentDronePerception extends Perception {
         
         int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(gps.getPosiciongps().x, gps.getPosiciongps().y);
 		
-		
+		/*
         if(altura == "B")
         {
         	Point posicionAgente = estadoAmbiente.getposicionAgente();
@@ -108,7 +108,55 @@ public class AgentDronePerception extends Perception {
         		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
         	}
         	gps.setGrafoSubCuadrante(new Grafo());
+        }*/
+        if(altura != "A")
+        {
+        	if(altura == "M")
+        	{
+        		//cargar el grafo perteneciente al cuadrante
+            	gps.cargarGrafoCuadrante(estadoAmbiente.getgrafoMapa());
+            	
+            	antena = new AntenaNMA();
+        		
+        		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
+        		{
+        			//System.out.println("ESTADO AMBIENTE: " + nodo.getIntensidad());
+        			if(nodo.getCuadrante() == subCuadrante)
+        				antena.agregarIntensidadSeñal(nodo);
+        		}
+        	}
+        	else //altura == B
+        	{
+        		Point posicionAgente = estadoAmbiente.getposicionAgente();
+            	Nodo nodoAgente = (Nodo)(estadoAmbiente.getgrafoMapa()).nodoEnPosicion(posicionAgente);
+            	
+            	//cargar el grafo perteneciente al subcuadrante
+            	gps.cargarGrafoSubCuadrante(estadoAmbiente.getgrafoMapa());
+            	
+            	//Percepción cámara
+            	if(nodoAgente != null)
+            		camara = new Camara(estadoAmbiente.getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
+            	antena = new AntenaNB();
+            	//Percepción Antena para nivel bajo
+            	
+            	for(Nodo n: estadoAmbiente.getintensidadSeñalB())
+            	{
+            		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
+            		{
+            			antena.agregarIntensidadSeñal(n);
+                    	
+            		}
+            	}
+        	}
+        	
+        	
         }
+        else
+        {
+        	//System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
+    		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
+    	}
+    	gps.setGrafoSubCuadrante(new Grafo());
         
     }
     
