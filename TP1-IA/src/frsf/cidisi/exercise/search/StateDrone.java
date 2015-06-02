@@ -70,21 +70,26 @@ public class StateDrone extends SearchBasedAgentState {
     	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
     	ArrayList<NodoLista> nuevaIntensidadSeñalM = new ArrayList<NodoLista>();
     	ArrayList<Nodo> nuevaIntensidadSeñalB = new ArrayList<Nodo>();
-    	ArrayList<Persona> nuevaListaVictimarios = new ArrayList<Persona>();
+//    	ArrayList<Persona> nuevaListaVictimarios = new ArrayList<Persona>();
 
     	for(NodoLista n: this.intensidadSeñalA)
     	{
-    		nuevaIntensidadSeñalA.add(n);
+    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		nuevaIntensidadSeñalA.add(nodoNuevo);
     	}
     	
     	for(NodoLista n: this.intensidadSeñalM)
     	{
-    		nuevaIntensidadSeñalM.add(n);
+    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		nuevaIntensidadSeñalM.add(nodoNuevo);
     	}
     	
     	for(Nodo n: this.intensidadSeñalB)
     	{
-    		nuevaIntensidadSeñalB.add(n);
+    		Nodo nodoNuevo = new Nodo(n.getId(), n.getPosX(), n.getPosY());
+    		for(Persona p: n.getPersonas())
+    			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
+    		nuevaIntensidadSeñalB.add(nodoNuevo);
     	}
     	/*
     	for(Persona p: this.victimarios)
@@ -100,9 +105,9 @@ public class StateDrone extends SearchBasedAgentState {
     	ArrayList<Nodo> nodosNuevo = new ArrayList<Nodo>();
     	ArrayList<Enlace> enlacesNuevo = new ArrayList<Enlace>();
     	for(Nodo n: this.grafoSubCuadrante.getListaNodos())
-    		nodosNuevo.add(n);
+    		nodosNuevo.add(new Nodo(n.getId(), n.getPosX(), n.getPosY()));
     	for(Enlace e: this.grafoSubCuadrante.getListaEnlaces())
-    		enlacesNuevo.add(e);
+    		enlacesNuevo.add(new Enlace(e.getIdNodo1(), e.getIdNodo2(), e.getPeso()));
     	Grafo subGrafo = new Grafo(nodosNuevo, enlacesNuevo);
     	nuevoEstado.setGrafoSubCuadrante(subGrafo);
     	
@@ -199,7 +204,7 @@ public class StateDrone extends SearchBasedAgentState {
         	
         	for(Nodo n: grafoSubCuadrante.listaNodos)
         	{
-        		System.out.println(n.getId());	
+System.out.println(n.getId());	
         	}
         	
         }

@@ -42,10 +42,8 @@ public class IrSur extends SearchAction {
         {
         	sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         	
-        //	System.out.println("EN IR SUR---\n");
         	if(sigPos != null)
         	{
-        	//	System.out.print("Siguiente Posicion: "+sigPos.getX() + " "+sigPos.getY()+"\n");
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
         		boolean encontrado = false;
         		for(NodoLista n: droneState.getintensidadSeñalA())
@@ -62,7 +60,6 @@ public class IrSur extends SearchAction {
         			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		//droneState.getintensidadSeñalA().remove(cuadrante);
             		return droneState;
         		}
         	}
@@ -125,7 +122,6 @@ public class IrSur extends SearchAction {
         			
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
-                	droneState.getintensidadSeñalB().remove(nodoSig);
                 	return droneState;
                 	
         		}
@@ -164,7 +160,7 @@ public class IrSur extends SearchAction {
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
         {
         	sigPos = FuncionesAuxiliares.irSur(posicion, altura);
-        	
+System.out.println("EN IR SUR en A---");
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
@@ -246,7 +242,7 @@ public class IrSur extends SearchAction {
                 	droneState.setubicacionD(sig);
                 	
                 	puedeIr = true;
-                	environmentState.getintensidadSeñalB().remove(nodoSig);
+                	environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
         		}
         	}
         }
@@ -254,7 +250,7 @@ public class IrSur extends SearchAction {
         if (puedeIr) {
             environmentState.setposicionAgente(droneState.getubicacionD());
             environmentState.setenergiaAgente(droneState.getenergia());
-            
+System.out.println("FUE AL SUR!!\nPosicion agente: "+environmentState.getposicionAgente().getX()+" "+environmentState.getposicionAgente().getY());
             return environmentState;
         }
 

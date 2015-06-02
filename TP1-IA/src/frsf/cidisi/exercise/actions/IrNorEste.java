@@ -244,7 +244,7 @@ public class IrNorEste extends SearchAction {
                 	droneState.setubicacionD(sigPos);
                 	
                 	puedeIr = true;
-                	droneState.getintensidadSeñalB().remove(nodoSig);
+                	environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
         		}
         	}
         }

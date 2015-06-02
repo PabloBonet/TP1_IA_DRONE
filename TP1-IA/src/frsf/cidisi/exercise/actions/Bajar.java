@@ -48,7 +48,7 @@ public class Bajar extends SearchAction {
 //        				agState.removerCuadranteNivelA(cuadrante);
         				agState.setenergia(agState.getenergia()-1);
         				
-        				//System.out.println("Estado Agente despues de 'bajar' cant señal: "+agState.getintensidadSeñalA().size() + " energia: " + agState.getenergia() + " Posicion: "+ agState.getubicacionD().getX() + " Y: "+agState.getubicacionD().getY());
+//System.out.println("Estado Agente despues de 'bajar a M' cant señal: "+agState.getintensidadSeñalA().size() + " energia: " + agState.getenergia() + " Posicion: X: "+ agState.getubicacionD().getX() + " Y: "+agState.getubicacionD().getY());
         				return agState;
 //        			}
 //        		}
@@ -58,7 +58,7 @@ public class Bajar extends SearchAction {
         	//el agente está en nivel medio
         	else
         	{
-        		//System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
+//System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
 //        		for(NodoLista n: agState.getintensidadSeñalM())
 //        		{
 //        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente

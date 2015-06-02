@@ -225,6 +225,7 @@ public class Grafo {
 	 * @return adyacentes 
 	 */
 	public  ArrayList<Nodo> buscarAdyacentes(Nodo nodoActual) {
+//System.out.println("\tBusc adyac.");
 		ArrayList<Nodo> adyacentes = new ArrayList<Nodo>();
 		for (int indice = 0; indice < listaEnlaces.size(); indice++)
 			if (listaEnlaces.get(indice).getIdNodo1() == nodoActual.getId()){

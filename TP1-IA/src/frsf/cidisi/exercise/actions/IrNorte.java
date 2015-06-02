@@ -124,7 +124,6 @@ public class IrNorte extends SearchAction {
         			
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
-                	droneState.getintensidadSeñalB().remove(nodoSig);
                 	return droneState;
                 	
         		}
@@ -245,9 +244,8 @@ public class IrNorte extends SearchAction {
         			
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
                 	droneState.setubicacionD(sigPos);
-                	droneState.getintensidadSeñalB().remove(nodoSig);
                 	puedeIr = true;
-                	
+                	environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
         		}
         	}
         }

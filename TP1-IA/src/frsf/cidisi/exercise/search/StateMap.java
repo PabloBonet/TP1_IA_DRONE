@@ -63,8 +63,10 @@ public class StateMap extends EnvironmentState {
     			Point ubicacion = new Point();
     			ubicacion.x = n.getPosX();
     			ubicacion.y = n.getPosY();
-
-    			intensidadSeñalB.add(n);
+Nodo nodoNuevo=new Nodo(n.getId(), n.getPosX(), n.getPosY());
+for(Persona p:n.getPersonas())
+	nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
+    			intensidadSeñalB.add(nodoNuevo);
 
     			int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(ubicacion.x, ubicacion.y);
     			int cuadrante = FuncionesAuxiliares.perteneceACuadrante(ubicacion.x, ubicacion.y);

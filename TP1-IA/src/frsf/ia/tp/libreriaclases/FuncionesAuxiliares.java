@@ -333,7 +333,7 @@ public class FuncionesAuxiliares {
 	public static Nodo irEsteBajo(Point ubicacionActual, Grafo subGrafo) {
 
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-
+//System.out.println("En irEsteBajo--");
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al este de la posicion actual y que
 			// este en un rango de +-10
@@ -364,7 +364,8 @@ public class FuncionesAuxiliares {
 		Point centroEsquina = new Point();
 
 		// cálculo de la esquina central
-		double d = ALTO_MAPA, auxD;
+		double d = ALTO_MAPA;
+		double auxD;
 		
 		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
 			
@@ -372,7 +373,7 @@ public class FuncionesAuxiliares {
 					- centroSubCuadrante.y));
 			
 			
-			System.out.println("AUXD: " + auxD);
+System.out.println("AUXD: " + auxD);
 			if (auxD < d) {
 				d = auxD;
 				//centroEsquina.setLocation(n.getPosX(), n.getPosY());
@@ -380,7 +381,7 @@ public class FuncionesAuxiliares {
 				centroEsquina.y = n.getPosY();
 			}
 		}
-		System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y);
+System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y+" para subCuad: "+subCuadrante);
 		if (centroEsquina.getLocation() != null)
 			return centroEsquina;
 
@@ -401,7 +402,7 @@ public class FuncionesAuxiliares {
 		centro.y = ((((subCuadrante / 10) <= 2) ? 1 : 2) * ALTO_CUADRANTE
 				- ((subCuadrante % 10) > 2 ? 1 : 2) * ALTO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE / 2);
 		
-		System.out.println("CENTRO: " + centro.x + " " + centro.y);
+System.out.println("CENTRO: " + centro.x + " " + centro.y);
 		return centro;
 	}
 
@@ -792,6 +793,12 @@ public class FuncionesAuxiliares {
 		return null;
 	}
 
+	/**
+	 * Retorna true si la lista contiene un nodo con el id pasado como parametro
+	 * @param intensidadSeñal
+	 * @param id
+	 * @return
+	 */
 	public static boolean contieneNodoConID(ArrayList<Nodo> intensidadSeñal, int id) {
 		
 		for(Nodo n: intensidadSeñal)
@@ -804,6 +811,12 @@ public class FuncionesAuxiliares {
 		return false;
 	}
 
+	/**
+	 * Retorna true en caso de que todos los nodos de la lista se hayan visitados
+	 * 
+	 * @param intensidadSeñales
+	 * @return
+	 */
 	public static boolean señalesVisitadas( ArrayList<NodoLista> intensidadSeñales) {
 		
 		for(NodoLista n: intensidadSeñales){
@@ -815,6 +828,12 @@ public class FuncionesAuxiliares {
 		return true;
 	}
 	
+	/**
+	 * Retorna true en caso de que todos los nodos de la lista se hayan visitados
+	 * 
+	 * @param intensidadSeñales
+	 * @return
+	 */
 	public static boolean señalesVisitadasB( ArrayList<Nodo> intensidadSeñales) {
 
 		for(Nodo n: intensidadSeñales){

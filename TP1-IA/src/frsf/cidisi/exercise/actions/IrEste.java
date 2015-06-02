@@ -98,7 +98,6 @@ public class IrEste extends SearchAction {
         	}
         	else //Altura "B"
         	{
-//        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0) { 
         			subGrafo = droneState.getGrafoSubCuadrante();
         			Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 
@@ -119,27 +118,18 @@ public class IrEste extends SearchAction {
         				
         			}
         			else
-
         			{
-        				if(droneState.getintensidadSeñalB().contains(nodoSig))
-        				{
-        					droneState.setenergia(energia - 1);
-        				}
-        				else
-        				{
-        					droneState.setenergia(energia - 2);
-        				}
+        				droneState.setenergia(energia - 2);
         			}
 
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
         			droneState.setubicacionD(sigPos);
-        			//droneState.getintensidadSeñalB().remove(nodoSig);
         			return droneState;
 
         		}
         	}
         }
-        
+
         return null;
     }
 
@@ -166,7 +156,7 @@ public class IrEste extends SearchAction {
         
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
-        	
+System.out.println("EN IR ESTE en A---");
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
@@ -193,10 +183,11 @@ public class IrEste extends SearchAction {
         }
         else{
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		
         		sigPos = FuncionesAuxiliares.irEste(posicion, altura);
         		if(sigPos != null)
         		{
+        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado=null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
@@ -246,7 +237,6 @@ public class IrEste extends SearchAction {
 
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
         			droneState.setubicacionD(sigPos);
-        			//droneState.getintensidadSeñalB().remove(nodoSig);
         			puedeIr = true;
         			environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
         		}

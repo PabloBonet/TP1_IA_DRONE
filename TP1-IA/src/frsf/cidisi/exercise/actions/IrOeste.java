@@ -118,7 +118,6 @@ public class IrOeste extends SearchAction {
 
 						sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
 						droneState.setubicacionD(sigPos);
-						droneState.getintensidadSeñalB().remove(nodoSig);
 						return droneState;
 					}
 				}
@@ -232,7 +231,7 @@ public class IrOeste extends SearchAction {
 					droneState.setubicacionD(sigPos);
 
 					puedeIr = true;
-					environmentState.getintensidadSeñalB().remove(nodoSig);
+					environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
 				}
 			}
 		}
