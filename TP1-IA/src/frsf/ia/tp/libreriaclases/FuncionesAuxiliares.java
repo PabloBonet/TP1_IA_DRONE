@@ -365,15 +365,19 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		Point centroSubCuadrante = centroSubcuadranteBajo(subCuadrante);
 		Point centroEsquina = new Point();
 
+		System.out.println("EN EL METODOS CENTRARPOSICIONESQUINA\n\nsubCuadrante: " +subCuadrante +"CentroSubCuadrante: "+centroSubCuadrante.x + " " + centroSubCuadrante.y);
 		// cálculo de la esquina central
 		double d = ALTO_MAPA;
 		double auxD;
-		
+		System.out.println("cantidad de nodos: " + grafoSubCuadrante.getListaNodos().size());
 		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
 			
 			auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
 					- centroSubCuadrante.y));
 			
+			
+			
+					//calcularDistanciaEntrePuntos();
 			
 System.out.println("AUXD: " + auxD);
 			if (auxD < d) {

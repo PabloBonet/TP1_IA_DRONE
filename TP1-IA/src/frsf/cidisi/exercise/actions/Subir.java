@@ -9,6 +9,8 @@ import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.cidisi.faia.state.AgentState;
 import frsf.cidisi.faia.state.EnvironmentState;
 import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
+import frsf.ia.tp.libreriaclases.Nodo;
+import frsf.ia.tp.libreriaclases.NodoLista;
 
 public class Subir extends SearchAction {
 
@@ -27,20 +29,45 @@ public class Subir extends SearchAction {
         if(agState.getenergia() > 1){
         	Point ubucacion = agState.getubicacionD();
         	String altura = agState.getaltura();
-        	int cuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+        	int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+        	int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(ubucacion.x, ubucacion.y);
         	//si no hay intensidad de señal para ese cuadrante de nivel bajo
         	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
-        	if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
+        	//if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
+        	if(altura == "B" )
+        	{
+        		
+        		for(Nodo n: agState.getintensidadSeñalB())
+        		{
+        			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadranteActual)
+        			{
+        				if(!n.getVisitado())
+        					return null;
+        			}
+        		}
         		agState.setaltura("M");
         		agState.setenergia(agState.getenergia()-2);
-        		return s;
+        		return agState;
         	}
         	//si no hay intensidad de señal para ese cuadrante de nivel medio
         	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
-        	else if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
-        		agState.setaltura("A");
-        		agState.setenergia(agState.getenergia()-2);
-        		return s;
+        	else //if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
+        	{
+        		if(altura == "M" )
+        		{
+        			for(NodoLista n: agState.getintensidadSeñalM())
+            		{
+            			if(n.getCuadrante() == cuadranteActual)
+            			{
+            				if(!n.getVisitado())
+            					return null;
+            			}
+            		}
+        			agState.setaltura("A");
+            		agState.setenergia(agState.getenergia()-2);
+            		return agState;
+        		}
+        		
         	}
         }
         
@@ -62,23 +89,52 @@ public class Subir extends SearchAction {
         if(agState.getenergia() > 1){
         	Point ubucacion = agState.getubicacionD();
         	String altura = agState.getaltura();
-        	int cuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+        	int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+        	int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(ubucacion.x, ubucacion.y);
         	//si no hay intensidad de señal para ese cuadrante de nivel bajo
         	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
-        	if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
+        	if(altura == "B" )
+        	{
+        		
+        		for(Nodo n: agState.getintensidadSeñalB())
+        		{
+        			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadranteActual)
+        			{
+        				if(!n.getVisitado())
+        					return null;
+        			}
+        		}
         		agState.setaltura("M");
         		agState.setenergia(agState.getenergia()-2);
         		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
+        		environmentState.setAlturaAgente("M");
         		return environmentState;
         	}
+        	
         	//si no hay intensidad de señal para ese cuadrante de nivel medio
         	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
-        	else if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
-        		agState.setaltura("A");
-        		agState.setenergia(agState.getenergia()-2);
-        		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
-        		return environmentState;
+        	else //if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
+        	{
+        		if(altura == "M" )
+        		{
+        			for(NodoLista n: agState.getintensidadSeñalM())
+            		{
+            			if(n.getCuadrante() == cuadranteActual)
+            			{
+            				if(!n.getVisitado())
+            					return null;
+            			}
+            		}
+        			agState.setaltura("A");
+            		agState.setenergia(agState.getenergia()-2);
+            		environmentState.setAlturaAgente("A");
+            		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
+            		return environmentState;
+        		}
+        		
         	}
+        	
+        	
         }
 
         return null;

@@ -32,7 +32,7 @@ public class Bajar extends SearchAction {
         {
         	//System.out.println("EN BAJAR! IntensidadSeñalA: cantidad: "+agState.getintensidadSeñalA().size());
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
-    		int cuadrante = subCuadrante/10;
+    		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y);
         	if(altura == "A")
         	{
         		//System.out.println("SubCuaddrante: "+subCuadrante);
@@ -57,6 +57,7 @@ public class Bajar extends SearchAction {
         	}
         	//el agente está en nivel medio
         	else
+        		
         	{
 //        		if(!FuncionesAuxiliares.señalesVisitadasB(agState.getintensidadSeñalB()))
 //        		{
@@ -65,11 +66,14 @@ public class Bajar extends SearchAction {
 //        		{
 //        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
 //        			if(subCuadrante == n.getCuadrante())
-//        			{
+        			{
         				agState.setaltura("B");
         				Point esquinaCentro = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
+        				
+        				
         				if(esquinaCentro != null)
         				{
+        				
         					agState.setubicacionD(esquinaCentro);
         					//elimina el nodo de la lista de señal de nivel medio del agente
         					//        				agState.removerCuadranteNivelM(subCuadrante);
@@ -81,6 +85,7 @@ public class Bajar extends SearchAction {
         					//System.out.println("\nAltura: "+agState.getaltura()+ " posicion: "+agState.getubicacionD().x + " "+agState.getubicacionD().y);
         					return agState;
         				}
+        				
 //        			}
 //        		}
 //        		//la lista de intensidad de señal de nivel alto está vacía 
@@ -88,7 +93,8 @@ public class Bajar extends SearchAction {
         	}
 //        }
         }
-
+        	
+        }
         return null;
     }
 
