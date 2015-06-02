@@ -150,7 +150,8 @@ public class StateDrone extends SearchBasedAgentState {
 
     		 for(Nodo n : listaIB)
     		 {
-    			 intensidadSeñalB.add(n);
+    			 if(!n.getVisitado())
+    				 intensidadSeñalB.add(n);
     		 }
     		 
     		 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
