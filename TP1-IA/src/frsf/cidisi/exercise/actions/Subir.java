@@ -57,7 +57,7 @@ public class Subir extends SearchAction {
         		{
         			for(NodoLista n: agState.getintensidadSeñalM())
             		{
-            			if(n.getCuadrante() == cuadranteActual)
+            			if(FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y) == cuadranteActual)
             			{
             				if(!n.getVisitado())
             					return null;
@@ -119,7 +119,7 @@ public class Subir extends SearchAction {
         		{
         			for(NodoLista n: agState.getintensidadSeñalM())
             		{
-            			if(n.getCuadrante() == cuadranteActual)
+        				if(FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y) == cuadranteActual)
             			{
             				if(!n.getVisitado())
             					return null;
