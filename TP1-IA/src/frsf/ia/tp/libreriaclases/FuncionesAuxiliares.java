@@ -792,4 +792,38 @@ public class FuncionesAuxiliares {
 		return null;
 	}
 
+	public static boolean contieneNodoConID(ArrayList<Nodo> intensidadSeñal, int id) {
+		
+		for(Nodo n: intensidadSeñal)
+		{
+			if(n.getId() == id)
+			{
+				return true;	
+			}
+		}
+		return false;
+	}
+
+	public static boolean señalesVisitadas( ArrayList<NodoLista> intensidadSeñales) {
+		
+		for(NodoLista n: intensidadSeñales){
+			if(!n.getVisitado())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	public static boolean señalesVisitadasB( ArrayList<Nodo> intensidadSeñales) {
+
+		for(Nodo n: intensidadSeñales){
+			if(!n.getVisitado())
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
 }

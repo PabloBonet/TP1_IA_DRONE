@@ -11,6 +11,8 @@ public class Nodo {
 	/** El posicion del nodo: posX, posY. */
 	private int posX;
 	private int posY;
+
+	private boolean visitado;
 	
 	/** Lista de personas ubicadas en el nodo. */
 	private List<Persona> personas;
@@ -32,6 +34,7 @@ public class Nodo {
 		this.posX = pX;
 		this.posY = pY;
 		this.personas = new  ArrayList<Persona>();
+		this.visitado = false;
 	}
 	
 	public int getId()
@@ -58,5 +61,15 @@ public class Nodo {
 	{
 		
 		this.personas.add(p);
+	}
+	
+	public void visitar()
+	{
+		this.visitado = true;
+	}
+	
+	public boolean getVisitado()
+	{
+		return visitado;
 	}
 }

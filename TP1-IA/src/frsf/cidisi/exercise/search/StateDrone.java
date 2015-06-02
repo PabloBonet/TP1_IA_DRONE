@@ -150,7 +150,8 @@ public class StateDrone extends SearchBasedAgentState {
 
     		 for(Nodo n : listaIB)
     		 {
-    			 intensidadSeñalB.add(n);
+    			 if(!n.getVisitado())
+    				 intensidadSeñalB.add(n);
     		 }
     		 
     		 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
@@ -215,13 +216,13 @@ public class StateDrone extends SearchBasedAgentState {
         
         str += "Intensidad de señal\nNivel Alto \n";
         for(int i=0; i<intensidadSeñalA.size();i++)
-        	str += "\tCuadrante: "+intensidadSeñalA.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalA.get(i).getIntensidad()+"\n";
+        	str += "\tCuadrante: "+intensidadSeñalA.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalA.get(i).getIntensidad()+", Fue visitado: "+ intensidadSeñalA.get(i).getVisitado()+"\n";
         str += "Nivel Medio \n";
         for(int i=0; i<intensidadSeñalM.size();i++)
-        	str += "\tCuadrante: "+intensidadSeñalM.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalM.get(i).getIntensidad()+"\n";
+        	str += "\tCuadrante: "+intensidadSeñalM.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalM.get(i).getIntensidad()+", Fue visitado: "+ intensidadSeñalM.get(i).getVisitado()+"\n";
         str += "Nivel Bajo \n";
         for(int i=0; i<intensidadSeñalB.size();i++)
-        	str += "\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
+        	str += "\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+", Fue visitado: "+ intensidadSeñalB.get(i).getVisitado()+"\n";
         str += "Dirección: "+this.direccion+"\n";
         str += "Victimario (ID): ";
         if(victimario != null)
