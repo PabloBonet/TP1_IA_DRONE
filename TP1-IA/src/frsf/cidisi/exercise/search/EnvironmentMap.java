@@ -62,6 +62,7 @@ public class EnvironmentMap extends Environment {
     		}
     		else
     		{
+    			gps.cargarGrafoCuadrante(this.getEnvironmentState().getgrafoMapa());
     			AntenaNMA antena = new AntenaNMA(this.getEnvironmentState().getintensidadSeñalM());
         		perception.setantena(antena);
     		}

@@ -71,15 +71,20 @@ public class Gps {
 		
 	}
 
+	/**
+	 * Carga la parte del grafo correspondiente al cuadrante en donde esta ubicado el agente (cuadrante 1, 2, 3 o 4)
+	 * 
+	 * @param grafoMapa
+	 */
 	public void cargarGrafoCuadrante(Grafo grafoMapa) {
 		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(posiciongps.x, posiciongps.y);
 
 		ArrayList<Nodo> nodos = grafoMapa.getListaNodos();
 		ArrayList<Enlace> enlaces = grafoMapa.getListaEnlaces();
 		
-		//agrego los nodos que pertenecen al subcuadrante
+		//agrego los nodos que pertenecen al cuadrante
 		for(Nodo n: nodos){
-			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == cuadrante)
+			if(FuncionesAuxiliares.perteneceACuadrante(n.getPosX(), n.getPosY()) == cuadrante)
 			{
 				this.grafoSubCuadrante.getListaNodos().add(n);
 				System.out.println("Nodo: " +n.getId());

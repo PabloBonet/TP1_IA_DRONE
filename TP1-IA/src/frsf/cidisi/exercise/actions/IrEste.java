@@ -92,28 +92,31 @@ public class IrEste extends SearchAction {
             			return droneState;
             		}
         		}
-        	}else //Altura "B"
-        	{
-        		subGrafo = droneState.getGrafoSubCuadrante();
-        		Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
-
-        		if(nodoSig != null)
-        		{
-        			if(droneState.getintensidadSeñalB().contains(nodoSig))
-        			{
-        				droneState.setenergia(energia - 1);
-        			}
-        			else
-        			{
-        				droneState.setenergia(energia - 2);
-        			}
-
-        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
-        			droneState.setubicacionD(sigPos);
-        			droneState.getintensidadSeñalB().remove(nodoSig);
-        			return droneState;
-        		}
         	}
+        	else //Altura "B"
+        	{
+//        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0) { 
+        			subGrafo = droneState.getGrafoSubCuadrante();
+        			Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
+
+        			if(nodoSig != null)
+        			{
+        				if(droneState.getintensidadSeñalB().contains(nodoSig))
+        				{
+        					droneState.setenergia(energia - 1);
+        				}
+        				else
+        				{
+        					droneState.setenergia(energia - 2);
+        				}
+
+        				sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+        				droneState.setubicacionD(sigPos);
+        				droneState.getintensidadSeñalB().remove(nodoSig);
+        				return droneState;
+        			}
+        		}
+//        	}
         }
         
         return null;
