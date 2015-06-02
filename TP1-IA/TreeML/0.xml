@@ -4,7 +4,7 @@ Altura: A
 Ubicaci&#243;n: 1
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140
+	Cuadrante: 2	Intensidad: 140, Fue visitado: true
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -17,7 +17,7 @@ Altura: A
 Ubicaci&#243;n: 2
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140
+	Cuadrante: 2	Intensidad: 140, Fue visitado: true
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -30,7 +30,7 @@ Altura: M
 Ubicaci&#243;n: 11
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140
+	Cuadrante: 2	Intensidad: 140, Fue visitado: true
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -43,7 +43,7 @@ Altura: M
 Ubicaci&#243;n: 21
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140
+	Cuadrante: 2	Intensidad: 140, Fue visitado: true
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -55,7 +55,7 @@ Energ&#237;a: 998
 Altura: B
 Ubicaci&#243;n: Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140
+	Cuadrante: 2	Intensidad: 140, Fue visitado: true
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -68,7 +68,7 @@ Altura: A
 Ubicaci&#243;n: 2
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140
+	Cuadrante: 2	Intensidad: 140, Fue visitado: true
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
