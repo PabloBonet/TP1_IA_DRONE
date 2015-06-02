@@ -125,6 +125,7 @@ public class FuncionesAuxiliares {
 	 * 			Si el cuadrante no pertenece a ninguna posicion retorna null
 	 */
 	public static Point bajarASubCuadranteM(int cuadrante) {
+System.out.print("bajarASubCuadranteM. Cuadrante: "+cuadrante);
 		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
 		Point nuevaPos = new Point();
 		switch (cuadrante) {
@@ -143,6 +144,7 @@ public class FuncionesAuxiliares {
 		default:
 			return null;
 		}
+System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		return nuevaPos;
 	}
 
@@ -381,10 +383,10 @@ System.out.println("AUXD: " + auxD);
 				centroEsquina.y = n.getPosY();
 			}
 		}
-System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y+" para subCuad: "+subCuadrante);
-		if (centroEsquina.getLocation() != null)
+System.out.print("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y+" para subCuad: "+subCuadrante);
+		if (centroEsquina.x != 0) //si se seteó una posición centro
 			return centroEsquina;
-
+System.out.println("\tnull");
 		return null;
 	}
 

@@ -58,6 +58,8 @@ public class Bajar extends SearchAction {
         	//el agente está en nivel medio
         	else
         	{
+//        		if(!FuncionesAuxiliares.señalesVisitadasB(agState.getintensidadSeñalB()))
+//        		{
 //System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
 //        		for(NodoLista n: agState.getintensidadSeñalM())
 //        		{
@@ -65,21 +67,26 @@ public class Bajar extends SearchAction {
 //        			if(subCuadrante == n.getCuadrante())
 //        			{
         				agState.setaltura("B");
-                		agState.setubicacionD(FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante()));
-                		//elimina el nodo de la lista de señal de nivel medio del agente
-//        				agState.removerCuadranteNivelM(subCuadrante);
-        				//Point uAgente = new Point(370,215);
-        				//agState.setubicacionD(uAgente);
-        				
-        				agState.setenergia(agState.getenergia()-1);
-        				        	
-        				//System.out.println("\nAltura: "+agState.getaltura()+ " posicion: "+agState.getubicacionD().x + " "+agState.getubicacionD().y);
-        				return agState;
+        				Point esquinaCentro = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
+        				if(esquinaCentro != null)
+        				{
+        					agState.setubicacionD(esquinaCentro);
+        					//elimina el nodo de la lista de señal de nivel medio del agente
+        					//        				agState.removerCuadranteNivelM(subCuadrante);
+        					//Point uAgente = new Point(370,215);
+        					//agState.setubicacionD(uAgente);
+
+        					agState.setenergia(agState.getenergia()-1);
+
+        					//System.out.println("\nAltura: "+agState.getaltura()+ " posicion: "+agState.getubicacionD().x + " "+agState.getubicacionD().y);
+        					return agState;
+        				}
 //        			}
 //        		}
 //        		//la lista de intensidad de señal de nivel alto está vacía 
 //        		return null;
         	}
+//        }
         }
 
         return null;
@@ -140,17 +147,20 @@ public class Bajar extends SearchAction {
         				
         				//VER 
         				Point uAgente = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
-                		agState.setubicacionD(uAgente);
-        				environmentState.setposicionAgente(uAgente);
-//                		
-        				//Point uAgente = new Point(370,215);
-        				//agState.setubicacionD(uAgente);
-        				//environmentState.setposicionAgente(uAgente);
-        				//elimina el nodo de la lista de señal de nivel medio del agente
-//        				agState.removerCuadranteNivelM(subCuadrante);
-        				agState.setenergia(agState.getenergia()-1);
-        				environmentState.setenergiaAgente(environmentState.getenergiaAgente()-1);
-        				return environmentState;
+        				if(uAgente != null)
+        				{
+        					agState.setubicacionD(uAgente);
+        					environmentState.setposicionAgente(uAgente);
+        					//                		
+        					//Point uAgente = new Point(370,215);
+        					//agState.setubicacionD(uAgente);
+        					//environmentState.setposicionAgente(uAgente);
+        					//elimina el nodo de la lista de señal de nivel medio del agente
+        					//        				agState.removerCuadranteNivelM(subCuadrante);
+        					agState.setenergia(agState.getenergia()-1);
+        					environmentState.setenergiaAgente(environmentState.getenergiaAgente()-1);
+        					return environmentState;
+        				}
 //        			}
 //        		}
 //        		//la lista de intensidad de señal de nivel alto está vacía 

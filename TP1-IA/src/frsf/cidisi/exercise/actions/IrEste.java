@@ -43,14 +43,15 @@ public class IrEste extends SearchAction {
         
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
-        	
+
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
         		NodoLista encontrado=null;
+System.out.print("Ir Este (arbol)---- Señal A: ");
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
-        			
+System.out.print(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; ");
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
         				n.visitar();

@@ -74,22 +74,22 @@ public class StateDrone extends SearchBasedAgentState {
 
     	for(NodoLista n: this.intensidadSeñalA)
     	{
-    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
-    		nuevaIntensidadSeñalA.add(nodoNuevo);
+//    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		nuevaIntensidadSeñalA.add(n);
     	}
     	
     	for(NodoLista n: this.intensidadSeñalM)
     	{
-    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
-    		nuevaIntensidadSeñalM.add(nodoNuevo);
+//    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		nuevaIntensidadSeñalM.add(n);
     	}
     	
     	for(Nodo n: this.intensidadSeñalB)
     	{
-    		Nodo nodoNuevo = new Nodo(n.getId(), n.getPosX(), n.getPosY());
-    		for(Persona p: n.getPersonas())
-    			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
-    		nuevaIntensidadSeñalB.add(nodoNuevo);
+//    		Nodo nodoNuevo = new Nodo(n.getId(), n.getPosX(), n.getPosY());
+//    		for(Persona p: n.getPersonas())
+//    			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
+    		nuevaIntensidadSeñalB.add(n);
     	}
     	/*
     	for(Persona p: this.victimarios)
