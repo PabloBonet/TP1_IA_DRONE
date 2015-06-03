@@ -365,11 +365,11 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		Point centroSubCuadrante = centroSubcuadranteBajo(subCuadrante);
 		Point centroEsquina = new Point();
 
-System.out.println("EN EL METODOS CENTRARPOSICIONESQUINA\n\tsubCuadrante: " +subCuadrante +"CentroSubCuadrante: "+centroSubCuadrante.x + " " + centroSubCuadrante.y);
+//System.out.println("EN EL METODOS CENTRARPOSICIONESQUINA\n\nsubCuadrante: " +subCuadrante +"CentroSubCuadrante: "+centroSubCuadrante.x + " " + centroSubCuadrante.y);
 		// cálculo de la esquina central
 		double d = ALTO_MAPA;
 		double auxD;
-System.out.println("cantidad de nodos: " + grafoSubCuadrante.getListaNodos().size());
+//System.out.println("cantidad de nodos: " + grafoSubCuadrante.getListaNodos().size());
 		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
 			
 			auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
@@ -387,20 +387,20 @@ System.out.println("cantidad de nodos: " + grafoSubCuadrante.getListaNodos().siz
 				centroEsquina.y = n.getPosY();
 			}
 		}
-System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y+" para subCuad: "+subCuadrante);
+//System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y+" para subCuad: "+subCuadrante);
 
-		//Solo para mostrar, selecciona el nodo que baja
-		for(Nodo n: grafoSubCuadrante.getListaNodos())
-		{
-			if(n.getPosX() == centroEsquina.x && n.getPosY() == centroEsquina.y)
-			{
-System.out.println("Nodo al que baja: " + n.getId());
-				break;
-			}
-		}
+//Solo para mostrar, selecciona el nodo que baja
+/*for(Nodo n: grafoSubCuadrante.getListaNodos())
+{
+	if(n.getPosX() == centroEsquina.x && n.getPosY() == centroEsquina.y)
+	{
+		System.out.println("Nodo al que baja: " + n.getId());
+		break;
+	}
+}*/
 		if (centroEsquina.x >= 0 && centroEsquina.y >= 0) //si se seteó una posición centro
 			return centroEsquina;
-System.out.println("\tnull (en centrarPosicionEsquina)");
+
 		return null;
 	}
 
