@@ -52,7 +52,7 @@ public class IrEste extends SearchAction {
 //ystem.out.println("Posicion: "+ droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
-System.out.println(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; ");
+//System.out.println(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; ");
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
         			//	n.visitar();
@@ -74,8 +74,8 @@ System.out.println(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+";
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
         		
         		Point sigPos = FuncionesAuxiliares.irEste(posicion, altura);
-        		System.out.println("Ir Este (arbol)---- Señal B: ");
-        		System.out.println("Posicion: "+ droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
+        		//System.out.println("Ir Este (arbol)---- Señal B: ");
+        		//System.out.println("Posicion: "+ droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
         		if(sigPos != null)
         		{
         			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);

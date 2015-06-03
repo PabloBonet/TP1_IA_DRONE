@@ -74,21 +74,21 @@ public class StateDrone extends SearchBasedAgentState {
 
     	for(NodoLista n: this.intensidadSeñalA)
     	{
-    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad(), n.getVisitado());
     		nuevaIntensidadSeñalA.add(nodoNuevo);
     //		nuevaIntensidadSeñalA.add(n);
     	}
     	
     	for(NodoLista n: this.intensidadSeñalM)
     	{
-    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad(), n.getVisitado());
     		nuevaIntensidadSeñalM.add(nodoNuevo);
     		//nuevaIntensidadSeñalM.add(n);
     	}
     	
     	for(Nodo n: this.intensidadSeñalB)
     	{
-    		Nodo nodoNuevo = new Nodo(n.getId(), n.getPosX(), n.getPosY());
+    		Nodo nodoNuevo = new Nodo(n.getId(), n.getPosX(), n.getPosY(), n.getVisitado());
     		for(Persona p: n.getPersonas())
     			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
     		nuevaIntensidadSeñalB.add(nodoNuevo);
@@ -108,7 +108,7 @@ public class StateDrone extends SearchBasedAgentState {
     	ArrayList<Nodo> nodosNuevo = new ArrayList<Nodo>();
     	ArrayList<Enlace> enlacesNuevo = new ArrayList<Enlace>();
     	for(Nodo n: this.grafoSubCuadrante.getListaNodos())
-    		nodosNuevo.add(new Nodo(n.getId(), n.getPosX(), n.getPosY()));
+    		nodosNuevo.add(new Nodo(n.getId(), n.getPosX(), n.getPosY(), n.getVisitado()));
     	for(Enlace e: this.grafoSubCuadrante.getListaEnlaces())
     		enlacesNuevo.add(new Enlace(e.getIdNodo1(), e.getIdNodo2(), e.getPeso()));
     	Grafo subGrafo = new Grafo(nodosNuevo, enlacesNuevo);

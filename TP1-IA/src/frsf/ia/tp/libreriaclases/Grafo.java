@@ -116,7 +116,7 @@ public class Grafo {
 	
 		if(this.validarNodoNoRepetido(idNodo )) //si True entonces no existe y lo crea
 		{
-			this.listaNodos.add(new Nodo(idNodo, posX, posY));
+			this.listaNodos.add(new Nodo(idNodo, posX, posY, false));
 			return true;
 		}
 		

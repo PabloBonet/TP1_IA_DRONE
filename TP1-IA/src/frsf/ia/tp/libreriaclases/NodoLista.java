@@ -14,14 +14,15 @@ public class NodoLista {
 	{
 		super();
 	}
-	public NodoLista(int cuadrante, int intensidad)
+	public NodoLista(int cuadrante, int intensidad, boolean visitado)
 	{
 		super();
 		this.cuadrante = cuadrante;
 		this.intensidad = intensidad;
-		this.visitado = false;
+		this.visitado = visitado;
 	}
 
+	
 	public boolean getVisitado()
 	{
 		return visitado;

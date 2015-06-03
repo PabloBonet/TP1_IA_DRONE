@@ -419,7 +419,7 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		centro.y = ((((subCuadrante / 10) <= 2) ? 1 : 2) * ALTO_CUADRANTE
 				- ((subCuadrante % 10) > 2 ? 1 : 2) * ALTO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE / 2);
 		
-System.out.println("CENTRO: " + centro.x + " " + centro.y);
+//System.out.println("CENTRO: " + centro.x + " " + centro.y);
 		return centro;
 	}
 

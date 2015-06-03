@@ -38,27 +38,27 @@ public class Bajar extends SearchAction {
     			agState.setubicacionD(FuncionesAuxiliares.bajarASubCuadranteM(cuadrante));
     			agState.setenergia(agState.getenergia()-1);
     			
-System.out.println("bajar a M (en arbol)");
+//System.out.println("bajar a M (en arbol)");
     			return agState;
     		}
         	//el agente está en nivel medio
     		else
     		{
-System.out.println("Esta en nivel medio (de bajar). Cuadrante: "+cuadrante+"; subCuadrante: " + subCuadrante);	
+//System.out.println("Esta en nivel medio (de bajar). Cuadrante: "+cuadrante+"; subCuadrante: " + subCuadrante);	
         		boolean tieneSeñal = false;
         		//revisa si el cuadrante tiene señal
         		for(NodoLista n: agState.getintensidadSeñalM())
         		{
-System.out.println("n.getCuadrante(): "+n.getCuadrante()+" if("+n.getCuadrante()+"=="+subCuadrante+")");
+//System.out.println("n.getCuadrante(): "+n.getCuadrante()+" if("+n.getCuadrante()+"=="+subCuadrante+")");
         			//if(n.getCuadrante()/10 == cuadrante && !n.getVisitado())
 					if(n.getCuadrante() == subCuadrante && !n.getVisitado())
         			{
-System.out.println("\t### y bajaría a bajo!!");
+//System.out.println("\t### y bajaría a bajo!!");
         				tieneSeñal = true;
         				break;
         			}
         		}
-System.out.println("Despues de for");	
+//System.out.println("Despues de for");	
 //        		if(!FuncionesAuxiliares.señalesVisitadasB(agState.getintensidadSeñalB()))
 //        		{
 //System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
@@ -70,12 +70,12 @@ System.out.println("Despues de for");
         		{
         			agState.setaltura("B");
         			Point esquinaCentro = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
-System.out.println("EsqCentro en Bajar: "+esquinaCentro.x+"-"+esquinaCentro.y);
+//System.out.println("EsqCentro en Bajar: "+esquinaCentro.x+"-"+esquinaCentro.y);
         			if(esquinaCentro != null)
         			{
         				agState.setubicacionD(esquinaCentro);
         				agState.setenergia(agState.getenergia()-1);
-System.out.println("Retorna: Bajar");
+//System.out.println("Retorna: Bajar");
         					return agState;
         				}
         	}

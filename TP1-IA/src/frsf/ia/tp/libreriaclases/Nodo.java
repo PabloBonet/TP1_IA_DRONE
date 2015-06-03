@@ -28,13 +28,13 @@ public class Nodo {
 	 * @param pY
 	 * 			  Posición Y del nodo
 	 */
-	public Nodo(int idNodo, int pX, int pY) {
+	public Nodo(int idNodo, int pX, int pY, boolean visitado) {
 		super();
 		this.id = idNodo;
 		this.posX = pX;
 		this.posY = pY;
 		this.personas = new  ArrayList<Persona>();
-		this.visitado = false;
+		this.visitado = visitado;
 	}
 	
 	public int getId()

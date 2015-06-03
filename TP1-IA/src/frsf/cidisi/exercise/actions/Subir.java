@@ -37,7 +37,7 @@ public class Subir extends SearchAction {
         	//if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
         	if(altura == "B" )
         	{
-System.out.println("Esta en nivel bajo (de subir). cuadrante: " + subCuadranteActual+" tam señB: "+agState.getintensidadSeñalB().size()+" Ag pos: "+agState.getubicacionD().x+"-"+agState.getubicacionD().y);
+//System.out.println("Esta en nivel bajo (de subir). cuadrante: " + subCuadranteActual+" tam señB: "+agState.getintensidadSeñalB().size()+" Ag pos: "+agState.getubicacionD().x+"-"+agState.getubicacionD().y);
 
         		/*for(Nodo n: agState.getintensidadSeñalB())
         		{
@@ -53,19 +53,19 @@ System.out.println("nodo no visitado: " + n.getId());
 */
 			if(FuncionesAuxiliares.señalesVisitadasB(((StateDrone)agState).getintensidadSeñalB()))
 				{	
-        		System.out.println("TAmaño intensidadM: " + agState.getintensidadSeñalM().size());
+//        		System.out.println("TAmaño intensidadM: " + agState.getintensidadSeñalM().size());
         	
         		//Marca el cuadrante de nivel superior como visitado
     			for(NodoLista n: agState.getintensidadSeñalM())
     			{
-    				System.out.println("Nodo: "+ n.getCuadrante());
-    				System.out.println("sub cuadrante actual: " + subCuadranteActual);
+//    				System.out.println("Nodo: "+ n.getCuadrante());
+//    				System.out.println("sub cuadrante actual: " + subCuadranteActual);
     				if(n.getCuadrante() == subCuadranteActual) //agregando condicion !n.getVisitado() no veo cambios..
     				{
-System.out.println("marca cuadrante de nivel superior: " + subCuadranteActual + " como visitado. Ag pos: "+agState.getubicacionD().x+"-"+agState.getubicacionD().y);
+//System.out.println("marca cuadrante de nivel superior: " + subCuadranteActual + " como visitado. Ag pos: "+agState.getubicacionD().x+"-"+agState.getubicacionD().y);
 					n.visitar();
 
-System.out.print("\t## bien: visita señalM\n");
+//System.out.print("\t## bien: visita señalM\n");
     					break;
     				}
     			}
@@ -74,8 +74,8 @@ System.out.print("\t## bien: visita señalM\n");
         		
         		agState.setenergia(agState.getenergia()-2);
 
-        		System.out.println("ALTURA NUEVA: " + agState.getaltura());
-        		System.out.println("Posicion: " + agState.getubicacionD().x + " " + agState.getubicacionD().y);
+//        		System.out.println("ALTURA NUEVA: " + agState.getaltura());
+//        		System.out.println("Posicion: " + agState.getubicacionD().x + " " + agState.getubicacionD().y);
         		
 
         		return agState;
@@ -87,8 +87,8 @@ System.out.print("\t## bien: visita señalM\n");
         	{
         		if(altura == "M")
         		{
-        			System.out.println("Altura: " + altura);
-        			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
+//        			System.out.println("Altura: " + altura);
+//        			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
         			if(FuncionesAuxiliares.señalesVisitadas(((StateDrone)agState).getintensidadSeñalM()))
         			{
         				//Marca el cuadrante de nivel superior como visitado
@@ -105,7 +105,7 @@ System.out.print("\t## bien: visita señalM\n");
                     		
                     		for(NodoLista n: agState.getintensidadSeñalA())
                     		{
-    System.out.println("Nodo lista " + n.getCuadrante()+ " fue visitado: " + n.getVisitado());
+//    System.out.println("Nodo lista " + n.getCuadrante()+ " fue visitado: " + n.getVisitado());
                     		}
                     		
                     		return agState;	

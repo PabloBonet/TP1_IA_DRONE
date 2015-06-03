@@ -54,7 +54,7 @@ public class Converter {
 				// Creo una instancia de Nodo y lo agrego a la lista de nodos
 				Nodo nodo = new Nodo(Integer.parseInt(listaDeDatos.get(i).get(1)),
 									 Integer.parseInt(listaDeDatos.get(i).get(2)),
-									 Integer.parseInt(listaDeDatos.get(i).get(3)));
+									 Integer.parseInt(listaDeDatos.get(i).get(3)), false);
 				//lo agrego a la lista de nodos
 				listaNodos.add(nodo);
 			}

@@ -63,9 +63,9 @@ public class StateMap extends EnvironmentState {
     			Point ubicacion = new Point();
     			ubicacion.x = n.getPosX();
     			ubicacion.y = n.getPosY();
-Nodo nodoNuevo=new Nodo(n.getId(), n.getPosX(), n.getPosY());
-for(Persona p:n.getPersonas())
-	nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
+    			Nodo nodoNuevo=new Nodo(n.getId(), n.getPosX(), n.getPosY(), n.getVisitado());
+    			for(Persona p:n.getPersonas())
+    				nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
     			intensidadSeñalB.add(nodoNuevo);
 
     			int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(ubicacion.x, ubicacion.y);
@@ -91,7 +91,7 @@ for(Persona p:n.getPersonas())
     			{
     				//crea un nodo para el subCuadrante y lo agrega a la lista de nivel medio
     				intensidad = n.getPersonas().size()*20; 
-    				NodoLista nodo = new NodoLista(subCuadrante, intensidad);
+    				NodoLista nodo = new NodoLista(subCuadrante, intensidad, n.getVisitado());
     				intensidadSeñalM.add(nodo);
     			}
     			
@@ -119,7 +119,7 @@ for(Persona p:n.getPersonas())
     			{
     				//crea un nodo para el cuadrante y lo agrega a la lista de nivel alto
     				intensidad = n.getPersonas().size()*10; 
-    				NodoLista nodo = new NodoLista(cuadrante, intensidad);
+    				NodoLista nodo = new NodoLista(cuadrante, intensidad, n.getVisitado());
     				intensidadSeñalA.add(nodo);
     			}
     		}

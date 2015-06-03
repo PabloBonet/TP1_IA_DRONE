@@ -144,11 +144,13 @@ System.out.println("Se carga el grafoSubCuadrante!!! Pos: "+posicionAgente.x+" "
     	  
     	   for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
     	   {
-    		   ArrayList<Nodo> intensidades = ((AntenaNB)this.antena.getIntensidadSeñal().get(i)).getIntensidadSeñal();
-    		   
-    		   for(Nodo n: intensidades)
-    		   {
-    			   str.append("\n\tNodo: "+ n.getId());
+    		   if(this.antena.getIntensidadSeñal().get(i) instanceof AntenaNB){
+    			   ArrayList<Nodo> intensidadesN = ((AntenaNB)this.antena.getIntensidadSeñal().get(i)).getIntensidadSeñal();
+
+    			   for(Nodo n: intensidadesN)
+    			   {
+    				   str.append("\n\tNodo: "+ n.getId()+" Cantidad personas: "+n.getPersonas().size());
+    			   }
     		   }
     	   }
     	   
