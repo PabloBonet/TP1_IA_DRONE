@@ -52,12 +52,14 @@ System.out.println("Esta en nivel bajo (de subir). cuadrante: " + subCuadranteAc
         		}
 
 
-        		
+        		System.out.println("TAmaño intensidadM: " + agState.getintensidadSeñalM().size());
         	
         		//Marca el cuadrante de nivel superior como visitado
     			for(NodoLista n: agState.getintensidadSeñalM())
     			{
-    				if(n.getCuadrante() == subCuadranteActual) //agregando condicion !n.getVisitado() no veo cambios..
+    				System.out.println("Nodo: "+ n.getCuadrante());
+    				System.out.println("sub cuadrante actual: " + subCuadranteActual);
+    				if(n.getCuadrante() == subCuadranteActual && !n.getVisitado()) //agregando condicion !n.getVisitado() no veo cambios..
     				{
     					System.out.println("marca cuadrante de nivel superior: " + subCuadranteActual + " como visitado");
     					n.visitar();
@@ -71,23 +73,52 @@ System.out.print("\t## bien: visita señalM\n");
         		agState.setenergia(agState.getenergia()-2);
         		System.out.println("ALTURA NUEVA: " + agState.getaltura());
         		System.out.println("Posicion: " + agState.getubicacionD().x + " " + agState.getubicacionD().y);
+        		
         		return agState;
         	}
         	//si no hay intensidad de señal para ese cuadrante de nivel medio
         	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
+        	else
+        	{
+        		if(altura == "M")
+        		{
+        			System.out.println("Altura: " + altura);
+        			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
+        			if(FuncionesAuxiliares.señalesVisitadas(((StateDrone)agState).getintensidadSeñalM()))
+        			{
+        				//Marca el cuadrante de nivel superior como visitado
+            			for(NodoLista n: agState.getintensidadSeñalA())
+            			{
+            				if(n.getCuadrante() == cuadranteActual) ///VER DE !VISITADO
+            				{
+            					n.visitar();
+            					break;
+            				}
+            			}
+                			agState.setaltura("A");
+                    		agState.setenergia(agState.getenergia()-2);
+                    		
+                    		for(NodoLista n: agState.getintensidadSeñalA())
+                    		{
+    System.out.println("Nodo lista " + n.getCuadrante()+ " fue visitado: " + n.getVisitado());
+                    		}
+                    		return agState;	
+                			
+        			}
+        		}
+        	}
+        	
+        	/*
         	else //if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
         	{
         		if(altura == "M" )
         		{
+        			
+        				return 
 System.out.println("Esta en nivel medio (de subir). cuadrante: " + subCuadranteActual);
         			for(NodoLista n: agState.getintensidadSeñalM())
             		{
-            			/*if(FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y) == cuadranteActual)
-            			{
-            				if(!n.getVisitado())
-            					return null;
-            			}*/
-        				int c = n.getCuadrante();
+            			int c = n.getCuadrante();
         				System.out.println("C: " + c);
         				System.out.println("CuadActual: " + cuadranteActual);
         				if(c/10 == cuadranteActual)
@@ -119,7 +150,7 @@ System.out.println("Nodo lista " + n.getCuadrante()+ " fue visitado: " + n.getVi
         			
         		}
         		
-        	}
+        	}*/
         }
         //System.out.println("Se termino la energia (en subir)");
         return null;
