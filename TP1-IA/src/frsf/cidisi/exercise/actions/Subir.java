@@ -36,22 +36,26 @@ public class Subir extends SearchAction {
         	//if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
         	if(altura == "B" )
         	{
-        		
+System.out.println("Esta en nivel bajo (de subir). cuadrante: " + subCuadranteActual+" tam señB: "+agState.getintensidadSeñalB().size());
         		for(Nodo n: agState.getintensidadSeñalB())
         		{
         			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadranteActual)
         			{
         				if(!n.getVisitado())
-        					return null;
+System.out.print("\t## return null en señalB\n");
+        				return null;
         			}
         		}
+
+
         		
         		//Marca el cuadrante de nivel superior como visitado
     			for(NodoLista n: agState.getintensidadSeñalM())
     			{
-    				if(n.getCuadrante() == subCuadranteActual)
+    				if(n.getCuadrante() == subCuadranteActual) //agregando condicion !n.getVisitado() no veo cambios..
     				{
     					n.visitar();
+System.out.print("\t## bien: visita señalM\n");
     					break;
     				}
     			}
@@ -66,7 +70,7 @@ public class Subir extends SearchAction {
         	{
         		if(altura == "M" )
         		{
-        			System.out.println("Esta en nivel medio. cuadrante: " + subCuadranteActual);
+System.out.println("Esta en nivel medio (de subir). cuadrante: " + subCuadranteActual);
         			for(NodoLista n: agState.getintensidadSeñalM())
             		{
             			if(FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y) == cuadranteActual)
@@ -80,7 +84,7 @@ public class Subir extends SearchAction {
         			//Marca el cuadrante de nivel superior como visitado
         			for(NodoLista n: agState.getintensidadSeñalA())
         			{
-        				if(n.getCuadrante() == cuadranteActual)
+        				if(n.getCuadrante() == cuadranteActual) ///VER DE !VISITADO
         				{
         					n.visitar();
         					break;
@@ -91,7 +95,7 @@ public class Subir extends SearchAction {
                 		
                 		for(NodoLista n: agState.getintensidadSeñalA())
                 		{
-                			System.out.println("Nodo lista " + n.getCuadrante()+ " fue visitado: " + n.getVisitado());
+System.out.println("Nodo lista " + n.getCuadrante()+ " fue visitado: " + n.getVisitado());
                 		}
                 		return agState;	
             			
@@ -170,7 +174,7 @@ public class Subir extends SearchAction {
         			//Marca el cuadrante de nivel superior como visitado
         			for(NodoLista n: agState.getintensidadSeñalA())
         			{
-        				if(n.getCuadrante() == cuadranteActual)
+        				if(n.getCuadrante() == cuadranteActual) //VER DE !VISITADO
         				{
         					n.visitar();
         					break;
