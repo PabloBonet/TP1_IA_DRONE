@@ -101,7 +101,7 @@ public class IrNorte extends SearchAction {
         	{
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
-        		
+//System.out.println("En irNorte Bajo!!!");
         		if(nodoSig != null)
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
@@ -127,6 +127,8 @@ public class IrNorte extends SearchAction {
                 	return droneState;
                 	
         		}
+//        		else
+//System.out.println(" nodoSig en irNorte bajo: null");
         	}
         }
         

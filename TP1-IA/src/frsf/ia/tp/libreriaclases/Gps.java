@@ -52,13 +52,13 @@ public class Gps {
 
 		ArrayList<Nodo> nodos = grafoMapa.getListaNodos();
 		ArrayList<Enlace> enlaces = grafoMapa.getListaEnlaces();
-		
+System.out.print("En GPS ");
 		//agrego los nodos que pertenecen al subcuadrante
 		for(Nodo n: nodos){
 			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
 			{
 				this.grafoSubCuadrante.getListaNodos().add(n);
-				System.out.println("Nodo: " +n.getId());
+System.out.println("Nodo: " +n.getId());
 			}
 				
 		}
@@ -81,13 +81,13 @@ public class Gps {
 
 		ArrayList<Nodo> nodos = grafoMapa.getListaNodos();
 		ArrayList<Enlace> enlaces = grafoMapa.getListaEnlaces();
-		
+System.out.print("En GPS ");
 		//agrego los nodos que pertenecen al cuadrante
 		for(Nodo n: nodos){
 			if(FuncionesAuxiliares.perteneceACuadrante(n.getPosX(), n.getPosY()) == cuadrante)
 			{
 				this.grafoSubCuadrante.getListaNodos().add(n);
-				System.out.println("Nodo: " +n.getId());
+System.out.println("Nodo: " +n.getId()+" con "+n.getPersonas().size()+" personas");
 			}
 				
 		}
