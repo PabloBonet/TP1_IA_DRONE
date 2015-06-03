@@ -74,22 +74,25 @@ public class StateDrone extends SearchBasedAgentState {
 
     	for(NodoLista n: this.intensidadSeñalA)
     	{
-//    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
-    		nuevaIntensidadSeñalA.add(n);
+    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		nuevaIntensidadSeñalA.add(nodoNuevo);
+    //		nuevaIntensidadSeñalA.add(n);
     	}
     	
     	for(NodoLista n: this.intensidadSeñalM)
     	{
-//    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
-    		nuevaIntensidadSeñalM.add(n);
+    		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad());
+    		nuevaIntensidadSeñalM.add(nodoNuevo);
+    		//nuevaIntensidadSeñalM.add(n);
     	}
     	
     	for(Nodo n: this.intensidadSeñalB)
     	{
-//    		Nodo nodoNuevo = new Nodo(n.getId(), n.getPosX(), n.getPosY());
-//    		for(Persona p: n.getPersonas())
-//    			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
-    		nuevaIntensidadSeñalB.add(n);
+    		Nodo nodoNuevo = new Nodo(n.getId(), n.getPosX(), n.getPosY());
+    		for(Persona p: n.getPersonas())
+    			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
+    		nuevaIntensidadSeñalB.add(nodoNuevo);
+    		//nuevaIntensidadSeñalB.add(n);
     	}
     	/*
     	for(Persona p: this.victimarios)
@@ -137,31 +140,77 @@ public class StateDrone extends SearchBasedAgentState {
     			 for(NodoLista n: listaI)
         		 {
         			 if(!n.getVisitado())
-        			 	intensidadSeñalA.add(n);
+        			 {
+        				 boolean existe = false;
+        				 for(NodoLista nodo : this.intensidadSeñalA)
+        				 {
+        					 if(nodo.getCuadrante() == n.getCuadrante())
+        					 {
+        						existe = true;
+        						break;
+        					 }
+        				 }
+        				 
+        				 if(!existe)
+        				 	intensidadSeñalA.add(n);
+        			 }
+        			
         		 }
     		 }
     		 else
     		 {
-    			 	 for(NodoLista n : listaI)
+    			 for(NodoLista n: listaI)
+        		 {
+        			 if(!n.getVisitado())
         			 {
-        				 if(!n.getVisitado())
-        					 intensidadSeñalM.add(n);
+        				 boolean existe = false;
+        				 for(NodoLista nodo : this.intensidadSeñalM)
+        				 {
+        					 if(nodo.getCuadrante() == n.getCuadrante())
+        					 {
+        						existe = true;
+        						break;
+        					 }
+        				 }
+        				 
+        				 if(!existe)
+        				 	intensidadSeñalM.add(n);
         			 }
+        			
+        		 }
+    			 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
+        				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
     		 }
+    		 
+    		 
+    		
     	 }
     	 else
     	 {
     		 ArrayList<Nodo> listaIB = percepcion.getantena().getIntensidadSeñal();
 
-    		 for(Nodo n : listaIB)
+    		 for(Nodo n: listaIB)
     		 {
     			 if(!n.getVisitado())
-    				 intensidadSeñalB.add(n);
+    			 {
+    				 boolean existe = false;
+    				 for(Nodo nodo : this.intensidadSeñalB)
+    				 {
+    					 if(nodo.getId() == n.getId())
+    					 {
+    						existe = true;
+    						break;
+    					 }
+    				 }
+    				 
+    				 if(!existe)
+    				 	intensidadSeñalB.add(n);
+    			 }
+    			
     		 }
     		 
     		 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
     				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
-    		 
     		 //Identifica al victimario
     		  victimario = identificarVictimario(percepcion.getcamara().getPersonasEnLugar());
     		 
@@ -411,6 +460,36 @@ System.out.println(n.getId());
 				return p;
 		}
 		return null;
+	}
+
+	/**
+	 * Marca como visitado el cuadrante pasado como parámetro
+	 * **/
+	public void visitarA(int cuadrante) {
+		// TODO Auto-generated method stub
+		
+		for(NodoLista n: getintensidadSeñalA())
+		{
+			if(n.getCuadrante() == cuadrante)
+			{
+				n.visitar();
+			}
+		}
+	}
+
+	/**
+	 * Marca como visitado el cuadrante pasado como parámetro
+	 * **/
+	public void visitarM(int cuadrante) {
+		// TODO Auto-generated method stub
+		
+		for(NodoLista n: getintensidadSeñalM())
+		{
+			if(n.getCuadrante() == cuadrante)
+			{
+				n.visitar();
+			}
+		}
 	}
 	
 }

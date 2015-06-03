@@ -54,7 +54,7 @@ System.out.print("Ir Este (arbol)---- Señal A: ");
 System.out.print(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; ");
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+        			//	n.visitar();
         				encontrado = n;
         				break;
         			}
@@ -83,7 +83,7 @@ System.out.print(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; "
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+            			//	n.visitar();
             				encontrado = n;
             				break;
             			}
@@ -167,7 +167,7 @@ System.out.println("EN IR ESTE en A---");
         			
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+       // 				n.visitar();
         				encontrado = n;
         				break;
         			}
@@ -195,7 +195,7 @@ System.out.println("EN IR ESTE en A---");
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+        //    				n.visitar();
             				encontrado = n;
             				break;
             			}
@@ -239,7 +239,7 @@ System.out.println("EN IR ESTE en A---");
         			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
         			droneState.setubicacionD(sigPos);
         			puedeIr = true;
-        			environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
+       // 			environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
         		}
         	}
         }

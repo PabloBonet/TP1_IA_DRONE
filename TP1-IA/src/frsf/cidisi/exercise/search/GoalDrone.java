@@ -11,11 +11,10 @@ public class GoalDrone extends GoalTest {
     @Override
     public boolean isGoalState (AgentState agentState) {
     
-        if  (FuncionesAuxiliares.señalesVisitadas(((StateDrone)agentState).getintensidadSeñalA()) && 
+        if  (	FuncionesAuxiliares.señalesVisitadas(((StateDrone)agentState).getintensidadSeñalA()) && 
         		FuncionesAuxiliares.señalesVisitadas(((StateDrone)agentState).getintensidadSeñalM()) && 
         		((StateDrone)agentState).getenergia() > 0 &&
-        		FuncionesAuxiliares.señalesVisitadasB(((StateDrone)agentState).getintensidadSeñalB()) &&
-        		((StateDrone)agentState).getaltura() == "B" ||
+        		FuncionesAuxiliares.señalesVisitadasB(((StateDrone)agentState).getintensidadSeñalB())  ||
         		((StateDrone)agentState).getvictimario() != null)
         	{
         	

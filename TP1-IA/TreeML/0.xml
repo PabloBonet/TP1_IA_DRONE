@@ -1,15 +1,15 @@
 <tree id="0" edgedefault="directed">
 <node Id="0" Action="null" Cost="0.0" Estado_Agente="------ Estado Agente VANT -----
 Altura: A
-Ubicaci&#243;n: 1
+Ubicaci&#243;n: 2
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140, Fue visitado: true
+	Cuadrante: 2	Intensidad: 140, Fue visitado: false
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
 Victimario (ID): No se encontr&#243;.
-Energ&#237;a: 1000
+Energ&#237;a: 999
 
 "/>
 <node Id="1" Action="IrEste" Cost="-1.0" Estado_Agente="------ Estado Agente VANT -----
@@ -17,7 +17,7 @@ Altura: A
 Ubicaci&#243;n: 2
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140, Fue visitado: true
+	Cuadrante: 2	Intensidad: 140, Fue visitado: false
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -30,7 +30,7 @@ Altura: M
 Ubicaci&#243;n: 11
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140, Fue visitado: true
+	Cuadrante: 2	Intensidad: 140, Fue visitado: false
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -43,7 +43,7 @@ Altura: M
 Ubicaci&#243;n: 21
 Intensidad de se&#241;al
 Nivel Alto 
-	Cuadrante: 2	Intensidad: 140, Fue visitado: true
+	Cuadrante: 2	Intensidad: 140, Fue visitado: false
 Nivel Medio 
 Nivel Bajo 
 Direcci&#243;n: N
@@ -51,7 +51,21 @@ Victimario (ID): No se encontr&#243;.
 Energ&#237;a: 998
 
 "/>
+<node Id="4" Action="Subir" Cost="-3.0" Estado_Agente="------ Estado Agente VANT -----
+Altura: A
+Ubicaci&#243;n: 2
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140, Fue visitado: true
+Nivel Medio 
+Nivel Bajo 
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 996
+
+"/>
 <edge source="0" target="1"/>
 <edge source="0" target="2"/>
 <edge source="1" target="3"/>
+<edge source="3" target="4"/>
 </tree>

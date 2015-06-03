@@ -53,7 +53,7 @@ public class IrOeste extends SearchAction {
 
 					if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+    //    				n.visitar();
         				encontrado = n;
 						break;
 					}
@@ -77,7 +77,7 @@ public class IrOeste extends SearchAction {
 
 						if(cuadrante == n.getCuadrante() && !n.getVisitado())
 	        			{
-	        				n.visitar();
+	    //    				n.visitar();
 	        				encontrado = n;
 							break;
 						}
@@ -165,7 +165,7 @@ public class IrOeste extends SearchAction {
 				for (NodoLista n : droneState.getintensidadSeñalA()) {
 					if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+        	//			n.visitar();
         				encontrado = n;
 						break;
 					}
@@ -190,7 +190,7 @@ public class IrOeste extends SearchAction {
 					for (NodoLista n : droneState.getintensidadSeñalM()) {
 						if(cuadrante == n.getCuadrante() && !n.getVisitado())
 	        			{
-	        				n.visitar();
+	        	//			n.visitar();
 	        				encontrado = n;
 							break;
 						}

@@ -52,7 +52,7 @@ public class IrNorEste extends SearchAction {
         		{
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+        			//	n.visitar();
         				encontrado = n;
         				break;
         			}
@@ -81,7 +81,7 @@ public class IrNorEste extends SearchAction {
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+            //				n.visitar();
             				encontrado = n;
             				break;
             			}
@@ -171,7 +171,7 @@ public class IrNorEste extends SearchAction {
         			
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+        		//		n.visitar();
         			        				encontrado = n;
         				break;
         			}
@@ -201,7 +201,7 @@ public class IrNorEste extends SearchAction {
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+            		//		n.visitar();
             					encontrado = null;
             				break;
             			}

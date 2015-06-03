@@ -45,6 +45,17 @@ public class Subir extends SearchAction {
         					return null;
         			}
         		}
+        		
+        		//Marca el cuadrante de nivel superior como visitado
+    			for(NodoLista n: agState.getintensidadSeñalM())
+    			{
+    				if(n.getCuadrante() == subCuadranteActual)
+    				{
+    					n.visitar();
+    					break;
+    				}
+    			}
+        		
         		agState.setaltura("M");
         		agState.setenergia(agState.getenergia()-2);
         		return agState;
@@ -55,6 +66,7 @@ public class Subir extends SearchAction {
         	{
         		if(altura == "M" )
         		{
+        			System.out.println("Esta en nivel medio. cuadrante: " + subCuadranteActual);
         			for(NodoLista n: agState.getintensidadSeñalM())
             		{
             			if(FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y) == cuadranteActual)
@@ -63,9 +75,27 @@ public class Subir extends SearchAction {
             					return null;
             			}
             		}
-        			agState.setaltura("A");
-            		agState.setenergia(agState.getenergia()-2);
-            		return agState;
+        			
+        			
+        			//Marca el cuadrante de nivel superior como visitado
+        			for(NodoLista n: agState.getintensidadSeñalA())
+        			{
+        				if(n.getCuadrante() == cuadranteActual)
+        				{
+        					n.visitar();
+        					break;
+        				}
+        			}
+            			agState.setaltura("A");
+                		agState.setenergia(agState.getenergia()-2);
+                		
+                		for(NodoLista n: agState.getintensidadSeñalA())
+                		{
+                			System.out.println("Nodo lista " + n.getCuadrante()+ " fue visitado: " + n.getVisitado());
+                		}
+                		return agState;	
+            			
+        			
         		}
         		
         	}
@@ -104,11 +134,23 @@ public class Subir extends SearchAction {
         					return null;
         			}
         		}
+
+        		//Marca el cuadrante de nivel superior como visitado
+    			for(NodoLista n: agState.getintensidadSeñalM())
+    			{
+    				if(n.getCuadrante() == subCuadranteActual)
+    				{
+    					n.visitar();
+    					break;
+    				}
+    			}
+        		
         		agState.setaltura("M");
         		agState.setenergia(agState.getenergia()-2);
         		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
         		environmentState.setAlturaAgente("M");
         		return environmentState;
+        		
         	}
         	
         	//si no hay intensidad de señal para ese cuadrante de nivel medio
@@ -125,6 +167,16 @@ public class Subir extends SearchAction {
             					return null;
             			}
             		}
+        			//Marca el cuadrante de nivel superior como visitado
+        			for(NodoLista n: agState.getintensidadSeñalA())
+        			{
+        				if(n.getCuadrante() == cuadranteActual)
+        				{
+        					n.visitar();
+        					break;
+        				}
+        			}
+        			
         			agState.setaltura("A");
             		agState.setenergia(agState.getenergia()-2);
             		environmentState.setAlturaAgente("A");

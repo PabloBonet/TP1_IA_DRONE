@@ -50,7 +50,7 @@ public class IrSur extends SearchAction {
         		{
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+        	//			n.visitar();
         				encontrado = true;
         				break;
         			}
@@ -81,7 +81,7 @@ public class IrSur extends SearchAction {
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+            	//			n.visitar();
             				encontrado = true;
             				break;
             			}
@@ -170,7 +170,7 @@ System.out.println("EN IR SUR en A---");
         			
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        				n.visitar();
+        			//	n.visitar();
         				encontrado = n;
         				break;
         			}
@@ -200,7 +200,7 @@ System.out.println("EN IR SUR en A---");
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+            			//	n.visitar();
             				encontrado = n;
             				break;
             			}
