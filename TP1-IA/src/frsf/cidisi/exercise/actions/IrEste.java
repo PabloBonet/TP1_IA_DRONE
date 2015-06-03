@@ -104,7 +104,7 @@ System.out.println(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+";
         			subGrafo = droneState.getGrafoSubCuadrante();
         			Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 
-        		if(nodoSig != null)
+        		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
         			//if(droneState.getintensidadSeñalB().contains(nodoSig))
@@ -220,7 +220,7 @@ System.out.println("EN IR ESTE en A---");
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 
-        		if(nodoSig != null)
+        		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
             			//if(droneState.getintensidadSeñalB().contains(nodoSig))

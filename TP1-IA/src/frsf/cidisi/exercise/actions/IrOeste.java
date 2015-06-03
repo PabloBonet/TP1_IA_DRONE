@@ -93,16 +93,14 @@ public class IrOeste extends SearchAction {
 			} 
 			else // Altura "B"
 			{
-				if(droneState.getintensidadSeñalB().isEmpty())
-        		{
-        			return null;
-        		}
+				
 				{
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irOesteBajo(posicion,
 							subGrafo);
 
-					if (nodoSig != null) {
+					if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+	        		{
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
             			{
             				if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())
@@ -212,7 +210,8 @@ public class IrOeste extends SearchAction {
 				Nodo nodoSig = FuncionesAuxiliares.irOesteBajo(posicion,
 						subGrafo);
 
-				if (nodoSig != null) {
+				if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+        		{
 					if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
         			{
         				if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())

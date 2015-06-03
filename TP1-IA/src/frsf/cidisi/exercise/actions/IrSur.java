@@ -99,14 +99,11 @@ System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigP
         	}
         	else //altura == B
         	{
-        		if(droneState.getintensidadSeñalB().isEmpty())
-        		{
-        			return null;
-        		}
+        		
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irSurBajo(posicion, subGrafo);
         		
-        		if(nodoSig != null)
+        		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
         			{
@@ -225,7 +222,7 @@ System.out.println("EN IR SUR en M---");
         	{
         		Nodo nodoSig = FuncionesAuxiliares.irSurBajo(posicion, subGrafo);
         		
-        		if(nodoSig != null)
+        		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
         			{
