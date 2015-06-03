@@ -49,7 +49,7 @@ System.out.println("Esta en nivel medio (de bajar). Cuadrante: "+cuadrante+"; su
         		//revisa si el cuadrante tiene señal
         		for(NodoLista n: agState.getintensidadSeñalM())
         		{
-System.out.print("n.getCuadrante(): "+n.getCuadrante());
+System.out.println("n.getCuadrante(): "+n.getCuadrante()+" if("+n.getCuadrante()+"=="+subCuadrante+")");
         			//if(n.getCuadrante()/10 == cuadrante && !n.getVisitado())
 					if(n.getCuadrante() == subCuadrante && !n.getVisitado())
         			{
@@ -58,7 +58,7 @@ System.out.println("\t### y bajaría a bajo!!");
         				break;
         			}
         		}
-        		System.out.println("Despues de for");	
+System.out.println("Despues de for");	
 //        		if(!FuncionesAuxiliares.señalesVisitadasB(agState.getintensidadSeñalB()))
 //        		{
 //System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
@@ -73,10 +73,9 @@ System.out.println("\t### y bajaría a bajo!!");
 System.out.println("EsqCentro en Bajar: "+esquinaCentro.x+"-"+esquinaCentro.y);
         			if(esquinaCentro != null)
         			{
-
         				agState.setubicacionD(esquinaCentro);
         				agState.setenergia(agState.getenergia()-1);
-        					System.out.println("Retorna: Bajar");
+System.out.println("Retorna: Bajar");
         					return agState;
         				}
         	}

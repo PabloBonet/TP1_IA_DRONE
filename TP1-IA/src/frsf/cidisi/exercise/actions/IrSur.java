@@ -74,16 +74,15 @@ public class IrSur extends SearchAction {
         		
         		if(sigPos != null)
         		{
-        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        			int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			boolean encontrado = false;
-if(FuncionesAuxiliares.perteneceASubCuadrante(droneState.getubicacionD().x,droneState.getubicacionD().y) == 21)
-System.out.print("Tam señal M: "+droneState.getintensidadSeñalM().size());
+System.out.print("Tam señal M: "+droneState.getintensidadSeñalM().size()+" y estoy en cuad "+FuncionesAuxiliares.perteneceASubCuadrante(droneState.getubicacionD().x,droneState.getubicacionD().y)+"\n");
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
-            			if(cuadrante == n.getCuadrante() && !n.getVisitado())
+            			if(subCuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-System.out.print("\tENCONTRADO EN SUR B!! con sigPos: "+sigPos.x+"-"+sigPos.y+"\n");
+System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigPos: "+sigPos.x+"-"+sigPos.y+"\n");
             	//			n.visitar();
             				encontrado = true;
             				break;
