@@ -61,18 +61,22 @@ public class Bajar extends SearchAction {
         	else
         		
         	{
-        	System.out.println("Esta en nivel medio. Cuadrante : " + cuadrante);	
+        	//System.out.println("Esta en nivel medio. Cuadrante : " + cuadrante);	
+        	System.out.println("antes de for");	
         		boolean tieneSeñal = false;
         		//revisa si el cuadrante tiene señal
         		for(NodoLista n: agState.getintensidadSeñalM())
         		{
-        			if(n.getCuadrante()/10 == cuadrante)
+        			
+        			int c = n.getCuadrante();
+        			if(c/10 == cuadrante && !n.getVisitado())
         			{
+        				
         				tieneSeñal = true;
         				break;
         			}
         		}
-        		
+        		System.out.println("Despues de for");	
 //        		if(!FuncionesAuxiliares.señalesVisitadasB(agState.getintensidadSeñalB()))
 //        		{
 //System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
@@ -85,7 +89,8 @@ public class Bajar extends SearchAction {
         				agState.setaltura("B");
         				Point esquinaCentro = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
         				
-        				
+        				System.out.println("Esquina centro " + esquinaCentro.x + " " + esquinaCentro.y);
+        				System.out.println("Estado: \nsubCuadrante: " + subCuadrante + ". Altura anterior: " + altura + " .Altura actual: " + agState.getaltura());
         				if(esquinaCentro != null)
         				{
         				
@@ -98,6 +103,7 @@ public class Bajar extends SearchAction {
         					agState.setenergia(agState.getenergia()-1);
 
         					//System.out.println("\nAltura: "+agState.getaltura()+ " posicion: "+agState.getubicacionD().x + " "+agState.getubicacionD().y);
+        					System.out.println("Retorna: Bajar");
         					return agState;
         				}
         				
