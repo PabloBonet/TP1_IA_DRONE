@@ -99,6 +99,10 @@ public class IrNorte extends SearchAction {
         	}
         	else //altura == B
         	{
+        		if(droneState.getintensidadSeñalB().isEmpty())
+        		{
+        			return null;
+        		}
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
 //System.out.println("En irNorte Bajo!!!");

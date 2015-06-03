@@ -39,19 +39,20 @@ public class IrEste extends SearchAction {
         Grafo subGrafo = new Grafo();
         
       
-        Point sigPos = new Point();
+        
         
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
-        	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
+        	Point sigPos = FuncionesAuxiliares.irEste(posicion, altura);
 
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
         		NodoLista encontrado=null;
-System.out.print("Ir Este (arbol)---- Señal A: ");
+//System.out.println("Ir Este (arbol)---- Señal A: ");
+//ystem.out.println("Posicion: "+ droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
-System.out.print(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; ");
+System.out.println(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; ");
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
         			//	n.visitar();
@@ -72,8 +73,9 @@ System.out.print(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; "
         else{
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
         		
-        		sigPos = FuncionesAuxiliares.irEste(posicion, altura);
-        		        		
+        		Point sigPos = FuncionesAuxiliares.irEste(posicion, altura);
+        		System.out.println("Ir Este (arbol)---- Señal B: ");
+        		System.out.println("Posicion: "+ droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
         		if(sigPos != null)
         		{
         			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
@@ -123,7 +125,7 @@ System.out.print(n.getCuadrante()+"-"+n.getIntensidad()+"-"+n.getVisitado()+"; "
         				droneState.setenergia(energia - 2);
         			}
 
-        			sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+        			Point sigPos = new Point(nodoSig.getPosX(), nodoSig.getPosY());
         			droneState.setubicacionD(sigPos);
         			return droneState;
 
@@ -211,6 +213,10 @@ System.out.println("EN IR ESTE en A---");
         	}
         	else //Altura "B"
         	{
+        		if(droneState.getintensidadSeñalB().isEmpty())
+        		{
+        			return null;
+        		}
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 

@@ -1,6 +1,7 @@
 package frsf.ia.tp.libreriaclases;
 
 import java.awt.Point;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import jpl.fli.functor_t;
@@ -501,7 +502,9 @@ System.out.println("CENTRO: " + centro.x + " " + centro.y);
 	public static Point irSur(Point ubicacionActual, String altura) {
 		Point posicion = null;
 		
-System.out.print("En irSur (de Faux) ");
+//System.out.println("En irSur (de Faux) Altra: " + altura);
+//System.out.println("Ubicacion: " + ubicacionActual.x + " " + ubicacionActual.y);
+
 		//Controla que la altura no sea baja y que la posicion este dentro del mapa
 		if (altura != "B" && (ubicacionActual.x >= 0 && ubicacionActual.x <= ANCHO_MAPA && ubicacionActual.y >= 0 && ubicacionActual.y <= ANCHO_MAPA)) {
 			posicion = new Point();

@@ -106,6 +106,9 @@ System.out.println("Retorna: Bajar");
         { 
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = subCuadrante/10;
+    		
+    		
+    		
         	if(altura == "A")
         	{
 //        		for(NodoLista n: agState.getintensidadSeñalA())
@@ -159,6 +162,8 @@ System.out.println("####### BAJO a bajo!!");
 //        			{
         			if(tieneSeñal)
         			{
+        				
+        				        				
         		agState.setaltura("B");
         				environmentState.setAlturaAgente("B");
         				

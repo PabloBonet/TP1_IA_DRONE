@@ -99,6 +99,10 @@ System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigP
         	}
         	else //altura == B
         	{
+        		if(droneState.getintensidadSeñalB().isEmpty())
+        		{
+        			return null;
+        		}
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irSurBajo(posicion, subGrafo);
         		

@@ -97,6 +97,10 @@ public class IrNorEste extends SearchAction {
         	}
         	else //altura == B
         	{
+        		if(droneState.getintensidadSeñalB().isEmpty())
+        		{
+        			return null;
+        		}
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorEsteBajo(posicion, subGrafo);
         		
