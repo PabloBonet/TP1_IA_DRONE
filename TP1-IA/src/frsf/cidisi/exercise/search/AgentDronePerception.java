@@ -75,7 +75,6 @@ System.out.println("Se carga el grafoCuadrante!!! Pos: "+gps.getPosiciongps().x+
         		
         		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
         		{
-        			//System.out.println("ESTADO AMBIENTE: " + nodo.getIntensidad());
         			if(nodo.getCuadrante() == subCuadrante)
         				antena.agregarIntensidadSeñal(nodo);
         		}
@@ -104,15 +103,10 @@ System.out.println("Se carga el grafoSubCuadrante!!! Pos: "+posicionAgente.x+" "
             		}
             	}
         	}
-        	
-        	
         }
         else
         {
-        	//System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
     		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
-//    	}
-//    	gps.setGrafoSubCuadrante(new Grafo());
         }
     }
     

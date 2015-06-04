@@ -51,17 +51,15 @@ public class IrSur extends SearchAction {
         		{
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        	//			n.visitar();
         				encontrado = true;
         				break;
         			}
         		}
         		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
-            		System.out.println("IrSUr");
+//System.out.println("IrSUr");
             		return droneState;
         		}
         	}
@@ -72,7 +70,6 @@ public class IrSur extends SearchAction {
         	{
         		
         		sigPos = FuncionesAuxiliares.irSur(posicion, altura);
-        		
         		
         		if(sigPos != null)
         		{
@@ -85,17 +82,15 @@ System.out.print("Tam señal M: "+droneState.getintensidadSeñalM().size()+" y est
             			if(subCuadrante == n.getCuadrante() && !n.getVisitado())
             			{
 System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigPos: "+sigPos.x+"-"+sigPos.y+"\n");
-            	//			n.visitar();
             				encontrado = true;
             				break;
             			}
             		}
             		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
-            		//	droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-            			System.out.println("FUE AL SUR N MEDIO");
+System.out.println("FUE AL SUR N MEDIO");
             			return droneState;
             		}
         		}
@@ -176,14 +171,12 @@ System.out.println("EN IR SUR en A---");
         			
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        			//	n.visitar();
         				encontrado = n;
         				break;
         			}
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
@@ -214,7 +207,6 @@ System.out.println("EN IR SUR en M---");
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
-            		//	droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;

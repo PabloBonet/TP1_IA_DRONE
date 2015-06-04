@@ -127,7 +127,6 @@ public class FuncionesAuxiliares {
 	 */
 	public static Point bajarASubCuadranteM(int cuadrante) {
 System.out.print("bajarASubCuadranteM. Cuadrante: "+cuadrante);
-		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
 		Point nuevaPos = new Point();
 		switch (cuadrante) {
 		case 1:
@@ -276,7 +275,7 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 			} else // altura == M
 			{
 				int posNueva = x + ANCHO_SUB_CUADRANTE;
-				//if (posNueva <= ANCHO_CUADRANTE) // Si no sale fuera de la grilla
+				// Si no sale fuera de la grilla
 				if(posNueva >= 0 && posNueva <= ANCHO_MAPA)
 				{
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // cuad 1, 2, 3 o 4 (Ej: x=100->1, x=160->2, x=320->3,..)
@@ -375,12 +374,7 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 			
 			auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
 					- centroSubCuadrante.y));
-			
-			
-			
-					//calcularDistanciaEntrePuntos();
-			//System.out.println("Nodo: " + n.getId());
-			//System.out.println("AUXD: " + auxD);
+
 			if (auxD < d) {
 				d = auxD;
 				//centroEsquina.setLocation(n.getPosX(), n.getPosY());
@@ -391,14 +385,6 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 //System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y+" para subCuad: "+subCuadrante);
 
 //Solo para mostrar, selecciona el nodo que baja
-/*for(Nodo n: grafoSubCuadrante.getListaNodos())
-{
-	if(n.getPosX() == centroEsquina.x && n.getPosY() == centroEsquina.y)
-	{
-		System.out.println("Nodo al que baja: " + n.getId());
-		break;
-	}
-}*/
 		if (centroEsquina.x >= 0 && centroEsquina.y >= 0) //si se seteó una posición centro
 			return centroEsquina;
 
