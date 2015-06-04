@@ -35,14 +35,6 @@ public class Bajar extends SearchAction {
     		if(altura == "A" )
     		{
     			//No baja si el cuadrante ya esta visitado
-boolean esta=false;
-for(int i=0; i<agState.getintensidadSeñalA().size();i++){
-if(agState.getintensidadSeñalA().get(i).getCuadrante()==cuadrante){
-	esta=true;System.out.println("Hay señal A");}
-}
-if(!esta){System.out.println("No hay señal en el cuad donde estoy");
-	return null;}
-else{
     			for(NodoLista n: agState.getintensidadSeñalA())
     			{
     				if(n.getCuadrante() == cuadrante && n.getVisitado())
@@ -56,7 +48,7 @@ else{
     			
 System.out.println("bajar a M (en arbol)");
     			return agState;
-    		}}
+    		}
         	//el agente está en nivel medio
     		else
     		{

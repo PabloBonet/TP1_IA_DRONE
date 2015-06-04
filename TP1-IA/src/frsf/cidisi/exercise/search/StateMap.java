@@ -142,7 +142,7 @@ public class StateMap extends EnvironmentState {
         str += "Nivel Bajo \n";
         for(int i=0; i<intensidadSeñalB.size();i++)
         	str +="\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
-        str += "Victimarios (ID): ";
+        str += "Victimario (ID): ";
         
         return str;
     }

@@ -70,20 +70,17 @@ public class StateDrone extends SearchBasedAgentState {
     	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
     	ArrayList<NodoLista> nuevaIntensidadSeñalM = new ArrayList<NodoLista>();
     	ArrayList<Nodo> nuevaIntensidadSeñalB = new ArrayList<Nodo>();
-//    	ArrayList<Persona> nuevaListaVictimarios = new ArrayList<Persona>();
 
     	for(NodoLista n: this.intensidadSeñalA)
     	{
     		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad(), n.getVisitado());
     		nuevaIntensidadSeñalA.add(nodoNuevo);
-    //		nuevaIntensidadSeñalA.add(n);
     	}
     	
     	for(NodoLista n: this.intensidadSeñalM)
     	{
     		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad(), n.getVisitado());
     		nuevaIntensidadSeñalM.add(nodoNuevo);
-    		//nuevaIntensidadSeñalM.add(n);
     	}
     	
     	for(Nodo n: this.intensidadSeñalB)
@@ -92,14 +89,7 @@ public class StateDrone extends SearchBasedAgentState {
     		for(Persona p: n.getPersonas())
     			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
     		nuevaIntensidadSeñalB.add(nodoNuevo);
-    		//nuevaIntensidadSeñalB.add(n);
     	}
-    	/*
-    	for(Persona p: this.victimarios)
-    	{
-    		nuevaListaVictimarios.add(p);
-    	}
-    	*/
     	nuevoEstado.setintensidadSeñalA(nuevaIntensidadSeñalA);
     	nuevoEstado.setintensidadSeñalB(nuevaIntensidadSeñalB);
     	nuevoEstado.setintensidadSeñalM(nuevaIntensidadSeñalM);
@@ -107,8 +97,8 @@ public class StateDrone extends SearchBasedAgentState {
     	
     	ArrayList<Nodo> nodosNuevo = new ArrayList<Nodo>();
     	ArrayList<Enlace> enlacesNuevo = new ArrayList<Enlace>();
-    	for(Nodo n: this.grafoSubCuadrante.getListaNodos())
-    		nodosNuevo.add(new Nodo(n.getId(), n.getPosX(), n.getPosY(), n.getVisitado()));
+    	for(Nodo no: this.grafoSubCuadrante.getListaNodos())
+    		nodosNuevo.add(new Nodo(no.getId(), no.getPosX(), no.getPosY(), no.getVisitado()));
     	for(Enlace e: this.grafoSubCuadrante.getListaEnlaces())
     		enlacesNuevo.add(new Enlace(e.getIdNodo1(), e.getIdNodo2(), e.getPeso()));
     	Grafo subGrafo = new Grafo(nodosNuevo, enlacesNuevo);
@@ -134,7 +124,6 @@ public class StateDrone extends SearchBasedAgentState {
     	 if(altura != "B")
     	 {
     		 ArrayList<NodoLista> listaI = percepcion.getantena().getIntensidadSeñal();
-    		 //System.out.println("\n\nPERCIBE CANTIDAD: " + listaI.size());
     		 if(altura == "A")
     		 {
     			 for(NodoLista n: listaI)
@@ -150,7 +139,7 @@ public class StateDrone extends SearchBasedAgentState {
         						break;
         					 }
         				 }
-        				 
+         				//Si el nodo percibido no existe en la lista de intensidad A del agente, lo agrega
         				 if(!existe)
         				 	intensidadSeñalA.add(n);
         			 }
@@ -172,7 +161,7 @@ public class StateDrone extends SearchBasedAgentState {
         						break;
         					 }
         				 }
-        				 
+         				//Si el nodo percibido no existe en la lista de intensidad M del agente, lo agrega
         				 if(!existe)
         				 	intensidadSeñalM.add(n);
         			 }
@@ -181,9 +170,6 @@ public class StateDrone extends SearchBasedAgentState {
     			 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
         				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
     		 }
-    		 
-    		 
-    		
     	 }
     	 else
     	 {
@@ -202,11 +188,10 @@ public class StateDrone extends SearchBasedAgentState {
     						break;
     					 }
     				 }
-    				 
+    				//Si el nodo percibido no existe en la lista de intensidad B del agente, lo agrega
     				 if(!existe)
     				 	intensidadSeñalB.add(n);
     			 }
-    			
     		 }
     		 
     		 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 

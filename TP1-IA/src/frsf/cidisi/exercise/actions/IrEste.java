@@ -98,7 +98,7 @@ public class IrEste extends SearchAction {
         	{
         			subGrafo = droneState.getGrafoSubCuadrante();
         			Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
-
+//System.out.println("&&&&&&&&&& PRIMER IR EN NIVEL BAJO (Este) &&&&&&&&&&&&&");
         		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))

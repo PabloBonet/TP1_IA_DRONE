@@ -343,6 +343,7 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 			if (estaAlEste(nodoActual, n)
 					&& n.getPosX() >= ubicacionActual.y - 10
 					&& n.getPosX() <= ubicacionActual.y + 10) {
+//System.out.println("Retornó nodo en: "+n.getPosX()+"-"+n.getPosY()+" para ir este");
 				return n;
 			}
 		}
