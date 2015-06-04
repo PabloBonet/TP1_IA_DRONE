@@ -87,7 +87,7 @@ System.out.println("nodo no visitado: " + n.getId());
         	{
         		if(altura == "M")
         		{
-//        			System.out.println("Altura: " + altura);
+        		//	System.out.println("Altura: " + altura);
 //        			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
         			if(FuncionesAuxiliares.señalesVisitadas(((StateDrone)agState).getintensidadSeñalM()))
         			{

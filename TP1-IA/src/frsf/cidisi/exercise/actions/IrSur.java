@@ -40,6 +40,7 @@ public class IrSur extends SearchAction {
         Point sigPos = new Point();
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
         {
+        	
         	sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         	
         	if(sigPos != null)
@@ -60,6 +61,7 @@ public class IrSur extends SearchAction {
         			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
+            		System.out.println("IrSUr");
             		return droneState;
         		}
         	}
@@ -93,6 +95,7 @@ System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigP
             		//	droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
+            			System.out.println("FUE AL SUR N MEDIO");
             			return droneState;
             		}
         		}

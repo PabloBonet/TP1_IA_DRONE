@@ -32,18 +32,35 @@ public class Bajar extends SearchAction {
         {
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y);
-    		if(altura == "A")
+    		if(altura == "A" )
     		{
+    			//No baja si el cuadrante ya esta visitado
+    			for(NodoLista n: agState.getintensidadSeñalA())
+    			{
+    				if(n.getCuadrante() == cuadrante && n.getVisitado())
+    				{
+    					return null;
+    				}
+    			}
     			agState.setaltura("M");
     			agState.setubicacionD(FuncionesAuxiliares.bajarASubCuadranteM(cuadrante));
     			agState.setenergia(agState.getenergia()-1);
     			
-//System.out.println("bajar a M (en arbol)");
+    			System.out.println("bajar a M (en arbol)");
     			return agState;
     		}
         	//el agente está en nivel medio
     		else
     		{
+    			
+    			//No baja si el subcuadrante ya esta visitado
+    			/*for(NodoLista n: agState.getintensidadSeñalM())
+    			{
+    				if(n.getCuadrante() == subCuadrante && n.getVisitado())
+    				{
+    					return null;
+    				}
+    			}*/
 //System.out.println("Esta en nivel medio (de bajar). Cuadrante: "+cuadrante+"; subCuadrante: " + subCuadrante);	
         		boolean tieneSeñal = false;
         		//revisa si el cuadrante tiene señal
@@ -58,14 +75,7 @@ public class Bajar extends SearchAction {
         				break;
         			}
         		}
-//System.out.println("Despues de for");	
-//        		if(!FuncionesAuxiliares.señalesVisitadasB(agState.getintensidadSeñalB()))
-//        		{
-//System.out.println("EL AGENTE ESTA EN NIVEL MEDIO - Subcuadrante: " +subCuadrante);
-//        		for(NodoLista n: agState.getintensidadSeñalM())
-//        		{
-//        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
-//        			if(subCuadrante == n.getCuadrante())
+
         		if(tieneSeñal)
         		{
         			agState.setaltura("B");
@@ -116,6 +126,14 @@ public class Bajar extends SearchAction {
 //        			//si existe intensidad de señal en el subcuadrante inferior de donde se encuantra el agente
 //        			if(cuadrante == n.getCuadrante())
 //        			{
+        		//No baja si el cuadrante ya esta visitado
+    			for(NodoLista n: agState.getintensidadSeñalA())
+    			{
+    				if(n.getCuadrante() == cuadrante && n.getVisitado())
+    				{
+    					return null;
+    				}
+    			}
         				agState.setaltura("M");
         				environmentState.setAlturaAgente("M");
         				Point uAgente = FuncionesAuxiliares.bajarASubCuadranteM(cuadrante);
@@ -134,6 +152,14 @@ public class Bajar extends SearchAction {
         	//el agente está en nivel medio
         	else
         	{
+        		//No baja si el subcuadrante ya esta visitado
+    			/*for(NodoLista n: agState.getintensidadSeñalM())
+    			{
+    				if(n.getCuadrante() == subCuadrante && n.getVisitado())
+    				{
+    					return null;
+    				}
+    			}*/
         		boolean tieneSeñal = false;
         		//revisa si el cuadrante tiene señal y no fué visitado
 //        		for(NodoLista n: agState.getintensidadSeñalM())

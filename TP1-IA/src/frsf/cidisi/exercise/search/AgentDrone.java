@@ -36,7 +36,7 @@ public class AgentDrone extends SearchBasedAgent {
 
         // Create the operators
         Vector<SearchAction> operators = new Vector<SearchAction>();
-        //operators.addElement(new Bajar());
+       //operators.addElement(new Bajar());
         operators.addElement(new IrNorte());	
         operators.addElement(new IrSur());	
         operators.addElement(new IrEste());	
