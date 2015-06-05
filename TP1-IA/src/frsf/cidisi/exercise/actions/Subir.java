@@ -207,7 +207,9 @@ public class Subir extends SearchAction {
         		agState.setenergia(agState.getenergia()-2);
         		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
         		environmentState.setAlturaAgente("M");
+
 System.out.println("Sube a nivel M (En Ambiente)");
+
 
         		
         		return environmentState;
