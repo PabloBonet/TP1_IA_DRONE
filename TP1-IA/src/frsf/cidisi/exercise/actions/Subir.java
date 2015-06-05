@@ -82,15 +82,10 @@ public class Subir extends SearchAction {
         				System.out.println("Posicion: " + ubucacion.x + " " + ubucacion.y);
            				System.out.println("Posicion estado: " + agState.getubicacionD().x + " " + agState.getubicacionD().y);
            				
-           			/*	try {
-							System.in.read();
-						} catch (IOException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						}*/
+
         			agState.setaltura("M");
-                		agState.setenergia(agState.getenergia()-2);
-//                		agState.setubicacionD(FuncionesAuxiliares.bajarASubCuadranteM(cuadranteActual));
+                	agState.setenergia(agState.getenergia()-2);
+
                 /*System.out.println("Sube a nivel M (En arbol)");
                 System.out.println("Estado: Posicion: " +agState.getubicacionD().x  + " " + agState.getubicacionD().y + "\nSeñales en nivel M:");
                 
@@ -252,8 +247,7 @@ public class Subir extends SearchAction {
         		agState.setenergia(agState.getenergia()-2);
         		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
         		environmentState.setAlturaAgente("M");
-        		agState.setubicacionD(FuncionesAuxiliares.bajarASubCuadranteM(cuadranteActual));
-//        		environmentState.setposicionAgente(FuncionesAuxiliares.bajarASubCuadranteM(cuadranteActual));
+
         		System.out.println("Sube a nivel M (En Ambiente)");
         		
         		return environmentState;
