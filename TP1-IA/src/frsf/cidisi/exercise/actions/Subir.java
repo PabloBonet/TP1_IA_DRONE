@@ -22,7 +22,6 @@ public class Subir extends SearchAction {
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
         StateDrone agState = (StateDrone) s;
-        //System.out.println("EN EXECUTE(1)");
         
         /*PreConditions: no debe estar en el nivel alto
          * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre 
@@ -35,14 +34,10 @@ public class Subir extends SearchAction {
         	int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(ubucacion.x, ubucacion.y);
         	//si no hay intensidad de señal para ese cuadrante de nivel bajo
         	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
-        	//if(altura == "B" && !agState.hayIntensidadSeñalBCuadrante(cuadranteActual)){
 
         	if(altura == "B")
     		{
-    		//	System.out.println("Altura: " + altura);
-//    			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
-    			//if(FuncionesAuxiliares.señalesVisitadas(((StateDrone)agState).getintensidadSeñalM()))
-    			//{
+
     				boolean existe  = false;
     				//Marca el cuadrante de nivel superior como visitado
         			for(NodoLista n: agState.getintensidadSeñalM())
@@ -86,29 +81,7 @@ public class Subir extends SearchAction {
         			agState.setaltura("M");
                 	agState.setenergia(agState.getenergia()-2);
 
-                /*System.out.println("Sube a nivel M (En arbol)");
-                System.out.println("Estado: Posicion: " +agState.getubicacionD().x  + " " + agState.getubicacionD().y + "\nSeñales en nivel M:");
-                
-                System.out.println("Señales Alto");
-                for(NodoLista n: agState.getintensidadSeñalA())
-                {
-                	System.out.println("Señal: " + n.getCuadrante() + " int: " + n.getIntensidad()+ " visitado: " + n.getVisitado());
-                }
-                
-                System.out.println("Señales Medio");
-                for(NodoLista n: agState.getintensidadSeñalM())
-                {
-                	System.out.println("Señal: " + n.getCuadrante() + " int: " + n.getIntensidad()+ " visitado: " + n.getVisitado());
-                }
-                
-                System.out.println("Señales Bajo");
-                for(Nodo n: agState.getintensidadSeñalB())
-                {
-                	System.out.println("Señal: " + n.getId()+ " perso: " + n.getPersonas().size()+ " visitado: " + n.getVisitado());
-                }
-                */
-               
-                		                    		return agState;	
+                	return agState;	
         	
         	
         	
@@ -119,10 +92,7 @@ public class Subir extends SearchAction {
         	{
         		if(altura == "M")
         		{
-        		//	System.out.println("Altura: " + altura);
-//        			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
-        			//if(FuncionesAuxiliares.señalesVisitadas(((StateDrone)agState).getintensidadSeñalM()))
-        			//{
+
         				boolean existe  = false;
         				//Marca el cuadrante de nivel superior como visitado
             			for(NodoLista n: agState.getintensidadSeñalA())
@@ -132,16 +102,10 @@ public class Subir extends SearchAction {
             				{
             					for(NodoLista nM: agState.getintensidadSeñalM())
             					{
-            						/*if(nM.getCuadrante() == cuadranteActual && nM.getVisitado())
-            						{
-            							existe = true;
-                    					n.visitar();
-                    					break;
-            						}*/
+
             						int subCuad = nM.getCuadrante();
             						if((subCuad/10) == cuadranteActual && !nM.getVisitado())
             						{
-//ACÁ AL GENERAR EL ARBOL (en nivel medio) podria subir estando en 23 y nM no visitado para q llegue a la meta
             							return null;
             						}
             					
@@ -175,7 +139,6 @@ public class Subir extends SearchAction {
         	
 
         }
-        //System.out.println("Se termino la energia (en subir)");
         return null;
     }
 
@@ -200,10 +163,7 @@ public class Subir extends SearchAction {
         	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
         	if(altura == "B")
     		{
-    		//	System.out.println("Altura: " + altura);
-//    			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
-    			//if(FuncionesAuxiliares.señalesVisitadas(((StateDrone)agState).getintensidadSeñalM()))
-    			//{
+
         		System.out.println("En Altura B");
         		System.out.println("Tamaño intensidad M " + agState.getintensidadSeñalM().size());
     				boolean existe  = false;
@@ -248,7 +208,7 @@ public class Subir extends SearchAction {
         		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
         		environmentState.setAlturaAgente("M");
 
-        		System.out.println("Sube a nivel M (En Ambiente)");
+System.out.println("Sube a nivel M (En Ambiente)");
         		
         		return environmentState;
 				
@@ -256,15 +216,12 @@ public class Subir extends SearchAction {
         	
         	//si no hay intensidad de señal para ese cuadrante de nivel medio
         	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
-        	else //if(altura == "M" && !agState.hayIntensidadSeñalMCuadrante(cuadranteActual)){ 
+        	else  
         	{
 
         		if(altura == "M")
         		{
-        		//	System.out.println("Altura: " + altura);
-//        			System.out.println("Cantidad de señales nivel M: " +  ((StateDrone)agState).getintensidadSeñalM().size());
-        			//if(FuncionesAuxiliares.señalesVisitadas(((StateDrone)agState).getintensidadSeñalM()))
-        			//{
+
         			System.out.println("En Altura M");
             		System.out.println("Tamaño intensidad M " + agState.getintensidadSeñalM().size());
         				boolean existe  = false;

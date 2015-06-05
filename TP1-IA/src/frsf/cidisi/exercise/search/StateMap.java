@@ -221,7 +221,8 @@ public class StateMap extends EnvironmentState {
      
      /**
       * Función que recorre los nodos adyacentes al nodo donde se encuentra el agente y 
-      * retorna las personas que son visibles al agente desde la posición donde se encuentra
+      * retorna las personas que son visibles al agente desde la posición donde se encuentra.
+      * Incluye las que estan en la misma posición del agente
       * 
       * @param nodoAgente
       * @param subgrafo
@@ -237,11 +238,11 @@ public class StateMap extends EnvironmentState {
     	 
     	 if(subgrafo != null)
     	 {
-    		 System.out.println("nodos: " + subgrafo.listaNodos.size());
-    		 System.out.println("enlaces: " + subgrafo.getListaEnlaces().size());
+System.out.println("nodos: " + subgrafo.listaNodos.size());
+System.out.println("enlaces: " + subgrafo.getListaEnlaces().size());
     		 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 
-        	 
-    		 nodosAdyacentes.add(nodoAgente);
+        	 if(nodoAgente.getPersonas().size()>0)
+        		 nodosAdyacentes.add(nodoAgente);
     		 
         	 for(Nodo n: nodosAdyacentes)
         	 {

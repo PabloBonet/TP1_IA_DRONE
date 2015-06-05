@@ -2,6 +2,7 @@ package frsf.cidisi.exercise.actions;
 
 
 import java.awt.Point;
+import java.util.List;
 
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -12,6 +13,7 @@ import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
+import frsf.ia.tp.libreriaclases.Persona;
 
 public class IrSurOeste extends SearchAction {
 
@@ -41,14 +43,12 @@ public class IrSurOeste extends SearchAction {
         		{
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-     //   				n.visitar();
         				encontrado = n;
         				break;
         			}
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		return droneState;
@@ -71,14 +71,12 @@ public class IrSurOeste extends SearchAction {
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-       //     				n.visitar();
             				encontrado = n;
             				break;
             			}
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
-            			//droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			return droneState;
@@ -87,8 +85,7 @@ public class IrSurOeste extends SearchAction {
         	}
         	else //altura == B
         	{
-        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
-            	{
+
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irSurOesteBajo(posicion, subGrafo);
         		
@@ -117,7 +114,6 @@ public class IrSurOeste extends SearchAction {
                 	return droneState;
                 	
         		}
-        	}
         	}
         }
         
@@ -154,14 +150,12 @@ public class IrSurOeste extends SearchAction {
         			
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        //				n.visitar();
         				encontrado = n;
         				break;
         			}
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		puedeIr = true;
@@ -183,14 +177,12 @@ public class IrSurOeste extends SearchAction {
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            //				n.visitar();
             				encontrado = n;
             				break;
             			}
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
-            		//	droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
@@ -198,6 +190,9 @@ public class IrSurOeste extends SearchAction {
         		}
         	}else //Altura "B"
         	{
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
+
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irSurOesteBajo(posicion, subGrafo);
 
@@ -229,7 +224,7 @@ public class IrSurOeste extends SearchAction {
         		}
         	}
         }
-        
+        }
         
         if (puedeIr) {
             environmentState.setposicionAgente(droneState.getubicacionD());

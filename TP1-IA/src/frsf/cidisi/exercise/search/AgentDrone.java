@@ -45,17 +45,11 @@ public class AgentDrone extends SearchBasedAgent {
         operators.addElement(new IrNorOeste());	
         operators.addElement(new IrSurEste());	
         operators.addElement(new IrSurOeste());	
-      //  operators.addElement(new Bajar());	
         operators.addElement(new Subir());	
 
         // Create the Problem which the agent will resolve
         Problem problem = new Problem(agGoal, agState, operators);
         this.setProblem(problem);
-        
-        //System.out.println("PROBLEMA: \n");
-       // System.out.println("Acciones: " + problem.getActions().toString());
-        
-       // System.out.println("\n\nAcciones: " + problem.getAgentState().toString());
     }
 
     /**

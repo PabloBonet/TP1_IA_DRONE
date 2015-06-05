@@ -69,14 +69,12 @@ public class AgentDronePerception extends Perception {
         	if(altura == "M")
         	{
         		//cargar el grafo perteneciente al cuadrante
-//System.out.println("Se carga el grafoCuadrante!!! Pos: "+gps.getPosiciongps().x+" "+gps.getPosiciongps().y+"(en AgentDronePerception)");
             	gps.cargarGrafoCuadrante(estadoAmbiente.getgrafoMapa());
             	
             	antena = new AntenaNMA();
             	//antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
         		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
         		{
-        			//System.out.println("ESTADO AMBIENTE: " + nodo.getIntensidad());
         			if(nodo.getCuadrante() == subCuadrante)
         				antena.agregarIntensidadSeñal(nodo);
         		}
@@ -87,7 +85,6 @@ public class AgentDronePerception extends Perception {
             	Nodo nodoAgente = (Nodo)(estadoAmbiente.getgrafoMapa()).nodoEnPosicion(posicionAgente);
             	
             	//cargar el grafo perteneciente al subcuadrante
-//System.out.println("Se carga el grafoSubCuadrante!!! Pos: "+posicionAgente.x+" "+posicionAgente.y+"(en AgentDronePerception)");
             	gps.cargarGrafoSubCuadrante(estadoAmbiente.getgrafoMapa());
             	
             	//Percepción cámara
@@ -110,10 +107,7 @@ public class AgentDronePerception extends Perception {
         }
         else
         {
-        	//System.out.println("ESTADO AMBIENTE: TAMAÑO: "+estadoAmbiente.getintensidadSeñalA().size());
     		antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalA());
-//    	}
-//    	gps.setGrafoSubCuadrante(new Grafo());
         }
     }
     

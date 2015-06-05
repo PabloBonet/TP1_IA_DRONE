@@ -221,22 +221,30 @@ public class Grafo {
 	
 	/**
 	 * Busca los nodos adyacentes al nodo actual dentro del grafo 
+	 * y que pertenezcan al subcuadrante actual
+	 * 
 	 * @param nodoActual
 	 * @return adyacentes 
 	 */
 	public  ArrayList<Nodo> buscarAdyacentes(Nodo nodoActual) {
-//System.out.println("\tBusc adyac.");
 		ArrayList<Nodo> adyacentes = new ArrayList<Nodo>();
-		for (int indice = 0; indice < listaEnlaces.size(); indice++)
+		Nodo nodo = null;
+		for (int indice = 0; indice < listaEnlaces.size(); indice++){
+			
 			if (listaEnlaces.get(indice).getIdNodo1() == nodoActual.getId()){
-				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo2()); //busco el nodo con el otro id de nodo del enlace
-				adyacentes.add(nodo);
+				nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo2()); //busco el nodo con el otro id de nodo del enlace
+				if(FuncionesAuxiliares.perteneceASubCuadrante(nodoActual.getPosX(), nodoActual.getPosY()) == 
+					FuncionesAuxiliares.perteneceASubCuadrante(nodo.getPosX(),nodo.getPosY()))
+						adyacentes.add(nodo);
 			}
 			else if(listaEnlaces.get(indice).getIdNodo2() == nodoActual.getId())
 			{
-				Nodo nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo1());
-				adyacentes.add(nodo);
+				nodo = this.buscarNodo(listaEnlaces.get(indice).getIdNodo1());
+				if(FuncionesAuxiliares.perteneceASubCuadrante(nodoActual.getPosX(), nodoActual.getPosY()) == 
+					FuncionesAuxiliares.perteneceASubCuadrante(nodo.getPosX(),nodo.getPosY()))
+					adyacentes.add(nodo);
 			}
+		}
 				
 		return adyacentes;
 	}

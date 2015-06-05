@@ -2,6 +2,8 @@ package frsf.cidisi.exercise.actions;
 
 
 import java.awt.Point;
+import java.util.ArrayList;
+import java.util.List;
 
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -12,6 +14,7 @@ import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
+import frsf.ia.tp.libreriaclases.Persona;
 
 public class IrNorte extends SearchAction {
 
@@ -44,24 +47,20 @@ public class IrNorte extends SearchAction {
         {
         	sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
         	
-        	//System.out.println("EN IN NORTE---\n");
         	if(sigPos != null)
         	{
-        		//System.out.print("Siguiente Posicion: "+sigPos.getX() + " "+sigPos.getY()+"\n");
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
         		NodoLista encontrado = null;
         		for(NodoLista n: droneState.getintensidadSeñalA())
         		{
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        		//		n.visitar();
         				encontrado = n;
         				break;
         			}
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);	
             		return droneState;
@@ -72,25 +71,24 @@ public class IrNorte extends SearchAction {
         {
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
-        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+        		
         		sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
             	
         		if(sigPos != null)
         		{
+        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            	//			n.visitar();
             				encontrado = n;
             				break;
             			}
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
-            			//droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			return droneState;
@@ -101,9 +99,9 @@ public class IrNorte extends SearchAction {
         	{
         		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
             	{
+
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
-//System.out.println("En irNorte Bajo!!!");
         		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
@@ -129,8 +127,6 @@ public class IrNorte extends SearchAction {
                 	return droneState;
                 	
         		}
-//        		else
-//System.out.println(" nodoSig en irNorte bajo: null");
         	}
         }
         }
@@ -177,14 +173,12 @@ public class IrNorte extends SearchAction {
         			
         			if(cuadrante == n.getCuadrante() && !n.getVisitado())
         			{
-        			//	n.visitar();
         				encontrado = n;
         				break;
         			}
         		}
         		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
-        		//	droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
             		droneState.setubicacionD(sigPos);
             		puedeIr = true;
@@ -197,24 +191,22 @@ public class IrNorte extends SearchAction {
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
         		sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
-        		
+        		int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+
         		if(sigPos != null)
         		{
-        			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            	//			n.visitar();
             				encontrado = n;
             				break;
             			}
             		}
             		if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
             		{
-            		//	droneState.removerCuadranteNivelM(cuadrante);
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
             			puedeIr = true;
@@ -227,7 +219,7 @@ public class IrNorte extends SearchAction {
         		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
             	{
         		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
-        		
+
         		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
@@ -267,16 +259,6 @@ public class IrNorte extends SearchAction {
         return null;
     }
     
-    /**
-     * 
-     * @return subGrafo: es el subgrafo que mantedra el agente en el nivel mas bajo
-     * 					y lo usara para adquirir los nodos adyacentes.
-     */
-    public Grafo getSubgrafo(){
-    	return null;
-    	
-    }
-
     /**
      * This method returns the action cost.
      */

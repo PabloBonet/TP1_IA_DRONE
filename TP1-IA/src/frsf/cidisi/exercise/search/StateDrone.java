@@ -44,6 +44,7 @@ public class StateDrone extends SearchBasedAgentState {
     	victimario = null;
     	energia = e;
     	grafoSubCuadrante = new Grafo();
+    	
     }
     
     public StateDrone()
@@ -64,29 +65,25 @@ public class StateDrone extends SearchBasedAgentState {
      */
     @Override
     public SearchBasedAgentState clone() {
-        //Point nuevaUbicacion = new Point(ubicacionD);
-        //String nuevaAltura = new String(altura);
+
         
     	StateDrone nuevoEstado = new StateDrone(this.ubicacionD, this.altura, this.direccion, this.energia);
         
-        //StateDrone nuevoEstado = new StateDrone(nuevaUbicacion, nuevaAltura, this.direccion, this.energia);
     	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
     	ArrayList<NodoLista> nuevaIntensidadSeñalM = new ArrayList<NodoLista>();
     	ArrayList<Nodo> nuevaIntensidadSeñalB = new ArrayList<Nodo>();
-//    	ArrayList<Persona> nuevaListaVictimarios = new ArrayList<Persona>();
+    	Persona nuevoVictimario = null;
 
     	for(NodoLista n: this.intensidadSeñalA)
     	{
     		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad(), n.getVisitado());
     		nuevaIntensidadSeñalA.add(nodoNuevo);
-    //		nuevaIntensidadSeñalA.add(n);
     	}
     	
     	for(NodoLista n: this.intensidadSeñalM)
     	{
     		NodoLista nodoNuevo = new NodoLista(n.getCuadrante(), n.getIntensidad(), n.getVisitado());
     		nuevaIntensidadSeñalM.add(nodoNuevo);
-    		//nuevaIntensidadSeñalM.add(n);
     	}
     	
     	for(Nodo n: this.intensidadSeñalB)
@@ -95,18 +92,14 @@ public class StateDrone extends SearchBasedAgentState {
     		for(Persona p: n.getPersonas())
     			nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
     		nuevaIntensidadSeñalB.add(nodoNuevo);
-    		//nuevaIntensidadSeñalB.add(n);
     	}
-    	/*
-    	for(Persona p: this.victimarios)
-    	{
-    		nuevaListaVictimarios.add(p);
-    	}
-    	*/
+
     	nuevoEstado.setintensidadSeñalA(nuevaIntensidadSeñalA);
     	nuevoEstado.setintensidadSeñalB(nuevaIntensidadSeñalB);
     	nuevoEstado.setintensidadSeñalM(nuevaIntensidadSeñalM);
-    	nuevoEstado.setvictimario(victimario);
+    	if(victimario != null)
+    		nuevoVictimario = new Persona(victimario.getId(), victimario.getTipo());
+    	nuevoEstado.setvictimario(nuevoVictimario);
     	
     	ArrayList<Nodo> nodosNuevo = new ArrayList<Nodo>();
     	ArrayList<Enlace> enlacesNuevo = new ArrayList<Enlace>();
@@ -137,7 +130,6 @@ public class StateDrone extends SearchBasedAgentState {
     	 if(altura != "B")
     	 {
     		 ArrayList<NodoLista> listaI = percepcion.getantena().getIntensidadSeñal();
-    		 //System.out.println("\n\nPERCIBE CANTIDAD: " + listaI.size());
     		 if(altura == "A")
     		 {
     			 for(NodoLista n: listaI)
@@ -184,8 +176,7 @@ public class StateDrone extends SearchBasedAgentState {
     			 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
         				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
     		 }
-    		 
-    		 
+
     		
     	 }
     	 else
@@ -214,7 +205,8 @@ public class StateDrone extends SearchBasedAgentState {
     		 
     		 grafoSubCuadrante = new Grafo(percepcion.getgps().getGrafoSubCuadrante().getListaNodos(), 
     				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
-    		 //Identifica al victimario
+
+    		 //Agrega el victimario
     		  victimario = identificarVictimario(percepcion.getcamara().getPersonasEnLugar());
     		 
     	 }	 
@@ -252,13 +244,7 @@ public class StateDrone extends SearchBasedAgentState {
         str += "Ubicación: ";
         if(altura== "B")
         {
-        	//str += (grafoSubCuadrante.nodoEnPosicion(ubicacionD)).getId();
-        	
-        	for(Nodo n: grafoSubCuadrante.listaNodos)
-        	{
-System.out.println(n.getId());	
-        	}
-        	
+        	str += (grafoSubCuadrante.nodoEnPosicion(ubicacionD)).getId();
         }
         	
         
@@ -408,6 +394,7 @@ System.out.println(n.getId());
         energia = arg;
      }
 
+
 	public boolean hayIntensidadSeñalBCuadrante(int cuadranteActual) {
 		for(Nodo n: intensidadSeñalB){
 			if(cuadranteActual == FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(),n.getPosY()))
@@ -424,29 +411,6 @@ System.out.println(n.getId());
 		return false;
 	}
 
-	/**
-	 * Elimina un nodo de la lista de intensidad de señal de nivel alto del agente
-	 * @param cuadrante
-	 */
-	public void removerCuadranteNivelA(int cuadrante) {
-		for(int i=0; i<intensidadSeñalA.size(); i++)
-			if(cuadrante == intensidadSeñalA.get(i).getCuadrante()){
-				intensidadSeñalA.remove(i);
-				break;
-			}
-	}
-
-	/**
-	 * Elimina un nodo de la lista de intensidad de señal de nivel medio del agente
-	 * @param subCuadrante
-	 */
-	public void removerCuadranteNivelM(int subCuadrante) { //VER SI TIENE QUE RETORNAR ALGO EN CASO DE NO PODER BORRARLO####################################
-		for(int i=0; i<intensidadSeñalM.size(); i++)
-			if(subCuadrante == intensidadSeñalM.get(i).getCuadrante()){
-				intensidadSeñalM.remove(i);
-				break;
-			}
-	}
 	
 	/**
 	 * Dada la lista de personas identifica al victimario
@@ -469,7 +433,6 @@ System.out.println(n.getId());
 	 * Marca como visitado el cuadrante pasado como parámetro
 	 * **/
 	public void visitarA(int cuadrante) {
-		// TODO Auto-generated method stub
 		
 		for(NodoLista n: getintensidadSeñalA())
 		{
@@ -484,7 +447,6 @@ System.out.println(n.getId());
 	 * Marca como visitado el cuadrante pasado como parámetro
 	 * **/
 	public void visitarM(int cuadrante) {
-		// TODO Auto-generated method stub
 		
 		for(NodoLista n: getintensidadSeñalM())
 		{

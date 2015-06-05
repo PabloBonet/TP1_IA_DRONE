@@ -3,6 +3,9 @@ package frsf.ia.tp.libreriaclases;
 import java.awt.Point;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
+import frsf.cidisi.exercise.search.StateDrone;
 
 import jpl.fli.functor_t;
 
@@ -866,5 +869,6 @@ System.out.print("\tnivel M\n");
 		}
 		return true;
 	}
+
 
 }
