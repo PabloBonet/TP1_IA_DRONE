@@ -61,10 +61,7 @@ public class IrSur extends SearchAction {
         		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
             		droneState.setenergia(energia - 1);
-System.out.println("Ir al sur en nivel alto de: " + droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
             		droneState.setubicacionD(sigPos);	
-System.out.println("a : " + droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
-System.out.println("IrSUr");
             		return droneState;
         		}
         	}
@@ -73,7 +70,6 @@ System.out.println("IrSUr");
         {
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
-        		
         		sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         		
         		
@@ -81,13 +77,11 @@ System.out.println("IrSUr");
         		{
         			int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			boolean encontrado = false;
-System.out.print("Tam señal M: "+droneState.getintensidadSeñalM().size()+" y estoy en cuad "+FuncionesAuxiliares.perteneceASubCuadrante(droneState.getubicacionD().x,droneState.getubicacionD().y)+"\n");
             		for(NodoLista n: droneState.getintensidadSeñalM())
             		{
             			
             			if(subCuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigPos: "+sigPos.x+"-"+sigPos.y+"\n");
             				encontrado = true;
             				break;
             			}
@@ -96,7 +90,6 @@ System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigP
             		{
             			droneState.setenergia(energia - 1);
             			droneState.setubicacionD(sigPos);
-System.out.println("FUE AL SUR N MEDIO");
             			return droneState;
             		}
         		}
@@ -105,7 +98,6 @@ System.out.println("FUE AL SUR N MEDIO");
         	{
         		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
             	{
-
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irSurBajo(posicion, subGrafo);
         		
@@ -170,7 +162,6 @@ System.out.println("FUE AL SUR N MEDIO");
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
         {
         	sigPos = FuncionesAuxiliares.irSur(posicion, altura);
-System.out.println("EN IR SUR en A---");
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
@@ -199,7 +190,6 @@ System.out.println("EN IR SUR en A---");
         	
         	if(altura == "M" && droneState.getintensidadSeñalM().size()>0)
         	{
-System.out.println("EN IR SUR en M---");
         		sigPos = FuncionesAuxiliares.irSur(posicion, altura);
         		
         		if(sigPos != null)
@@ -263,7 +253,6 @@ System.out.println("EN IR SUR en M---");
         if (puedeIr) {
             environmentState.setposicionAgente(droneState.getubicacionD());
             environmentState.setenergiaAgente(droneState.getenergia());
-System.out.println("FUE AL SUR!!\nPosicion agente: "+environmentState.getposicionAgente().getX()+" "+environmentState.getposicionAgente().getY());
             return environmentState;
         }
 

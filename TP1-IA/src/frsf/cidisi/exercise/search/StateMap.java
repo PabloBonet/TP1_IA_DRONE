@@ -198,27 +198,7 @@ public class StateMap extends EnvironmentState {
      }
      
      
-     /**
-      * Retorna la intensidad de la señal dependiendo de la altura en la que este el drone, restringiendo las señales pertenecientes a los demás cuadrantes
-      * Si está en el nivel alto: retorna la lista intensidadSeñalA completa
-      * Si está en el nivel medio: retorna los NodosLista(cuadrantes) correspondientes al cuadrante al que pertenece
-       
-       * */
-   /*  public ArrayList<Nodo> getIntensidadSeñalReducidaB()
-     {
-    	 ArrayList<Nodo> intensidad = new ArrayList<Nodo>();
-     }*/
-     
-     /**
-      * Retorna la intensidad de la señal dependiendo de la altura en la que este el drone, restringiendo las señales pertenecientes a los demás cuadrantes
-      * Si está en el nivel bajo: retorna los Nodos (esquinas) correspondientes al subcuadrante al que pertenece 
-       * */
-    /* public ArrayList<NodoLista> getIntensidadSeñalReducidaMA()
-     {
-    	 ArrayList<NodoLista> intensidad = new ArrayList<NodoLista>();
-     }
-     */
-     
+      
      /**
       * Función que recorre los nodos adyacentes al nodo donde se encuentra el agente y 
       * retorna las personas que son visibles al agente desde la posición donde se encuentra.
@@ -238,8 +218,7 @@ public class StateMap extends EnvironmentState {
     	 
     	 if(subgrafo != null)
     	 {
-System.out.println("nodos: " + subgrafo.listaNodos.size());
-System.out.println("enlaces: " + subgrafo.getListaEnlaces().size());
+
     		 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 
         	 if(nodoAgente.getPersonas().size()>0)
         		 nodosAdyacentes.add(nodoAgente);

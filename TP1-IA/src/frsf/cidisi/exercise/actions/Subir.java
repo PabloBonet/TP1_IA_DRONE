@@ -43,7 +43,7 @@ public class Subir extends SearchAction {
         			for(NodoLista n: agState.getintensidadSeñalM())
         			{
         		
-        				if(n.getCuadrante() == subCuadranteActual) ///VER DE !VISITADO
+        				if(n.getCuadrante() == subCuadranteActual)
         				{
         					for(Nodo nB: agState.getintensidadSeñalB())
         					{	
@@ -72,18 +72,10 @@ public class Subir extends SearchAction {
         					NodoLista nodoNuevo = new NodoLista(subCuadranteActual, 0, true);
         					agState.getintensidadSeñalM().add(nodoNuevo);
                 		}
- 
-        				System.out.println("Nivel Bajo (en Subir): " + cuadranteActual);
-        				System.out.println("Posicion: " + ubucacion.x + " " + ubucacion.y);
-           				System.out.println("Posicion estado: " + agState.getubicacionD().x + " " + agState.getubicacionD().y);
-           				
 
         			agState.setaltura("M");
                 	agState.setenergia(agState.getenergia()-2);
                 	return agState;	
-
-        	
-        	
         	
     		}
         	        	//si no hay intensidad de señal para ese cuadrante de nivel medio
@@ -98,7 +90,7 @@ public class Subir extends SearchAction {
             			for(NodoLista n: agState.getintensidadSeñalA())
             			{
             		
-            				if(n.getCuadrante() == cuadranteActual) ///VER DE !VISITADO
+            				if(n.getCuadrante() == cuadranteActual)
             				{
             					for(NodoLista nM: agState.getintensidadSeñalM())
             					{
@@ -128,11 +120,7 @@ public class Subir extends SearchAction {
      
             			agState.setaltura("A");
                     		agState.setenergia(agState.getenergia()-2);
-                    		
-                    		System.out.println("Sube a nivel A (En arbol)");
-                    		                    		return agState;	
-                			
-        			//}
+                    		return agState;	
         			
         		}
         	}
@@ -164,19 +152,15 @@ public class Subir extends SearchAction {
         	if(altura == "B")
     		{
 
-        		System.out.println("En Altura B");
-        		System.out.println("Tamaño intensidad M " + agState.getintensidadSeñalM().size());
     				boolean existe  = false;
     				//Marca el cuadrante de nivel superior como visitado
         			for(NodoLista n: agState.getintensidadSeñalM())
         			{
-        				System.out.println("Cuadrante nodo. " + n.getCuadrante());
-        				System.out.println("Sub Cuadrante actual: " + subCuadranteActual);
-        				if(n.getCuadrante() == subCuadranteActual) ///VER DE !VISITADO
+
+        				if(n.getCuadrante() == subCuadranteActual)
         				{
         					for(Nodo nB: agState.getintensidadSeñalB())
         					{	
-        						
         						
         						int subCuad = FuncionesAuxiliares.perteneceASubCuadrante(nB.getPosX(), nB.getPosY());
         					
@@ -207,9 +191,6 @@ public class Subir extends SearchAction {
         		agState.setenergia(agState.getenergia()-2);
         		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
         		environmentState.setAlturaAgente("M");
-System.out.println("Sube a nivel M (En Ambiente)");
-
-        		
         		return environmentState;
 				
         	}
@@ -222,8 +203,6 @@ System.out.println("Sube a nivel M (En Ambiente)");
         		if(altura == "M")
         		{
 
-        			System.out.println("En Altura M");
-            		System.out.println("Tamaño intensidad M " + agState.getintensidadSeñalM().size());
         				boolean existe  = false;
         				//Marca el cuadrante de nivel superior como visitado
             			for(NodoLista n: agState.getintensidadSeñalA())
@@ -231,16 +210,9 @@ System.out.println("Sube a nivel M (En Ambiente)");
             		
             				if(n.getCuadrante() == cuadranteActual) ///VER DE !VISITADO
             				{
-            					System.out.println("Cuadrante nodo. " + n.getCuadrante());
-                				System.out.println("Sub Cuadrante actual: " + subCuadranteActual);
+
             					for(NodoLista nM: agState.getintensidadSeñalM())
             					{
-            						/*if(nM.getCuadrante() == cuadranteActual && nM.getVisitado())
-            						{
-            							existe = true;
-                    					n.visitar();
-                    					break;
-            						}*/
             						int subCuad = nM.getCuadrante();
             						if((subCuad/10) == cuadranteActual && !nM.getVisitado())
             						{
@@ -268,16 +240,9 @@ System.out.println("Sube a nivel M (En Ambiente)");
                     		agState.setenergia(agState.getenergia()-2);
                     		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
                     		environmentState.setAlturaAgente("M");
-                    		
-                    		System.out.println("Sube a nivel A  (En ambiente)");
-                    		return environmentState;
-                			
 
-        		
-        		
-        		
-        		
-        		
+                    		return environmentState;
+
         		}
         		
         	}

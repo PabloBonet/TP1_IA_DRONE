@@ -46,10 +46,6 @@ public class IrEste extends SearchAction {
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	Point sigPos = FuncionesAuxiliares.irEste(posicion, altura);
 
-        	
-        	//Para probar 
-        	System.out.println("EN OPERADOR: irEste");
-        	System.out.println("POsicion: " + droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
@@ -158,7 +154,6 @@ public class IrEste extends SearchAction {
         
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	sigPos = FuncionesAuxiliares.irEste(posicion, altura);
-System.out.println("EN IR ESTE en A---");
         	if(sigPos != null)
         	{
         		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
@@ -248,8 +243,6 @@ System.out.println("EN IR ESTE en A---");
             environmentState.setposicionAgente(droneState.getubicacionD());
             environmentState.setenergiaAgente(droneState.getenergia());
             
-            
-System.out.println("FUE AL ESTE!!\nPosicion agente: "+environmentState.getposicionAgente().getX()+" "+environmentState.getposicionAgente().getY());
             return environmentState;
         }
       

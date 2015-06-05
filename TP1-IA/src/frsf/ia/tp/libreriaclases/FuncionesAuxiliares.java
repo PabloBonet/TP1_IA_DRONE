@@ -339,7 +339,6 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 	public static Nodo irEsteBajo(Point ubicacionActual, Grafo subGrafo) {
 
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-//System.out.println("En irEsteBajo--");
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al este de la posicion actual y que
 			// este en un rango de +-10
@@ -369,21 +368,14 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		Point centroSubCuadrante = centroSubcuadranteBajo(subCuadrante);
 		Point centroEsquina = new Point();
 
-//System.out.println("EN EL METODOS CENTRARPOSICIONESQUINA\n\nsubCuadrante: " +subCuadrante +"CentroSubCuadrante: "+centroSubCuadrante.x + " " + centroSubCuadrante.y);
 		// cálculo de la esquina central
 		double d = ALTO_MAPA;
 		double auxD;
-//System.out.println("cantidad de nodos: " + grafoSubCuadrante.getListaNodos().size());
 		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
 			
 			auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
 					- centroSubCuadrante.y));
-			
-			
-			
-					//calcularDistanciaEntrePuntos();
-			//System.out.println("Nodo: " + n.getId());
-			//System.out.println("AUXD: " + auxD);
+
 			if (auxD < d) {
 				d = auxD;
 				//centroEsquina.setLocation(n.getPosX(), n.getPosY());
@@ -391,18 +383,10 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 				centroEsquina.y = n.getPosY();
 			}
 		}
-//System.out.println("CENTRO ESQUINA: "+ centroEsquina.x + " " + centroEsquina.y+" para subCuad: "+subCuadrante);
 
-//Solo para mostrar, selecciona el nodo que baja
-/*for(Nodo n: grafoSubCuadrante.getListaNodos())
-{
-	if(n.getPosX() == centroEsquina.x && n.getPosY() == centroEsquina.y)
-	{
-		System.out.println("Nodo al que baja: " + n.getId());
-		break;
-	}
-}*/
-		if (centroEsquina.x >= 0 && centroEsquina.y >= 0) //si se seteó una posición centro
+		//si se setea una posicion centro y esta dentro del subcuadrante
+		if (centroEsquina.x >= 0 && centroEsquina.y >= 0 && 
+				FuncionesAuxiliares.perteneceASubCuadrante(centroEsquina.x, centroEsquina.y)==subCuadrante)
 			return centroEsquina;
 
 		return null;
