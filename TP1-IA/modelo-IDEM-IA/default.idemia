@@ -12,7 +12,7 @@
   </Environment>
   <Agent name="AgentDrone">
     <Strategy xsi:type="idemia:Search"/>
-    <Goal name="GoalDrone" value="(intensidadSeñalA=empty) &amp; (intensidadSeñalM=empty) &amp; (intensidadSeñalB=empty) &amp; energia>0 &amp;  victimario!=null"/>
+    <Goal name="GoalDrone" value="(intensidadSeñalA=empty) &amp; (intensidadSeñalM=empty) &amp; (intensidadSeñalB=empty) &amp; energia>0 || victimario!=null"/>
     <AgentState name="StateDrone">
       <DataStructure name="ubicacionD" type="pair"/>
       <DataStructure name="altura" type="String"/>
