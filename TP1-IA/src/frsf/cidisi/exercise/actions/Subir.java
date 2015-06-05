@@ -43,7 +43,7 @@ public class Subir extends SearchAction {
         			for(NodoLista n: agState.getintensidadSeñalM())
         			{
         		
-        				if(n.getCuadrante() == subCuadranteActual)
+        				if(n.getCuadrante() == subCuadranteActual) ///VER DE !VISITADO
         				{
         					for(Nodo nB: agState.getintensidadSeñalB())
         					{	
@@ -80,14 +80,14 @@ public class Subir extends SearchAction {
 
         			agState.setaltura("M");
                 	agState.setenergia(agState.getenergia()-2);
-
                 	return agState;	
+
         	
         	
         	
     		}
-        	//si las intensidades de señal para ese cuadrante de nivel medio ya se visitaron
-        	//entonces ya recorrió todos los cuadrantes de ese nivel medio y puede subir
+        	        	//si no hay intensidad de señal para ese cuadrante de nivel medio
+        	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
         	else
         	{
         		if(altura == "M")
@@ -98,7 +98,7 @@ public class Subir extends SearchAction {
             			for(NodoLista n: agState.getintensidadSeñalA())
             			{
             		
-            				if(n.getCuadrante() == cuadranteActual)
+            				if(n.getCuadrante() == cuadranteActual) ///VER DE !VISITADO
             				{
             					for(NodoLista nM: agState.getintensidadSeñalM())
             					{
@@ -172,7 +172,7 @@ public class Subir extends SearchAction {
         			{
         				System.out.println("Cuadrante nodo. " + n.getCuadrante());
         				System.out.println("Sub Cuadrante actual: " + subCuadranteActual);
-        				if(n.getCuadrante() == subCuadranteActual)
+        				if(n.getCuadrante() == subCuadranteActual) ///VER DE !VISITADO
         				{
         					for(Nodo nB: agState.getintensidadSeñalB())
         					{	
@@ -207,8 +207,8 @@ public class Subir extends SearchAction {
         		agState.setenergia(agState.getenergia()-2);
         		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
         		environmentState.setAlturaAgente("M");
-
 System.out.println("Sube a nivel M (En Ambiente)");
+
         		
         		return environmentState;
 				

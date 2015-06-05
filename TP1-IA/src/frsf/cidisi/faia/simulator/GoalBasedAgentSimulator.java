@@ -17,7 +17,6 @@
  */
 package frsf.cidisi.faia.simulator;
 
-import java.io.IOException;
 import java.util.Vector;
 
 import frsf.cidisi.faia.agent.GoalBasedAgent;

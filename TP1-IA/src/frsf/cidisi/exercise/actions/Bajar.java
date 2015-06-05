@@ -94,7 +94,7 @@ public class Bajar extends SearchAction {
     			boolean conSeñal = false;
         		for(NodoLista n: agState.getintensidadSeñalM())
     			{
-    				if(n.getCuadrante() == subCuadrante && !n.getVisitado()) 
+    				if(n.getCuadrante() == cuadrante && !n.getVisitado())
     				{
     					conSeñal = true;
     					break;
@@ -139,7 +139,12 @@ public class Bajar extends SearchAction {
 					System.out.println("BAja a nivel B (en ambiente)");
 					return agState;
 				}
-    		}
+//System.out.println("Esta en nivel medio (de bajar). Cuadrante: "+cuadrante+"; subCuadrante: " + subCuadrante);	
+        		
+
+        }
+        	
+
         }
         return null;
     }
@@ -189,12 +194,17 @@ public class Bajar extends SearchAction {
         				Point uAgente = FuncionesAuxiliares.bajarASubCuadranteM(cuadrante);
                 		agState.setubicacionD(uAgente);
                 		environmentState.setposicionAgente(uAgente);
+//                		//elimina el nodo con el cuadrante actual de la lista de señal de nivel alto del agente
+//        				agState.removerCuadranteNivelA(cuadrante);
         				agState.setenergia(agState.getenergia()-1);
         				environmentState.setenergiaAgente(environmentState.getenergiaAgente()-1);
         				
         				System.out.println("BAja a nivel M (en ambiente)");
         				
         				return environmentState;
+//        			}
+//        		}
+//        		
         	}
         	//el agente está en nivel medio
         	else
@@ -219,7 +229,7 @@ public class Bajar extends SearchAction {
         		boolean conSeñal = false;
         		for(NodoLista n: agState.getintensidadSeñalM())
     			{
-    				if(n.getCuadrante() == subCuadrante && !n.getVisitado())
+    				if(n.getCuadrante() == cuadrante && !n.getVisitado())
     				{
     					conSeñal = true;
     					break;
@@ -238,7 +248,7 @@ public class Bajar extends SearchAction {
     			{
     				
     				 uAgente = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
-System.out.println("Nivel M (en bajar con grafo size > 0): pos: " + uAgente.x + " " + uAgente.y);
+    				 System.out.println("Nivel M (en bajar con grafo size > 0): pos: " + uAgente.x + " " + uAgente.y);
 				
     			}
     			else
