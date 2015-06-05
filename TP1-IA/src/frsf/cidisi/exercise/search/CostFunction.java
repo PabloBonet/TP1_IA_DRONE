@@ -26,17 +26,17 @@ public class CostFunction implements IStepCostFunction {
 	   		}
 	   	else
 	   		{
-	   		costo = 1;
+	   		costo += 1;
 	   		estadoPadre = (StateDrone) padre.getAgentState();
 	   		if(estadoActual.getaltura() == "A")
 	   		{
 	   			if(estadoPadre.getaltura() == "M") // SI subo al nivel alto
 	   			{
-	   				costo = 20;
+	   				costo += 20;
 	   			}
 	   			if(estadoActual.getintensidadSeñalA().size() == 0) //No hay personas
 	   			{
-	   				costo = 40; //estaba en un cuadrante sin señal
+	   				costo += 40; //estaba en un cuadrante sin señal
 	   			}
 	   		}
 	   		else
@@ -45,18 +45,18 @@ public class CostFunction implements IStepCostFunction {
 	   			{
 	   				if(estadoPadre.getaltura() == "B")//Si subo al nivel medio
 	   				{
-	   					costo = 20;
+	   					costo += 20;
 	   				}
 	   				if(estadoActual.getintensidadSeñalM().size() == 0) //No hay personas
 		   			{
-		   				costo = 40;
+		   				costo += 40;
 		   			}
 	   			}
 	   			else //altura == B
 	   			{
 	   				if(estadoActual.getintensidadSeñalB().size() == 0) //No hay personas
 		   			{
-		   				costo = 40;
+		   				costo += 40;
 		   			}
 	   			}
 	   		}
