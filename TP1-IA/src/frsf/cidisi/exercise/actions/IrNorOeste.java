@@ -92,7 +92,8 @@ public class IrNorOeste extends SearchAction {
         	}
         	else //altura == B
         	{
-        		
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
         		
@@ -122,6 +123,7 @@ public class IrNorOeste extends SearchAction {
                 	return droneState;
         		}
         	}
+        }
         }
         
         return null;
@@ -206,6 +208,8 @@ public class IrNorOeste extends SearchAction {
         	}
         	else //Altura "B"
         	{
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
 
@@ -244,7 +248,7 @@ public class IrNorOeste extends SearchAction {
             
             return environmentState;
         }
-
+        }
         return null;
     }
 

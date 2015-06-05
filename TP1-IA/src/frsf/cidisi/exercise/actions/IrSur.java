@@ -56,11 +56,20 @@ public class IrSur extends SearchAction {
         				break;
         			}
         		}
+        		
+        		//SOLO PARA PRUEBA 
+        		
+        		if(droneState.getenergia() < 992)
+        			System.out.println("Energia (en IrSur): " + droneState.getenergia());
+        			
+        		
         		if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
         		{
         			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
+            		System.out.println("Ir al sur en nivel alto de: " + droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
             		droneState.setubicacionD(sigPos);	
+            		System.out.println("a : " + droneState.getubicacionD().x + " " + droneState.getubicacionD().y);
             		System.out.println("IrSUr");
             		return droneState;
         		}
@@ -102,7 +111,8 @@ System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigP
         	}
         	else //altura == B
         	{
-        		
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irSurBajo(posicion, subGrafo);
         		
@@ -131,6 +141,7 @@ System.out.print("\tENCONTRADO EN SUR B!! con y cuad "+n.getCuadrante()+" y sigP
                 	return droneState;
                 	
         		}
+            	}
         	}
         }
         
@@ -185,7 +196,9 @@ System.out.println("EN IR SUR en A---");
         		{
         			//droneState.removerCuadranteNivelA(cuadrante);
             		droneState.setenergia(energia - 1);
+            		
             		droneState.setubicacionD(sigPos);	
+            		
             		puedeIr = true;
         		}
         	}
@@ -223,6 +236,8 @@ System.out.println("EN IR SUR en M---");
         	}
         	else //altura == B
         	{
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
         		Nodo nodoSig = FuncionesAuxiliares.irSurBajo(posicion, subGrafo);
         		
         		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
@@ -251,6 +266,7 @@ System.out.println("EN IR SUR en M---");
                 	puedeIr = true;
                 	environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
         		}
+        	}
         	}
         }
         

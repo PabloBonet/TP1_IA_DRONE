@@ -94,7 +94,8 @@ public class IrOeste extends SearchAction {
 			else // Altura "B"
 			{
 				
-				{
+				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irOesteBajo(posicion,
 							subGrafo);
@@ -206,7 +207,8 @@ public class IrOeste extends SearchAction {
 					}
 				}
 			} else // altura == B
-			{
+				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
 				Nodo nodoSig = FuncionesAuxiliares.irOesteBajo(posicion,
 						subGrafo);
 

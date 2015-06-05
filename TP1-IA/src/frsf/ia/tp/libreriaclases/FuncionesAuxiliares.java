@@ -411,7 +411,7 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 	 * @param subCuadrante
 	 * @return centro Centro del subcuadrante de nivel bajo
 	 */
-	private static Point centroSubcuadranteBajo(int subCuadrante) {
+	public static Point centroSubcuadranteBajo(int subCuadrante) {
 		Point centro = new Point();
 		centro.x = (((((subCuadrante / 10) % 2) == 1) ? 1 : 2)
 				* ANCHO_CUADRANTE - (((subCuadrante % 10) % 2) + 1)

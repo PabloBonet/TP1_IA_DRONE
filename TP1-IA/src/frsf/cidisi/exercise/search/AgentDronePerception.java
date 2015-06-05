@@ -1,6 +1,7 @@
 package frsf.cidisi.exercise.search;
 
 import java.awt.Point;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import frsf.cidisi.faia.agent.Agent;
@@ -68,11 +69,11 @@ public class AgentDronePerception extends Perception {
         	if(altura == "M")
         	{
         		//cargar el grafo perteneciente al cuadrante
-System.out.println("Se carga el grafoCuadrante!!! Pos: "+gps.getPosiciongps().x+" "+gps.getPosiciongps().y+"(en AgentDronePerception)");
+//System.out.println("Se carga el grafoCuadrante!!! Pos: "+gps.getPosiciongps().x+" "+gps.getPosiciongps().y+"(en AgentDronePerception)");
             	gps.cargarGrafoCuadrante(estadoAmbiente.getgrafoMapa());
             	
             	antena = new AntenaNMA();
-        		
+            	//antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
         		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
         		{
         			//System.out.println("ESTADO AMBIENTE: " + nodo.getIntensidad());
@@ -86,7 +87,7 @@ System.out.println("Se carga el grafoCuadrante!!! Pos: "+gps.getPosiciongps().x+
             	Nodo nodoAgente = (Nodo)(estadoAmbiente.getgrafoMapa()).nodoEnPosicion(posicionAgente);
             	
             	//cargar el grafo perteneciente al subcuadrante
-System.out.println("Se carga el grafoSubCuadrante!!! Pos: "+posicionAgente.x+" "+posicionAgente.y+"(en AgentDronePerception)");
+//System.out.println("Se carga el grafoSubCuadrante!!! Pos: "+posicionAgente.x+" "+posicionAgente.y+"(en AgentDronePerception)");
             	gps.cargarGrafoSubCuadrante(estadoAmbiente.getgrafoMapa());
             	
             	//Percepción cámara
@@ -163,14 +164,16 @@ System.out.println("Se carga el grafoSubCuadrante!!! Pos: "+posicionAgente.x+" "
        }
        else
        {
-    	   for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
-    	   {
+    	   System.out.println("CANTIDAD ELEMENTOS ANTENA: " + this.antena.getIntensidadSeñal().size());
+    	  
+    	   //for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
+    	   //{
     		   ArrayList<NodoLista> intensidades = this.antena.getIntensidadSeñal();
     		   for(NodoLista n: intensidades)
     		   {
     			   str.append("\n\tCuadrante: "+ n.getCuadrante()+ " Intensidad: "+n.getIntensidad());
     		   }
-    	   }
+    	   //}
        }
       
         return str.toString();

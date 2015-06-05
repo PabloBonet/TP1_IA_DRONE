@@ -99,7 +99,8 @@ public class IrNorte extends SearchAction {
         	}
         	else //altura == B
         	{
-        		
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
 //System.out.println("En irNorte Bajo!!!");
@@ -131,6 +132,7 @@ public class IrNorte extends SearchAction {
 //        		else
 //System.out.println(" nodoSig en irNorte bajo: null");
         	}
+        }
         }
         
         return null;
@@ -222,6 +224,8 @@ public class IrNorte extends SearchAction {
         	}
         	else //altura == B
         	{
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
         		Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
         		
         		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
@@ -259,7 +263,7 @@ public class IrNorte extends SearchAction {
             
             return environmentState;
         }
-
+        }
         return null;
     }
     

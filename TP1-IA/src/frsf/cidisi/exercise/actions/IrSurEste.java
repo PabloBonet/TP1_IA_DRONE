@@ -2,6 +2,7 @@ package frsf.cidisi.exercise.actions;
 
 
 import java.awt.Point;
+import java.io.IOException;
 
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -71,9 +72,13 @@ public class IrSurEste extends SearchAction {
         	{
         		
         		sigPos = FuncionesAuxiliares.irSurEste(posicion, altura);
-            	
+        		
         		if(sigPos != null)
         		{
+        			//System.out.println("EN IR SURESTE M");
+            		//System.out.println("pos: " + posicion.x + " " + posicion.y);
+            		//System.out.println("Sig pos: " + sigPos.x + " " + sigPos.y);
+            		
         			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
         			NodoLista encontrado = null;
             		for(NodoLista n: droneState.getintensidadSeñalM())
@@ -81,7 +86,7 @@ public class IrSurEste extends SearchAction {
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+            				//n.visitar();
             				encontrado = n;
             				break;
             			}
@@ -97,7 +102,8 @@ public class IrSurEste extends SearchAction {
         	}
         	else //altura == B
         	{
-        		
+        		if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+            	{
         		subGrafo = droneState.getGrafoSubCuadrante();
         		Nodo nodoSig = FuncionesAuxiliares.irSurEsteBajo(posicion, subGrafo);
         		
@@ -125,6 +131,7 @@ public class IrSurEste extends SearchAction {
                 	droneState.setubicacionD(sigPos);
                 	return droneState;
         		}
+        	}
         	}
         }
         
@@ -188,6 +195,7 @@ public class IrSurEste extends SearchAction {
         	{
         		sigPos = FuncionesAuxiliares.irSurEste(posicion, altura);
         		
+        		
         		if(sigPos != null)
         		{
         			int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
@@ -197,7 +205,7 @@ public class IrSurEste extends SearchAction {
             			
             			if(cuadrante == n.getCuadrante() && !n.getVisitado())
             			{
-            				n.visitar();
+            				//n.visitar();
             				encontrado = n;
             				break;
             			}
@@ -212,6 +220,7 @@ public class IrSurEste extends SearchAction {
         		}
         	}
         	else //altura == B
+        	{if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
         	{
         		Nodo nodoSig = FuncionesAuxiliares.irSurEsteBajo(posicion, subGrafo);
         		
@@ -250,6 +259,7 @@ public class IrSurEste extends SearchAction {
             environmentState.setenergiaAgente(droneState.getenergia());
             
             return environmentState;
+        }
         }
 
         return null;

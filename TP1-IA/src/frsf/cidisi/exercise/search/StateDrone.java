@@ -64,9 +64,12 @@ public class StateDrone extends SearchBasedAgentState {
      */
     @Override
     public SearchBasedAgentState clone() {
+        //Point nuevaUbicacion = new Point(ubicacionD);
+        //String nuevaAltura = new String(altura);
         
     	StateDrone nuevoEstado = new StateDrone(this.ubicacionD, this.altura, this.direccion, this.energia);
-    	
+        
+        //StateDrone nuevoEstado = new StateDrone(nuevaUbicacion, nuevaAltura, this.direccion, this.energia);
     	ArrayList<NodoLista> nuevaIntensidadSeñalA = new ArrayList<NodoLista>();
     	ArrayList<NodoLista> nuevaIntensidadSeñalM = new ArrayList<NodoLista>();
     	ArrayList<Nodo> nuevaIntensidadSeñalB = new ArrayList<Nodo>();
