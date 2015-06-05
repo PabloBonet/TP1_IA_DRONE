@@ -21,7 +21,7 @@ public class Heuristic implements IEstimatedCostFunction {
 		if(agState.getvictimario() == null) // si no encontro al victimario
 		{
 			//No implementado
-			//return calcularDistanciaAVictimario();
+			//return agState.calcularDistanciaAVictimario();
 			
 		}
 		
