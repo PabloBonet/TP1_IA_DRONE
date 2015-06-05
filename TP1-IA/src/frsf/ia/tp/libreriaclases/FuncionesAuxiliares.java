@@ -399,7 +399,9 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		break;
 	}
 }*/
-		if (centroEsquina.x >= 0 && centroEsquina.y >= 0) //si se seteó una posición centro
+		//si se seteó una posición centro y esta dentro del subcuadrante
+		if (centroEsquina.x >= 0 && centroEsquina.y >= 0 && 
+				FuncionesAuxiliares.perteneceASubCuadrante(centroEsquina.x, centroEsquina.y)==subCuadrante)
 			return centroEsquina;
 
 		return null;
