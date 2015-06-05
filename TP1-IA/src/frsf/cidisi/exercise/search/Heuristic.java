@@ -2,6 +2,7 @@ package frsf.cidisi.exercise.search;
 
 import frsf.cidisi.faia.solver.search.IEstimatedCostFunction;
 import frsf.cidisi.faia.solver.search.NTree;
+import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 
 /**
  * This class allows to define a function to be used by any
@@ -14,9 +15,15 @@ public class Heuristic implements IEstimatedCostFunction {
      */
     @Override
     public double getEstimatedCost(NTree node) {
-        StateDrone agState = (StateDrone) node.getAgentState();
+    	StateDrone agState = (StateDrone) node.getAgentState();
+       
 	
-		//Method: Complete Method
+		if(agState.getvictimario() == null) // si no encontro al victimario
+		{
+			//No implementado
+			//return calcularDistanciaAVictimario();
+			
+		}
 		
         return 0;
     }
