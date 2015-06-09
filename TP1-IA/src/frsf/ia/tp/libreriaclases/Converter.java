@@ -4,21 +4,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-
 public class Converter {
-	/** Lista de Strigs que alojara los datos leidos del archivo */
+	//Lista de Strigs que alojara los datos leidos del archivo
 	private List<List<String>> listaDeDatos;
 	
-	/**Lista auxiliar para imprimir todos los elementos*/
+	//Lista auxiliar para imprimir todos los elementos
 	private List<String> lista = new ArrayList<String>();
 
-	/**Lista de Enlaces y Nodos auxiliares*/
+	//Lista de Enlaces y Nodos auxiliares
 	private ArrayList<Nodo> listaNodos;
 	private ArrayList<Enlace> listaEnlaces;
 
 	
-	/**Variables auxiliares para crear las intancias de los objetos*/
+	//Variables auxiliares para crear las intancias de los objetos
 	String categoria;
 	
 	public Converter(File archivo) throws IOException{
@@ -30,8 +28,12 @@ public class Converter {
 		
 	}
 	
-	/**Metodo que genera una lista de String donde cada elemento
-	   será utilizado para generar las instancias de los Nodos y Enlaces*/
+	/**
+	 * Metodo que genera una lista de String donde cada elemento
+	 * será utilizado para generar las instancias de los Nodos y Enlaces
+	 * @param archivo
+	 * @throws IOException
+	 */
 	private void inicializarConvertidor(File archivo) throws IOException{
 		
 		LectorCsv lector = new LectorCsv(archivo);
@@ -45,9 +47,12 @@ public class Converter {
 
 	}
 	
+	/**
+	 * Recorro la lista hasta el final y pregunto qué categoría es. En función de la categoría
+	 * creo la instancia del objeto correspondiente y luego lo agrego a la lista que corresponde
+	 */
 	private void crearComponentesGrafo(){
-		/**Recorro la lista hasta el final y pregunto qué categoría es. En función de la categoría
-		 * creo la instancia del objeto correspondiente y luego lo agrego a la lista que corresponde*/
+		
 		for (int i = 0; i < listaDeDatos.size(); i++){
 			categoria = listaDeDatos.get(i).get(0);		
 			if(categoria.equals("Nodo")){

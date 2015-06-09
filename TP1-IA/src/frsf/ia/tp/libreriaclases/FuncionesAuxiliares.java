@@ -129,7 +129,6 @@ public class FuncionesAuxiliares {
 	 * 			Si el cuadrante no pertenece a ninguna posicion retorna null
 	 */
 	public static Point bajarASubCuadranteM(int cuadrante) {
-System.out.print("bajarASubCuadranteM. Cuadrante: "+cuadrante);
 		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
 		Point nuevaPos = new Point();
 		switch (cuadrante) {
@@ -148,7 +147,6 @@ System.out.print("bajarASubCuadranteM. Cuadrante: "+cuadrante);
 		default:
 			return null;
 		}
-System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		return nuevaPos;
 	}
 
@@ -406,7 +404,6 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		centro.y = ((((subCuadrante / 10) <= 2) ? 1 : 2) * ALTO_CUADRANTE
 				- ((subCuadrante % 10) > 2 ? 1 : 2) * ALTO_SUB_CUADRANTE + ANCHO_SUB_CUADRANTE / 2);
 		
-//System.out.println("CENTRO: " + centro.x + " " + centro.y);
 		return centro;
 	}
 
@@ -489,9 +486,6 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 	public static Point irSur(Point ubicacionActual, String altura) {
 		Point posicion = null;
 		
-//System.out.println("En irSur (de Faux) Altra: " + altura);
-//System.out.println("Ubicacion: " + ubicacionActual.x + " " + ubicacionActual.y);
-
 		//Controla que la altura no sea baja y que la posicion este dentro del mapa
 		if (altura != "B" && (ubicacionActual.x >= 0 && ubicacionActual.x <= ANCHO_MAPA && ubicacionActual.y >= 0 && ubicacionActual.y <= ANCHO_MAPA)) {
 			posicion = new Point();
@@ -510,7 +504,6 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 				}
 			} else // altura == M
 			{
-System.out.print("\tnivel M\n");
 				int posNueva = y + ALTO_SUB_CUADRANTE;
 				if (posNueva <= ALTO_MAPA) // Si no sale fuera de la grilla
 				

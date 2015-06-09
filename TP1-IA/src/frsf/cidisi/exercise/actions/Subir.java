@@ -137,7 +137,7 @@ public class Subir extends SearchAction {
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
         StateMap environmentState = (StateMap) est;
         StateDrone agState = ((StateDrone) ast);
-        System.out.println("EN EXECUTE de SUBIR");
+System.out.println("EN EXECUTE de SUBIR");
         /*PreConditions: no debe estar en el nivel alto
          * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre el agente
          * tiene que tener mas de 1 de energía

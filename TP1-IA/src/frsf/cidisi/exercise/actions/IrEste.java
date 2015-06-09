@@ -2,7 +2,6 @@ package frsf.cidisi.exercise.actions;
 
 
 import java.awt.Point;
-import java.util.List;
 
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -13,7 +12,6 @@ import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
-import frsf.ia.tp.libreriaclases.Persona;
 
 public class IrEste extends SearchAction {
 
@@ -39,9 +37,7 @@ public class IrEste extends SearchAction {
         Point posicion = droneState.getubicacionD();
         int energia = droneState.getenergia();
         Grafo subGrafo = new Grafo();
-        
-      
-        
+
         
         if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
         	Point sigPos = FuncionesAuxiliares.irEste(posicion, altura);
@@ -101,6 +97,7 @@ public class IrEste extends SearchAction {
 
         		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
+System.out.println("Ir este -> B\t De "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY()+".");
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
         			{
         				if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())

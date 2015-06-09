@@ -103,6 +103,7 @@ public class IrSur extends SearchAction {
         		
         		if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
         		{
+System.out.println("Ir sur -> B\t De "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY()+".");
         			if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
         			{
         				if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())
@@ -111,8 +112,10 @@ public class IrSur extends SearchAction {
         				}
         				else
         				{
+System.out.println("   VISITADO en ir sur.."); 
         					(subGrafo.buscarNodo(nodoSig.getId())).visitar();
             				droneState.setenergia(energia - 1);	
+            				
         				}
         				
         			}

@@ -44,7 +44,7 @@ public class ConverterEscenario {
 		{
 			Persona persona = new Persona(Integer.parseInt(renglon.get(1)), Integer.parseInt(renglon.get(2))); //crea la persona
 			
-			Nodo nodo = new Nodo(Integer.parseInt(renglon.get(0)), 0, 0,false); //crea el nodo con id en posicion 1
+			Nodo nodo = new Nodo(Integer.parseInt(renglon.get(0)), 0, 0, false); //crea el nodo con id en posicion 1
 			
 			nodo.agregarPersona(persona);
 			listaNodos.add(nodo);

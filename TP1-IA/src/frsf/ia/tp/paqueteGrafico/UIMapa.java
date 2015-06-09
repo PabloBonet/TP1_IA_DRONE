@@ -4,13 +4,10 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.text.AttributedCharacterIterator;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.ImageIcon;
 import frsf.ia.tp.libreriaclases.*;
-
 
 public class UIMapa extends Canvas {
 
@@ -19,7 +16,10 @@ public class UIMapa extends Canvas {
 	private Grafo grafo;
 	
 
-	/**el constructor recibiria como parametro el grafo*/
+	/**
+	 * El constructor recibiria como parametro el grafo
+	 * @param grafo
+	 */
 	public UIMapa(Grafo grafo) {
 		this.grafo = grafo;
 		inicializarImagenFondo();
@@ -31,7 +31,9 @@ public class UIMapa extends Canvas {
 	}
 	
 	@Override
-	/*Se reescribe el metodo paint que se hereda de Canvas*/
+	/**
+	 * Se reescribe el metodo paint que se hereda de Canvas
+	 */
 	public void paint(Graphics g) {
 		g.drawImage(fondo, 0, 0, getWidth(), getHeight(), this);
 		dibujarCuadrantes(g);
@@ -39,7 +41,11 @@ public class UIMapa extends Canvas {
 		dibujarArcosEntreNodos(g, grafo);
 	}
 
-	/**Metodo para graficar los nodos sobre el mapa*/
+	/**
+	 * Metodo para graficar los nodos sobre el mapa
+	 * @param g
+	 * @param grafo
+	 */
 	private void dibujarNodos(Graphics g,Grafo grafo) {
 		for(int i=0; i<grafo.getListaNodos().size(); i++){
 			
@@ -85,7 +91,12 @@ public class UIMapa extends Canvas {
 		}
 	return false;
 	}
-	/**Metodo para graficar los enlaces entre nodos**/
+	
+	/**
+	 * Metodo para graficar los enlaces entre nodos
+	 * @param g
+	 * @param grafo
+	 */
 	private void dibujarArcosEntreNodos(Graphics g, Grafo grafo){
 		int idNodo1;
 		int idNodo2;
@@ -107,9 +118,12 @@ public class UIMapa extends Canvas {
 		}
 	}
 	
-	
+	/**
+	 * Trazado de Cuadrantes
+	 * @param g
+	 */
 	private void dibujarCuadrantes(Graphics g) {
-		/** Trazado de Cuadrantes */
+		
 		 //Vista Nivel Superior
 		 g.setColor(Color.RED);
 		 //cuadrante1

@@ -257,11 +257,11 @@ public class UIVentanaPrincipal extends JFrame {
 				
 					if (new EvaluaExtension().accept(archivoElegido, ".csv")) {
 						
-						/**Se crea una instancia de la Clase ConverterEscenario*/
+						//Se crea una instancia de la Clase ConverterEscenario
 						nodosEscenario = new ConverterEscenario(archivoElegido);
 						
 						
-						/**Se cargan las personas al grafo con los elementos devueltos por ConverterEscenario*/
+						//Se cargan las personas al grafo con los elementos devueltos por ConverterEscenario
 						
 						for(Nodo nodo: nodosEscenario.getListaNodos())
 						{

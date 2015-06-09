@@ -1,42 +1,59 @@
 package frsf.ia.tp.libreriaclases;
 
+//import java.util.ArrayList;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Nodo {
-	/** El id del nodo. */
+	//El id del nodo.
 	private int id;
 	
-	/** El posicion del nodo: posX, posY. */
+	//El posicion del nodo: posX, posY.
 	private int posX;
 	private int posY;
 
 	private boolean visitado;
 	
-	/** Lista de personas ubicadas en el nodo. */
+	//Lista de personas ubicadas en el nodo.
 	private List<Persona> personas;
 
+//	/**
+//	 * Constructor que inicializa las propiedades del nodo.
+//	 * 
+//	 * @param idNodo
+//	 *            El id del vértice.
+//	 * @param pX
+//	 * 			  Posición X del nodo
+//	 * 
+//	 * @param pY
+//	 * 			  Posición Y del nodo
+//	 */
+//	public Nodo(int idNodo, int pX, int pY, List<Persona> persona, boolean visitado) {
+//		super();
+//		this.id = idNodo;
+//		this.posX = pX;
+//		this.posY = pY;
+//		this.personas = persona;
+//		this.visitado = visitado;
+//	}
+	
 	/**
-	 * Constructor que inicializa las propiedades del nodo.
 	 * 
 	 * @param idNodo
-	 *            El id del vértice.
 	 * @param pX
-	 * 			  Posición X del nodo
-	 * 
 	 * @param pY
-	 * 			  Posición Y del nodo
+	 * @param visitado
 	 */
 	public Nodo(int idNodo, int pX, int pY, boolean visitado) {
 		super();
 		this.id = idNodo;
 		this.posX = pX;
 		this.posY = pY;
-		this.personas = new  ArrayList<Persona>();
+		this.personas = new ArrayList<Persona>();
 		this.visitado = visitado;
 	}
-	
+
 	public int getId()
 	{
 		return this.id;
