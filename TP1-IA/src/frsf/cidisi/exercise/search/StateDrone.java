@@ -1,8 +1,4 @@
-
-
 package frsf.cidisi.exercise.search;
-
-
 
 import java.awt.Point;
 import java.util.ArrayList;
@@ -10,7 +6,6 @@ import java.util.ArrayList;
 import frsf.cidisi.faia.agent.Perception;
 import frsf.cidisi.faia.agent.search.SearchBasedAgentState;
 import frsf.ia.tp.libreriaclases.*;
-
 
 /**
  * Represent the internal state of the Agent.
@@ -44,7 +39,6 @@ public class StateDrone extends SearchBasedAgentState {
     	victimario = null;
     	energia = e;
     	grafoSubCuadrante = new Grafo();
-    	
     }
     
     public StateDrone()
@@ -104,7 +98,12 @@ public class StateDrone extends SearchBasedAgentState {
     	ArrayList<Nodo> nodosNuevo = new ArrayList<Nodo>();
     	ArrayList<Enlace> enlacesNuevo = new ArrayList<Enlace>();
     	for(Nodo n: this.grafoSubCuadrante.getListaNodos())
-    		nodosNuevo.add(new Nodo(n.getId(), n.getPosX(), n.getPosY(), n.getVisitado()));
+    	{
+    		Nodo nodo = new Nodo(n.getId(), n.getPosX(), n.getPosY(), n.getVisitado());
+    		for(Persona p: n.getPersonas())
+    			nodo.agregarPersona(new Persona(p.getId(), p.getTipo()));
+    		nodosNuevo.add(nodo);
+    	}
     	for(Enlace e: this.grafoSubCuadrante.getListaEnlaces())
     		enlacesNuevo.add(new Enlace(e.getIdNodo1(), e.getIdNodo2(), e.getPeso()));
     	Grafo subGrafo = new Grafo(nodosNuevo, enlacesNuevo);
@@ -161,7 +160,7 @@ public class StateDrone extends SearchBasedAgentState {
         				 boolean existe = false;
         				 for(NodoLista nodo : this.intensidadSeñalM)
         				 {
-        					 if(nodo.getCuadrante() == n.getCuadrante())
+        					 if(nodo.getCuadrante() == n.getCuadrante())  //TODO Y PERTENECE AL CUADRANTE ACTUAL......
         					 {
         						existe = true;
         						break;
@@ -242,22 +241,12 @@ public class StateDrone extends SearchBasedAgentState {
     	String str = "------ Estado Agente VANT -----\n";
         str += "Altura: "+this.altura+"\n";
         str += "Ubicación: ";
-        if(altura== "B")
-        {
-        	str += (grafoSubCuadrante.nodoEnPosicion(ubicacionD)).getId();
-        }
-        	
-        
+        if(altura != "A")
+        	str += FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y)+"\n";
         else
-        {
-        	if(altura == "M")
-        		str += FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y)+"\n";
-        	else
-        		str += FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y)+"\n";
-        }
-        	
+       		str += FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y)+"\n";
         
-        str += "Intensidad de señal\nNivel Alto \n";
+        str += "\nIntensidad de señal\nNivel Alto \n";
         for(int i=0; i<intensidadSeñalA.size();i++)
         	str += "\tCuadrante: "+intensidadSeñalA.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalA.get(i).getIntensidad()+", Fue visitado: "+ intensidadSeñalA.get(i).getVisitado()+"\n";
         str += "Nivel Medio \n";
@@ -438,6 +427,7 @@ public class StateDrone extends SearchBasedAgentState {
 		{
 			if(n.getCuadrante() == cuadrante)
 			{
+System.out.println("\tVISITA cuadrante "+n.getCuadrante()+" intensidad "+n.getIntensidad());
 				n.visitar();
 			}
 		}

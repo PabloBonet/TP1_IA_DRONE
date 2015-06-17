@@ -97,31 +97,31 @@ public class Grafo {
 	}
 	
 
-	/**
-	 * Crea un nodo al grafo
-	 *Valida que el nodo no exista  y si no existe lo agrega al grafo
-	 *
-	 *@param idNodo
-	 *	id del nodo a crear y agregar
-	 *
-	 *@param posX
-	 *	posicionX del nodo
-	 *
-	 *@param posY
-	 *	posicionY del nodo
-	 *
-	 * **/
-	public boolean crearNodo(int idNodo, int posX, int posY)
-	{
-	
-		if(this.validarNodoNoRepetido(idNodo )) //si True entonces no existe y lo crea
-		{
-			this.listaNodos.add(new Nodo(idNodo, posX, posY, false));
-			return true;
-		}
-		
-		return false;
-	}
+//	/**
+//	 * Crea un nodo al grafo
+//	 *Valida que el nodo no exista  y si no existe lo agrega al grafo
+//	 *
+//	 *@param idNodo
+//	 *	id del nodo a crear y agregar
+//	 *
+//	 *@param posX
+//	 *	posicionX del nodo
+//	 *
+//	 *@param posY
+//	 *	posicionY del nodo
+//	 *
+//	 * **/
+//	public boolean crearNodo(int idNodo, int posX, int posY)
+//	{
+//	
+//		if(this.validarNodoNoRepetido(idNodo )) //si True entonces no existe y lo crea
+//		{
+//			this.listaNodos.add(new Nodo(idNodo, posX, posY, false));
+//			return true;
+//		}
+//		
+//		return false;
+//	}
 	
 	/**
 	 * Crea un enlace al grafo

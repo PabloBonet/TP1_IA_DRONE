@@ -71,13 +71,17 @@ public class AgentDronePerception extends Perception {
         		//cargar el grafo perteneciente al cuadrante
             	gps.cargarGrafoCuadrante(estadoAmbiente.getgrafoMapa());
             	
-            	antena = new AntenaNMA();
-            	//antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
-        		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
-        		{
-        			if(nodo.getCuadrante() == subCuadrante)
-        				antena.agregarIntensidadSeñal(nodo);
-        		}
+//            	antena = new AntenaNMA();
+            	//agrega todos los nodos de la lista de nivel medio ya que cada nodo se marcó como visitaso
+            	//si es que ya se pasó por éste
+       //TODO ACÁ DEBE COPIAR SOLO LAS INTENSIDADES PARA ESE CUADRANTE DE NIVEL MEDIO??????????????????????
+       //PODRÍA COPIAR TODAS?????????????????????????????????????
+            	antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
+//        		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
+//        		{
+//        			if(nodo.getCuadrante() == subCuadrante)
+//        				antena.agregarIntensidadSeñal(nodo);
+//        		}
         	}
         	else //altura == B
         	{
@@ -97,6 +101,7 @@ public class AgentDronePerception extends Perception {
             	{
             		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
             		{
+System.out.println("cargó intensisad en B| ");
             			antena.agregarIntensidadSeñal(n);
                     	
             		}
@@ -117,12 +122,11 @@ public class AgentDronePerception extends Perception {
        str.append("-- Percepción del Agente VANT --\n");
        str.append("Altura: "+this.altura+"\n");
        str.append("Posición: "+this.gps.getPosiciongps().x+" - "+this.gps.getPosiciongps().y+"\n");
-       str.append("Cámara: ");
+       str.append("Cámara. Personas que ve:  ");
        if(this.altura == "B")
        {
     	     for(int i=0;i<this.camara.getPersonas().size();i++)
     	     {
-    	    	 str.append("Personas que ve: ");
     	    	 str.append("\n\tID: "+this.camara.getPersonas().get(i).getId()+ " es victima: "+this.camara.getPersonas().get(i).esVictima());
     	     }
        }
@@ -136,38 +140,31 @@ public class AgentDronePerception extends Perception {
        str.append("\nAntena: "); 
        if(this.altura == "B")
        {
-    	  
+    	   ArrayList<Nodo> intensidadesN = new ArrayList<Nodo>();
     	   for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
     	   {
     		   if(this.antena.getIntensidadSeñal().get(i) instanceof AntenaNB){
-    			   ArrayList<Nodo> intensidadesN = ((AntenaNB)this.antena.getIntensidadSeñal().get(i)).getIntensidadSeñal();
-
-    			   for(Nodo n: intensidadesN)
-    			   {
-    				   str.append("\n\tNodo: "+ n.getId()+" Cantidad personas: "+n.getPersonas().size());
-    			   }
+    			   intensidadesN = ((AntenaNB)this.antena.getIntensidadSeñal().get(i)).getIntensidadSeñal();
     		   }
     	   }
-    	   
+    	   for(Nodo n: intensidadesN)
+    	   {
+    		   str.append("\n\tPosición: "+ n.getPosX()+"-"+n.getPosY()+"\tPersonas: "+n.getPersonas().size());
+    	   }
     	   str.append("\nEsquinas en cuadrante: ");
     	   for(Nodo n: gps.getGrafoSubCuadrante().getListaNodos())
     	   {
-    		   str.append("\nNodo: "+n.getId());
+    		   str.append("\n\tNodo: "+n.getId());
     	   }
 	     
        }
        else
        {
-    	   System.out.println("CANTIDAD ELEMENTOS ANTENA: " + this.antena.getIntensidadSeñal().size());
-    	  
-    	   //for(int i=0;i<this.antena.getIntensidadSeñal().size();i++)
-    	   //{
-    		   ArrayList<NodoLista> intensidades = this.antena.getIntensidadSeñal();
-    		   for(NodoLista n: intensidades)
-    		   {
-    			   str.append("\n\tCuadrante: "+ n.getCuadrante()+ " Intensidad: "+n.getIntensidad());
-    		   }
-    	   //}
+			ArrayList<NodoLista> intensidades = this.antena.getIntensidadSeñal();
+    		for(NodoLista n: intensidades)
+    		{
+    			str.append("\n\tCuadrante: "+ n.getCuadrante()+ " Intensidad: "+n.getIntensidad());
+    		}
        }
       
         return str.toString();

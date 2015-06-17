@@ -25,9 +25,10 @@ public class StateMap extends EnvironmentState {
     	intensidadSeñalA = new ArrayList<NodoLista>();
 		intensidadSeñalM = new ArrayList<NodoLista>();
 		intensidadSeñalB = new ArrayList<Nodo>();
-		grafoMapa = new Grafo();
+//		grafoMapa = new Grafo();
+		grafoMapa = grafo;
 		posicionAgente = new Point();
-		this.setgrafoMapa(grafo);
+//		this.setgrafoMapa(grafo);
         this.initState();
     }
 
@@ -64,9 +65,10 @@ public class StateMap extends EnvironmentState {
     			ubicacion.x = n.getPosX();
     			ubicacion.y = n.getPosY();
     			Nodo nodoNuevo=new Nodo(n.getId(), n.getPosX(), n.getPosY(), n.getVisitado());
-    			for(Persona p:n.getPersonas())
-    				nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
-    			intensidadSeñalB.add(nodoNuevo);
+
+    				for(Persona p: n.getPersonas())
+    					nodoNuevo.agregarPersona(new Persona(p.getId(), p.getTipo()));
+    				intensidadSeñalB.add(nodoNuevo);
 
     			int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(ubicacion.x, ubicacion.y);
     			int cuadrante = FuncionesAuxiliares.perteneceACuadrante(ubicacion.x, ubicacion.y);
@@ -142,7 +144,7 @@ public class StateMap extends EnvironmentState {
         str += "Nivel Bajo \n";
         for(int i=0; i<intensidadSeñalB.size();i++)
         	str +="\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
-        str += "Victimarios (ID): ";
+//        str += "Victimarios (ID): ";
         
         return str;
     }
@@ -219,7 +221,9 @@ public class StateMap extends EnvironmentState {
     	 if(subgrafo != null)
     	 {
 
-    		 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo); 
+    		 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo);
+    		 
+    		 //agrego la posición del agente si es que existen personas en la misma
         	 if(nodoAgente.getPersonas().size()>0)
         		 nodosAdyacentes.add(nodoAgente);
     		 
