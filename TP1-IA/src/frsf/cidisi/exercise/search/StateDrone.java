@@ -153,6 +153,7 @@ public class StateDrone extends SearchBasedAgentState {
     		 }
     		 else
     		 {
+    			 int subcuadrante = FuncionesAuxiliares.perteneceASubCuadrante(percepcion.getgps().getPosiciongps().x, percepcion.getgps().getPosiciongps().y);
     			 for(NodoLista n: listaI)
         		 {
         			 if(!n.getVisitado())
@@ -229,7 +230,7 @@ public class StateDrone extends SearchBasedAgentState {
     	direccion = "N";
     	
     	//Inicializa la energía
-    	this.energia = 1000;
+    	this.energia = 100;
     	
     }
 

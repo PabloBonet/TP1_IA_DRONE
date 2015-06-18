@@ -38,8 +38,8 @@ public class AgentDrone extends SearchBasedAgent {
         Vector<SearchAction> operators = new Vector<SearchAction>();
       operators.addElement(new Bajar());
         operators.addElement(new IrNorte());	
-        operators.addElement(new IrSur());	
         operators.addElement(new IrEste());	
+        operators.addElement(new IrSur());	
         operators.addElement(new IrOeste());	
         operators.addElement(new IrNorEste());	
         operators.addElement(new IrNorOeste());	
@@ -67,7 +67,8 @@ public class AgentDrone extends SearchBasedAgent {
     	
     	/* Create the search strategy*/
     	DepthFirstSearch strategy = new DepthFirstSearch();  
-        
+    	//BreathFirstSearch strategy = new BreathFirstSearch();
+    	
     	/*A estrella*/
     	/*CostFunction g=new CostFunction(); 
     	Heuristic h=new Heuristic();

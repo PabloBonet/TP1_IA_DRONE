@@ -30,6 +30,7 @@ public class IrSurOeste extends SearchAction {
 		Grafo subGrafo = new Grafo();
 
 		Point sigPos = new Point();
+if(droneState.getenergia()>1){
 		if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
 		{
 			sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
@@ -90,7 +91,7 @@ public class IrSurOeste extends SearchAction {
 
 				if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 				{
-System.out.println("SurOeste bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
+//System.out.println("SurOeste bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
 					if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 					{
 						FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
@@ -118,7 +119,7 @@ System.out.println("SurOeste bajo! de "+droneState.getubicacionD().x+"-"+droneSt
 				}
 			}
 		}
-
+}
 		return null;
 	}
 
@@ -139,7 +140,7 @@ System.out.println("SurOeste bajo! de "+droneState.getubicacionD().x+"-"+droneSt
 
 
 		Point sigPos = new Point();
-
+		if(droneState.getenergia()>1){
 		if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
 			sigPos = FuncionesAuxiliares.irSurOeste(posicion, altura);
 
@@ -237,7 +238,7 @@ System.out.println("SurOeste bajo! de "+droneState.getubicacionD().x+"-"+droneSt
 
 			return environmentState;
 		}
-
+		}
 		return null;
 
 	}

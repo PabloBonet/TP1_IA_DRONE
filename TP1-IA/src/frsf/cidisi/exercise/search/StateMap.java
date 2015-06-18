@@ -38,7 +38,7 @@ public class StateMap extends EnvironmentState {
     @Override
     public void initState() {
     	
-        this.energiaAgente = 1000;
+        this.energiaAgente = 100;
         this.posicionAgente.setLocation(150, 150);
         this.alturaAgente  = "A";
        

@@ -2,6 +2,7 @@ package frsf.cidisi.exercise.actions;
 
 
 import java.awt.Point;
+import java.io.IOException;
 
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -40,6 +41,7 @@ public class IrNorte extends SearchAction {
 
 
 		Point sigPos = new Point();
+if(droneState.getenergia()>1){
 		if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
 		{
 			sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
@@ -101,7 +103,7 @@ public class IrNorte extends SearchAction {
 					Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
 					if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 					{
-System.out.println("Norte bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
+//System.out.println("Norte bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 						{
 							FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
@@ -130,7 +132,7 @@ System.out.println("Norte bajo! de "+droneState.getubicacionD().x+"-"+droneState
 				}
 			}
 		}
-
+}
 		return null;
 	}
 
@@ -160,6 +162,7 @@ System.out.println("Norte bajo! de "+droneState.getubicacionD().x+"-"+droneState
 
 
 		Point sigPos = new Point();
+		if(droneState.getenergia()>1){
 		if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
 		{
 			sigPos = FuncionesAuxiliares.irNorte(posicion, altura);
@@ -258,6 +261,7 @@ System.out.println("Norte bajo! de "+droneState.getubicacionD().x+"-"+droneState
 
 				return environmentState;
 			}
+		}
 		}
 		return null;
 	}

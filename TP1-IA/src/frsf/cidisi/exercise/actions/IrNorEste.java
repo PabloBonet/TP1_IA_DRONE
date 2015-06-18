@@ -40,6 +40,7 @@ public class IrNorEste extends SearchAction {
 
 
 		Point sigPos = new Point();
+if(droneState.getenergia()>1){
 		if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
 		{
 			sigPos = FuncionesAuxiliares.irNorEste(posicion, altura);
@@ -101,7 +102,7 @@ public class IrNorEste extends SearchAction {
 
 					if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 					{
-System.out.println("NorEste bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
+//System.out.println("NorEste bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 						{
 							FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
@@ -129,6 +130,7 @@ System.out.println("NorEste bajo! de "+droneState.getubicacionD().x+"-"+droneSta
 				}
 			}
 		}
+}
 		return null;
 	}
 
@@ -158,6 +160,7 @@ System.out.println("NorEste bajo! de "+droneState.getubicacionD().x+"-"+droneSta
 
 
 		Point sigPos = new Point();
+		if(droneState.getenergia()>1){
 		if(altura == "A" && droneState.getintensidadSeñalA().size()>0)
 		{
 			sigPos = FuncionesAuxiliares.irNorEste(posicion, altura);
@@ -258,6 +261,7 @@ System.out.println("NorEste bajo! de "+droneState.getubicacionD().x+"-"+droneSta
 
 				return environmentState;
 			}
+		}
 		}
 		return null;
 	}
