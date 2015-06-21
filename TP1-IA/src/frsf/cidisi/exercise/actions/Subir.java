@@ -21,113 +21,105 @@ public class Subir extends SearchAction {
      */
     @Override
     public SearchBasedAgentState execute(SearchBasedAgentState s) {
-        StateDrone agState = (StateDrone) s;
-        
-        /*PreConditions: no debe estar en el nivel alto
-         * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre 
-         * el agente tiene que tener mas de 1 de energía
-         */
-        if(agState.getenergia() > 1){
-        	Point ubucacion = agState.getubicacionD();
-        	String altura = agState.getaltura();
-        	int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
-        	int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(ubucacion.x, ubucacion.y);
-        	//si no hay intensidad de señal para ese cuadrante de nivel bajo
-        	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
+    	StateDrone agState = (StateDrone) s;
 
-        	if(altura == "B")
+    	/*PreConditions: no debe estar en el nivel alto
+    	 * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre 
+    	 * el agente tiene que tener mas de 1 de energía
+    	 */
+    	if(agState.getenergia() > 1){
+    		Point ubucacion = agState.getubicacionD();
+    		String altura = agState.getaltura();
+    		int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+    		int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(ubucacion.x, ubucacion.y);
+    		//si no hay intensidad de señal para ese cuadrante de nivel bajo
+    		//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
+
+    		if(altura == "B")
     		{
+
+    			boolean existe  = false;
+    			//Marca el cuadrante de nivel superior como visitado
+    			for(NodoLista n: agState.getintensidadSeñalM())
+    			{
+    				if(n.getCuadrante() == subCuadranteActual)
+    				{
+    					for(Nodo nB: agState.getintensidadSeñalB())
+    					{
+    						int subCuad = FuncionesAuxiliares.perteneceASubCuadrante(nB.getPosX(), nB.getPosY());
+
+    						if(subCuad == subCuadranteActual && !nB.getVisitado())
+    						{
+    							return null;
+    						}
+
+    					}
+System.out.println("EN EXECUTE de SUBIR a M en el árbol");
+    					//visito el cuadrante de nivel medio al que va a subir
+    					existe = true;
+    					n.visitar();
+    					break;
+
+    				}
+    			}
+    			if(!existe)
+    			{
+    				//Creo un nodoNuevo para indicar que el cuadrante fue visitado
+    				NodoLista nodoNuevo = new NodoLista(subCuadranteActual, 0, true);
+    				agState.getintensidadSeñalM().add(nodoNuevo);
+    			}
+
+    			agState.setaltura("M");
+    			agState.setenergia(agState.getenergia()-2);
+    			return agState;	
+
+    		}
+    		//si no hay intensidad de señal para ese cuadrante de nivel medio
+    		//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
+    		else
+    		{
+    			if(altura == "M")
+    			{
 
     				boolean existe  = false;
     				//Marca el cuadrante de nivel superior como visitado
-        			for(NodoLista n: agState.getintensidadSeñalM())
-        			{
-        		
-        				if(n.getCuadrante() == subCuadranteActual)
-        				{
-        					for(Nodo nB: agState.getintensidadSeñalB())
-        					{	
-        						
-        						
-        						int subCuad = FuncionesAuxiliares.perteneceASubCuadrante(nB.getPosX(), nB.getPosY());
-        					
-        						if((subCuad) == subCuadranteActual && !nB.getVisitado())
-        						{
-        							return null;
-        						}
-        					
-        					}
-        				
-        					existe = true;
-        					n.visitar();
-        					break;
+    				for(NodoLista n: agState.getintensidadSeñalA())
+    				{
+    					if(n.getCuadrante() == cuadranteActual)
+    					{
+    						for(NodoLista nM: agState.getintensidadSeñalM())
+    						{
+    							int subCuad = nM.getCuadrante();
+    							if((subCuad/10) == cuadranteActual && !nM.getVisitado())
+    							{
+    								return null;
+    							}
 
-        				}
-        			}
-        				if(!existe)
-                		{
-            				
-            				
-        					//Creo un nodoNuevo para indicar que el cuadrante fue visitado
-        					NodoLista nodoNuevo = new NodoLista(subCuadranteActual, 0, true);
-        					agState.getintensidadSeñalM().add(nodoNuevo);
-                		}
+    						}
 
-        			agState.setaltura("M");
-                	agState.setenergia(agState.getenergia()-2);
-                	return agState;	
-        	
+    						existe = true;
+    						n.visitar();
+    						break;
+
+    					}
+    				}
+    				if(!existe)
+    				{
+    					//Creo un nodoNuevo para indicar que el cuadrante fue visitado
+    					NodoLista nodoNuevo = new NodoLista(cuadranteActual, 0, true);
+    					agState.getintensidadSeñalA().add(nodoNuevo);
+    				}
+
+    				agState.setaltura("A");
+    				agState.setenergia(agState.getenergia()-2);
+    				return agState;	
+
+    			}
     		}
-        	        	//si no hay intensidad de señal para ese cuadrante de nivel medio
-        	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
-        	else
-        	{
-        		if(altura == "M")
-        		{
 
-        				boolean existe  = false;
-        				//Marca el cuadrante de nivel superior como visitado
-            			for(NodoLista n: agState.getintensidadSeñalA())
-            			{
-            		
-            				if(n.getCuadrante() == cuadranteActual)
-            				{
-            					for(NodoLista nM: agState.getintensidadSeñalM())
-            					{
 
-            						int subCuad = nM.getCuadrante();
-            						if((subCuad/10) == cuadranteActual && !nM.getVisitado())
-            						{
-            							return null;
-            						}
-            					
-            					}
-            				
-            					existe = true;
-            					n.visitar();
-            					break;
-
-            				}
-            			}
-            				if(!existe)
-                    		{
-                				
-                				
-            					//Creo un nodoNuevo para indicar que el cuadrante fue visitado
-            					NodoLista nodoNuevo = new NodoLista(cuadranteActual, 0, true);
-            					agState.getintensidadSeñalA().add(nodoNuevo);
-                    		}
-     
-            			agState.setaltura("A");
-                    		agState.setenergia(agState.getenergia()-2);
-                    		return agState;	
-        			
-        		}
-        	}
-        	
-
-        }
-        return null;
+    	}
+    	return null;
     }
 
     /**
@@ -135,122 +127,118 @@ public class Subir extends SearchAction {
      */
     @Override
     public EnvironmentState execute(AgentState ast, EnvironmentState est) {
-        StateMap environmentState = (StateMap) est;
-        StateDrone agState = ((StateDrone) ast);
-System.out.println("EN EXECUTE de SUBIR");
-        /*PreConditions: no debe estar en el nivel alto
-         * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre el agente
-         * tiene que tener mas de 1 de energía
-         */
-        if(agState.getenergia() > 1){
-        	Point ubucacion = agState.getubicacionD();
-        	String altura = agState.getaltura();
-        	int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
-        	int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(ubucacion.x, ubucacion.y);
-        	//si no hay intensidad de señal para ese cuadrante de nivel bajo
-        	//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
-        	if(altura == "B")
+    	StateMap environmentState = (StateMap) est;
+    	StateDrone agState = ((StateDrone) ast);
+
+    	/*PreConditions: no debe estar en el nivel alto
+    	 * la lista de intensidad de energía del nivel actual debe ser vacía para el cuadrante donde se encuentre el agente
+    	 * tiene que tener mas de 1 de energía
+    	 */
+    	if(agState.getenergia() > 1){
+    		Point ubucacion = agState.getubicacionD();
+    		String altura = agState.getaltura();
+    		int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(ubucacion.x, ubucacion.y);
+    		int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(ubucacion.x, ubucacion.y);
+    		//si no hay intensidad de señal para ese cuadrante de nivel bajo
+    		//entonces ya recorrió todas las posiciones de las personas para ese cuadrante y ya puede subir
+    		if(altura == "B")
     		{
+
+    			boolean existe  = false;
+    			//Marca el cuadrante de nivel superior como visitado
+    			for(NodoLista n: agState.getintensidadSeñalM())
+    			{
+
+    				if(n.getCuadrante() == subCuadranteActual)
+    				{
+    					for(Nodo nB: agState.getintensidadSeñalB())
+    					{	
+
+    						int subCuad = FuncionesAuxiliares.perteneceASubCuadrante(nB.getPosX(), nB.getPosY());
+
+    						if((subCuad) == subCuadranteActual && !nB.getVisitado())
+    						{
+    							return null;
+    						}
+
+    					}
+
+    					existe = true;
+    					n.visitar();
+    					break;
+
+    				}
+    			}
+    			if(!existe)
+    			{
+
+
+    				//Creo un nodoNuevo para indicar que el cuadrante fue visitado
+    				NodoLista nodoNuevo = new NodoLista(subCuadranteActual, 0, true);
+    				agState.getintensidadSeñalM().add(nodoNuevo);
+    			}
+
+    			agState.setaltura("M");
+    			agState.setenergia(agState.getenergia()-2);
+    			environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
+    			environmentState.setAlturaAgente("M");
+    			return environmentState;
+
+    		}
+
+    		//si no hay intensidad de señal para ese cuadrante de nivel medio
+    		//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
+    		else  
+    		{
+
+    			if(altura == "M")
+    			{
 
     				boolean existe  = false;
     				//Marca el cuadrante de nivel superior como visitado
-        			for(NodoLista n: agState.getintensidadSeñalM())
-        			{
+    				for(NodoLista n: agState.getintensidadSeñalA())
+    				{
 
-        				if(n.getCuadrante() == subCuadranteActual)
-        				{
-        					for(Nodo nB: agState.getintensidadSeñalB())
-        					{	
-        						
-        						int subCuad = FuncionesAuxiliares.perteneceASubCuadrante(nB.getPosX(), nB.getPosY());
-        					
-        						if((subCuad) == subCuadranteActual && !nB.getVisitado())
-        						{
-        							return null;
-        						}
-        					
-        					}
-        				
-        					existe = true;
-        					n.visitar();
-        					break;
+    					if(n.getCuadrante() == cuadranteActual) ///VER DE !VISITADO
+    					{
 
-        				}
-        			}
-        				if(!existe)
-                		{
-            				
-            				
-        					//Creo un nodoNuevo para indicar que el cuadrante fue visitado
-        					NodoLista nodoNuevo = new NodoLista(subCuadranteActual, 0, true);
-        					agState.getintensidadSeñalM().add(nodoNuevo);
-                		}
-				
-				
-        		agState.setaltura("M");
-        		agState.setenergia(agState.getenergia()-2);
-        		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
-        		environmentState.setAlturaAgente("M");
-        		return environmentState;
-				
-        	}
-        	
-        	//si no hay intensidad de señal para ese cuadrante de nivel medio
-        	//entonces ya recorrió todos los cuadrantes de ese nivel medio y ya puede subir
-        	else  
-        	{
+    						for(NodoLista nM: agState.getintensidadSeñalM())
+    						{
+    							int subCuad = nM.getCuadrante();
+    							if((subCuad/10) == cuadranteActual && !nM.getVisitado())
+    							{
+    								return null;
+    							}
 
-        		if(altura == "M")
-        		{
+    						}
 
-        				boolean existe  = false;
-        				//Marca el cuadrante de nivel superior como visitado
-            			for(NodoLista n: agState.getintensidadSeñalA())
-            			{
-            		
-            				if(n.getCuadrante() == cuadranteActual) ///VER DE !VISITADO
-            				{
+    						existe = true;
+    						n.visitar();
+    						break;
 
-            					for(NodoLista nM: agState.getintensidadSeñalM())
-            					{
-            						int subCuad = nM.getCuadrante();
-            						if((subCuad/10) == cuadranteActual && !nM.getVisitado())
-            						{
-            							return null;
-            						}
-            					
-            					}
-            				
-            					existe = true;
-            					n.visitar();
-            					break;
+    					}
+    				}
+    				if(!existe)
+    				{
 
-            				}
-            			}
-            				if(!existe)
-                    		{
-                				
-                				
-            					//Creo un nodoNuevo para indicar que el cuadrante fue visitado
-            					NodoLista nodoNuevo = new NodoLista(cuadranteActual, 0, true);
-            					agState.getintensidadSeñalA().add(nodoNuevo);
-                    		}
-     
-            				agState.setaltura("M");
-                    		agState.setenergia(agState.getenergia()-2);
-                    		environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
-                    		environmentState.setAlturaAgente("M");
+    					//Creo un nodoNuevo para indicar que el cuadrante fue visitado
+    					NodoLista nodoNuevo = new NodoLista(cuadranteActual, 0, true);
+    					agState.getintensidadSeñalA().add(nodoNuevo);
+    				}
 
-                    		return environmentState;
+    				agState.setaltura("M");
+    				agState.setenergia(agState.getenergia()-2);
+    				environmentState.setenergiaAgente(environmentState.getenergiaAgente()-2);
+    				environmentState.setAlturaAgente("M");
 
-        		}
-        		
-        	}
-        	
-        	
-        }
+    				return environmentState;
+    			}
 
-        return null;
+    		}
+
+    	}
+
+    	return null;
     }
 
     /**

@@ -38,9 +38,7 @@ public class IrEste extends SearchAction {
 		int energia = droneState.getenergia();
 		Grafo subGrafo = new Grafo();
 
-
-
-if(droneState.getenergia()>1){ System.out.println("\t\t-> Energía: "+energia);
+if(droneState.getenergia()>1){ System.out.print("\t\t-> Energía: "+energia);
 		if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
 			Point sigPos = FuncionesAuxiliares.irEste(posicion, altura);
 
@@ -58,6 +56,7 @@ if(droneState.getenergia()>1){ System.out.println("\t\t-> Energía: "+energia);
 				}
 				if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 				{
+System.out.println("\t nivel A");
 					droneState.setenergia(energia - 1);
 					droneState.setubicacionD(sigPos);	
 					return droneState;
@@ -83,6 +82,7 @@ if(droneState.getenergia()>1){ System.out.println("\t\t-> Energía: "+energia);
 					}
 					if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
+System.out.println("\t nivel M");
 						droneState.setenergia(energia - 1);
 						droneState.setubicacionD(sigPos);
 						return droneState;
@@ -97,16 +97,16 @@ if(droneState.getenergia()>1){ System.out.println("\t\t-> Energía: "+energia);
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 					
-					//si existe el nodo en la dirección este 
+					//si existe el nodo en la dirección este
+					//y no esta visitado el nodo siguiente del grafo del mapa
 					//y no se visitaron todos los nodos de la lista de intensidad de señal baja del agente para ese subcuadrante
-					if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 					{
-//System.out.println("Este bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
+System.out.println("Este bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
 						//si el nodo al este tiene intensidad de señal y no se visitó se decrementa 1 en energía, 
 						//sino se decrementa 2 y se marca como visitado en el subgrafo del agente
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 						{
-//System.out.println("\tNodo en lista B");
 							FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
 							if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())
 							{
@@ -121,12 +121,8 @@ if(droneState.getenergia()>1){ System.out.println("\t\t-> Energía: "+energia);
 						}
 						else
 						{
-
-//FALTARÍA PREGUNTAR SI EL NODO YA FUÉ VISITADO EN EL SUBGRAFO PARA NO MARCARLO NUEVAMENTE!!!!!!!!!!!!!!!!!!!!!!
-
 							(subGrafo.buscarNodo(nodoSig.getId())).visitar();
 							droneState.setenergia(energia - 2);
-							
 						}
 
 						Point sigPos = new Point(nodoSig.getPosX(), nodoSig.getPosY());
@@ -219,7 +215,7 @@ if(droneState.getenergia()>1){ System.out.println("\t\t-> Energía: "+energia);
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 
-					if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 					{
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 						{

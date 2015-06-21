@@ -77,17 +77,20 @@ if(droneState.getenergia()>1){
 				{
 					int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
 					NodoLista encontrado = null;
+NodoLista nl=null;
 					for(NodoLista n: droneState.getintensidadSeñalM())
 					{
 
 						if(cuadrante == n.getCuadrante() && !n.getVisitado())
 						{
+nl=n;
 							encontrado = n;
 							break;
 						}
 					}
 					if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
+System.out.println("ir Norte medio! de subcuadrante"+cuadrante+" ("+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+") a subcuadrante "+nl.getCuadrante()+" ("+sigPos.x+"-"+sigPos.y+")");
 						droneState.setenergia(energia - 1);
 						droneState.setubicacionD(sigPos);
 						return droneState;
@@ -101,9 +104,9 @@ if(droneState.getenergia()>1){
 
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
-					if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 					{
-//System.out.println("Norte bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
+System.out.println("Norte bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 						{
 							FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
@@ -223,7 +226,7 @@ if(droneState.getenergia()>1){
 				{
 					Nodo nodoSig = FuncionesAuxiliares.irNorteBajo(posicion, subGrafo);
 
-					if(nodoSig != null && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 					{
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 						{

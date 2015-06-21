@@ -2,7 +2,6 @@ package frsf.cidisi.exercise.actions;
 
 
 import java.awt.Point;
-import java.io.IOException;
 
 import frsf.cidisi.exercise.search.*;
 import frsf.cidisi.faia.agent.search.SearchAction;
@@ -29,21 +28,16 @@ public class Bajar extends SearchAction {
         // - Si descendió al nivel bajo: en la esquina central del subcuadrante
         
         String altura = agState.getaltura();
-        if(altura != "B" && agState.getenergia()>1)
+        if(altura != "B" && agState.getenergia()>1 && agState.getvictimario()==null)
         {
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = FuncionesAuxiliares.perteneceACuadrante(agState.getubicacionD().x, agState.getubicacionD().y);
     		if(altura == "A" )
     		{
     			
-    			
     			//No baja si el cuadrante ya esta visitado
 
-    			
-    			/*
-    			 * Esta parte restringe para que no baje a lugares donde no hay señal o que ya este visitado
-    			 * 
-    			 * */
+    			// Esta parte restringe para que no baje a lugares donde no hay señal o que ya este visitado
         		boolean conSeñal = false;
         		for(NodoLista n: agState.getintensidadSeñalA())
     			{
@@ -68,15 +62,14 @@ public class Bajar extends SearchAction {
     		{
     			//No baja si el subcuadrante ya esta visitado
 
-    			/*
-    			 * Esta parte restringe para que no baje a lugares donde no hay señal o que ya este visitado
-    			 * 
-    			 * */
+    			//Esta parte restringe para que no baje a lugares donde no hay señal o que ya este visitado
     			boolean conSeñal = false;
         		for(NodoLista n: agState.getintensidadSeñalM())
     			{
     				if(n.getCuadrante() == subCuadrante && !n.getVisitado())
     				{
+if(subCuadrante==31)
+	System.out.println("Baja en subcuadrante "+subCuadrante);
     					conSeñal = true;
     					break;
     					}
@@ -92,21 +85,20 @@ public class Bajar extends SearchAction {
     			if(agState.getGrafoSubCuadrante().getListaNodos().size() > 0)
     			{
     				 uAgente = FuncionesAuxiliares.centrarPosicionEsquina(subCuadrante, agState.getGrafoSubCuadrante());
-				
     			}
     			else
     			{
     				//Si no tengo el grafo en nivel medio (Todavia no bajo)
-    				//coloco como posicion el centro del cuadrante
+    				//coloco como posicion el centro del subcuadrante
     				 uAgente = FuncionesAuxiliares.centroSubcuadranteBajo(subCuadrante);
+System.out.println("Bajo de subC M: "+subCuadrante+" a posicion CENTRO CUADRANTE: "+uAgente.x+"-"+uAgente.y);
     			}
-    			if(uAgente != null)
+    			if(uAgente != null) //es null cuando percibio estando en un cuadrante de nivel medio pero y también hay señal 
+    				//en otro subcuadrante de nivel medio, que ahora no lo puede recibir
 				{
-    			
+System.out.println("Bajo de subC M "+subCuadrante+" a B esquina: "+uAgente.x+"-"+uAgente.y);
 					agState.setubicacionD(uAgente);
-
 					agState.setenergia(agState.getenergia()-1);
-
 					return agState;
 				}
 
@@ -132,7 +124,7 @@ public class Bajar extends SearchAction {
         // y actualiza la energía y altura de los estados de agente y entorno.
         
         String altura = agState.getaltura();
-        if(altura != "B" && agState.getenergia()>1)
+        if(altura != "B" && agState.getenergia()>1 && agState.getvictimario()==null)
         { 
         	int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(agState.getubicacionD().x,agState.getubicacionD().y);
     		int cuadrante = subCuadrante/10;
@@ -169,10 +161,7 @@ public class Bajar extends SearchAction {
         		
         		//No baja si el subcuadrante ya esta visitado
         		
-        		/*
-    			 * Esta parte restringe para que no baje a lugares donde no hay señal o que ya este visitado
-    			 * 
-    			 * */
+        		//Esta parte restringe para que no baje a lugares donde no hay señal o que ya este visitado
         		
         		boolean conSeñal = false;
         		for(NodoLista n: agState.getintensidadSeñalM())
@@ -209,7 +198,6 @@ public class Bajar extends SearchAction {
 					
 					agState.setenergia(agState.getenergia()-1);
 					environmentState.setenergiaAgente(environmentState.getenergiaAgente()-1);
-					
 					
 					return environmentState;
 				}

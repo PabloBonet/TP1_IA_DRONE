@@ -5,9 +5,11 @@ import frsf.cidisi.faia.environment.Environment;
 import frsf.ia.tp.libreriaclases.AntenaNB;
 import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
+import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Gps;
 import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
+import frsf.ia.tp.libreriaclases.NodoLista;
 
 public class EnvironmentMap extends Environment {
 
@@ -64,6 +66,12 @@ public class EnvironmentMap extends Environment {
     		{
     			gps.cargarGrafoCuadrante(this.getEnvironmentState().getgrafoMapa());
     			AntenaNMA antena = new AntenaNMA(this.getEnvironmentState().getintensidadSeñalM());
+    			int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(this.getEnvironmentState().getposicionAgente().x, this.getEnvironmentState().getposicionAgente().y);
+//    			for(NodoLista nodo : this.getEnvironmentState().getintensidadSeñalM())
+//        		{
+//        			if(nodo.getCuadrante()/10 == cuadranteActual)
+//        				antena.agregarIntensidadSeñal(nodo);
+//        		}
         		perception.setantena(antena);
     		}
     	}

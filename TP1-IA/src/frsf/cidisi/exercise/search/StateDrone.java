@@ -128,10 +128,10 @@ public class StateDrone extends SearchBasedAgentState {
     	 
     	 if(altura != "B")
     	 {
-    		 ArrayList<NodoLista> listaI = percepcion.getantena().getIntensidadSeñal();
     		 if(altura == "A")
     		 {
-    			 for(NodoLista n: listaI)
+    			 ArrayList<NodoLista> listaIMA = ((AntenaNMA) percepcion.getantena()).getIntensidadSeñal();
+    			 for(NodoLista n: listaIMA)
         		 {
         			 if(!n.getVisitado())
         			 {
@@ -151,18 +151,20 @@ public class StateDrone extends SearchBasedAgentState {
         			
         		 }
     		 }
-    		 else
+    		 else //nivel M
     		 {
-    			 int subcuadrante = FuncionesAuxiliares.perteneceASubCuadrante(percepcion.getgps().getPosiciongps().x, percepcion.getgps().getPosiciongps().y);
-    			 for(NodoLista n: listaI)
+    			 int cuadrante = FuncionesAuxiliares.perteneceACuadrante(percepcion.getgps().getPosiciongps().x, percepcion.getgps().getPosiciongps().y);
+    			 ArrayList<NodoLista> listaIM = ((AntenaNMA) percepcion.getantena()).getIntensidadSeñal();
+    			 for(NodoLista n: listaIM)
         		 {
         			 if(!n.getVisitado())
         			 {
         				 boolean existe = false;
         				 for(NodoLista nodo : this.intensidadSeñalM)
         				 {
-        					 if(nodo.getCuadrante() == n.getCuadrante())  //TODO Y PERTENECE AL CUADRANTE ACTUAL......
+        					 if(nodo.getCuadrante() == n.getCuadrante() &&n.getCuadrante()/10==cuadrante)  //TODO Y PERTENECE AL CUADRANTE ACTUAL......
         					 {
+//VER EL IF, PORQUE IBAMOS AGREGANDO LOS NODOS EN INTENSIDAD M. SE PUEDE PONER SÓLO LOS DE ESE SUBCUADRANTE????
         						existe = true;
         						break;
         					 }
@@ -179,13 +181,13 @@ public class StateDrone extends SearchBasedAgentState {
 
     		
     	 }
-    	 else
+    	 else //nivel B
     	 {
-    		 ArrayList<Nodo> listaIB = percepcion.getantena().getIntensidadSeñal();
+    		 ArrayList<Nodo> listaIB = ((AntenaNB)percepcion.getantena()).getIntensidadSeñal();
 
     		 for(Nodo n: listaIB)
     		 {
-    			 if(!n.getVisitado())
+    			 if(!n.getVisitado())  //##################################################################
     			 {
     				 boolean existe = false;
     				 for(Nodo nodo : this.intensidadSeñalB)
@@ -230,7 +232,7 @@ public class StateDrone extends SearchBasedAgentState {
     	direccion = "N";
     	
     	//Inicializa la energía
-    	this.energia = 100;
+    	this.energia = 50;
     	
     }
 
@@ -239,20 +241,24 @@ public class StateDrone extends SearchBasedAgentState {
      */
     @Override
     public String toString() {
-    	String str = "------ Estado Agente VANT -----\n";
+    	String str = "--------- Estado Agente VANT ---------\n";
         str += "Altura: "+this.altura+"\n";
         str += "Ubicación: ";
         if(altura != "A")
-        	str += FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+        {
+        	str += "subcuadrante "+FuncionesAuxiliares.perteneceASubCuadrante(ubicacionD.x, ubicacionD.y);
+        	if(altura=="B")
+       			str += " posición "+ubicacionD.x+" - "+ubicacionD.y;
+        }
         else
-       		str += FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y)+"\n";
+       		str += "cuadrante "+FuncionesAuxiliares.perteneceACuadrante(ubicacionD.x, ubicacionD.y);
         
         str += "\nIntensidad de señal\nNivel Alto \n";
         for(int i=0; i<intensidadSeñalA.size();i++)
-        	str += "\tCuadrante: "+intensidadSeñalA.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalA.get(i).getIntensidad()+", Fue visitado: "+ intensidadSeñalA.get(i).getVisitado()+"\n";
+        	str += "\tCuadrante: "+intensidadSeñalA.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalA.get(i).getIntensidad()+"\t Fue visitado: "+ intensidadSeñalA.get(i).getVisitado()+"\n";
         str += "Nivel Medio \n";
         for(int i=0; i<intensidadSeñalM.size();i++)
-        	str += "\tCuadrante: "+intensidadSeñalM.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalM.get(i).getIntensidad()+", Fue visitado: "+ intensidadSeñalM.get(i).getVisitado()+"\n";
+        	str += "\tCuadrante: "+intensidadSeñalM.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalM.get(i).getIntensidad()+"\t Fue visitado: "+ intensidadSeñalM.get(i).getVisitado()+"\n";
         str += "Nivel Bajo \n";
         for(int i=0; i<intensidadSeñalB.size();i++)
         	str += "\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+", Fue visitado: "+ intensidadSeñalB.get(i).getVisitado()+"\n";
@@ -262,7 +268,7 @@ public class StateDrone extends SearchBasedAgentState {
         	str += victimario.getId();
         else
         	str += "No se encontró.";
-        str += "\nEnergía: "+energia+"\n\n";
+        str += "\nEnergía: "+energia;
 
         return str;
     }

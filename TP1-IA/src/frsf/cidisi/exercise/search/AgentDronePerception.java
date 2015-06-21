@@ -77,9 +77,11 @@ public class AgentDronePerception extends Perception {
        //TODO ACÁ DEBE COPIAR SOLO LAS INTENSIDADES PARA ESE CUADRANTE DE NIVEL MEDIO??????????????????????
        //PODRÍA COPIAR TODAS?????????????????????????????????????
             	antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
+//            	int cuadrante = subCuadrante / 10;
+//
 //        		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
 //        		{
-//        			if(nodo.getCuadrante() == subCuadrante)
+//        			if(nodo.getCuadrante()/10 == cuadrante)
 //        				antena.agregarIntensidadSeñal(nodo);
 //        		}
         	}
@@ -94,14 +96,13 @@ public class AgentDronePerception extends Perception {
             	//Percepción cámara
             	if(nodoAgente != null)
             		camara = new Camara(estadoAmbiente.getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
-            	antena = new AntenaNB();
-            	//Percepción Antena para nivel bajo
             	
+            	//Percepción Antena para nivel bajo
+            	antena = new AntenaNB();
             	for(Nodo n: estadoAmbiente.getintensidadSeñalB())
             	{
             		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
             		{
-System.out.println("cargó intensisad en B| ");
             			antena.agregarIntensidadSeñal(n);
                     	
             		}
@@ -119,7 +120,7 @@ System.out.println("cargó intensisad en B| ");
     @Override
     public String toString() {
         StringBuffer str = new StringBuffer();
-       str.append("-- Percepción del Agente VANT --\n");
+       str.append("------ Percepción del Agente VANT ------\n");
        str.append("Altura: "+this.altura+"\n");
        str.append("Posición: "+this.gps.getPosiciongps().x+" - "+this.gps.getPosiciongps().y+"\n");
        str.append("Cámara. Personas que ve:  ");
@@ -196,7 +197,6 @@ System.out.println("cargó intensisad en B| ");
      public void setantena(Antena arg){
         this.antena = arg;
      }
-    
      public int getenergia(){
         return energia;
      }

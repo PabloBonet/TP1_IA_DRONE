@@ -38,7 +38,7 @@ public class StateMap extends EnvironmentState {
     @Override
     public void initState() {
     	
-        this.energiaAgente = 100;
+        this.energiaAgente = 50;
         this.posicionAgente.setLocation(150, 150);
         this.alturaAgente  = "A";
        
@@ -134,7 +134,7 @@ public class StateMap extends EnvironmentState {
      */
     @Override
     public String toString() {
-        String str = "----- Estado Ambiente Mapa -----\n";
+        String str = "-------- Estado Ambiente Mapa --------\n";
         str += "Intensidad de señal\nNivel Alto \n";
         for(int i=0; i<intensidadSeñalA.size();i++)
         	str += "\tCuadrante: "+intensidadSeñalA.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalA.get(i).getIntensidad()+"\n";
@@ -143,7 +143,7 @@ public class StateMap extends EnvironmentState {
         	str += "\tCuadrante: "+intensidadSeñalM.get(i).getCuadrante()+"\tIntensidad: "+intensidadSeñalM.get(i).getIntensidad()+"\n";
         str += "Nivel Bajo \n";
         for(int i=0; i<intensidadSeñalB.size();i++)
-        	str +="\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+"\tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
+        	str +="\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+" \tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
 //        str += "Victimarios (ID): ";
         
         return str;
@@ -203,8 +203,8 @@ public class StateMap extends EnvironmentState {
       
      /**
       * Función que recorre los nodos adyacentes al nodo donde se encuentra el agente y 
-      * retorna las personas que son visibles al agente desde la posición donde se encuentra.
-      * Incluye las que estan en la misma posición del agente
+      * retorna las personas que son visibles al agente desde la posición donde se encuentra:
+      * las que estan en la misma posición del agente y las que se encuentran en linea recta
       * 
       * @param nodoAgente
       * @param subgrafo
