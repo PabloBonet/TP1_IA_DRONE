@@ -164,7 +164,7 @@ public class StateDrone extends SearchBasedAgentState {
         				 {
         					 if(nodo.getCuadrante() == n.getCuadrante() &&n.getCuadrante()/10==cuadrante)  //TODO Y PERTENECE AL CUADRANTE ACTUAL......
         					 {
-//VER EL IF, PORQUE IBAMOS AGREGANDO LOS NODOS EN INTENSIDAD M. SE PUEDE PONER SÓLO LOS DE ESE SUBCUADRANTE????
+//TODO VER EL IF, PORQUE IBAMOS AGREGANDO LOS NODOS EN INTENSIDAD M. SE PUEDE PONER SÓLO LOS DE ESE SUBCUADRANTE????
         						existe = true;
         						break;
         					 }
@@ -179,20 +179,20 @@ public class StateDrone extends SearchBasedAgentState {
         				 percepcion.getgps().getGrafoSubCuadrante().getListaEnlaces());
     		 }
 
-    		
     	 }
     	 else //nivel B
     	 {
+//TODO Y ACA CARGA LOS 3 ELEMENTOS (no va el nodo 34.. para el escenario 3..)
     		 ArrayList<Nodo> listaIB = ((AntenaNB)percepcion.getantena()).getIntensidadSeñal();
 
     		 for(Nodo n: listaIB)
     		 {
-    			 if(!n.getVisitado())  //##################################################################
+    			 if(!n.getVisitado())
     			 {
     				 boolean existe = false;
     				 for(Nodo nodo : this.intensidadSeñalB)
     				 {
-    					 if(nodo.getId() == n.getId())
+    					 if(nodo.getId() == n.getId()) //TODO SACARLO ACA AL 34...??
     					 {
     						existe = true;
     						break;

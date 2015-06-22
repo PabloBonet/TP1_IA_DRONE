@@ -98,10 +98,10 @@ public class AgentDronePerception extends Perception {
             		camara = new Camara(estadoAmbiente.getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
             	
             	//Percepción Antena para nivel bajo
-            	antena = new AntenaNB();
-            	for(Nodo n: estadoAmbiente.getintensidadSeñalB())
-            	{
-            		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
+//TODO VER!!!            	antena = new AntenaNB();
+/**/            	for(Nodo n: estadoAmbiente.getintensidadSeñalB())
+/**/            	{
+/**/            		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
             		{
             			antena.agregarIntensidadSeñal(n);
                     	

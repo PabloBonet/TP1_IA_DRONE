@@ -88,7 +88,8 @@ if(droneState.getenergia()>1){
 					if(encontrado) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
 						droneState.setenergia(energia - 1);
-						droneState.setubicacionD(sigPos);
+						droneState.setubicacionD(FuncionesAuxiliares.centroSubcuadranteBajo(subCuadrante));
+//						droneState.setubicacionD(sigPos);
 						return droneState;
 					}
 				}
@@ -181,9 +182,7 @@ System.out.println("Sur bajo! de "+droneState.getubicacionD().x+"-"+droneState.g
 				if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 				{
 					droneState.setenergia(energia - 1);
-
 					droneState.setubicacionD(sigPos);	
-
 					puedeIr = true;
 				}
 			}

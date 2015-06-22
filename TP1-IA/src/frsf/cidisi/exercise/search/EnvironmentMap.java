@@ -55,9 +55,17 @@ public class EnvironmentMap extends Environment {
     		{
     			gps.cargarGrafoSubCuadrante(this.getEnvironmentState().getgrafoMapa());
     			Nodo nodoAgente = this.getEnvironmentState().getgrafoMapa().nodoEnPosicion(this.getEnvironmentState().getposicionAgente());
+    			
+//TODO la cámara debe ver sólo al victimario!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#############################################################################################
     			Camara camara = new Camara(this.getEnvironmentState().getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
     			perception.setcamara(camara);
-    			AntenaNB antena = new AntenaNB(this.getEnvironmentState().getintensidadSeñalB());
+    			AntenaNB antena = new AntenaNB();//TODO en nivel B carga el nodo 34 que no pertenece al subC 13
+    			int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(this.getEnvironmentState().getposicionAgente().x, this.getEnvironmentState().getposicionAgente().y);
+    			for(Nodo n : this.getEnvironmentState().getintensidadSeñalB())
+    			{
+    				if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadranteActual)
+    					antena.agregarIntensidadSeñal(n);
+    			}
         		perception.setantena(antena);
         		//si el agente esta en el nivel bajo se setea el grafo del gps con el correspondiente al subcuadrante donde se encuantra
         		

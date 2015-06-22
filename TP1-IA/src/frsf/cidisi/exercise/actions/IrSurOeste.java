@@ -64,12 +64,12 @@ if(droneState.getenergia()>1){
 
 				if(sigPos != null)
 				{
-					int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+					int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
 					NodoLista encontrado = null;
 					for(NodoLista n: droneState.getintensidadSeñalM())
 					{
 
-						if(cuadrante == n.getCuadrante() && !n.getVisitado())
+						if(subCuadrante == n.getCuadrante() && !n.getVisitado())
 						{
 							encontrado = n;
 							break;
@@ -78,7 +78,8 @@ if(droneState.getenergia()>1){
 					if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
 						droneState.setenergia(energia - 1);
-						droneState.setubicacionD(sigPos);
+						droneState.setubicacionD(FuncionesAuxiliares.centroSubcuadranteBajo(subCuadrante));
+//						droneState.setubicacionD(sigPos);
 						return droneState;
 					}
 				}

@@ -84,16 +84,19 @@ System.out.println("\t nivel A");
 					{
 System.out.println("\t nivel M");
 						droneState.setenergia(energia - 1);
-						droneState.setubicacionD(sigPos);
+
+						droneState.setubicacionD(FuncionesAuxiliares.centroSubcuadranteBajo(subCuadrante));
+//						droneState.setubicacionD(sigPos);
 						return droneState;
 					}
 				}
 			}
 			else //Altura "B"
 			{
+//TODO ACÁ VER DE PREGUNTAR SI VISITÓ TODAS LAS PERSONAS DEL NIVEL BAJO!!!!!!!!!!!!!!!!!!!!!##################################
 				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
 				{
-
+//TODO ¡¡ACÁ PREGUNTAR SI NO ESTA EL VICTIMARIO, porque esta en la esquina donde bajó!!!!!!!!!!!!!!!!!!!!!!!#########################################
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 					
@@ -102,7 +105,7 @@ System.out.println("\t nivel M");
 					//y no se visitaron todos los nodos de la lista de intensidad de señal baja del agente para ese subcuadrante
 					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 					{
-System.out.println("Este bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
+//System.out.println("Este bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
 						//si el nodo al este tiene intensidad de señal y no se visitó se decrementa 1 en energía, 
 						//sino se decrementa 2 y se marca como visitado en el subgrafo del agente
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))

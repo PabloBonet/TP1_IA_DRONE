@@ -68,8 +68,6 @@ public class Bajar extends SearchAction {
     			{
     				if(n.getCuadrante() == subCuadrante && !n.getVisitado())
     				{
-if(subCuadrante==31)
-	System.out.println("Baja en subcuadrante "+subCuadrante);
     					conSeñal = true;
     					break;
     					}

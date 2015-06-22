@@ -211,29 +211,31 @@ public class StateMap extends EnvironmentState {
       * */
      public ArrayList<Persona> getPersonasQueVe(Nodo nodoAgente, Grafo subgrafo)
      {
-    	 
+
     	 ArrayList<Persona> personasObservables = new ArrayList<Persona>();
-    	 
+
     	 //retorna los nodos adyacentes a la posicion pasada como parametro
     	 //Los nodos adyacentes serán los nodos que la cámara va a poder ver en todas las direcciones
-    	 //el segundo parámetro indica si se va a retornar también el nodo acual
-    	 
+
     	 if(subgrafo != null)
     	 {
-
     		 ArrayList<Nodo> nodosAdyacentes = grafoMapa.nodosAdyacentesAPosicion(nodoAgente, subgrafo);
-    		 
+
     		 //agrego la posición del agente si es que existen personas en la misma
-        	 if(nodoAgente.getPersonas().size()>0)
-        		 nodosAdyacentes.add(nodoAgente);
-    		 
-        	 for(Nodo n: nodosAdyacentes)
-        	 {
-        		personasObservables.addAll(n.getPersonas());
-        	 }
+    		 if(nodoAgente.getPersonas().size()>0)
+    			 nodosAdyacentes.add(nodoAgente);
+
+    		 for(Nodo n: nodosAdyacentes)
+    		 {
+    			 for(Persona p: n.getPersonas())
+    				 if(p.esVictimario())
+    					 personasObservables.add(p);
+    		 }
+//    		 ArrayList<Nodo> nodoCamara = grafoMapa.verVictimario(nodoAgente, subgrafo);
+
     	 }
-    	 
-    	 
+
+
     	 return personasObservables;
      }
 

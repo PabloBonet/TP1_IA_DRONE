@@ -25,32 +25,32 @@ import java.util.Vector;
 
 public class AgentDrone extends SearchBasedAgent {
 
-    public AgentDrone() {
+	public AgentDrone() {
 
-        // The Agent Goal
-        GoalDrone agGoal = new GoalDrone();
+		// The Agent Goal
+		GoalDrone agGoal = new GoalDrone();
 
-        // The Agent State
-        StateDrone agState = new StateDrone();
-        this.setAgentState(agState);
+		// The Agent State
+		StateDrone agState = new StateDrone();
+		this.setAgentState(agState);
 
-        // Create the operators
-        Vector<SearchAction> operators = new Vector<SearchAction>();
-      operators.addElement(new Bajar());
-        operators.addElement(new IrNorte());	
-        operators.addElement(new IrEste());	
-        operators.addElement(new IrSur());	
-        operators.addElement(new IrOeste());	
-        operators.addElement(new IrNorEste());	
-        operators.addElement(new IrNorOeste());	
-        operators.addElement(new IrSurEste());	
-        operators.addElement(new IrSurOeste());	
-        operators.addElement(new Subir());	
+		// Create the operators
+		Vector<SearchAction> operators = new Vector<SearchAction>();
+		operators.addElement(new Bajar());
+		operators.addElement(new IrNorte());	
+		operators.addElement(new IrEste());	
+		operators.addElement(new IrSur());	
+		operators.addElement(new IrOeste());	
+		operators.addElement(new IrNorEste());	
+		operators.addElement(new IrNorOeste());	
+		operators.addElement(new IrSurEste());	
+		operators.addElement(new IrSurOeste());	
+		operators.addElement(new Subir());	
 
-        // Create the Problem which the agent will resolve
-        Problem problem = new Problem(agGoal, agState, operators);
-        this.setProblem(problem);
-    }
+		// Create the Problem which the agent will resolve
+		Problem problem = new Problem(agGoal, agState, operators);
+		this.setProblem(problem);
+	}
 
     /**
      * This method is executed by the simulator to ask the agent for an action.
@@ -61,9 +61,9 @@ public class AgentDrone extends SearchBasedAgent {
     	
         
     	/*Costo uniforme*/
-    	/*CostFunction f = new CostFunction();
-    	UniformCostSearch strategy = new  UniformCostSearch(f);
-    	*/
+//    	CostFunction f = new CostFunction();
+//    	UniformCostSearch strategy = new  UniformCostSearch(f);
+    	
     	
     	/* Create the search strategy*/
     	DepthFirstSearch strategy = new DepthFirstSearch();  
