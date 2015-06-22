@@ -61,12 +61,12 @@ public class AgentDrone extends SearchBasedAgent {
     	
         
     	/*Costo uniforme*/
-//    	CostFunction f = new CostFunction();
-//    	UniformCostSearch strategy = new  UniformCostSearch(f);
+    	CostFunction f = new CostFunction();
+    	UniformCostSearch strategy = new  UniformCostSearch(f);
     	
     	
     	/* Create the search strategy*/
-    	DepthFirstSearch strategy = new DepthFirstSearch();  
+//    	DepthFirstSearch strategy = new DepthFirstSearch();  
     	//BreathFirstSearch strategy = new BreathFirstSearch();
     	
     	/*A estrella*/

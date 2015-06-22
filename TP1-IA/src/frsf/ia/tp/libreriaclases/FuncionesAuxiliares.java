@@ -3,6 +3,8 @@ package frsf.ia.tp.libreriaclases;
 import java.awt.Point;
 import java.util.ArrayList;
 
+import frsf.cidisi.exercise.search.StateDrone;
+
 
 public class FuncionesAuxiliares {
 
@@ -855,6 +857,34 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 				break;
 			}
 		
+	}
+
+	/**
+	 * Retorna si se visitaron todos los nodos de nivel bajo con intensidad de señal para el subcuadrante actual
+	 *  
+	 * @param droneState
+	 * @return  true: se visitaron todos los nodos para el subcuadrante actual
+	 * 			false: al menos un nodo no se visito del cuadrante actual
+	 */
+	public static boolean señalesVisitadasB(StateDrone droneState) {
+		ArrayList<Nodo> nodoB = droneState.getintensidadSeñalB();
+		boolean noPertenece=false;
+		int subCuad = FuncionesAuxiliares.perteneceASubCuadrante(droneState.getubicacionD().x, droneState.getubicacionD().y);
+		for(Nodo n: nodoB){
+			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY())== subCuad)
+			{
+				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ERROR PORQ NO PERTENECEN AL MISMO SUBCUADRANTE!!!!!!");
+				if(!n.getVisitado())
+				{
+					return false;
+				}
+			}
+//			else 
+//				noPertenece=true;
+		}
+//		if(noPertenece)
+//			return true;
+		return true;
 	}
 
 

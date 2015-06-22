@@ -85,8 +85,8 @@ System.out.println("\t nivel A");
 System.out.println("\t nivel M");
 						droneState.setenergia(energia - 1);
 
-						droneState.setubicacionD(FuncionesAuxiliares.centroSubcuadranteBajo(subCuadrante));
-//						droneState.setubicacionD(sigPos);
+//						droneState.setubicacionD(FuncionesAuxiliares.centroSubcuadranteBajo(subCuadrante));
+						droneState.setubicacionD(sigPos);
 						return droneState;
 					}
 				}
@@ -94,7 +94,7 @@ System.out.println("\t nivel M");
 			else //Altura "B"
 			{
 //TODO ACÁ VER DE PREGUNTAR SI VISITÓ TODAS LAS PERSONAS DEL NIVEL BAJO!!!!!!!!!!!!!!!!!!!!!##################################
-				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)// || FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 				{
 //TODO ¡¡ACÁ PREGUNTAR SI NO ESTA EL VICTIMARIO, porque esta en la esquina donde bajó!!!!!!!!!!!!!!!!!!!!!!!#########################################
 					subGrafo = droneState.getGrafoSubCuadrante();
@@ -103,7 +103,7 @@ System.out.println("\t nivel M");
 					//si existe el nodo en la dirección este
 					//y no esta visitado el nodo siguiente del grafo del mapa
 					//y no se visitaron todos los nodos de la lista de intensidad de señal baja del agente para ese subcuadrante
-					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState))
 					{
 //System.out.println("Este bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
 						//si el nodo al este tiene intensidad de señal y no se visitó se decrementa 1 en energía, 
@@ -212,13 +212,12 @@ System.out.println("\t nivel M");
 			}
 			else //Altura "B"
 			{
-				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)// || FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
 				{
-
 					subGrafo = droneState.getGrafoSubCuadrante();
 					Nodo nodoSig = FuncionesAuxiliares.irEsteBajo(posicion, subGrafo);
 
-					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
+					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState))
 					{
 						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
 						{
