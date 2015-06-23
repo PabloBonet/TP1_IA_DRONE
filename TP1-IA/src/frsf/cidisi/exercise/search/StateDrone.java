@@ -162,9 +162,8 @@ public class StateDrone extends SearchBasedAgentState {
         				 boolean existe = false;
         				 for(NodoLista nodo : this.intensidadSeñalM)
         				 {
-        					 if(nodo.getCuadrante() == n.getCuadrante() &&n.getCuadrante()/10==cuadrante)  //TODO Y PERTENECE AL CUADRANTE ACTUAL......
+        					 if(nodo.getCuadrante() == n.getCuadrante() &&n.getCuadrante()/10==cuadrante) 
         					 {
-//TODO VER EL IF, PORQUE IBAMOS AGREGANDO LOS NODOS EN INTENSIDAD M. SE PUEDE PONER SÓLO LOS DE ESE SUBCUADRANTE????
         						existe = true;
         						break;
         					 }
@@ -182,7 +181,6 @@ public class StateDrone extends SearchBasedAgentState {
     	 }
     	 else //nivel B
     	 {
-//TODO Y ACA CARGA LOS 3 ELEMENTOS (no va el nodo 34.. para el escenario 3..)
     		 ArrayList<Nodo> listaIB = ((AntenaNB)percepcion.getantena()).getIntensidadSeñal();
 
     		 for(Nodo n: listaIB)
@@ -192,7 +190,7 @@ public class StateDrone extends SearchBasedAgentState {
     				 boolean existe = false;
     				 for(Nodo nodo : this.intensidadSeñalB)
     				 {
-    					 if(nodo.getId() == n.getId()) //TODO SACARLO ACA AL 34...??
+    					 if(nodo.getId() == n.getId()) 
     					 {
     						existe = true;
     						break;
@@ -232,7 +230,7 @@ public class StateDrone extends SearchBasedAgentState {
     	direccion = "N";
     	
     	//Inicializa la energía
-    	this.energia = 50;
+    	this.energia = 1000;
     	
     }
 
@@ -280,8 +278,6 @@ public class StateDrone extends SearchBasedAgentState {
     @Override
     public boolean equals(Object obj) {
        
-       //TODO: Complete Method
-        
     	 if (!(obj instanceof StateDrone))
              return false;
     	
@@ -434,7 +430,6 @@ public class StateDrone extends SearchBasedAgentState {
 		{
 			if(n.getCuadrante() == cuadrante)
 			{
-System.out.println("\tVISITA cuadrante "+n.getCuadrante()+" intensidad "+n.getIntensidad());
 				n.visitar();
 			}
 		}

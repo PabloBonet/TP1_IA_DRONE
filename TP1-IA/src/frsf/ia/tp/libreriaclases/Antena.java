@@ -13,29 +13,4 @@ public abstract class Antena {
 	
 	public abstract void agregarIntensidadSeñal(Object intensidad);
 
-	
-	
-	//private int[] senial;
-	/*private ArrayList<int[]> seniales;
-	
-	public Antena()
-	{
-		seniales = new ArrayList<int[]>();
-		
-	}
-	
-	public void agregarSenial(Point posicion, int intensidad)
-	{
-		int[] senial = new int[3];
-		senial[0]  = posicion.x;
-		senial[1] = posicion.y;
-		senial[2] = intensidad;
-		
-		seniales.add(senial);
-	}
-	
-	public ArrayList<int[]> getSeniales()
-	{
-		return seniales;
-	}*/
 }

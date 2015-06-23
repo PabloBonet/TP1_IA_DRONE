@@ -2,10 +2,10 @@ package frsf.ia.tp.libreriaclases;
 
 public class Persona {
 
-	/** id: numero identificador unico para cada persona*/
+	//id: numero identificador unico para cada persona
 	private int id;
 	
-	/** tipo de persona: 0: victima, 1: victimario*/
+	//tipo de persona: 0: victima, 1: victimario
 	private int tipo;
 	
 	/** Constructor de clase Persona

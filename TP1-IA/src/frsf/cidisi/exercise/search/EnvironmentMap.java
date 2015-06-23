@@ -29,7 +29,7 @@ public class EnvironmentMap extends Environment {
      * @return A perception that will be given to the agent by the simulator.
      */
     @Override
-    public  AgentDronePerception getPercept() { //TODO de acá llama el simulador para obtener una nueva percepción.
+    public  AgentDronePerception getPercept() {
     	// Create a new perception to return
     	AgentDronePerception perception = new AgentDronePerception();
 
@@ -56,10 +56,9 @@ public class EnvironmentMap extends Environment {
     			gps.cargarGrafoSubCuadrante(this.getEnvironmentState().getgrafoMapa());
     			Nodo nodoAgente = this.getEnvironmentState().getgrafoMapa().nodoEnPosicion(this.getEnvironmentState().getposicionAgente());
     			
-//TODO la cámara debe ver sólo al victimario!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!#############################################################################################
     			Camara camara = new Camara(this.getEnvironmentState().getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
     			perception.setcamara(camara);
-    			AntenaNB antena = new AntenaNB();//TODO en nivel B carga el nodo 34 que no pertenece al subC 13
+    			AntenaNB antena = new AntenaNB();
     			int subCuadranteActual = FuncionesAuxiliares.perteneceASubCuadrante(this.getEnvironmentState().getposicionAgente().x, this.getEnvironmentState().getposicionAgente().y);
     			for(Nodo n : this.getEnvironmentState().getintensidadSeñalB())
     			{
@@ -74,12 +73,6 @@ public class EnvironmentMap extends Environment {
     		{
     			gps.cargarGrafoCuadrante(this.getEnvironmentState().getgrafoMapa());
     			AntenaNMA antena = new AntenaNMA(this.getEnvironmentState().getintensidadSeñalM());
-    			int cuadranteActual = FuncionesAuxiliares.perteneceACuadrante(this.getEnvironmentState().getposicionAgente().x, this.getEnvironmentState().getposicionAgente().y);
-//    			for(NodoLista nodo : this.getEnvironmentState().getintensidadSeñalM())
-//        		{
-//        			if(nodo.getCuadrante()/10 == cuadranteActual)
-//        				antena.agregarIntensidadSeñal(nodo);
-//        		}
         		perception.setantena(antena);
     		}
     	}

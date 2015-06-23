@@ -1,0 +1,221 @@
+<tree id="7" edgedefault="directed">
+<node Id="0" Action="null" Cost="0.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 430 - 150
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: false
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: false
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: false
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 991"/>
+<node Id="1" Action="IrEste" Cost="5.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 430 - 150
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: false
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: false
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: false
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 991"/>
+<node Id="2" Action="IrSur" Cost="5.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 370 - 215
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: true
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: false
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: false
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 992"/>
+<node Id="3" Action="IrSur" Cost="-990.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 430 - 215
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: false
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: false
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 990"/>
+<node Id="4" Action="IrSur" Cost="5.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 430 - 285
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: false
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: false
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 988"/>
+<node Id="5" Action="IrOeste" Cost="-985.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 370 - 215
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: true
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: false
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 989"/>
+<node Id="6" Action="IrSur" Cost="-980.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 370 - 285
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: true
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: true
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 988"/>
+<node Id="7" Action="IrEste" Cost="5.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 430 - 285
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: true
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: false
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: true
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 986"/>
+<node Id="8" Action="IrOeste" Cost="-975.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: B
+Ubicaci&#243;n: subcuadrante 23 posici&#243;n 300 - 285
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: false
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: true
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: true
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: true
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 987"/>
+<node Id="9" Action="Subir" Cost="-795.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: M
+Ubicaci&#243;n: subcuadrante 23
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: false
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: true
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: true
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: true
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: true
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 985"/>
+<node Id="10" Action="Subir" Cost="-545.0" Estado_Agente="--------- Estado Agente VANT ---------
+Altura: A
+Ubicaci&#243;n: cuadrante 2
+Intensidad de se&#241;al
+Nivel Alto 
+	Cuadrante: 2	Intensidad: 140	 Fue visitado: true
+Nivel Medio 
+	Cuadrante: 23	Intensidad: 280	 Fue visitado: true
+Nivel Bajo 
+	Posici&#243;n (x, y): 300 150	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 150	Cantidad de Personas: 3, Fue visitado: true
+	Posici&#243;n (x, y): 300 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 370 215	Cantidad de Personas: 4, Fue visitado: true
+	Posici&#243;n (x, y): 430 215	Cantidad de Personas: 1, Fue visitado: true
+	Posici&#243;n (x, y): 300 285	Cantidad de Personas: 2, Fue visitado: true
+	Posici&#243;n (x, y): 370 285	Cantidad de Personas: 2, Fue visitado: true
+Direcci&#243;n: N
+Victimario (ID): No se encontr&#243;.
+Energ&#237;a: 983"/>
+<edge source="0" target="1"/>
+<edge source="0" target="2"/>
+<edge source="1" target="3"/>
+<edge source="3" target="4"/>
+<edge source="3" target="5"/>
+<edge source="5" target="6"/>
+<edge source="6" target="7"/>
+<edge source="6" target="8"/>
+<edge source="8" target="9"/>
+<edge source="9" target="10"/>
+</tree>

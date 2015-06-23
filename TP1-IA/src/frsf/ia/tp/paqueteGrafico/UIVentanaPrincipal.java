@@ -155,23 +155,23 @@ public class UIVentanaPrincipal extends JFrame {
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		panel.add(lblNewLabel, BorderLayout.NORTH);
 		
-		panel_1 = new JPanel();
-		panel_1.setBackground(SystemColor.inactiveCaption);
-		panel.add(panel_1, BorderLayout.CENTER);
-		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
-		
-		btnIniciar = new JButton("INICIAR");
-		btnIniciar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		panel_1.add(btnIniciar);
-		
-		btnPausar = new JButton("PAUSAR");
-		panel_1.add(btnPausar);
-		
-		btnDetener = new JButton("DETENER");
-		panel_1.add(btnDetener);
+//		panel_1 = new JPanel();
+//		panel_1.setBackground(SystemColor.inactiveCaption);
+//		panel.add(panel_1, BorderLayout.CENTER);
+//		panel_1.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+//		
+//		btnIniciar = new JButton("INICIAR");
+//		btnIniciar.addActionListener(new ActionListener() {
+//			public void actionPerformed(ActionEvent arg0) {
+//			}
+//		});
+//		panel_1.add(btnIniciar);
+//		
+//		btnPausar = new JButton("PAUSAR");
+//		panel_1.add(btnPausar);
+//		
+//		btnDetener = new JButton("DETENER");
+//		panel_1.add(btnDetener);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		

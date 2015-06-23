@@ -20,7 +20,6 @@ public class IrNorOeste extends SearchAction {
 	 */
 	@Override
 	public SearchBasedAgentState execute(SearchBasedAgentState s) {
-		// StateDrone agState = (StateDrone) s;
 
 		// TODO: Use this conditions
 		// PreConditions: null
@@ -35,44 +34,18 @@ public class IrNorOeste extends SearchAction {
 
 
 		Point sigPos = new Point();
-if(droneState.getenergia()>1){
-		if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
-			sigPos = FuncionesAuxiliares.irNorOeste(posicion, altura);
-
-			if(sigPos != null)
-			{
-				int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
-				NodoLista encontrado=null;
-				for(NodoLista n: droneState.getintensidadSeñalA())
-				{
-
-					if(cuadrante == n.getCuadrante() && !n.getVisitado())
-					{
-						encontrado = n;
-						break;
-					}
-				}
-				if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
-				{
-					droneState.setenergia(energia - 1);
-					droneState.setubicacionD(sigPos);	
-					return droneState;
-				}
-			}
-		}
-		else
-		{
-			if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
-
+		if(droneState.getenergia()>1){
+			if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
 				sigPos = FuncionesAuxiliares.irNorOeste(posicion, altura);
 
 				if(sigPos != null)
 				{
-					int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+					int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
 					NodoLista encontrado=null;
-					for(NodoLista n: droneState.getintensidadSeñalM())
+					for(NodoLista n: droneState.getintensidadSeñalA())
 					{
-						if(subCuadrante == n.getCuadrante() && !n.getVisitado())
+
+						if(cuadrante == n.getCuadrante() && !n.getVisitado())
 						{
 							encontrado = n;
 							break;
@@ -81,49 +54,73 @@ if(droneState.getenergia()>1){
 					if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
 						droneState.setenergia(energia - 1);
-//						droneState.setubicacionD(FuncionesAuxiliares.centroSubcuadranteBajo(subCuadrante));
-						droneState.setubicacionD(sigPos);
+						droneState.setubicacionD(sigPos);	
 						return droneState;
 					}
 				}
 			}
-			else //altura == B
+			else
 			{
-				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)// || FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
-				{
-					subGrafo = droneState.getGrafoSubCuadrante();
-					Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
+				if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
 
-					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState))
+					sigPos = FuncionesAuxiliares.irNorOeste(posicion, altura);
+
+					if(sigPos != null)
 					{
-//System.out.println("NorOeste bajo! de "+droneState.getubicacionD().x+"-"+droneState.getubicacionD().y+" a "+nodoSig.getPosX()+"-"+nodoSig.getPosY());
-						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
+						int subCuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+						NodoLista encontrado=null;
+						for(NodoLista n: droneState.getintensidadSeñalM())
 						{
-							FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
-							if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())
+							if(subCuadrante == n.getCuadrante() && !n.getVisitado())
 							{
-								droneState.setenergia(energia - 2);
+								encontrado = n;
+								break;
+							}
+						}
+						if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+						{
+							droneState.setenergia(energia - 1);
+							droneState.setubicacionD(sigPos);
+							return droneState;
+						}
+					}
+				}
+				else //altura == B
+				{
+					if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+					{
+						subGrafo = droneState.getGrafoSubCuadrante();
+						Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
+
+						if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState))
+						{
+							if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
+							{
+								FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
+								if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())
+								{
+									droneState.setenergia(energia - 2);
+								}
+								else
+								{
+									(subGrafo.buscarNodo(nodoSig.getId())).visitar();
+									droneState.setenergia(energia - 1);	
+								}
 							}
 							else
 							{
 								(subGrafo.buscarNodo(nodoSig.getId())).visitar();
-								droneState.setenergia(energia - 1);	
+								droneState.setenergia(energia - 2);
 							}
-						}
-						else
-						{
-							(subGrafo.buscarNodo(nodoSig.getId())).visitar();
-							droneState.setenergia(energia - 2);
-						}
 
-						sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
-						droneState.setubicacionD(sigPos);
-						return droneState;
+							sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+							droneState.setubicacionD(sigPos);
+							return droneState;
+						}
 					}
 				}
 			}
 		}
-}
 		return null;
 	}
 
@@ -150,42 +147,16 @@ if(droneState.getenergia()>1){
 
 		Point sigPos = new Point();
 		if(droneState.getenergia()>1){
-		if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
-			sigPos = FuncionesAuxiliares.irNorOeste(posicion, altura);
-
-			if(sigPos != null)
-			{
-				int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
-				NodoLista encontrado=null;
-				for(NodoLista n: droneState.getintensidadSeñalA())
-				{
-
-					if(cuadrante == n.getCuadrante() && !n.getVisitado())
-					{
-						encontrado = n;
-						break;
-					}
-				}
-				if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
-				{
-					droneState.setenergia(energia - 1);
-					droneState.setubicacionD(sigPos);	
-					puedeIr = true;
-
-				}
-			}
-		}
-		else{
-			if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
-
+			if(altura == "A" && droneState.getintensidadSeñalA().size()>0){
 				sigPos = FuncionesAuxiliares.irNorOeste(posicion, altura);
 
 				if(sigPos != null)
 				{
+					int cuadrante = FuncionesAuxiliares.perteneceACuadrante(sigPos.x, sigPos.y);
 					NodoLista encontrado=null;
-					for(NodoLista n: droneState.getintensidadSeñalM())
+					for(NodoLista n: droneState.getintensidadSeñalA())
 					{
-						int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+
 						if(cuadrante == n.getCuadrante() && !n.getVisitado())
 						{
 							encontrado = n;
@@ -195,57 +166,82 @@ if(droneState.getenergia()>1){
 					if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
 					{
 						droneState.setenergia(energia - 1);
-						droneState.setubicacionD(sigPos);
+						droneState.setubicacionD(sigPos);	
 						puedeIr = true;
+
 					}
 				}
 			}
-			else //Altura "B"
-			{
-				if(altura == "B" && droneState.getintensidadSeñalB().size()>0)// || FuncionesAuxiliares.señalesVisitadasB(droneState.getintensidadSeñalB()))
-				{
-					subGrafo = droneState.getGrafoSubCuadrante();
-					Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
+			else{
+				if(altura == "M" && droneState.getintensidadSeñalM().size()>0){
 
-					if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState))
+					sigPos = FuncionesAuxiliares.irNorOeste(posicion, altura);
+
+					if(sigPos != null)
 					{
-						if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
+						NodoLista encontrado=null;
+						for(NodoLista n: droneState.getintensidadSeñalM())
 						{
-							FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
-							if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())
+							int cuadrante = FuncionesAuxiliares.perteneceASubCuadrante(sigPos.x, sigPos.y);
+							if(cuadrante == n.getCuadrante() && !n.getVisitado())
 							{
-								droneState.setenergia(energia - 2);
+								encontrado = n;
+								break;
+							}
+						}
+						if(encontrado != null) //Si el cuadrante tiene señal, se mueve a ese cuadrante
+						{
+							droneState.setenergia(energia - 1);
+							droneState.setubicacionD(sigPos);
+							puedeIr = true;
+						}
+					}
+				}
+				else //Altura "B"
+				{
+					if(altura == "B" && droneState.getintensidadSeñalB().size()>0)
+					{
+						subGrafo = droneState.getGrafoSubCuadrante();
+						Nodo nodoSig = FuncionesAuxiliares.irNorOesteBajo(posicion, subGrafo);
+
+						if(nodoSig != null && !nodoSig.getVisitado() && !FuncionesAuxiliares.señalesVisitadasB(droneState))
+						{
+							if(FuncionesAuxiliares.contieneNodoConID(droneState.getintensidadSeñalB(),nodoSig.getId()))
+							{
+								FuncionesAuxiliares.visitarNodoIntensidadSeñalB(droneState.getintensidadSeñalB(), nodoSig.getId());
+								if(subGrafo.buscarNodo(nodoSig.getId()).getVisitado())
+								{
+									droneState.setenergia(energia - 2);
+								}
+								else
+								{
+									(subGrafo.buscarNodo(nodoSig.getId())).visitar();
+									droneState.setenergia(energia - 1);	
+								}
+
 							}
 							else
 							{
 								(subGrafo.buscarNodo(nodoSig.getId())).visitar();
-								droneState.setenergia(energia - 1);	
+								droneState.setenergia(energia - 2);
 							}
 
+							sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
+							droneState.setubicacionD(sigPos);
+							puedeIr = true;
+							//visita el nodo de la lista de intensidad de señal baja y el nodo del mapa (del ambiente)
+							FuncionesAuxiliares.visitarNodoIntensidadSeñalB(environmentState.getintensidadSeñalB(), nodoSig.getId());
+							environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
 						}
-						else
-						{
-							(subGrafo.buscarNodo(nodoSig.getId())).visitar();
-							droneState.setenergia(energia - 2);
-						}
-
-						sigPos.setLocation(nodoSig.getPosX(), nodoSig.getPosY());
-						droneState.setubicacionD(sigPos);
-						puedeIr = true;
-						//visita el nodo de la lista de intensidad de señal baja y el nodo del mapa (del ambiente)
-						FuncionesAuxiliares.visitarNodoIntensidadSeñalB(environmentState.getintensidadSeñalB(), nodoSig.getId());
-						environmentState.getgrafoMapa().buscarNodo(nodoSig.getId()).visitar();
 					}
 				}
-			}
 
-			if (puedeIr) {
-				environmentState.setposicionAgente(droneState.getubicacionD());
-				environmentState.setenergiaAgente(droneState.getenergia());
-
-				return environmentState;
+				if (puedeIr) {
+					environmentState.setposicionAgente(droneState.getubicacionD());
+					environmentState.setenergiaAgente(droneState.getenergia());
+					return environmentState;
+				}
 			}
-		}
 		}
 		return null;
 	}

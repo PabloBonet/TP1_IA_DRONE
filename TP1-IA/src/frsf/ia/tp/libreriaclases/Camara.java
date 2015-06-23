@@ -17,7 +17,7 @@ public class Camara {
 	}
 	
 	/**
-	 * Contructor
+	 * Constructor
 	 * @param p
 	 * 		lista de personas que la cámara puede detectar
 	 * @param nodo

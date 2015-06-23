@@ -70,10 +70,10 @@ public class AgentDrone extends SearchBasedAgent {
     	//BreathFirstSearch strategy = new BreathFirstSearch();
     	
     	/*A estrella*/
-    	/*CostFunction g=new CostFunction(); 
-    	Heuristic h=new Heuristic();
-        AStarSearch strategy=new AStarSearch(g,h);
-    	*/
+//    	CostFunction g=new CostFunction(); 
+//    	Heuristic h=new Heuristic();
+//        AStarSearch strategy=new AStarSearch(g,h);
+    	
     	
     	 /**
          * Another search strategy examples:

@@ -1,7 +1,6 @@
 package frsf.cidisi.exercise.search;
 
 import java.awt.Point;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import frsf.cidisi.faia.agent.Agent;
@@ -13,7 +12,6 @@ import frsf.ia.tp.libreriaclases.AntenaNMA;
 import frsf.ia.tp.libreriaclases.Camara;
 import frsf.ia.tp.libreriaclases.FuncionesAuxiliares;
 import frsf.ia.tp.libreriaclases.Gps;
-import frsf.ia.tp.libreriaclases.Grafo;
 import frsf.ia.tp.libreriaclases.Nodo;
 import frsf.ia.tp.libreriaclases.NodoLista;
 
@@ -45,9 +43,6 @@ public class AgentDronePerception extends Perception {
     @Override
     public void initPerception(Agent agentIn, Environment environmentIn) {
     	
-    	//TODO: Complete Method
-        
-        AgentDrone agente = (AgentDrone) agentIn;
         EnvironmentMap ambiente = (EnvironmentMap) environmentIn;
         StateMap estadoAmbiente =
                 ambiente.getEnvironmentState();
@@ -71,19 +66,9 @@ public class AgentDronePerception extends Perception {
         		//cargar el grafo perteneciente al cuadrante
             	gps.cargarGrafoCuadrante(estadoAmbiente.getgrafoMapa());
             	
-//            	antena = new AntenaNMA();
             	//agrega todos los nodos de la lista de nivel medio ya que cada nodo se marcó como visitaso
             	//si es que ya se pasó por éste
-       //TODO ACÁ DEBE COPIAR SOLO LAS INTENSIDADES PARA ESE CUADRANTE DE NIVEL MEDIO??????????????????????
-       //PODRÍA COPIAR TODAS?????????????????????????????????????
             	antena = new AntenaNMA(estadoAmbiente.getintensidadSeñalM());
-//            	int cuadrante = subCuadrante / 10;
-//
-//        		for(NodoLista nodo : estadoAmbiente.getintensidadSeñalM())
-//        		{
-//        			if(nodo.getCuadrante()/10 == cuadrante)
-//        				antena.agregarIntensidadSeñal(nodo);
-//        		}
         	}
         	else //altura == B
         	{
@@ -98,18 +83,15 @@ public class AgentDronePerception extends Perception {
             		camara = new Camara(estadoAmbiente.getPersonasQueVe(nodoAgente, gps.getGrafoSubCuadrante()), nodoAgente);
             	
             	//Percepción Antena para nivel bajo
-//TODO VER!!!            	antena = new AntenaNB();
-/**/            	for(Nodo n: estadoAmbiente.getintensidadSeñalB())
-/**/            	{
-/**/            		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
+            	for(Nodo n: estadoAmbiente.getintensidadSeñalB())
+            	{
+            		if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY()) == subCuadrante)
             		{
             			antena.agregarIntensidadSeñal(n);
                     	
             		}
             	}
         	}
-        	
-        	
         }
         else
         {

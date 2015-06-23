@@ -126,8 +126,7 @@ public class FuncionesAuxiliares {
 	 * 			Si el cuadrante no pertenece a ninguna posicion retorna null
 	 */
 	public static Point bajarASubCuadranteM(int cuadrante) {
-System.out.print("bajarASubCuadranteM. Cuadrante: "+cuadrante);
-		// TODO el nro de subcuadrante es: cuadrante * 10 + 1
+		// el nro de subcuadrante es: cuadrante * 10 + 1
 		Point nuevaPos = new Point();
 		switch (cuadrante) {
 		case 1:
@@ -145,7 +144,6 @@ System.out.print("bajarASubCuadranteM. Cuadrante: "+cuadrante);
 		default:
 			return null;
 		}
-System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 		return nuevaPos;
 	}
 
@@ -183,15 +181,8 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 				int posNueva = y - ALTO_SUB_CUADRANTE;
 				if (posNueva >= 0) // Si no sale fuera de la grilla
 				{
-					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1,
-					// 2, 3 o 4
-					// (Ej:
-					// y=100->1,
-					// y=160->2,
-					// y=320->3,..)
-					if (auxY == 2 || auxY == 4) // se puede mover hacia arriba
-					// si esta en el subcuadrante
-					// inferior dentro del cuadrante
+					int auxY = y / ALTO_SUB_CUADRANTE + 1; // //cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
+					if (auxY == 2 || auxY == 4) // se puede mover hacia arriba si esta en el subcuadrante inferior dentro del cuadrante
 					{
 						posicion.x = x;
 						posicion.y = posNueva;
@@ -231,17 +222,8 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 				
 				if(posNueva >= 0 && posNueva <= ANCHO_MAPA)  // Si no sale fuera de la grilla
 				{
-					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // //cuad
-					// 1, 2,
-					// 3 o 4
-					// (Ej:
-					// x=100->1,
-					// x=160->2,
-					// x=320->3,..)
-					if (auxX == 4 || auxX == 2) // se puede mover hacia la
-					// izquierda si esta en el
-					// subcuadrante inferior dentro
-					// del cuadrante
+					int auxX = x / ANCHO_SUB_CUADRANTE + 1; // //cuad 1, 2, 3 o 4 (Ej: x=100->1, x=160->2, x=320->3,..)
+					if (auxX == 4 || auxX == 2) // se puede mover hacia la izquierda si esta en el subcuadrante inferior dentro del cuadrante
 					{
 						posicion.x = posNueva;
 						posicion.y = y;
@@ -302,7 +284,7 @@ System.out.print(" NuevaPos: "+nuevaPos.x+"-"+nuevaPos.y+"\n");
 	 */
 	public static Nodo irNorteBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al norte de la posicion actual y
 			// que este en un rango de +-10
@@ -310,9 +292,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if (estaAlNorte(nodoActual, n)
 					&& n.getPosX() >= ubicacionActual.x - 10
 					&& n.getPosX() <= ubicacionActual.x + 10) {
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-		if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 		return null;
@@ -320,7 +302,7 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 
 	public static Nodo irOesteBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al oeste de la posicion actual y
@@ -329,9 +311,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if (estaAlOeste(nodoActual, n)
 					&& n.getPosY() >= ubicacionActual.y - 10
 					&& n.getPosY() <= ubicacionActual.y + 10) {
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-		if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 		return null;
@@ -341,7 +323,7 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 	public static Nodo irEsteBajo(Point ubicacionActual, Grafo subGrafo) {
 
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al este de la posicion actual y que
@@ -350,9 +332,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if (estaAlEste(nodoActual, n)
 					&& n.getPosY() >= ubicacionActual.y - 10
 					&& n.getPosY() <= ubicacionActual.y + 10) {
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 		return null;
@@ -377,7 +359,6 @@ if(subCuadActual==subCuadNodoSig)
 		double d = ALTO_CUADRANTE;
 		double auxD;
 		for (Nodo n : grafoSubCuadrante.getListaNodos()) {
-//preguntar si el nodo pertenece al subcuadrante donde esta el drone
 			auxD = Math.hypot(Math.abs(n.getPosX() - centroSubCuadrante.x), Math.abs(n.getPosY()
 					- centroSubCuadrante.y));
 
@@ -509,7 +490,6 @@ if(subCuadActual==subCuadNodoSig)
 				}
 			} else // altura == M
 			{
-System.out.print("\tnivel M (en Point irSur())\n");
 				int posNueva = y + ALTO_SUB_CUADRANTE;
 				if (posNueva <= ALTO_MAPA) // Si no sale fuera de la grilla
 				
@@ -531,7 +511,7 @@ System.out.print("\tnivel M (en Point irSur())\n");
 
 	public static Nodo irSurBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al sur de la posicion actual y que
 			// este en un rango de +-10 en x
@@ -539,9 +519,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if (estaAlSur(nodoActual, n)
 					&& n.getPosX() >= ubicacionActual.x - 10
 					&& n.getPosX() <= ubicacionActual.x + 10) {
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-		if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 		return null;
@@ -591,7 +571,7 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 
 	public static Nodo irNorEsteBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al noreste de la posicion actual y
 			// que este en un rango de +-10 en x
@@ -599,9 +579,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if (estaAlNorte(nodoActual, n) && estaAlEste(nodoActual, n)
 					&& n.getPosX() >= ubicacionActual.x + 10
 					&& n.getPosY() <= ubicacionActual.y - 10) {
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-		if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 		return null;
@@ -635,7 +615,6 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 				{
 					int auxY = y / ALTO_SUB_CUADRANTE + 1; //cuad 1, 2, 3 o 4 (Ej: y=100->1, y=160->2, y=320->3,..)
 					int auxX = x / ANCHO_SUB_CUADRANTE + 1;
-					//if ((auxY == 2 || auxY == 4) && (auxX == 2 || auxX == 4)) // se puede mover hacia arriba e izquierda si esta en el subcuadrante inferior dentro del cuadrante
 					if ((auxY == 2 && auxX == 2) || ( auxY == 4 && auxX == 2) || ( auxY == 2 && auxX == 4) || ( auxY == 4 && auxX == 4))
 					{
 						posicion.x = posNuevaX;
@@ -698,7 +677,7 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 
 	public static Nodo irSurEsteBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al sureste de la posicion actual y
 			// que este en un rango de +-10 en x
@@ -706,9 +685,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if (estaAlSur(nodoActual, n) && estaAlEste(nodoActual, n)
 					&& n.getPosX() >= ubicacionActual.x + 10
 					&& n.getPosY() >= ubicacionActual.y + 10) {
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-		if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 		return null;
@@ -716,7 +695,7 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 
 	public static Nodo irNorOesteBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al NorOeste de la posicion actual y
 			// que este en un rango de +-10 en x
@@ -724,9 +703,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if ( estaAlNorte(nodoActual,n) && estaAlOeste(nodoActual, n)
 					&& n.getPosX() <= ubicacionActual.x - 10
 					&& n.getPosY() <= ubicacionActual.y - 10){
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-		if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 		return null;
@@ -775,7 +754,7 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 
 	public static Nodo irSurOesteBajo(Point ubicacionActual, Grafo subGrafo) {
 		Nodo nodoActual = subGrafo.nodoEnPosicion(ubicacionActual);
-int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
+		int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, ubicacionActual.y);
 
 		for (Nodo n : subGrafo.buscarAdyacentes(nodoActual)) {
 			// verifica que haya un nodo mas al SurOeste de la posicion actual y
@@ -784,9 +763,9 @@ int subCuadActual=FuncionesAuxiliares.perteneceASubCuadrante(ubicacionActual.x, 
 			if ( estaAlSur(nodoActual,n) && estaAlOeste(nodoActual, n)
 					&& n.getPosX() <= ubicacionActual.x - 10
 					&& n.getPosY() >= ubicacionActual.y + 10){
-int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
-		if(subCuadActual==subCuadNodoSig)
-				return n;
+				int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY());
+				if(subCuadActual==subCuadNodoSig)
+					return n;
 			}
 		}
 
@@ -868,22 +847,16 @@ int subCuadNodoSig=FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.get
 	 */
 	public static boolean señalesVisitadasB(StateDrone droneState) {
 		ArrayList<Nodo> nodoB = droneState.getintensidadSeñalB();
-		boolean noPertenece=false;
 		int subCuad = FuncionesAuxiliares.perteneceASubCuadrante(droneState.getubicacionD().x, droneState.getubicacionD().y);
 		for(Nodo n: nodoB){
 			if(FuncionesAuxiliares.perteneceASubCuadrante(n.getPosX(), n.getPosY())== subCuad)
 			{
-				System.out.println("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ERROR PORQ NO PERTENECEN AL MISMO SUBCUADRANTE!!!!!!");
 				if(!n.getVisitado())
 				{
 					return false;
 				}
 			}
-//			else 
-//				noPertenece=true;
 		}
-//		if(noPertenece)
-//			return true;
 		return true;
 	}
 

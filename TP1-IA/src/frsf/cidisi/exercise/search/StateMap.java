@@ -25,10 +25,8 @@ public class StateMap extends EnvironmentState {
     	intensidadSeñalA = new ArrayList<NodoLista>();
 		intensidadSeñalM = new ArrayList<NodoLista>();
 		intensidadSeñalB = new ArrayList<Nodo>();
-//		grafoMapa = new Grafo();
 		grafoMapa = grafo;
 		posicionAgente = new Point();
-//		this.setgrafoMapa(grafo);
         this.initState();
     }
 
@@ -38,7 +36,7 @@ public class StateMap extends EnvironmentState {
     @Override
     public void initState() {
     	
-        this.energiaAgente = 50;
+        this.energiaAgente = 1000;
         this.posicionAgente.setLocation(150, 150);
         this.alturaAgente  = "A";
        
@@ -144,8 +142,7 @@ public class StateMap extends EnvironmentState {
         str += "Nivel Bajo \n";
         for(int i=0; i<intensidadSeñalB.size();i++)
         	str +="\tPosición (x, y): "+intensidadSeñalB.get(i).getPosX()+" "+intensidadSeñalB.get(i).getPosY()+" \tCantidad de Personas: "+intensidadSeñalB.get(i).getPersonas().size()+"\n";
-//        str += "Victimarios (ID): ";
-        
+       
         return str;
     }
 
@@ -231,10 +228,7 @@ public class StateMap extends EnvironmentState {
     				 if(p.esVictimario())
     					 personasObservables.add(p);
     		 }
-//    		 ArrayList<Nodo> nodoCamara = grafoMapa.verVictimario(nodoAgente, subgrafo);
-
     	 }
-
 
     	 return personasObservables;
      }

@@ -18,28 +18,9 @@ public class Nodo {
 	//Lista de personas ubicadas en el nodo.
 	private List<Persona> personas;
 
-//	/**
-//	 * Constructor que inicializa las propiedades del nodo.
-//	 * 
-//	 * @param idNodo
-//	 *            El id del vértice.
-//	 * @param pX
-//	 * 			  Posición X del nodo
-//	 * 
-//	 * @param pY
-//	 * 			  Posición Y del nodo
-//	 */
-//	public Nodo(int idNodo, int pX, int pY, List<Persona> persona, boolean visitado) {
-//		super();
-//		this.id = idNodo;
-//		this.posX = pX;
-//		this.posY = pY;
-//		this.personas = persona;
-//		this.visitado = visitado;
-//	}
 	
 	/**
-	 * 
+	 * Constructor que inicializa las variables del nodo.
 	 * @param idNodo
 	 * @param pX
 	 * @param pY
